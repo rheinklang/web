@@ -1,0 +1,10 @@
+:host {
+	display: inline-block;
+
+	svg {
+		display: inline-block;
+		all: inherit;
+		width: 20px;
+		height: 20px;
+	}
+}
