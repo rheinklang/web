@@ -1,0 +1,11 @@
+@import "../../../styles/colors.scss";
+
+:host .o-footer {
+  background-color: $color-black;
+  color: $color-white;
+}
+
+:host .o-footer .a-logo {
+  max-width: 60%;
+  margin: 0 auto;
+}

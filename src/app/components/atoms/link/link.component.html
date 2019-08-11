@@ -1,0 +1,13 @@
+<ng-template ngIf="target === '_blank'; #isInternalLink">
+	<a href="{{href}}" target="{{target}}" [attr.rel]="needsRelationSafety ? 'noopener noreferrer' : null">
+		<app-icon *ngIf="icon" select="{{icon}}"></app-icon>
+		{{text}}
+	</a>
+</ng-template>
+
+<ng-template #isInternalLink>
+	<a [routerLink]="href">
+		<app-icon *ngIf="icon" select="{{icon}}"></app-icon>
+		{{text}}
+	</a>
+</ng-template>

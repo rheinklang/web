@@ -5,7 +5,8 @@ import { HomeComponent } from './views/home/home.component';
 const routes: Routes = [
 	{
 		path: '',
-		component: HomeComponent
+		data: { seoID: 'home' },
+		component: HomeComponent,
 	}
 ];
 
