@@ -1,1 +1,7 @@
-<img [ngClass]="'a-logo' + highlight ? ' a-logo--highlight' : ''" *ngIf="image" src="{{image}}" alt="{{id}} - Logo" />
+<img
+	class="a-logo"
+	[class.a-logo--highlight]="highlight"
+	[ngClass]="location ? 'a-logo--location-' + location : ''"
+	*ngIf="image"
+	src="{{image}}"
+	alt="{{id}} - Logo" />

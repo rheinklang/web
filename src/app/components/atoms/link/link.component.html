@@ -1,13 +1,27 @@
-<ng-template ngIf="target === '_blank'; #isInternalLink">
-	<a href="{{href}}" target="{{target}}" [attr.rel]="needsRelationSafety ? 'noopener noreferrer' : null">
-		<app-icon *ngIf="icon" select="{{icon}}"></app-icon>
+<ng-template ngIf="target === '_blank'; #internal">
+	<a
+		class="a-link a-link--{{color || 'default'}}"
+		[href]="href"
+		[target]="target"
+		[attr.rel]="needsRelationSafety ? 'noopener noreferrer' : null"
+		[class.a-link--has-icon]="icon"
+		[class.a-link--static-indicator]="showIndicator"
+	>
+		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>
 		{{text}}
+		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon"></rk-icon>
 	</a>
 </ng-template>
 
-<ng-template #isInternalLink>
-	<a [routerLink]="href">
-		<app-icon *ngIf="icon" select="{{icon}}"></app-icon>
+<ng-template #internal>
+	<a
+		class="a-link a-link--{{color || 'default'}}"
+		[class.a-link--has-icon]="icon"
+		[class.a-link--static-indicator]="showIndicator"
+		[routerLink]="[href]"
+	>
+		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>
 		{{text}}
+		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon"></rk-icon>
 	</a>
 </ng-template>

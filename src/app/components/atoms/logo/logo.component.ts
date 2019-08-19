@@ -1,27 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { LogoQueryResponse, getLogoQuery } from '../../../queries/logo-singleton';
 import { environment } from '../../../../environments/environment';
+import { LogoService } from '../../../services/logo.service';
 
 @Component({
-	selector: 'app-logo',
-	templateUrl: './logo.component.html'
+	selector: 'rk-logo',
+	templateUrl: './logo.component.html',
+	styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent implements OnInit {
 	@Input() id: string;
 	@Input() highlight = false;
+	@Input() location?: string;
 
 	public image: string | null;
 
-	constructor(private apollo: Apollo) { }
+	constructor(private logoService: LogoService) { }
 
 	ngOnInit() {
-
-		this.apollo.watchQuery<LogoQueryResponse<any>>({
-			query: getLogoQuery(this.id)
-		})
-			.valueChanges
-			.subscribe(({ data, loading }) => {
+		this.logoService
+			.getLogo(this.id)
+			.subscribe(({ data }) => {
 				const asset = data.logosSingleton[this.id];
 				this.image = asset ? `${environment.assetCDNHost}${asset.path}` : null;
 			});

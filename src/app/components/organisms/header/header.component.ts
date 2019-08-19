@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService } from '../../../services/navigation.service';
+import { NavigationQueryResponse } from '../../../queries/navigation-singleton';
 
 @Component({
-	selector: 'app-header',
+	selector: 'rk-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-	constructor() {}
+	public navigationTitles: NavigationQueryResponse['navigationSingleton']
+		= {} as NavigationQueryResponse['navigationSingleton'];
 
-	ngOnInit() {}
+	constructor(private navigationService: NavigationService) { }
+
+	public ngOnInit() {
+		this.navigationService.getNavigationTitles().subscribe(({ data }) => {
+			this.navigationTitles = data.navigationSingleton;
+		});
+	}
 }

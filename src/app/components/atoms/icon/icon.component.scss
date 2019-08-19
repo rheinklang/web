@@ -1,10 +1,18 @@
-:host {
-	display: inline-block;
+$size: 16px;
 
-	svg {
-		display: inline-block;
-		all: inherit;
-		width: 20px;
-		height: 20px;
-	}
+.a-icon {
+  display: inline-block;
+  vertical-align: bottom;
+
+  svg {
+    display: inline-block;
+    all: inherit;
+    width: $size;
+    height: $size;
+  }
+
+  svg,
+  use {
+    fill: #fff;
+  }
 }

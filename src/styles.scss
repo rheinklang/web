@@ -1,4 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/fonts/fv-almelo/stylesheet.css";
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap");
+
 @import "./app/styles/normalize.scss";
 @import "./app/styles/flexboxgrid.scss";
 @import "./app/styles/sizes.scss";
+@import "./app/styles/global.scss";

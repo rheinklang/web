@@ -1,0 +1,48 @@
+@import "../../../styles/helpers.scss";
+@import "../../organisms/header/header.component.scss";
+
+:host {
+  display: inline-block;
+}
+
+.m-link-list {
+  list-style: circle;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: block;
+    margin: 10px 0;
+
+    &:before {
+      content: "";
+    }
+  }
+}
+
+.m-link-list--horizontal {
+  @extend %clearfix;
+  list-style: none;
+
+  li {
+    margin: 0;
+    float: left;
+
+    &:before {
+      content: "";
+    }
+  }
+}
+
+$link-list-main-nav-spacing: 5px;
+$link-list-main-nav-size: 20px;
+
+.m-link-list--main-navigation {
+  li {
+    font-family: FVAlmelo, Lato, "Helvetica Neue", sans-serif;
+    padding: $link-list-main-nav-spacing 20px;
+    margin: #{($header-height - (2 * $link-list-main-nav-size)) / 2} 0;
+    text-transform: uppercase;
+    font-size: 20px;
+  }
+}

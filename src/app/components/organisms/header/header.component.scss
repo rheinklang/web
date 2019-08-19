@@ -1,0 +1,13 @@
+@import "../../../styles/colors.scss";
+
+$header-height: 80px;
+
+.o-header {
+  background-color: $color-primary-sea-green;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.o-header .a-logo {
+  height: $header-height;
+}

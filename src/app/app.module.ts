@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RheinklangRoutingModule as AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { GraphQLModule } from './graphql.module';
@@ -15,6 +16,16 @@ import { SeoManagerComponent } from './components/helper/seo-manager/seo-manager
 import { LinkComponent } from './components/atoms/link/link.component';
 import { LinkListComponent } from './components/molecules/link-list/link-list.component';
 import { LogoComponent } from './components/atoms/logo/logo.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
+import { HeadingComponent } from './components/atoms/heading/heading.component';
+import { AboutComponent } from './views/about/about.component';
+import { EventComponent } from './views/event/event.component';
+import { EventOverviewComponent } from './views/event-overview/event-overview.component';
+import { ImpressionComponent } from './views/impression/impression.component';
+import { ImpressionOverviewComponent } from './views/impression-overview/impression-overview.component';
+import { NewsletterComponent } from './components/molecules/newsletter/newsletter.component';
+import { InputComponent } from './components/atoms/input/input.component';
+import { ButtonComponent } from './components/atoms/button/button.component';
 
 @NgModule({
 	declarations: [
@@ -27,14 +38,26 @@ import { LogoComponent } from './components/atoms/logo/logo.component';
 		SeoManagerComponent,
 		LinkComponent,
 		LinkListComponent,
-		LogoComponent
+		LogoComponent,
+		NotFoundComponent,
+		HeadingComponent,
+		AboutComponent,
+		EventComponent,
+		EventOverviewComponent,
+		ImpressionComponent,
+		ImpressionOverviewComponent,
+		NewsletterComponent,
+		InputComponent,
+		ButtonComponent
 	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
 		GraphQLModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

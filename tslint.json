@@ -17,13 +17,13 @@
 		"directive-selector": [
 			true,
 			"attribute",
-			"app",
+			"rk",
 			"camelCase"
 		],
 		"component-selector": [
 			true,
 			"element",
-			"app",
+			"rk",
 			"kebab-case"
 		],
 		"import-blacklist": [

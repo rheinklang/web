@@ -6,9 +6,20 @@ $color-grey-200: #a1a1a1;
 $color-grey-300: #d9d9d9;
 
 $color-primary-fury-red: #d8687b;
+$color-primary-fury-red-dark1: darken(#d8687b, 3);
+$color-primary-fury-red-light1: lighten(#d8687b, 3);
+
 $color-primary-grass-green: #6e8f42;
+$color-primary-grass-green-dark1: darken(#6e8f42, 3);
+$color-primary-grass-green-light1: lighten(#6e8f42, 3);
+
 $color-primary-retr-orange: #f6cea1;
+$color-primary-retr-orange-dark1: darken(#f6cea1, 3);
+$color-primary-retr-orange-light1: lighten(#f6cea1, 3);
+
 $color-primary-sea-green: #0e3536;
+$color-primary-sea-green-dark1: darken(#0e3536, 3);
+$color-primary-sea-green-light1: lighten(#0e3536, 3);
 
 $color-secondary-redish: #f5ccd3;
 $color-secondary-grassish: #acbc98;

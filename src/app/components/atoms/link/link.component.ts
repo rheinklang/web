@@ -1,14 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-	selector: 'app-link',
+	selector: 'rk-link',
 	templateUrl: './link.component.html',
-	styleUrls: ['./link.component.scss']
+	styleUrls: ['./link.component.scss'],
+	// changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LinkComponent {
-	@Input() href: string;
-	@Input() icon?: string;
-	@Input() text: string;
+	@Input() public href: string;
+	@Input() public text: string;
+	@Input() public showIndicator = false;
+	@Input() public icon?: string;
+	@Input() public iconPosition: 'pre' | 'post' = 'pre';
+	@Input() public color?: string;
 
 	private $target = '_self';
 	public needsRelationSafety = false;

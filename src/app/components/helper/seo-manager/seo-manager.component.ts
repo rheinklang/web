@@ -4,7 +4,7 @@ import { getSEOForPageQuery, GetSEOForPageQueryResponse, SEOEntry } from '../../
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
-	selector: 'app-seo-manager',
+	selector: 'rk-seo-manager',
 	templateUrl: './seo-manager.component.html'
 })
 export class SeoManagerComponent implements OnInit {
