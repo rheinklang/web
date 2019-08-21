@@ -6,6 +6,8 @@ import { AboutComponent } from './views/about/about.component';
 import { EventComponent } from './views/event/event.component';
 import { EventOverviewComponent } from './views/event-overview/event-overview.component';
 import { environment } from '../environments/environment';
+import { ImpressionOverviewComponent } from './views/impression-overview/impression-overview.component';
+import { ImpressionComponent } from './views/impression/impression.component';
 
 const routes: Routes = [
 	{
@@ -16,6 +18,18 @@ const routes: Routes = [
 	{
 		path: 'about',
 		component: AboutComponent
+	},
+	{
+		path: 'contact',
+		component: NotFoundComponent
+	},
+	{
+		path: 'impressions',
+		component: ImpressionOverviewComponent
+	},
+	{
+		path: 'impressions/:impressionId',
+		component: ImpressionComponent
 	},
 	{
 		path: 'events',
@@ -37,7 +51,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, {
-		enableTracing: environment.production !== true
+		// enableTracing: environment.production !== true
 	})],
 	exports: [RouterModule]
 })

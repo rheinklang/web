@@ -1,6 +1,6 @@
 <div class="a-icon">
-	<svg>
+	<svg [style.fill]="color">
 		<!-- SVG elements don't have properties, therefore attribute binding is needed https://stackoverflow.com/a/35082700 -->
-		<use attr.xlink:href="/assets/icons/symbol-defs.svg#icon-{{select}}"></use>
+		<use attr.xlink:href="/assets/icons/symbol-defs.svg#icon-{{select}}" [style.fill]="color"></use>
 	</svg>
 </div>

@@ -1,4 +1,4 @@
-<ng-template ngIf="target === '_blank'; #internal">
+<ng-container *ngIf="target === '_blank'">
 	<a
 		class="a-link a-link--{{color || 'default'}}"
 		[href]="href"
@@ -11,17 +11,19 @@
 		{{text}}
 		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon"></rk-icon>
 	</a>
-</ng-template>
+</ng-container>
 
-<ng-template #internal>
+<ng-container *ngIf="target !== '_blank'">
 	<a
 		class="a-link a-link--{{color || 'default'}}"
+		routerLinkActive="state-a-link--active"
+		[routerLinkActiveOptions]="{ exact: true }"
 		[class.a-link--has-icon]="icon"
 		[class.a-link--static-indicator]="showIndicator"
-		[routerLink]="[href]"
+		[routerLink]="href"
 	>
 		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>
 		{{text}}
 		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon"></rk-icon>
 	</a>
-</ng-template>
+</ng-container>

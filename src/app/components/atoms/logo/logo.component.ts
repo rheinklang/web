@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { LogoService } from '../../../services/logo.service';
+import { resolveCDNImagePath } from '../../../utils/image';
 
 @Component({
 	selector: 'rk-logo',
@@ -21,7 +22,7 @@ export class LogoComponent implements OnInit {
 			.getLogo(this.id)
 			.subscribe(({ data }) => {
 				const asset = data.logosSingleton[this.id];
-				this.image = asset ? `${environment.assetCDNHost}${asset.path}` : null;
+				this.image = resolveCDNImagePath(asset, null);
 			});
 	}
 

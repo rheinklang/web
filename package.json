@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "commit": "git-cz",
+    "production": "ng build --configuration=production --aot=true --buildOptimizer=true --optimization=true",
     "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'"
   },
   "private": true,
@@ -32,6 +33,8 @@
     "apollo-link": "^1.2.11",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.0",
+    "lazysizes": "5.1.1",
+    "microtip": "0.2.2",
     "normalize.css": "8.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

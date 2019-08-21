@@ -26,6 +26,12 @@ import { ImpressionOverviewComponent } from './views/impression-overview/impress
 import { NewsletterComponent } from './components/molecules/newsletter/newsletter.component';
 import { InputComponent } from './components/atoms/input/input.component';
 import { ButtonComponent } from './components/atoms/button/button.component';
+import { ImageComponent } from './components/atoms/image/image.component';
+import { CardComponent } from './components/molecules/card/card.component';
+import { ContentBlockComponent } from './components/organisms/content-block/content-block.component';
+import { PictureComponent } from './components/atoms/picture/picture.component';
+import { TooltipDirective } from './directives/tooltip.directive';
+import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 
 @NgModule({
 	declarations: [
@@ -48,7 +54,13 @@ import { ButtonComponent } from './components/atoms/button/button.component';
 		ImpressionOverviewComponent,
 		NewsletterComponent,
 		InputComponent,
-		ButtonComponent
+		ButtonComponent,
+		ImageComponent,
+		PictureComponent,
+		CardComponent,
+		ContentBlockComponent,
+		TooltipDirective,
+		ScrollAnchorDirective
 	],
 	imports: [
 		BrowserModule,

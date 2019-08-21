@@ -35,3 +35,15 @@
     background-color: #fff;
   }
 }
+
+.state-a-link--active {
+  cursor: default;
+
+  &::after {
+    width: 100%;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}

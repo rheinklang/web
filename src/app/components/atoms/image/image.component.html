@@ -1,0 +1,14 @@
+<img
+	*ngIf="src"
+	class="a-image"
+	[class.a-image--lazy]="lazy"
+	[ngClass]="rounded === 'none' ? '' : 'a-image--rounded-' + rounded"
+	[style.minWidth]="placeholderSize[0]"
+	[style.minHeight]="placeholderSize[1]"
+	[alt]="alt || src"
+	data-src="{{src}}"
+	data-sizes="auto"
+	data-srcset="{{sourceset}}"
+	srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+>
+<p *ngIf="description" class="a-image__description">{{description}}</p>
