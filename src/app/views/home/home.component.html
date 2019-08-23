@@ -3,18 +3,19 @@
 <rk-content-block color="grey-lighter" title="Neuigkeiten & mehr" space="xlarge">
 	<div class="row">
 		<div class="col-12">
-				TODO: TagList molecule /w filter capability
+				<!-- TODO: TagList molecule /w filter capability -->
 			<ul>
 				<li *ngFor="let tag of tags">{{tag}}</li>
 			</ul>
 		</div>
+		<!-- TODO: GraphQL preload on hover! -->
 		<article *ngFor="let article of articles"  class="v-home__article col-12 col-sm-6 col-md-6 col-lg-4" routerLink="/articles/{{article._id}}">
 			<rk-picture *ngIf="article.previewImage" [src]="article.previewImage.path"></rk-picture>
 			<div class="v-home__article-content">
 				<h3 class="v-home__article-title a-heading a-heading--3">{{article.title}}</h3>
 				<h4 class="v-home__article-published">Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}</h4>
 				<p class="v-home__article-excerpt" *ngIf="article.excerpt">{{article.excerpt}}</p>
-				TODO: TagList molecule
+				<!-- TODO: TagList molecule -->
 				<ul *ngIf="article.tags">
 					<li *ngFor="let tag of article.tags">Tag "{{tag}}"</li>
 				</ul>
