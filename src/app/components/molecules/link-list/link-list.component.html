@@ -1,4 +1,4 @@
-<rk-heading *ngIf="title" [text]="title" [size]="headingSize"></rk-heading>
+<rk-heading *ngIf="title" [text]="title" [size]="headingSize" blockTitle="true"></rk-heading>
 <ul class="m-link-list" [class.m-link-list--horizontal]="layout === 'horizontal'" [ngClass]="type ? 'm-link-list--' + type : ''" *ngIf="links.length > 0">
 	<li *ngFor="let link of links;">
 		<rk-link [href]="link.href" [text]="link.text" [target]="link.target" [color]="color" [icon]="link.icon" iconPosition="post"></rk-link>

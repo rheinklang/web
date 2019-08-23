@@ -4,14 +4,16 @@
 			<rk-picture *ngIf="groupPortraitImagePath" rounded="small" [src]="groupPortraitImagePath" [description]="groupPortraitDescription" alt="Team Portrait"></rk-picture>
 	</rk-content-block>
 	<rk-content-block color="orange" space="small">
-		<div class="row center-xs">
-				<p>Du möchtest ein Teil unseres Teams werden? Dann nichts wie los zur <rk-link showIndicator="true" href="contact" text="Kontakt Sektion"></rk-link> unserer Seite!</p>
+		<div class="row">
+				<div class="col-12 h-text-align--center">
+						<p>Du möchtest ein Teil unseres Teams werden? Dann nichts wie los zur <rk-link showIndicator="true" href="contact" text="Kontakt Sektion"></rk-link> unserer Seite!</p>
+				</div>
 		</div>
 	</rk-content-block>
 	<rk-content-block title="Organisationskomitee" space="large" color="grey-lighter">
 		<ng-container *ngIf="teamMembers.length > 0">
-			<div class="row center-xs v-about__members">
-				<div class="v-about__members-entry col-xs-12 col-md-4 col-lg-3" *ngFor="let member of teamMembers">
+			<div class="row v-about__members">
+				<div class="v-about__members-entry col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let member of teamMembers">
 					<rk-card>
 						<!-- [src]="member.image.path" -->
 						<div class="v-about__member-role-symbols">

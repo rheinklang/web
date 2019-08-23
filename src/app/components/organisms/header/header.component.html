@@ -1,10 +1,10 @@
 <header class="o-header">
-  <div class="container container-fluid">
-    <div class="row">
-      <div class="col-xs-4 col-lg-2">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-4 col-md-2">
         <rk-logo highlight=true id="rheinklang" location="header"></rk-logo>
       </div>
-      <nav class="col-xs-8 col-lg-10 end-xs" role="main">
+      <nav class="o-header__navigation col-0 col-md-10 align-self-end" role="main">
         <rk-link-list layout="horizontal" type="main-navigation" color="white">
 					<rk-link href="/" [text]="navigationTitles.homeTitle"></rk-link>
 					<rk-link href="/events" [text]="navigationTitles.eventsTitle"></rk-link>
@@ -12,7 +12,22 @@
 					<rk-link href="/about" [text]="navigationTitles.aboutTitle"></rk-link>
 					<rk-link href="/contact" [text]="navigationTitles.contactTitle"></rk-link>
 				</rk-link-list>
-      </nav>
+			</nav>
+			<div class="o-header__trigger-container col-8 align-self-end">
+					<rk-burger [active]="flyoutNavigationOpen" (handleClick)="setFlyoutState(!flyoutNavigationOpen)"></rk-burger>
+			</div>
     </div>
-  </div>
+	</div>
+	<div class="o-header__flyout" [class.state-o-header-flyout--is-active]="flyoutNavigationOpen">
+		<rk-link-list layout="horizontal" type="main-navigation" color="white">
+			<rk-link href="/" [text]="navigationTitles.homeTitle"></rk-link>
+			<rk-link href="/events" [text]="navigationTitles.eventsTitle"></rk-link>
+			<rk-link href="/impressions" [text]="navigationTitles.galleriesTitle"></rk-link>
+			<rk-link href="/about" [text]="navigationTitles.aboutTitle"></rk-link>
+			<rk-link href="/contact" [text]="navigationTitles.contactTitle"></rk-link>
+		</rk-link-list>
+		<rk-button (handleClick)="setFlyoutState(false)">
+			Close
+		</rk-button>
+	</div>
 </header>

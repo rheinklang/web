@@ -1,9 +1,10 @@
 {
   "name": "rheinklang-kollektiv",
-  "version": "0.0.0",
+  "version": "0.0.1-beta.39",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prebuild": "node ./src/version.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -50,6 +51,7 @@
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
     "git-cz": "3.2.1",
+    "git-describe": "4.0.4",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",

@@ -1,7 +1,27 @@
 @import "../../styles/colors.scss";
 
-.v-about .a-image {
+.v-about rk-icon {
+  margin-left: 3px;
+  display: inline-block;
+  background-color: $color-primary-fury-red;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  padding: 3px;
+
+  &[select="pen-tool"] {
+    background-color: $color-primary-retr-orange;
+  }
+
+  svg {
+    vertical-align: text-bottom;
+  }
+}
+
+.v-about__members .a-image {
   width: 80%;
+  margin: 0 10%;
 }
 
 .v-about__members {
@@ -12,28 +32,11 @@
   position: relative;
   padding: 0 40px;
   margin: 0 0 60px 0;
+  text-align: center;
 }
 
 .v-about__member-role-symbols {
   position: absolute;
-}
-
-.v-about__member-role-symbols,
-.v-about__members-icon-description {
-  rk-icon {
-    margin-left: 3px;
-    display: inline-block;
-    background-color: $color-primary-fury-red;
-    border-radius: 100%;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    padding: 3px;
-
-    &[select="pen-tool"] {
-      background-color: $color-primary-retr-orange;
-    }
-  }
 }
 
 .v-about__member-intro {

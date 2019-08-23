@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'rk-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+	selector: 'rk-button',
+	templateUrl: './button.component.html',
+	styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
+	@Output() handleClick = new EventEmitter<any>();
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	public onInternalClick(ev: Event) {
+		this.handleClick.emit(ev);
+	}
 }

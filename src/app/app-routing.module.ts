@@ -8,6 +8,7 @@ import { EventOverviewComponent } from './views/event-overview/event-overview.co
 import { environment } from '../environments/environment';
 import { ImpressionOverviewComponent } from './views/impression-overview/impression-overview.component';
 import { ImpressionComponent } from './views/impression/impression.component';
+import { ContactComponent } from './views/contact/contact.component';
 
 const routes: Routes = [
 	{
@@ -21,7 +22,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'contact',
-		component: NotFoundComponent
+		component: ContactComponent
 	},
 	{
 		path: 'impressions',

@@ -1,6 +1,9 @@
 .a-heading {
   font-family: FVAlmelo, Lato, "Helvetica Neue", sans-serif;
   font-weight: 500;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .a-heading--no-space {

@@ -1,4 +1,5 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
 
 $header-height: 80px;
 
@@ -10,4 +11,48 @@ $header-height: 80px;
 
 .o-header .a-logo {
   height: $header-height;
+}
+
+.o-header rk-burger {
+  display: inline-block;
+  height: $header-height;
+}
+
+.o-header__navigation {
+  text-align: right;
+
+  @include respond-to-max("sm") {
+    display: none;
+  }
+}
+
+.o-header__trigger-container {
+  text-align: right;
+  display: none;
+
+  @include respond-to-max("sm") {
+    display: inline-block;
+  }
+}
+
+// FLLLLLLYYYYOOOOOOOOUUUUUTTT
+
+.o-header__flyout {
+  z-index: 9999;
+  position: fixed;
+  width: 80%;
+  left: -100vh;
+  top: 0;
+  bottom: 0;
+  background-color: $color-black;
+  color: $color-white;
+  transition: transform 0.3s ease-in-out;
+
+  &.state-o-header-flyout--is-active {
+    transform: translateX(100vh);
+  }
+
+  @include respond-to-min("sm") {
+    display: none;
+  }
 }

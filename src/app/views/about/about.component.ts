@@ -1,6 +1,6 @@
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { PortraitService } from '../../services/portrait.service';
 import { TeamService } from '../../services/team.service';
@@ -10,7 +10,8 @@ import { resolveCDNAssetPath } from '../../utils/image';
 @Component({
 	selector: 'rk-about',
 	templateUrl: './about.component.html',
-	styleUrls: ['./about.component.scss']
+	styleUrls: ['./about.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class AboutComponent implements OnInit {
 	public groupPortraitImagePath: string;

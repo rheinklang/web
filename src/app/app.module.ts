@@ -32,6 +32,8 @@ import { ContentBlockComponent } from './components/organisms/content-block/cont
 import { PictureComponent } from './components/atoms/picture/picture.component';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
+import { ContactComponent } from './views/contact/contact.component';
+import { BurgerComponent } from './components/atoms/burger/burger.component';
 
 @NgModule({
 	declarations: [
@@ -60,7 +62,9 @@ import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 		CardComponent,
 		ContentBlockComponent,
 		TooltipDirective,
-		ScrollAnchorDirective
+		ScrollAnchorDirective,
+		ContactComponent,
+		BurgerComponent
 	],
 	imports: [
 		BrowserModule,

@@ -1,4 +1,5 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
 
 $footer-min-height: 250px;
 
@@ -22,6 +23,21 @@ $footer-min-height: 250px;
   padding: 20px 0;
 }
 
+.o-footer__content-section {
+  margin: 15px 0;
+
+  rk-heading .a-heading {
+    margin-top: 0;
+  }
+
+  @include respond-to-max("sm") {
+    // each entry (list / text / image block)
+    > div {
+      margin-bottom: 50px;
+    }
+  }
+}
+
 .o-footer__content-text {
   font-size: 14px;
   width: 80%;
@@ -42,6 +58,22 @@ $footer-min-height: 250px;
   padding: 15px 0;
   background-color: $color-primary-sea-green-dark1;
   text-transform: uppercase;
-  font-size: 10px;
   letter-spacing: 0.2rem;
+
+  p {
+    font-size: 10px;
+    line-height: 14px;
+  }
+}
+
+.o-footer__build-no {
+  text-align: right;
+  color: $color-primary-sea-green-light2;
+}
+
+.o-footer__legal,
+.o-footer__build-no {
+  @include respond-to-max("sm") {
+    text-align: center;
+  }
 }

@@ -1,45 +1,41 @@
 <footer class="o-footer">
-	<div class="o-footer__newsletter">
-		<div class="container container-fluid">
-			<div class="row">
-				<div class="col-xs-12 center-xs">
-					<rk-newsletter></rk-newsletter>
-				</div>
-			</div>
-		</div>
-	</div>
-  <div class="container container-fluid o-footer__content">
-    <div class="row">
-			<div class="col-xs-12 col-md-3">
-				<rk-heading size="3" text="Über uns"></rk-heading>
+  <div class="container o-footer__content">
+    <div class="row o-footer__content-section">
+			<div class="col-12 col-md-3">
+				<rk-heading size="3" text="Über uns" blockTitle="true"></rk-heading>
 				<p class="o-footer__content-text">Wir sind Rheinklang, ... und noch mehr Text über uns und was wir genau machen.</p>
 			</div>
-      <div class="col-xs-12 col-md-3">
+      <div class="col-12 col-md-3">
 				<rk-link-list title="Seiten" headingSize="3" color="white">
 					<rk-link text="Seite 1"></rk-link>
 				</rk-link-list>
       </div>
-      <div class="col-xs-12 col-md-3">
+      <div class="col-12 col-md-3">
 				<rk-link-list title="Social Media" headingSize="3" color="white">
 					<rk-link text="Facebook" href="https://facebook.com/rhnklng" target="_blank" icon="facebook3"></rk-link>
 					<rk-link text="Instagram" href="https://instagram.com/rheinklang" target="_blank" icon="instagram1"></rk-link>
 				</rk-link-list>
 			</div>
-			<div class="col-xs-12 col-md-3">
+			<div class="col-12 col-md-3">
 				<rk-logo highlight=true id="rheinklang" location="footer"></rk-logo>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-6">
+		<div class="row o-footer__content-section">
+			<div class="col-12 col-md-6">
 				<rk-heading size="3" text="Newsletter"></rk-heading>
 				<rk-newsletter></rk-newsletter>
 			</div>
 		</div>
 	</div>
 	<div class="o-footer__legal">
-		<div class="container container-fluid">
+		<div class="container">
 			<div class="row">
-				<p class="o-footer__copyright">Copyright &copy; {{year}} Verein Rheinklang, Widnau (Switzerland) <span class="o-footer__ch-flag"></span> [{{build}}]</p>
+				<div class="col-12 col-md-9">
+						<p class="o-footer__copyright">Copyright &copy; {{year}} Verein Rheinklang, Widnau (Switzerland) <span class="o-footer__ch-flag"></span></p>
+				</div>
+				<div class="col-12 col-md-3">
+					<p class="o-footer__build-no">[{{build}}]</p>
+				</div>
 			</div>
 		</div>
 	</div>

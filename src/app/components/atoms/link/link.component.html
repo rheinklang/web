@@ -6,6 +6,7 @@
 		[attr.rel]="needsRelationSafety ? 'noopener noreferrer' : null"
 		[class.a-link--has-icon]="icon"
 		[class.a-link--static-indicator]="showIndicator"
+		(click)="handleLinkClick()"
 	>
 		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>
 		{{text}}
@@ -21,6 +22,7 @@
 		[class.a-link--has-icon]="icon"
 		[class.a-link--static-indicator]="showIndicator"
 		[routerLink]="href"
+		(click)="handleLinkClick()"
 	>
 		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>
 		{{text}}
