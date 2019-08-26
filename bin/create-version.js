@@ -26,10 +26,10 @@ const file = resolve(__dirname, '..', 'src', 'environments', 'version.ts');
 writeFileSync(file,
 	`// IMPORTANT: THIS FILE IS AUTO GENERATED! DO NOT MANUALLY EDIT OR CHECKIN!
 /* tslint:disable */
-export const VERSION = ${gitInfo.version};
-export const SUFFIX = ${gitInfo.suffix};
-export const TAG = ${gitInfo.tag};
-export const HASH = ${gitInfo.hash};
+export const VERSION = '${gitInfo.version}';
+export const SUFFIX = '${gitInfo.suffix}';
+export const TAG = '${gitInfo.tag}';
+export const HASH = '${gitInfo.hash}';
 
 export default ${JSON.stringify(gitInfo, null, 4)};
 /* tslint:enable */
