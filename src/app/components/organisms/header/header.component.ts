@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NavigationService } from '../../../services/navigation.service';
-import { NavigationQueryResponse } from '../../../queries/navigation-singleton';
 import { FlyoutService } from '../../../services/flyout.service';
+import { NavigationSingletonGQLResponse } from '../../../queries/Navigation.singleton';
 
 @Component({
 	selector: 'rk-header',
@@ -11,8 +11,8 @@ import { FlyoutService } from '../../../services/flyout.service';
 export class HeaderComponent implements OnInit {
 	@Input() public flyoutNavigationOpen = false;
 
-	public navigationTitles: NavigationQueryResponse['navigationSingleton']
-		= {} as NavigationQueryResponse['navigationSingleton'];
+	public navigationTitles: NavigationSingletonGQLResponse['navigationSingleton']
+		= {} as NavigationSingletonGQLResponse['navigationSingleton'];
 
 	constructor(private navigationService: NavigationService, private flyoutService: FlyoutService) { }
 
@@ -21,8 +21,8 @@ export class HeaderComponent implements OnInit {
 			this.flyoutNavigationOpen = this.flyoutService.isOpen;
 		});
 
-		this.navigationService.getNavigationTitles().subscribe(({ data }) => {
-			this.navigationTitles = data.navigationSingleton;
+		this.navigationService.getNavigationTitles().subscribe(data => {
+			this.navigationTitles = data;
 		});
 	}
 

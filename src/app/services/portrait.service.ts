@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { GetPortraitPageQueryResult, getPortraitPageQuery } from '../queries/portrait-page-singleton';
+import { map } from 'rxjs/operators';
+import { PortraitSingletonGQL } from '../queries/Portrait.singleton';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class PortraitService {
-	constructor(private apollo: Apollo) { }
+	constructor(private portraitSingletonGQL: PortraitSingletonGQL) { }
 
 	public getPortrait() {
-		return this.apollo.watchQuery<GetPortraitPageQueryResult>({
-			query: getPortraitPageQuery()
-		}).valueChanges;
+		return this.portraitSingletonGQL.watch(undefined, {
+			fetchPolicy: 'network-only'
+		}).valueChanges.pipe(
+			map(res => res.data.portraitPageSingleton)
+		);
 	}
 }

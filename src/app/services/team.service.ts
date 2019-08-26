@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { GetTeamQueryResponse, getTeamQuery } from '../queries/team';
+import { map } from 'rxjs/operators';
+import { TeamGQL } from '../queries/Team.query';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class TeamService {
-	constructor(private apollo: Apollo) { }
+	constructor(private teamGQL: TeamGQL) { }
 
 	public getTeam() {
-		return this.apollo.watchQuery<GetTeamQueryResponse>({
-			query: getTeamQuery()
-		}).valueChanges;
+		return this.teamGQL.watch(undefined, {
+			fetchPolicy: 'network-only'
+		}).valueChanges.pipe(
+			map(res => res.data.teamCollection)
+		);
 	}
 }

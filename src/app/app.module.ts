@@ -34,6 +34,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ContactComponent } from './views/contact/contact.component';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
+import { ArticlesComponent } from './views/articles/articles.component';
 
 @NgModule({
 	declarations: [
@@ -64,7 +65,8 @@ import { BurgerComponent } from './components/atoms/burger/burger.component';
 		TooltipDirective,
 		ScrollAnchorDirective,
 		ContactComponent,
-		BurgerComponent
+		BurgerComponent,
+		ArticlesComponent
 	],
 	imports: [
 		BrowserModule,

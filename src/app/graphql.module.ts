@@ -8,6 +8,8 @@ const uri = environment.graphQLHostURL;
 
 export function createApollo(httpLink: HttpLink) {
 	return {
+		connectToDevTools: !environment.production,
+		queryDeduplication: true,
 		link: httpLink.create({ uri }),
 		cache: new InMemoryCache()
 	};
@@ -23,4 +25,4 @@ export function createApollo(httpLink: HttpLink) {
 		}
 	]
 })
-export class GraphQLModule {}
+export class GraphQLModule { }

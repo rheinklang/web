@@ -35,5 +35,5 @@ writeFile(targetPath, envConfigFile, function (err) {
 		console.log(err);
 	}
 
-	console.log(`Output generated at ${targetPath}`);
+	console.log(`🛠 Environment generated at ${targetPath}`);
 });

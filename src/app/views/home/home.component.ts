@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from '../../services/articles.service';
-import { ArticleSchema } from '../../queries/articles';
+import { ArticlesGQLEntry } from '../../queries/Articles.query';
 
 @Component({
 	selector: 'rk-home',
@@ -8,17 +8,21 @@ import { ArticleSchema } from '../../queries/articles';
 	styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-	public articles: ArticleSchema[] = [];
+	public articles: ArticlesGQLEntry[] = [];
 
 	constructor(private articlesService: ArticlesService) { }
 
 	public ngOnInit() {
-		this.articlesService.getArticles().subscribe(({ data }) => {
-			this.articles = data.articlesCollection;
+		this.articlesService.getArticles().subscribe(articles => {
+			this.articles = articles;
 		});
 	}
 
 	public get tags() {
 		return this.articles.reduce((allTags, article) => [...allTags, ...article.tags], [] as string[]);
+	}
+
+	public preloadArticle(id: string) {
+		this.articlesService.preloadArticleById(id);
 	}
 }

@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { ImpressionOverviewComponent } from './views/impression-overview/impression-overview.component';
 import { ImpressionComponent } from './views/impression/impression.component';
 import { ContactComponent } from './views/contact/contact.component';
+import { ArticlesComponent } from './views/articles/articles.component';
 
 const routes: Routes = [
 	{
@@ -35,6 +36,10 @@ const routes: Routes = [
 	{
 		path: 'events',
 		component: EventOverviewComponent
+	},
+	{
+		path: 'articles/:articleId',
+		component: ArticlesComponent
 	},
 	{
 		path: 'events/:eventId',

@@ -15,6 +15,7 @@
     "commit": "git-cz",
     "preproduction": "npm run create:version",
     "production": "ng build --configuration=production --aot=true --buildOptimizer=true --optimization=true",
+    "postproduction": "node bin/copy-apache-config",
     "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'",
     "deploy:development": "node -r dotenv/config deploy.js --tag=development",
     "deploy:production": "node -r dotenv/config deploy.js --tag=production"
@@ -44,6 +45,7 @@
     "microtip": "0.2.2",
     "normalize.css": "8.0.1",
     "rxjs": "~6.4.0",
+    "svgxuse": "1.2.6",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

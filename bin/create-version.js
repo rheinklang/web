@@ -1,6 +1,7 @@
 const { gitDescribeSync } = require('git-describe');
 const { version } = require('../package.json');
 const { resolve, relative } = require('path');
+const { green } = require('chalk');
 const { writeFileSync } = require('fs-extra');
 
 const gitInfo = gitDescribeSync(resolve(__dirname, '..'), {
@@ -35,4 +36,4 @@ export default ${JSON.stringify(gitInfo, null, 4)};
 /* tslint:enable */
 `, { encoding: 'utf-8' });
 
-console.log(`Wrote version info ${gitInfo.raw} to ${relative(resolve(__dirname, '..'), file)}`);
+console.log(green(`🧬  Wrote version info ${gitInfo.raw} to ${relative(resolve(__dirname, '..'), file)}`));

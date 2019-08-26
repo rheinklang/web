@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 import { Title, Meta } from '@angular/platform-browser';
-import { GetSEOForPageQueryResponse, getSEOForPageQuery, SEOEntry } from '../queries/seo';
+import { map, first, flatMap } from 'rxjs/operators';
 import { template, TemplateKey, TemplateValue } from '../utils/templating';
+import { SEOContextQueryGQL, SEOEntry } from '../queries/SeoContext.query';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class SEOService {
-	constructor(private apollo: Apollo, private title: Title, private meta: Meta) { }
+	constructor(private title: Title, private meta: Meta, private seoContextQueryGQL: SEOContextQueryGQL) { }
 
-	private rewriteCurrentSEOData(data: SEOEntry, additionalTemplateData: Record<TemplateKey, TemplateValue> = {}) {
+	private rewriteSEOContext(data: SEOEntry, additionalTemplateData: Record<TemplateKey, TemplateValue> = {}) {
+		// aggregate full template data
 		const templateData = {
 			...additionalTemplateData,
 			seoTitle: data.title,
 			seoDescription: data.description
 		};
 
+		// set new page title with opt. template data
 		this.title.setTitle(template(data.title, templateData));
 
 		this.meta.addTags([
@@ -36,13 +38,21 @@ export class SEOService {
 			return;
 		}
 
-		this.apollo.watchQuery<GetSEOForPageQueryResponse>({
-			query: getSEOForPageQuery(context)
-		})
+		this.seoContextQueryGQL.watch({
+			filter: {
+				context
+			}
+		}, {
+				fetchPolicy: 'network-only'
+			})
 			.valueChanges
-			.subscribe(({ data, loading }) => {
-				if (!loading && data.seoCollection[0]) {
-					this.rewriteCurrentSEOData(data.seoCollection[0], additionalTemplateData);
+			.pipe(
+				map(result => result.data.seoCollection),
+				flatMap(entry => entry),
+				first()
+			).subscribe(data => {
+				if (data) {
+					this.rewriteSEOContext(data, additionalTemplateData);
 				}
 			});
 	}

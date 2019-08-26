@@ -4,8 +4,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { PortraitService } from '../../services/portrait.service';
 import { TeamService } from '../../services/team.service';
-import { GetTeamQueryResponse } from '../../queries/team';
-import { resolveCDNAssetPath } from '../../utils/image';
+import { TeamGQLEntry } from '../../queries/Team.query';
+// import { resolveCDNAssetPath } from '../../utils/image';
 
 @Component({
 	selector: 'rk-about',
@@ -16,7 +16,7 @@ import { resolveCDNAssetPath } from '../../utils/image';
 export class AboutComponent implements OnInit {
 	public groupPortraitImagePath: string;
 	public groupPortraitDescription = '';
-	public teamMembers: GetTeamQueryResponse['teamCollection'] = [];
+	public teamMembers: TeamGQLEntry[] = [];
 
 	constructor(private portraitService: PortraitService, private teamService: TeamService) { }
 
@@ -26,12 +26,12 @@ export class AboutComponent implements OnInit {
 			this.teamService.getTeam()
 		).pipe(
 			map(([portrait, team]) => {
-				const visibleMemberIds = (portrait.data.portraitPageSingleton.visibleMemberList || []).map(entry => entry._id);
+				const visibleMemberIds = (portrait.visibleMemberList || []).map(entry => entry._id);
 
 				return {
-					groupPortraitDescription: portrait.data.portraitPageSingleton.groupPortraitDescription || '',
-					groupPortraitImagePath: portrait.data.portraitPageSingleton.groupPortraitImage.path,
-					teamMembers: team.data.teamCollection.filter(({ _id }) => visibleMemberIds.indexOf(_id) >= 0)
+					groupPortraitDescription: portrait.groupPortraitDescription || '',
+					groupPortraitImagePath: portrait.groupPortraitImage.path,
+					teamMembers: team.filter(({ _id }) => visibleMemberIds.indexOf(_id) >= 0)
 				};
 			})
 		).subscribe(values => {

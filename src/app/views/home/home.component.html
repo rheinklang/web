@@ -9,9 +9,10 @@
 			</ul>
 		</div>
 		<!-- TODO: GraphQL preload on hover! -->
-		<article *ngFor="let article of articles"  class="v-home__article col-12 col-sm-6 col-md-6 col-lg-4" routerLink="/articles/{{article._id}}">
+		<article *ngFor="let article of articles"  class="v-home__article col-12 col-sm-6 col-md-6 col-lg-4" routerLink="/articles/{{article._id}}" (mouseover)="preloadArticle(article._id)">
 			<rk-picture *ngIf="article.previewImage" [src]="article.previewImage.path"></rk-picture>
 			<div class="v-home__article-content">
+				<small>GraphQL ID: {{article._id}}</small>
 				<h3 class="v-home__article-title a-heading a-heading--3">{{article.title}}</h3>
 				<h4 class="v-home__article-published">Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}</h4>
 				<p class="v-home__article-excerpt" *ngIf="article.excerpt">{{article.excerpt}}</p>

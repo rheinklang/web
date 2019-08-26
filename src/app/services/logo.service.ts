@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LogoQueryResponse, getLogoQuery } from '../queries/logo-singleton';
+import { LogoQueryResponse, getDynamicLogoQuery } from '../queries/Logo.singleton';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,7 +10,7 @@ export class LogoService {
 
 	public getLogo<T extends string = any>(id: string) {
 		return this.apollo.watchQuery<LogoQueryResponse<T>>({
-			query: getLogoQuery(id)
+			query: getDynamicLogoQuery(id)
 		}).valueChanges;
 	}
 }

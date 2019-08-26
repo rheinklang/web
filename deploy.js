@@ -2,9 +2,13 @@
 require('dotenv').config();
 
 const { resolve, join } = require('path');
+// @ts-ignore
+const { cyan, green, red, grey } = require('chalk');
 const FTPDeployClient = require('ftp-deploy');
 const argv = require('yargs').argv
 const ora = require('ora');
+// @ts-ignore
+const pkg = require('./package.json');
 // @ts-ignore
 const deployer = new FTPDeployClient();
 
@@ -13,11 +17,11 @@ const deployer = new FTPDeployClient();
  */
 // @ts-ignore
 const TAG = argv.tag ? argv.tag : 'beta';
-const REMOTE_DIR = join(process.env.FTP_REMOTE_ROOT, TAG);
+const NEXT = argv.next || false;
+const REMOTE_DIR = join(process.env.FTP_REMOTE_ROOT, NEXT ? `${TAG}-${pkg.version}` : TAG);
 const SOURCE_DIR = resolve(__dirname, 'dist/rheinklang');
 
-
-const loader = ora(`Uploading to ${REMOTE_DIR}`).start();
+const loader = ora(`Uploading to ${cyan(REMOTE_DIR)}`).start();
 
 const config = {
 	user: process.env.FTP_USER,
@@ -27,27 +31,31 @@ const config = {
 	port: 21,
 	localRoot: SOURCE_DIR,
 	remoteRoot: REMOTE_DIR,
-	// include: ['*', '**/*'],      // this would upload everything except dot files
-	include: ['**/*'],
+	include: ['**/*', '*', '.htaccess'],
 	// e.g. exclude sourcemaps, and ALL files in node_modules (including dot files)
 	exclude: [],
 	// delete ALL existing files at destination before uploading, if true
-	deleteRemote: false,
+	deleteRemote: true,
 	// Passive mode is forced (EPSV command is not sent)
 	forcePasv: true
 };
 
 // @ts-ignore
 deployer.on('uploading', function (data) {
-	loader.text = `Uploading ${data.filename} (${data.transferredFileCount} of ${data.totalFilesCount}) ...`;
+	const percentage = (data.transferredFileCount / data.totalFilesCount * 100).toFixed(0)
+	loader.text = `Uploading ${cyan(data.filename)} ` + grey(`(${percentage}% / ${(data.transferredFileCount)} of ${data.totalFilesCount})`);
 });
 
 // use with callback
-deployer.deploy(config, err => {
+deployer.deploy(config, (err, res) => {
 	if (err) {
-		loader.fail(`${err}`);
+		loader.fail(red(`${err}`));
 	} else {
-		loader.succeed('Deployed application successfully');
+		loader.succeed(green('📦 Deployed application successfully'));
+		res.reduce((p, c) => p.concat(c), []).forEach(entry => {
+			const readable = `${entry}`.replace(SOURCE_DIR, '').replace('uploaded', '')
+			console.log(grey(`-> ${readable}`));
+		});
 	}
 
 	console.log('');

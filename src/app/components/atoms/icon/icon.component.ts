@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { TooltipDirective } from '../../../directives/tooltip.directive';
+import 'svgxuse/svgxuse.min.js';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
 	selector: 'rk-icon',
