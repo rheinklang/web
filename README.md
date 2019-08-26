@@ -1,6 +1,6 @@
-# RheinklangKollektiv
+[![Build Status](https://travis-ci.com/rheinklang/rheinklang-kollektiv.ch.svg?branch=master)](https://travis-ci.com/rheinklang/rheinklang-kollektiv.ch)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+# Rheinklang
 
 ## Development server
 
