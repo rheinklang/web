@@ -15,9 +15,19 @@ before_deploy:
 script:
   - npm run production
 
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/<dir> <ssh-user>@<deploy-host>:path/to/files
-  on:
-    branch: master
+stages:
+  - Build
+  - name: Deploy
+    if: branch = master
+
+jobs:
+  include:
+    - stage: Build
+      script: npm run production
+    - stage: Deploy
+      skip_cleanup: true
+      script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist/rheinklang $SSH_USER@$DEPLOY_HOST:$DEPLOY_TARGET
+      on:
+        all_branches: true
+        condition: $TRAVIS_BRANCH =~ ^(staging|develop|production)$
+
