@@ -47,5 +47,5 @@ Thumbs.db
 
 # Production configuration
 .env
-src/environments/version.ts
-src/environments/environment.ts
+/src/environments/version.ts
+/src/environments/environment.ts
