@@ -10,11 +10,28 @@ const gitInfo = gitDescribeSync(resolve(__dirname, '..'), {
 
 gitInfo.version = version;
 
-const file = resolve(__dirname, 'environments', 'version.ts');
+/**
+ * "dirty": true,
+"raw": "663eea0-dirty",
+"hash": "663eea0",
+"distance": null,
+"tag": null,
+"semver": null,
+"suffix": "663eea0-dirty",
+"semverString": null,
+"version": "0.0.1-beta.39"
+ */
+
+const file = resolve(__dirname, '..', 'src', 'environments', 'version.ts');
 writeFileSync(file,
 	`// IMPORTANT: THIS FILE IS AUTO GENERATED! DO NOT MANUALLY EDIT OR CHECKIN!
 /* tslint:disable */
-export const VERSION = ${JSON.stringify(gitInfo, null, 4)};
+export const VERSION = ${gitInfo.version};
+export const SUFFIX = ${gitInfo.suffix};
+export const TAG = ${gitInfo.tag};
+export const HASH = ${gitInfo.hash};
+
+export default ${JSON.stringify(gitInfo, null, 4)};
 /* tslint:enable */
 `, { encoding: 'utf-8' });
 

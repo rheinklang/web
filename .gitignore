@@ -46,6 +46,5 @@ testem.log
 Thumbs.db
 
 # Production configuration
-src/environments/environment.prod.ts
-src/environments/environment.ts
 .env
+environments/version.ts

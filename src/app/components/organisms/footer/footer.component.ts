@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { VERSION } from '../../../../environments/version';
+import { VERSION, HASH } from '../../../../environments/version';
 
 @Component({
 	selector: 'rk-footer',
@@ -13,6 +13,6 @@ export class FooterComponent {
 	}
 
 	public get build() {
-		return `v${VERSION.version} ${VERSION.hash}`;
+		return `v${VERSION} ${HASH}`;
 	}
 }
