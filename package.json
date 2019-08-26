@@ -15,7 +15,9 @@
     "commit": "git-cz",
     "preproduction": "npm run create:version",
     "production": "ng build --configuration=production --aot=true --buildOptimizer=true --optimization=true",
-    "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'"
+    "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'",
+    "deploy:development": "node -r dotenv/config deploy.js --tag=development",
+    "deploy:production": "node -r dotenv/config deploy.js --tag=production"
   },
   "private": true,
   "dependencies": {
@@ -54,9 +56,11 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "@types/ora": "3.2.0",
     "chalk": "2.4.2",
     "codelyzer": "^5.0.0",
     "dotenv": "8.1.0",
+    "ftp-deploy": "2.3.3",
     "git-cz": "3.2.1",
     "git-describe": "4.0.4",
     "jasmine-core": "~3.4.0",
@@ -67,6 +71,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "npm-run-all": "4.1.5",
+    "ora": "3.4.0",
     "prettier": "1.18.2",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",

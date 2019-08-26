@@ -1,33 +1,19 @@
 language: node_js
+
 node_js:
   - "12"
-cache: npm
+
+cache:
+  npm: true
+
 matrix:
   fast_finish: true
 
-ssh_known_hosts: $SSH_KNOWN_HOST
-
-before_deploy:
-  - openssl aes-256-cbc -K $encrypted_81e685274af1_key -iv $encrypted_81e685274af1_iv -in ./.travis/rheinklang_deployment_rsa.enc -out ./tmp/rheinklang_deployment_rsa -d
-  - eval "$(ssh-agent -s)"
-  - chmod 600 /tmp/rheinklang_deployment_rsa
-  - ssh-add /tmp/rheinklang_deployment_rsa
-script:
-  - npm run production
-
 stages:
   - Build
-  - name: Deploy
-    if: branch = master
 
 jobs:
   include:
     - stage: Build
       script: npm run production
-    - stage: Deploy
-      skip_cleanup: true
-      script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist/rheinklang $SSH_USER@$DEPLOY_HOST:$DEPLOY_TARGET
-      on:
-        all_branches: true
-        condition: $TRAVIS_BRANCH =~ ^(staging|develop|production)$
 
