@@ -3,7 +3,7 @@
   "version": "0.0.1-beta.39",
   "scripts": {
     "ng": "ng",
-    "prestart": "node bin/create-env",
+    "prestart": "run-s create:*",
     "start": "ng serve",
     "create:dev-env": "node bin/create-env",
     "create:version": "node bin/create-version",
