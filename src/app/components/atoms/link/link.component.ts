@@ -1,11 +1,11 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FlyoutService } from '../../../services/flyout.service';
 
 @Component({
 	selector: 'rk-link',
 	templateUrl: './link.component.html',
 	styleUrls: ['./link.component.scss'],
-	// changeDetection: ChangeDetectionStrategy.OnPush
+	encapsulation: ViewEncapsulation.None
 })
 export class LinkComponent {
 	@Input() public href: string;

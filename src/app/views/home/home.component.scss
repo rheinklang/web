@@ -1,8 +1,9 @@
 @import "../../styles/colors.scss";
+@import "../../styles/responsive.scss";
 
 .v-home__article {
   padding: 0;
-  margin: 0 15px;
+  // margin: 0 15px;
   cursor: pointer;
   background-color: $color-white;
   border-radius: 5px;
@@ -34,3 +35,89 @@
   font-size: 13px;
   margin: 0;
 }
+
+// SLIDER
+.v-about__slides {
+  margin: 0;
+  position: relative;
+}
+
+.v-about__slide {
+}
+
+.v-about__slide-content {
+  @include respond-to-max("md") {
+    background-color: $color-black;
+  }
+
+  @include respond-to-min("md") {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.v-about__slide-content h2:first-child {
+  @include respond-to-max("md") {
+    margin: 0 0 10px 0;
+    padding-top: 25px;
+  }
+}
+
+.v-about__slide-content p:last-of-type {
+  @include respond-to-max("md") {
+    margin-bottom: 0;
+    padding-bottom: 25px;
+  }
+}
+
+.v-about__slide-content h2,
+.v-about__slide-content p {
+  text-align: center;
+  color: $color-white;
+
+  @include respond-to-min("md") {
+    text-shadow: 0 3px 5px $color-black;
+  }
+}
+
+// .v-about__arrows {
+//   width: 100%;
+//   position: absolute;
+//   top: 50%;
+//   height: 30px;
+//   transform: translate(0, 50%);
+
+//   .v-about__arrow {
+//     appearance: none;
+//     -webkit-appearance: none;
+//   }
+
+//   .v-about__arrows-aligner {
+//     position: relative;
+//   }
+
+//   .v-bout__arrow--left,
+//   .v-bout__arrow--right {
+//     background-color: transparent;
+//     border: none;
+
+//     svg {
+//       width: 20px;
+//       height: 20px;
+//     }
+//   }
+
+//   .v-bout__arrow--left {
+//     position: absolute;
+//     left: 0;
+//     // transform: translate(0, 50%);
+//   }
+
+//   .v-bout__arrow--right {
+//     position: absolute;
+//     right: 0;
+//     // transform: translate(100%, 50%);
+//   }
+// }

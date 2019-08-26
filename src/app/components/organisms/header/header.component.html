@@ -19,15 +19,26 @@
     </div>
 	</div>
 	<div class="o-header__flyout" [class.state-o-header-flyout--is-active]="flyoutNavigationOpen">
-		<rk-link-list layout="horizontal" type="main-navigation" color="white">
-			<rk-link href="/" [text]="navigationTitles.homeTitle"></rk-link>
-			<rk-link href="/events" [text]="navigationTitles.eventsTitle"></rk-link>
-			<rk-link href="/impressions" [text]="navigationTitles.galleriesTitle"></rk-link>
-			<rk-link href="/about" [text]="navigationTitles.aboutTitle"></rk-link>
-			<rk-link href="/contact" [text]="navigationTitles.contactTitle"></rk-link>
-		</rk-link-list>
-		<rk-button (handleClick)="setFlyoutState(false)">
-			Close
-		</rk-button>
+		<ul class="o-header__flyout-list" layout="horizontal" type="main-navigation" color="white">
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" routerLink="/">{{navigationTitles.homeTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" href="/events">{{navigationTitles.eventsTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" href="/impressions">{{navigationTitles.galleriesTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" href="/about">{{navigationTitles.aboutTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" routerLink="/contact">{{navigationTitles.contactTitle}}</a>
+			</li>
+		</ul>
+
+		<p class="o-header__flyout-close" (click)="setFlyoutState(false)">
+			<rk-icon select="x-circle" height="40" width="40"></rk-icon>
+		</p>
 	</div>
 </header>
