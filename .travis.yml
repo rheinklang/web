@@ -1,0 +1,19 @@
+language: node_js
+
+node_js:
+  - "12"
+
+cache:
+  npm: true
+
+matrix:
+  fast_finish: true
+
+stages:
+  - Build
+
+jobs:
+  include:
+    - stage: Build
+      script: npm run production
+

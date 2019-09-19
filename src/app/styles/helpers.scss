@@ -1,0 +1,11 @@
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.h-text-align--center {
+  text-align: center;
+}

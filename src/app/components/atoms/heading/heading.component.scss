@@ -1,0 +1,34 @@
+.a-heading {
+  font-family: FVAlmelo, Lato, "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.a-heading--no-space {
+  margin: 0;
+}
+
+.a-heading--block-title {
+  margin-top: 0;
+}
+
+.a-heading--1 {
+  font-size: 39px;
+}
+.a-heading--2 {
+  font-size: 34px;
+}
+.a-heading--3 {
+  font-size: 28px;
+}
+.a-heading--4 {
+  font-size: 23px;
+}
+.a-heading--5 {
+  font-size: 20px;
+}
+.a-heading--6 {
+  font-size: 18px;
+}

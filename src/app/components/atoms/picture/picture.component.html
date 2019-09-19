@@ -1,0 +1,8 @@
+<picture class="a-image">
+	<!--[if IE 9]><video style="display: none"><![endif]-->
+	<source *ngFor="let source of sources" data-srcset="{{source.url}}" media="{{source.breakpoint}}" />
+	<!--[if IE 9]></video><![endif]-->
+	<rk-image [rounded]="rounded" [alt]="alt" [src]="source"></rk-image>
+</picture>
+
+<p *ngIf="description" class="a-image__description">{{description}}</p>

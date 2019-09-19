@@ -1,0 +1,44 @@
+<header class="o-header">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-4 col-md-2">
+        <rk-logo highlight=true id="rheinklang" location="header"></rk-logo>
+      </div>
+      <nav class="o-header__navigation col-0 col-md-10 align-self-end" role="main">
+        <rk-link-list layout="horizontal" type="main-navigation" color="white">
+					<rk-link href="/" [text]="navigationTitles.homeTitle"></rk-link>
+					<rk-link href="/events" [text]="navigationTitles.eventsTitle"></rk-link>
+					<rk-link href="/impressions" [text]="navigationTitles.galleriesTitle"></rk-link>
+					<rk-link href="/about" [text]="navigationTitles.aboutTitle"></rk-link>
+					<rk-link href="/contact" [text]="navigationTitles.contactTitle"></rk-link>
+				</rk-link-list>
+			</nav>
+			<div class="o-header__trigger-container col-8 align-self-end">
+					<rk-burger [active]="flyoutNavigationOpen" (handleClick)="setFlyoutState(!flyoutNavigationOpen)"></rk-burger>
+			</div>
+    </div>
+	</div>
+	<div class="o-header__flyout" [class.state-o-header-flyout--is-active]="flyoutNavigationOpen">
+		<ul class="o-header__flyout-list" layout="horizontal" type="main-navigation" color="white">
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" routerLink="/">{{navigationTitles.homeTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" href="/events">{{navigationTitles.eventsTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" href="/impressions">{{navigationTitles.galleriesTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" href="/about">{{navigationTitles.aboutTitle}}</a>
+			</li>
+			<li class="o-header__flyout-list-link">
+				<a class="a-link" routerLink="/contact">{{navigationTitles.contactTitle}}</a>
+			</li>
+		</ul>
+
+		<p class="o-header__flyout-close" (click)="setFlyoutState(false)">
+			<rk-icon select="x-circle" height="40" width="40"></rk-icon>
+		</p>
+	</div>
+</header>

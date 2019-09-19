@@ -1,0 +1,14 @@
+@import "../../organisms/header/header.component.scss";
+
+.a-logo {
+  display: block;
+}
+
+.a-logo--location-header {
+  height: $header-height;
+}
+
+.a-logo--location-footer {
+  width: 50%;
+  margin: 0 auto;
+}

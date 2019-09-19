@@ -1,0 +1,18 @@
+$size: 16px;
+
+.a-icon {
+  display: inline-block;
+  vertical-align: bottom;
+
+  svg {
+    display: inline-block;
+    all: inherit;
+    width: $size;
+    height: $size;
+  }
+
+  svg,
+  use {
+    fill: #fff;
+  }
+}

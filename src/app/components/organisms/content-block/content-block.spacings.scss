@@ -1,0 +1,32 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/spacings.scss";
+
+.o-content-block--space-small {
+  .o-content-block__inner {
+    padding: $space-small;
+  }
+}
+
+.o-content-block--space-medium {
+  .o-content-block__inner {
+    padding: $space-medium;
+  }
+}
+
+.o-content-block--space-large {
+  .o-content-block__inner {
+    padding: $space-large;
+  }
+}
+
+.o-content-block--space-xlarge {
+  .o-content-block__inner {
+    padding: $space-xlarge;
+  }
+}
+
+.o-content-block--space-xxlarge {
+  .o-content-block__inner {
+    padding: $space-xxlarge;
+  }
+}

@@ -1,0 +1,11 @@
+<input
+	ngModel
+	#inputModel
+	class="a-input"
+	[class.state-a-input--error]="inputModel.value !== '' && inputModel.untouched && inputModel.invalid"
+	[type]="type"
+	[name]="name"
+	[placeholder]="placeholder"
+	[email]="type === 'email'"
+	(keyup)="setUserInput(inputModel.value)"
+>
