@@ -13,7 +13,6 @@ export interface NavigationSingletonGQLResponse {
 	};
 }
 
-
 @Injectable({
 	providedIn: 'root'
 })

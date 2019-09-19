@@ -17,8 +17,12 @@
 					<rk-card>
 						<!-- [src]="member.image.path" -->
 						<div class="v-about__member-role-symbols">
-							<span rkTooltip [tooltipText]="'Gründungsmitglied'"><rk-icon *ngIf="member.founder" select="pen-tool"></rk-icon></span>
-							<span rkTooltip [tooltipText]="'Leitungsfunktion'"><rk-icon *ngIf="member.lead" select="users"></rk-icon></span>
+							<span rkTooltip [tooltipText]="'Gründungsmitglied'">
+								<rk-icon *ngIf="member.founder" select="pen-tool" width="15" height="15"></rk-icon>
+							</span>
+							<span rkTooltip [tooltipText]="'Leitungsfunktion'">
+								<rk-icon *ngIf="member.lead" select="users" width="15" height="15"></rk-icon>
+							</span>
 						</div>
 						<rk-image *ngIf="member.image" rounded="full" src="https://via.placeholder.com/400x400" alt="Portrait von {{member.fullName}}"></rk-image>
 						<div class="v-about__member-intro">

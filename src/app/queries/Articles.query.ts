@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { PreviewImagePathOnly } from '../types/PreviewImage';
 
 export interface ArticlesGQLEntry {
 	_id: string;
@@ -9,9 +10,7 @@ export interface ArticlesGQLEntry {
 	excerpt: string;
 	tags: string[];
 	releaseDate?: string;
-	previewImage?: {
-		path: string;
-	};
+	previewImage?: PreviewImagePathOnly;
 }
 
 export interface ArticlesGQLResponse {

@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { PreviewImagePathOnly } from '../types/PreviewImage';
 
 export interface TeamGQLEntry {
 	_id: string;
 	fullName: string;
-	image: {
-		path: string | null;
-	};
+	image: PreviewImagePathOnly;
 	lead: boolean;
 	founder: boolean;
 	description: string;

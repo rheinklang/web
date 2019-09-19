@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { PreviewImagePathOnly } from '../types/PreviewImage';
 
 export interface PortraitSingletonGQLResult {
 	portraitPageSingleton: {
-		groupPortraitImage: {
-			path: string;
-		};
+		groupPortraitImage: PreviewImagePathOnly;
 		groupPortraitDescription: string;
 		visibleMemberList: { _id: string }[];
 	};

@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { map, first, flatMap } from 'rxjs/operators';
 import { template, TemplateKey, TemplateValue } from '../utils/templating';
 import { SEOContextQueryGQL, SEOEntry } from '../queries/SeoContext.query';
+import { REFETCH_POLICY } from '../config/policies';
 
 @Injectable({
 	providedIn: 'root'
@@ -43,8 +44,8 @@ export class SEOService {
 				context
 			}
 		}, {
-				fetchPolicy: 'network-only'
-			})
+			fetchPolicy: REFETCH_POLICY
+		})
 			.valueChanges
 			.pipe(
 				map(result => result.data.seoCollection),

@@ -11,6 +11,7 @@ export class LinkComponent {
 	@Input() public href: string;
 	@Input() public text: string;
 	@Input() public showIndicator = false;
+	@Input() public prefetch = false;
 	@Input() public icon?: string;
 	@Input() public iconPosition: 'pre' | 'post' = 'pre';
 	@Input() public color?: string;

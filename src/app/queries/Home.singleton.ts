@@ -1,15 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { PreviewImage } from '../types/PreviewImage';
 
 export interface HomeSingletonGQLSlideItem {
 	title: string;
 	content: string;
-	image: {
-		path: string;
-		title: string;
-		mime: string;
-	};
+	image: PreviewImage;
 	ctaText?: string;
 	ctaLink?: string;
 }

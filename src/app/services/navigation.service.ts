@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { NavigationSingletonGQL } from '../queries/Navigation.singleton';
+import { CACHE_AND_UPDATE_POLICY } from '../config/policies';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,7 +11,7 @@ export class NavigationService {
 
 	public getNavigationTitles() {
 		return this.navigationSingletonGQL.watch(undefined, {
-			fetchPolicy: 'network-only'
+			fetchPolicy: CACHE_AND_UPDATE_POLICY
 		}).valueChanges.pipe(
 			map(res => res.data.navigationSingleton)
 		);

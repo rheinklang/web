@@ -1,9 +1,9 @@
 import gql from 'graphql-tag';
-import { CockpitImageSchema } from '../schema/CockpitImageSchema';
+import { PreviewImage } from '../types/PreviewImage';
 
 export interface LogoQueryResponse<N extends string = string> {
 	logosSingleton: {
-		[name in N]: CockpitImageSchema
+		[name in N]: PreviewImage
 	};
 }
 

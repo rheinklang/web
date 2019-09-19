@@ -9,7 +9,7 @@ export class LogoService {
 	constructor(private apollo: Apollo) { }
 
 	public getLogo<T extends string = any>(id: string) {
-		return this.apollo.watchQuery<LogoQueryResponse<T>>({
+		return this.apollo.watchQuery<LogoQueryResponse<T>, void>({
 			query: getDynamicLogoQuery(id)
 		}).valueChanges;
 	}

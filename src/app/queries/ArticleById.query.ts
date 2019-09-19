@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { PreviewImageWithColors } from '../types/PreviewImage';
 
 export interface ArticleGQLEntry {
 	_id: string;
@@ -9,10 +10,7 @@ export interface ArticleGQLEntry {
 	content: string;
 	tags: string[];
 	releaseDate?: string;
-	previewImage?: {
-		path: string;
-		colors: string[]
-	};
+	previewImage?: PreviewImageWithColors;
 }
 
 export interface ArticleByIDGQLResponse {

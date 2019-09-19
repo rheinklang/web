@@ -8,7 +8,7 @@
 					<h2 class="a-heading a-heading--2" *ngIf="slide.title">{{slide.title}}</h2>
 					<p *ngIf="slide.content">{{slide.content}}</p>
 					<p class="v-about__slide-content-link">
-							<rk-link *ngIf="slide.ctaLink && slide.ctaText" [text]="slide.ctaText" [href]="slide.ctaLink" color="white" showIndicator="true"></rk-link>
+						<rk-link *ngIf="slide.ctaLink && slide.ctaText" prefetch="true" [text]="slide.ctaText" [href]="slide.ctaLink" color="white" showIndicator="true"></rk-link>
 					</p>
 				</div>
 			</li>
@@ -25,8 +25,8 @@
 	</div>
 
 	<div class="glide__bullets" *ngIf="slides.length > 1" data-glide-el="controls[nav]">
-			<button class="glide__bullet" data-glide-dir="=0" *ngFor="let slide of slides" [attr.data-glide-dir]="'=' + slide.index"></button>
-		</div>
+		<button class="glide__bullet" data-glide-dir="=0" *ngFor="let slide of slides" [attr.data-glide-dir]="'=' + slide.index"></button>
+	</div>
 </div>
 <rk-content-block color="grey-lighter" title="Neuigkeiten & mehr" space="xlarge">
 	<div class="row">
