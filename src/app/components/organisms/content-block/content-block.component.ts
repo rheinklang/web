@@ -11,7 +11,7 @@ import { Component, Input } from '@angular/core';
 	]
 })
 export class ContentBlockComponent {
-	@Input() public title?: string;
+	@Input() public heading?: string;
 	@Input() public color?: string;
 	@Input() public pattern?: string;
 	@Input() public space?: 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';

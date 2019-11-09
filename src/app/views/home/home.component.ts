@@ -11,6 +11,7 @@ import { HomeSingletonGQLResponse, HomeSingletonGQLSlideItem } from '../../queri
 	styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+	public activeTagId?: string;
 	public articles: ArticlesGQLEntry[] = [];
 	public slides: (HomeSingletonGQLSlideItem & { index: number })[] = [];
 
@@ -50,5 +51,37 @@ export class HomeComponent implements OnInit {
 			swipeThreshold: 100, // px
 			animationDuration: 500
 		}).mount();
+	}
+
+	public setActiveTag(id: string) {
+		if (this.activeTagId === id) {
+			this.activeTagId = undefined;
+		} else {
+			this.activeTagId = id;
+		}
+
+		console.log('active: %s, now: %s', id, this.activeTagId);
+	}
+
+	public articleContainsActiveTag(article: ArticlesGQLEntry) {
+		if (!this.activeTagId) {
+			// no filter set, should render
+			return true;
+		}
+
+		if (article.tags.indexOf(this.activeTagId) > -1) {
+			// contains tag, should render
+			return true;
+		}
+
+		return false;
+	}
+
+	public getCurrentArticleCount() {
+		if (!this.activeTagId) {
+			return this.articles.length;
+		}
+
+		return this.articles.filter(this.articleContainsActiveTag).length;
 	}
 }

@@ -28,27 +28,26 @@
 		<button class="glide__bullet" data-glide-dir="=0" *ngFor="let slide of slides" [attr.data-glide-dir]="'=' + slide.index"></button>
 	</div>
 </div>
-<rk-content-block color="grey-lighter" title="Neuigkeiten & mehr" space="xlarge">
+<rk-content-block color="grey-lighter" heading="Neuigkeiten & mehr ({{getCurrentArticleCount()}})" space="xlarge">
 	<div class="row">
-		<div class="col-12">
-				<!-- TODO: TagList molecule /w filter capability -->
-			<ul>
-				<li *ngFor="let tag of tags">{{tag}}</li>
-			</ul>
+		<div class="col-12 v-home__article-filter">
+			<rk-tag-list
+				[interactive]="true"
+				[tags]="tags"
+				[active]="activeTagId"
+				(clicked)="setActiveTag($event)"
+			></rk-tag-list>
 		</div>
-		<!-- TODO: GraphQL preload on hover! -->
-		<article *ngFor="let article of articles"  class="v-home__article col-12 col-sm-12 col-md-6 col-lg-4" routerLink="/articles/{{article._id}}" (mouseover)="preloadArticle(article._id)">
-			<rk-picture *ngIf="article.previewImage" [src]="article.previewImage.path"></rk-picture>
-			<div class="v-home__article-content">
-				<small>GraphQL ID: {{article._id}}</small>
-				<h3 class="v-home__article-title a-heading a-heading--3">{{article.title}}</h3>
-				<h4 class="v-home__article-published">Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}</h4>
-				<p class="v-home__article-excerpt" *ngIf="article.excerpt">{{article.excerpt}}</p>
-				<!-- TODO: TagList molecule -->
-				<ul *ngIf="article.tags">
-					<li *ngFor="let tag of article.tags">Tag "{{tag}}"</li>
-				</ul>
-			</div>
-		</article>
+		<div *ngFor="let article of articles" class="col-12 col-sm-12 col-md-6 col-lg-4">
+			<rk-teaser
+				routerLink="/articles/{{article._id}}"
+				[title]="article.title"
+				subtitle="Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}"
+				[excerpt]="article.excerpt"
+				[tags]="article.tags"
+				[previewImage]="article.previewImage"
+				(hovered)="preloadArticle(article._id)"
+			></rk-teaser>
+		</div>
 	</div>
 </rk-content-block>

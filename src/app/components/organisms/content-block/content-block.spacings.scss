@@ -1,5 +1,6 @@
 @import "../../../styles/colors.scss";
 @import "../../../styles/spacings.scss";
+@import "../../../styles/responsive.scss";
 
 .o-content-block--space-small {
   .o-content-block__inner {
@@ -28,5 +29,18 @@
 .o-content-block--space-xxlarge {
   .o-content-block__inner {
     padding: $space-xxlarge;
+  }
+}
+
+.o-content-block--space-small,
+.o-content-block--space-medium,
+.o-content-block--space-large,
+.o-content-block--space-xlarge,
+.o-content-block--space-xxlarge {
+  .o-content-block__inner {
+    @include respond-to-max("sm") {
+      padding-left: $space-grid-gutter;
+      padding-right: $space-grid-gutter;
+    }
   }
 }

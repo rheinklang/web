@@ -1,41 +1,6 @@
 @import "../../styles/colors.scss";
 @import "../../styles/responsive.scss";
 
-.v-home__article {
-  padding: 0;
-  // margin: 0 15px;
-  cursor: pointer;
-  background-color: $color-white;
-  border-radius: 5px;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
-
-  rk-image img {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4rem 7rem 0 rgba(44, 51, 73, 0.3);
-  }
-}
-
-.v-home__article-content {
-  padding: 0 20px 20px 20px;
-}
-
-.v-home__article-title {
-  margin: 20px 0 10px 0;
-}
-
-.v-home__article-published {
-  color: $color-grey-200;
-  font-weight: 300;
-  font-size: 13px;
-  margin: 0;
-}
-
 // SLIDER
 .v-about__slides {
   margin: 0;
@@ -43,6 +8,7 @@
 }
 
 .v-about__slide {
+  // TODO:
 }
 
 .v-about__slide-content {
@@ -80,6 +46,11 @@
   @include respond-to-min("md") {
     text-shadow: 0 3px 5px $color-black;
   }
+}
+
+.v-home__article-filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 // .v-about__arrows {

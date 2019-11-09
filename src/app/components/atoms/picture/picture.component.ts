@@ -15,6 +15,8 @@ export const breakpoints = [
 	1200
 ];
 
+const IMAGE_OPT_FACTOR = 1.2;
+
 @Component({
 	selector: 'rk-picture',
 	templateUrl: './picture.component.html',
@@ -41,10 +43,10 @@ export class PictureComponent {
 		}
 
 		const sources = breakpoints.map((breakpoint, index) => ({
-			url: `${resolveDynamicAssetPath({ path: this.src })}&w=${breakpoint}`,
+			url: `${resolveDynamicAssetPath({ path: this.src })}&w=${Math.round(breakpoint * IMAGE_OPT_FACTOR)}`,
 			breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`
 		}));
 
-		return sources;
+		return sources.reverse();
 	}
 }

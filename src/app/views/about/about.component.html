@@ -24,7 +24,7 @@
 								<rk-icon *ngIf="member.lead" select="users" width="15" height="15"></rk-icon>
 							</span>
 						</div>
-						<rk-image *ngIf="member.image" rounded="full" src="https://via.placeholder.com/400x400" alt="Portrait von {{member.fullName}}"></rk-image>
+						<rk-image *ngIf="member.image" rounded="full" [src]="member.image.path || 'https://via.placeholder.com/400x400?text=' + member.fullName" alt="Portrait von {{member.fullName}}"></rk-image>
 						<div class="v-about__member-intro">
 							<rk-heading size="3" [text]="member.fullName" noSpace="true"></rk-heading>
 							<rk-heading *ngIf="member.mainRole" size="4" noSpace="true" [text]="member.mainRole"></rk-heading>

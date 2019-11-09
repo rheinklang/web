@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row justify-content-between">
       <div class="col-4 col-md-2">
-        <rk-logo highlight=true id="rheinklang" location="header"></rk-logo>
+				<a class="a-link" routerLink="/" [title]="navigationTitles.homeTitle">
+					<rk-logo highlight=true id="rheinklang" location="header"></rk-logo>
+				</a>
       </div>
       <nav class="o-header__navigation col-0 col-md-10 align-self-end" role="main">
         <rk-link-list layout="horizontal" type="main-navigation" color="white">

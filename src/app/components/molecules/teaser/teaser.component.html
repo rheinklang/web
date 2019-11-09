@@ -1,0 +1,13 @@
+<article class="m-teaser" routerLink="{{link}}" (mouseover)="triggerHoverEvent()">
+	<rk-picture *ngIf="previewImage" [src]="previewImage.path"></rk-picture>
+	<header class="m-teaser__header">
+		<h3 class="m-teaser__title a-heading a-heading--3">{{title}}</h3>
+		<h4 class="m-teaser__subtitle">{{subtitle}}</h4>
+	</header>
+	<div class="m-teaser__content">
+		<p class="m-teaser__excerpt" *ngIf="excerpt">{{excerpt}}</p>
+	</div>
+	<footer class="m-teaser__footer">
+		<rk-tag-list #tagList *ngIf="tags" [tags]="tags"></rk-tag-list>
+	</footer>
+</article>

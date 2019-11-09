@@ -3,5 +3,7 @@
 		<rk-heading size="1" [text]="article.title"></rk-heading>
 		<h2>Publiziert am {{article.releaseDate | date:'dd. MMMM yyyy'}} von {{article.author}}</h2>
 		<div [innerHTML]="article.content"></div>
-		<div *ngFor="let tag of article.tags">Tag: {{tag}}</div>
+		<div class="v-articles__tags">
+			<rk-tag-list [tags]="article.tags"></rk-tag-list>
+		</div>
 </rk-content-block>

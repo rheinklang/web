@@ -1,0 +1,10 @@
+<ul class="m-tag-list">
+	<li *ngFor="let tag of tags" class="m-tag-list__tag">
+		<rk-tag
+			[text]="tag"
+			[interactive]="interactive"
+			[active]="isActive(tag)"
+			(clicked)="handleTagClick($event)"
+		></rk-tag>
+	</li>
+</ul>

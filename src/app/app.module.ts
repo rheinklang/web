@@ -35,6 +35,9 @@ import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ContactComponent } from './views/contact/contact.component';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
 import { ArticlesComponent } from './views/articles/articles.component';
+import { TeaserComponent } from './components/molecules/teaser/teaser.component';
+import { TagComponent } from './components/atoms/tag/tag.component';
+import { TagListComponent } from './components/molecules/tag-list/tag-list.component';
 
 @NgModule({
 	declarations: [
@@ -66,7 +69,10 @@ import { ArticlesComponent } from './views/articles/articles.component';
 		ScrollAnchorDirective,
 		ContactComponent,
 		BurgerComponent,
-		ArticlesComponent
+		ArticlesComponent,
+		TagComponent,
+		TagListComponent,
+		TeaserComponent
 	],
 	imports: [
 		BrowserModule,

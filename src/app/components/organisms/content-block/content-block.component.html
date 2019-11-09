@@ -1,7 +1,7 @@
-<section rkScrollAnchor [scrollAnchorId]="title" class="o-content-block" [ngClass]="modifiers ? modifiers : ''">
+<section rkScrollAnchor [scrollAnchorId]="heading" class="o-content-block" [ngClass]="modifiers ? modifiers : ''">
 	<div class="o-content-block__inner container">
-		<header *ngIf="title" class="o-content-block__head">
-			<rk-heading [text]="title" size="2" blockTitle="true"></rk-heading>
+		<header *ngIf="heading" class="o-content-block__head">
+			<rk-heading [text]="heading" size="2" blockTitle="true"></rk-heading>
 		</header>
 		<ng-content></ng-content>
 	</div>
