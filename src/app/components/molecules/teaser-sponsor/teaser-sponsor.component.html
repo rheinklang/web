@@ -1,0 +1,13 @@
+<div *ngIf="url; else noLink">
+	<a [href]="url" target="_blank" rel="noopener noreferrer">
+		<rk-picture *ngIf="logo && logo.path" [src]="logo.path" [lazy]="true"></rk-picture>
+		<rk-heading *ngIf="name" [icon]="icon" [text]="name" size="3" visualSize="4" center="true"></rk-heading>
+		<p class="m-teaser-sponsor__period">{{yearInformation}}</p>
+	</a>
+</div>
+
+<ng-template #noLink>
+	<rk-picture *ngIf="logo && logo.path" [src]="logo.path" [lazy]="true"></rk-picture>
+	<rk-heading *ngIf="name" [icon]="icon" [text]="name" size="3" visualSize="4" center="true"></rk-heading>
+	<p class="m-teaser-sponsor__period">{{yearInformation}}</p>
+</ng-template>

@@ -14,6 +14,9 @@ export class ContentBlockComponent {
 	@Input() public heading?: string;
 	@Input() public color?: string;
 	@Input() public pattern?: string;
+	@Input() public size = 2;
+	@Input() public centerHeading = false;
+	@Input() public skew = false;
 	@Input() public space?: 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';
 
 	public get modifiers() {

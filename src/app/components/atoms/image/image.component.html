@@ -6,9 +6,9 @@
 	[style.minWidth]="placeholderSize[0]"
 	[style.minHeight]="placeholderSize[1]"
 	[alt]="alt || src"
-	data-src="{{src}}"
 	data-sizes="auto"
-	data-srcset="{{sourceset}}"
-	srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+	[attr.data-src]="src"
+	[attr.data-srcset]="sourceset"
+	[srcset]="INITIAL_SOURCE_SET"
 >
 <p *ngIf="description" class="a-image__description">{{description}}</p>

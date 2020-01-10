@@ -30,6 +30,8 @@ export class ImageComponent {
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
 
+	public INITIAL_SOURCE_SET = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+
 	public get sourceset() {
 		if (!this.src) {
 			return null;

@@ -1,0 +1,22 @@
+<div class="m-teaser-event">
+	<rk-picture *ngIf="previewImage.path" [src]="previewImage.path"></rk-picture>
+	<div class="m-teaser-event__content-wrapper">
+			<rk-heading size="3" [text]="title"></rk-heading>
+			<h4 class="m-teaser-event__details-date">
+					<span class="m-teaser-event__details-icon">
+						<rk-icon select="calendar" color="#ccc"></rk-icon>
+					</span>
+					Am {{date|date:'dd.MM.yyyy'}}
+			</h4>
+			<h4 class="m-teaser-event__details-location">
+				<span class="m-teaser-event__details-icon">
+					<rk-icon select="map-pin" color="#ccc"></rk-icon>
+				</span>
+				<span *ngIf="hasLocation; else noLocation">{{this.location.name}}, {{this.location.city}} ({{this.location.country}})</span>
+				<ng-template #noLocation><em>tba.</em></ng-template>
+			</h4>
+			<div class="m-teaser-event__description" [innerHTML]="description"></div>
+			<!-- CTA Section -->
+			<rk-button-facebook [url]="facebookUrl"></rk-button-facebook>
+	</div>
+</div>
