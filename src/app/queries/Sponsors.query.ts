@@ -10,6 +10,7 @@ export interface SponsorGQLEntry {
 	url: string;
 	logo: CockpitImageSchema;
 	description?: string;
+	sortWeight: string | null;
 	level?: SponsorLevelType;
 	lastActiveYear: string | null;
 	joinedYear: string | null;
@@ -30,6 +31,7 @@ export class SponsorsGQL extends Query<SponsorsGQLResponse> {
 				logo {
 					path
 				}
+				sortWeight
 				level
 				lastActiveYear
 				joinedYear

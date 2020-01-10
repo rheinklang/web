@@ -14,17 +14,19 @@
 </rk-content-block>
 <div class="v-sponsors-overview container">
 	<div class="row middle-xs align-items-center">
-		<div *ngFor="let sponsor of sponsors" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center">
-			<rk-teaser-sponsor
-				[slug]="sponsor.slug"
-				[name]="sponsor.name"
-				[url]="sponsor.url"
-				[logo]="sponsor.logo"
-				[description]="sponsor.description"
-				[level]="sponsor.level"
-				[joinedYear]="sponsor.joinedYear"
-				[lastActiveYear]="sponsor.lastActiveYear"
-			></rk-teaser-sponsor>
-		</div>
+		<ng-container *ngFor="let sponsorList of sortedSponsors">
+			<div *ngFor="let sponsor of sponsorList.sponsors" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center">
+				<rk-teaser-sponsor
+					[slug]="sponsor.slug"
+					[name]="sponsor.name"
+					[url]="sponsor.url"
+					[logo]="sponsor.logo"
+					[description]="sponsor.description"
+					[level]="sponsor.level"
+					[joinedYear]="sponsor.joinedYear"
+					[lastActiveYear]="sponsor.lastActiveYear"
+				></rk-teaser-sponsor>
+			</div>
+		</ng-container>
 	</div>
 </div>
