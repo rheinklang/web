@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { EventTypes } from '../types/Event';
+import { EventType } from '../types/Event';
 import { PreviewImagePathOnly } from '../types/PreviewImage';
 
 export interface EventsGQLEntry {
@@ -9,7 +9,7 @@ export interface EventsGQLEntry {
 	title: string;
 	date: string;
 	description: string;
-	type: EventTypes;
+	type: EventType;
 	previewImage?: PreviewImagePathOnly;
 	secret: boolean | null;
 	link: string;
