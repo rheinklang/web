@@ -25,9 +25,13 @@ export class EventOverviewComponent implements OnInit {
 				groupBy(event => event.date.split('-')[0]),
 				mergeMap(group => zip(of(group.key), group.pipe(toArray()))),
 			).subscribe(([year, correspondingEvents]) => {
+				const sortedEvents = correspondingEvents.sort((a, b) => {
+					return new Date(a.date).getTime() - new Date(b.date).getTime()
+				});
+
 				this.events.push({
 					year,
-					events: correspondingEvents
+					events: sortedEvents
 				});
 			});
 		});
