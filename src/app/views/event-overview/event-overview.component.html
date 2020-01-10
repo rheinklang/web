@@ -1,4 +1,39 @@
 <rk-seo-manager context="events-overview"></rk-seo-manager>
-<rk-content-block>
-	<p>event-overview works!</p>
+<rk-content-block
+	*ngIf="pageData"
+	color="sea-light"
+	space="xlarge"
+	centerHeading="true"
+	skew="true"
+	size="1"
+	[heading]="pageData.title"
+>
+	<div class="row justify-content-center">
+			<div class="col-xs-12 col-sm-10 h-text-align--center" [innerHTML]="pageData.description"></div>
+	</div>
 </rk-content-block>
+<div *ngFor="let group of events" class="v-events-overview container">
+	<div class="row v-events-overview__year" [id]="group.year">
+		<div class="col-12">
+			<a [routerLink]="['/events']" [fragment]="group.year" class="v-events-overview__year-link">
+				<rk-heading size="2" text="Events – {{group.year}}" [iconPrefix]="eventGroupIcon"></rk-heading>
+			</a>
+		</div>
+		<div *ngFor="let event of group.events" class="col-xs-12 col-sm-6">
+			<rk-teaser-event
+				[slug]="event.slug"
+				[title]="event.title"
+				[date]="event.date"
+				[description]="event.description"
+				[type]="event.type"
+				[facebookUrl]="event.facebookUrl"
+				[link]="event.link"
+				[linkType]="event.linkType"
+				[previewImage]="event.previewImage"
+				[secret]="event.secret"
+				[tickets]="event.tickets"
+				[location]="event.location"
+			></rk-teaser-event>
+		</div>
+	</div>
+</div>
