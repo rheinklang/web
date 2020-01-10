@@ -31,6 +31,7 @@ export class SponsorsGQL extends Query<SponsorsGQLResponse> {
 				logo {
 					path
 				}
+				url
 				sortWeight
 				level
 				lastActiveYear

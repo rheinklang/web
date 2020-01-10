@@ -1,7 +1,8 @@
+import gql from 'graphql-tag';
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
-import gql from 'graphql-tag';
 import { PreviewImage } from '../types/PreviewImage';
+import { CockpitImageSchema } from '../schema/CockpitImageSchema';
 
 export interface HomeSingletonGQLSlideItem {
 	title: string;
@@ -17,6 +18,14 @@ export interface HomeSingletonGQLResponse {
 			value: HomeSingletonGQLSlideItem,
 			__typename: 'RepeaterItemSlides'
 		}>
+		showcaseEvent: null | {
+			slug: string;
+			title: string;
+			description: string;
+			date: string;
+			previewImage: CockpitImageSchema;
+			facebookUrl: string | null;
+		}
 	};
 }
 
@@ -26,9 +35,17 @@ export interface HomeSingletonGQLResponse {
 export class HomeSingletonGQL extends Query<HomeSingletonGQLResponse> {
 	document = gql`
 		query GetHomeSingleton {
-			homePageSingleton {
+			homePageSingleton(populate:1) {
 				slides {
 					value
+				}
+				showcaseEvent {
+					slug
+					title
+					description
+					date
+					previewImage
+					facebookUrl
 				}
 			}
 		}

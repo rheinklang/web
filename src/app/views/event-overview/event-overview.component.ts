@@ -26,7 +26,7 @@ export class EventOverviewComponent implements OnInit {
 				mergeMap(group => zip(of(group.key), group.pipe(toArray()))),
 			).subscribe(([year, correspondingEvents]) => {
 				const sortedEvents = correspondingEvents.sort((a, b) => {
-					return new Date(a.date).getTime() - new Date(b.date).getTime()
+					return new Date(a.date).getTime() - new Date(b.date).getTime();
 				});
 
 				this.events.push({

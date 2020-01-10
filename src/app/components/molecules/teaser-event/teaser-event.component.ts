@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { EventsGQLEntry } from '../../../queries/Events.query';
+import { EventType } from '../../../types/Event';
 
 @Component({
 	selector: 'rk-teaser-event',
@@ -27,5 +28,30 @@ export class TeaserEventComponent {
 
 	public get fqLocationName() {
 		return `${this.location.name}, ${this.location.city} (${this.location.country})`;
+	}
+
+	public get isFestival() {
+		return this.type === EventType.FESTIVAL;
+	}
+
+	public get isDayDance() {
+		return this.type === EventType.DAYDANCE;
+	}
+
+	public get isCooperation() {
+		return this.type === EventType.COOPERATION;
+	}
+
+	public get readableEventType() {
+		switch (this.type) {
+			case EventType.FESTIVAL:
+				return 'Festival (Tag- & Nacht)';
+			case EventType.DAYDANCE:
+				return 'DayDance';
+			case EventType.COOPERATION:
+				return 'Kooperation';
+			default:
+				return null;
+		}
 	}
 }

@@ -43,6 +43,7 @@ import { TeaserSponsorComponent } from './components/molecules/teaser-sponsor/te
 import { SafeHtml } from './pipes/safe-html';
 import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
 import { ButtonFacebookComponent } from './components/atoms/button-facebook/button-facebook.component';
+import { ComingSoonPageComponent } from './components/atoms/coming-soon-page/coming-soon-page.component';
 
 @NgModule({
 	declarations: [
@@ -84,7 +85,8 @@ import { ButtonFacebookComponent } from './components/atoms/button-facebook/butt
 		SponsorsOverviewComponent,
 		TeaserSponsorComponent,
 		TeaserEventComponent,
-		ButtonFacebookComponent
+		ButtonFacebookComponent,
+		ComingSoonPageComponent
 	],
 	imports: [
 		BrowserModule,

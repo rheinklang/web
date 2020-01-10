@@ -1,6 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { CockpitImageSchema } from '../../../schema/CockpitImageSchema';
 import { SponsorLevel, SponsorLevelType } from '../../../types/Sponsor';
+import { generateUrchingTrackingURL } from '../../../utils/utm';
 
 @Component({
 	selector: 'rk-teaser-sponsor',
@@ -47,5 +48,13 @@ export class TeaserSponsorComponent {
 			default:
 				return null;
 		}
+	}
+
+	public get sponsorCampaignUrl() {
+		if (this.url.indexOf('?utm') > -1) {
+			return this.url;
+		}
+
+		return generateUrchingTrackingURL(this.url);
 	}
 }

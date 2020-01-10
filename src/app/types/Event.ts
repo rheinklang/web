@@ -1,1 +1,7 @@
-export type EventType = 'Cooperation' | 'Exclusive' | 'Festival' | 'None';
+export enum EventType {
+	COOPERATION = 'Cooperation',
+	EXCLUSIVE = 'Exclusive',
+	DAYDANCE = 'DayDance',
+	FESTIVAL = 'Festival',
+	NONE = 'None'
+}

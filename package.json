@@ -1,6 +1,6 @@
 {
   "name": "rheinklang-kollektiv",
-  "version": "0.0.1-beta.39",
+  "version": "0.9.182-rc.1",
   "scripts": {
     "ng": "ng",
     "prestart": "run-s create:*",

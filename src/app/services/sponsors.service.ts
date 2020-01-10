@@ -17,6 +17,7 @@ export interface SponsorsServiceEntry {
 	level: SponsorLevelType;
 	lastActiveYear: string | null;
 	joinedYear: string | null;
+	ariaLabel: string;
 }
 
 @Injectable({
@@ -33,6 +34,7 @@ export class SponsorsService {
 			map(entries => entries.map(entry => ({
 				...entry,
 				level: `${entry.level}` as SponsorLevel,
+				ariaLabel: `${entry.name} ist Sponsor seit ${entry.joinedYear} (${entry.level} level)`,
 				description: `${entry.description}`,
 				sortWeight: entry.sortWeight ? parseInt(entry.sortWeight || '0', 10) : 0
 			})))

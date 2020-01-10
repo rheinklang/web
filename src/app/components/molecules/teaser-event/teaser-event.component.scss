@@ -2,6 +2,8 @@
 @import "../../../styles/responsive.scss";
 
 .m-teaser-event {
+  position: relative;
+  overflow: hidden;
   padding: 0;
   background-color: $color-white;
   border-radius: 5px;
@@ -22,14 +24,16 @@
   }
 }
 
-.m-teaser-event__content-wrapper {
-  padding: 20px;
+.m-teaser-event__content-wrapper,
+.m-teaser-event__actions {
+  padding: 0 20px 20px 20px;
 }
 
 .m-teaser-event h3 {
   min-height: 32px; // 1x line height
 }
 
+.m-teaser-event__details-type,
 .m-teaser-event__details-date,
 .m-teaser-event__details-location {
   font-size: 0.9rem;
@@ -39,8 +43,11 @@
 }
 
 .m-teaser-event__details-icon {
-  margin-right: 8px;
+  display: inline-block;
+  width: 28px;
 }
+
+@import "../../../styles/colors.scss";
 
 .m-teaser-event__description {
   margin-top: 15px;
@@ -55,8 +62,93 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 35px;
+    height: 45px;
     pointer-events: none;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 95%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 10%), rgba(255, 255, 255, 1) 100%);
+  }
+}
+
+.m-teaser-event__type {
+  width: 200px;
+  background: $color-primary-grass-green;
+  position: absolute;
+  top: 5px;
+  left: -70px;
+  text-align: center;
+  line-height: 30px;
+  letter-spacing: 1px;
+  color: $color-white;
+  font-size: 0.8rem;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  text-transform: uppercase;
+}
+
+// tiles desktop
+.m-teaser-event__tile-icon {
+  display: inline-block;
+  border: 2px solid transparent;
+  padding: 10px;
+  border-radius: 100px;
+}
+
+.m-teaser-event__tile-text {
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0;
+
+  &--type {
+    color: $color-primary-fury-red;
+  }
+
+  &--date {
+    color: $color-primary-grass-green;
+  }
+
+  &--location {
+    color: $color-primary-retr-orange;
+  }
+}
+
+.m-teaser-event__tile {
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  &--type {
+    .m-teaser-event__tile-icon {
+      background-color: $color-primary-fury-red;
+    }
+  }
+
+  &--date {
+    .m-teaser-event__tile-icon {
+      background-color: $color-primary-grass-green;
+    }
+  }
+
+  &--location {
+    .m-teaser-event__tile-icon {
+      background-color: $color-primary-retr-orange;
+    }
+  }
+}
+
+// details responsive
+
+.m-teaser-event__details-desktop {
+  display: none;
+  padding: 15px 20px 0 20px;
+  background-color: $color-grey-500;
+}
+
+@include respond-to-min("sm") {
+  .m-teaser-event__details-mobile {
+    display: none;
+  }
+
+  .m-teaser-event__details-desktop {
+    display: block;
   }
 }
