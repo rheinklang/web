@@ -10,6 +10,7 @@ export interface NavigationSingletonGQLResponse {
 		ticketsTitle: string;
 		contactTitle: string;
 		homeTitle: string;
+		sponsorsTitle: string;
 	};
 }
 
@@ -26,6 +27,7 @@ export class NavigationSingletonGQL extends Query<NavigationSingletonGQLResponse
 				ticketsTitle
 				homeTitle
 				contactTitle
+				sponsorsTitle
 			}
 		}
 		`;
