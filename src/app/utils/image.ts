@@ -18,7 +18,15 @@ export const resolveDynamicImagePath = (imageField: { path: string }, fallback: 
 		? `${environment.assetCDNHost}/api/cockpit/image?token=${environment.cockpitAPIKey}&src=${imageField.path}&o=1`
 		: fallback;
 
-export const resolveDynamicAssetPath = (imageField: { path: string }, fallback: any = transparentBase64InlineImage) =>
-	imageField && imageField.path
-		? `${environment.assetCDNHost}/api/cockpit/image?token=${environment.cockpitAPIKey}&src=/storage/uploads/${imageField.path}&o=1`
+export const resolveDynamicAssetPath = (imageField: { path: string }, fallback: any = transparentBase64InlineImage) => {
+	if (imageField && imageField.path) {
+		// weird cockpit behaviour sometimes automatically adds the storage uploads prefix
+		imageField.path = imageField.path.replace('/storage/uploads', '');
+	}
+
+	return imageField && imageField.path
+		// tslint:disable-next-line: max-line-length
+		? `${environment.assetCDNHost}/api/cockpit/image?token=${environment.cockpitAPIKey}&src=/storage/uploads${imageField.path}&o=1`
 		: fallback;
+}
+

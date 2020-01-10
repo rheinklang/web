@@ -38,9 +38,17 @@ import { ArticlesComponent } from './views/articles/articles.component';
 import { TeaserComponent } from './components/molecules/teaser/teaser.component';
 import { TagComponent } from './components/atoms/tag/tag.component';
 import { TagListComponent } from './components/molecules/tag-list/tag-list.component';
+import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
+import { TeaserSponsorComponent } from './components/molecules/teaser-sponsor/teaser-sponsor.component';
+import { SafeHtml } from './pipes/safe-html';
+import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
+import { ButtonFacebookComponent } from './components/atoms/button-facebook/button-facebook.component';
 
 @NgModule({
 	declarations: [
+		// Pipes
+		SafeHtml,
+		// Components
 		AppComponent,
 		DefaultLayoutComponent,
 		HeaderComponent,
@@ -72,7 +80,11 @@ import { TagListComponent } from './components/molecules/tag-list/tag-list.compo
 		ArticlesComponent,
 		TagComponent,
 		TagListComponent,
-		TeaserComponent
+		TeaserComponent,
+		SponsorsOverviewComponent,
+		TeaserSponsorComponent,
+		TeaserEventComponent,
+		ButtonFacebookComponent
 	],
 	imports: [
 		BrowserModule,

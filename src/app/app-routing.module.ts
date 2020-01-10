@@ -10,6 +10,7 @@ import { ImpressionOverviewComponent } from './views/impression-overview/impress
 import { ImpressionComponent } from './views/impression/impression.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { ArticlesComponent } from './views/articles/articles.component';
+import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
 
 const routes: Routes = [
 	{
@@ -32,6 +33,10 @@ const routes: Routes = [
 	{
 		path: 'impressions/:impressionId',
 		component: ImpressionComponent
+	},
+	{
+		path: 'sponsors',
+		component: SponsorsOverviewComponent
 	},
 	{
 		path: 'events',
@@ -57,6 +62,8 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, {
+		scrollPositionRestoration: 'enabled',
+		anchorScrolling: 'enabled'
 		// enableTracing: environment.production !== true
 	})],
 	exports: [RouterModule]
