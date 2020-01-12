@@ -38,6 +38,17 @@
 				(clicked)="setActiveTag($event)"
 			></rk-tag-list>
 		</div>
+		<ng-container *ngIf="!articlesLoaded">
+			<div class="v-home__article-placeholder col-12 col-sm-12 col-md-6 col-lg-4">
+				<rk-content-loader-teaser-article></rk-content-loader-teaser-article>
+			</div>
+			<div class="v-home__article-placeholder col-12 col-sm-12 col-md-6 col-lg-4">
+				<rk-content-loader-teaser-article></rk-content-loader-teaser-article>
+			</div>
+			<div class="v-home__article-placeholder col-12 col-sm-12 col-md-6 col-lg-4">
+				<rk-content-loader-teaser-article></rk-content-loader-teaser-article>
+			</div>
+		</ng-container>
 		<div *ngFor="let article of articles" class="col-12 col-sm-12 col-md-6 col-lg-4">
 			<rk-teaser
 				routerLink="/articles/{{article._id}}"

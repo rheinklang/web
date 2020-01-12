@@ -59,8 +59,6 @@ export class HomeComponent implements OnInit {
 		} else {
 			this.activeTagId = id;
 		}
-
-		console.log('active: %s, now: %s', id, this.activeTagId);
 	}
 
 	public articleContainsActiveTag(article: ArticlesGQLEntry) {
@@ -83,5 +81,9 @@ export class HomeComponent implements OnInit {
 		}
 
 		return this.articles.filter(this.articleContainsActiveTag).length;
+	}
+
+	public get articlesLoaded() {
+		return this.articles.length > 0;
 	}
 }

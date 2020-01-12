@@ -2,6 +2,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { CockpitImageSchema } from '../../../schema/CockpitImageSchema';
 import { SponsorLevel, SponsorLevelType } from '../../../types/Sponsor';
 import { generateUrchingTrackingURL } from '../../../utils/utm';
+import { sponsorLevelToGerman } from '../../../utils/sponsor';
 
 @Component({
 	selector: 'rk-teaser-sponsor',
@@ -19,6 +20,9 @@ export class TeaserSponsorComponent {
 	@Input() public lastActiveYear: string;
 	@Input() public joinedYear: string;
 
+	public get ariaLabel() {
+		return `${this.name} (${sponsorLevelToGerman(this.level)} Status)`;
+	}
 
 	public get yearInformation() {
 		if (this.lastActiveYear) {

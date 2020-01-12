@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContentLoaderModule } from '@ngneat/content-loader';
+import { SharedModule } from './shared.module';
 
 import { RheinklangRoutingModule as AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,8 +32,6 @@ import { ImageComponent } from './components/atoms/image/image.component';
 import { CardComponent } from './components/molecules/card/card.component';
 import { ContentBlockComponent } from './components/organisms/content-block/content-block.component';
 import { PictureComponent } from './components/atoms/picture/picture.component';
-import { TooltipDirective } from './directives/tooltip.directive';
-import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { ContactComponent } from './views/contact/contact.component';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
 import { ArticlesComponent } from './views/articles/articles.component';
@@ -40,16 +40,14 @@ import { TagComponent } from './components/atoms/tag/tag.component';
 import { TagListComponent } from './components/molecules/tag-list/tag-list.component';
 import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
 import { TeaserSponsorComponent } from './components/molecules/teaser-sponsor/teaser-sponsor.component';
-import { SafeHtml } from './pipes/safe-html';
 import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
 import { ButtonFacebookComponent } from './components/atoms/button-facebook/button-facebook.component';
 import { ComingSoonPageComponent } from './components/atoms/coming-soon-page/coming-soon-page.component';
+import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
+import { ContentLoaderTeaserArticleComponent } from './components/atoms/content-loader-teaser-article/content-loader-teaser-article.component';
 
 @NgModule({
 	declarations: [
-		// Pipes
-		SafeHtml,
-		// Components
 		AppComponent,
 		DefaultLayoutComponent,
 		HeaderComponent,
@@ -74,8 +72,6 @@ import { ComingSoonPageComponent } from './components/atoms/coming-soon-page/com
 		PictureComponent,
 		CardComponent,
 		ContentBlockComponent,
-		TooltipDirective,
-		ScrollAnchorDirective,
 		ContactComponent,
 		BurgerComponent,
 		ArticlesComponent,
@@ -86,16 +82,22 @@ import { ComingSoonPageComponent } from './components/atoms/coming-soon-page/com
 		TeaserSponsorComponent,
 		TeaserEventComponent,
 		ButtonFacebookComponent,
-		ComingSoonPageComponent
+		ComingSoonPageComponent,
+		SpinnerComponent,
+		ContentLoaderTeaserArticleComponent
 	],
 	imports: [
+		SharedModule,
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
 		GraphQLModule,
 		HttpClientModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+	],
+	schemas: [
+		CUSTOM_ELEMENTS_SCHEMA
 	],
 	providers: [],
 	bootstrap: [AppComponent]

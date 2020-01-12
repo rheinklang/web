@@ -2,6 +2,11 @@
 @import "../../styles/responsive.scss";
 
 // SLIDER
+
+.v-about__header-slider {
+  min-height: 250px;
+}
+
 .v-about__slides {
   margin: 0;
   position: relative;
@@ -92,3 +97,9 @@
 //     // transform: translate(100%, 50%);
 //   }
 // }
+
+// PLACEHOLDERS
+
+.v-home__article-placeholder {
+  margin-bottom: 20px;
+}
