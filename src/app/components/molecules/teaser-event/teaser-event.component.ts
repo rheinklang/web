@@ -1,6 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { EventsGQLEntry } from '../../../queries/Events.query';
 import { EventType } from '../../../types/Event';
+import { generateUrchingTrackingURL } from '../../../utils/utm';
 
 @Component({
 	selector: 'rk-teaser-event',
@@ -52,6 +53,29 @@ export class TeaserEventComponent {
 				return 'Kooperation';
 			default:
 				return null;
+		}
+	}
+
+	public get hasTickets() {
+		return this.tickets && this.tickets.enabled !== null;
+	}
+
+	public get eventDetailURL() {
+		return [`/events/${this.slug}`];
+	}
+
+	public get eventDetailText() {
+		if (this.hasTickets) {
+			return `Details & Tickets`;
+		}
+
+		return 'Details';
+	}
+
+	public get eventDetailIcon() {
+		return {
+			select: this.hasTickets ? 'credit-card' : 'eye',
+			color: '#fff'
 		}
 	}
 }

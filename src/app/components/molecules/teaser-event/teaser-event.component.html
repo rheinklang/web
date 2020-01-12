@@ -58,14 +58,18 @@
 				<span class="m-teaser-event__details-icon">
 					<rk-icon select="map-pin" color="#ccc"></rk-icon>
 				</span>
-				<span *ngIf="hasLocation; else noLocation">{{this.location.name}}, {{this.location.city}} ({{this.location.country}})</span>
+				<span *ngIf="hasLocation; else noLocation">{{this.location.name}} – {{this.location.city}}</span>
 				<ng-template #noLocation><em>tba.</em></ng-template>
 			</p>
 		</div>
 		<div class="m-teaser-event__description" [innerHTML]="description"></div>
 	</div>
 	<!-- CTA Section -->
-	<div class="m-teaser-event__actions">
+	<div class="m-teaser-event__actions container">
 		<rk-button-facebook *ngIf="facebookUrl" [url]="facebookUrl"></rk-button-facebook>
+		<a [routerLink]='eventDetailURL' class="m-teaser-event__detail-link">
+			<rk-icon [select]="eventDetailIcon.select" color="#fff"></rk-icon>
+			{{eventDetailText}}
+		</a>
 	</div>
 </div>

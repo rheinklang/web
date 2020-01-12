@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
 	selector: 'rk-content-block',
 	templateUrl: './content-block.component.html',
+	encapsulation: ViewEncapsulation.None,
 	styleUrls: [
 		'./content-block.component.scss',
 		'./content-block.colors.scss',

@@ -1,3 +1,12 @@
-<a class="a-button-facebook" [href]="url" target="_blank" rel="noopener noreferrer" aria-laebl="Facebook Link">
+<a
+	class="a-button-facebook"
+	[class.a-button-facebook--full]="version === 'full'"
+	[href]="url"
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label="Facebook Link"
+	role="button"
+>
 	<rk-icon select="facebook3" width="23px" height="23px"></rk-icon>
+	<ng-content></ng-content>
 </a>

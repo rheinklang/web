@@ -8,41 +8,27 @@
       </div>
       <nav class="o-header__navigation col-0 col-md-10 align-self-end" role="main">
         <rk-link-list layout="horizontal" type="main-navigation" color="white">
-					<rk-link href="/" [text]="navigationTitles.homeTitle"></rk-link>
-					<rk-link href="/events" [text]="navigationTitles.eventsTitle"></rk-link>
-					<rk-link href="/impressions" [text]="navigationTitles.galleriesTitle"></rk-link>
-					<rk-link href="/sponsors" [text]="navigationTitles.sponsorsTitle"></rk-link>
-					<rk-link href="/about" [text]="navigationTitles.aboutTitle"></rk-link>
-					<rk-link href="/contact" [text]="navigationTitles.contactTitle"></rk-link>
+					<rk-link *ngFor="let navItem of navigationItems" [href]="navItem.url" [text]="navItem.title"></rk-link>
 				</rk-link-list>
 			</nav>
 			<div class="o-header__trigger-container col-8 align-self-end">
 					<rk-burger [active]="flyoutNavigationOpen" (handleClick)="setFlyoutState(!flyoutNavigationOpen)"></rk-burger>
 			</div>
-    </div>
+		</div>
 	</div>
+
 	<div class="o-header__flyout" [class.state-o-header-flyout--is-active]="flyoutNavigationOpen">
 		<ul class="o-header__flyout-list" layout="horizontal" type="main-navigation" color="white">
-			<li class="o-header__flyout-list-link">
-				<a class="a-link" routerLink="/">{{navigationTitles.homeTitle}}</a>
-			</li>
-			<li class="o-header__flyout-list-link">
-				<a class="a-link" href="/events">{{navigationTitles.eventsTitle}}</a>
-			</li>
-			<li class="o-header__flyout-list-link">
-				<a class="a-link" href="/impressions">{{navigationTitles.galleriesTitle}}</a>
-			</li>
-			<li class="o-header__flyout-list-link">
-				<a class="a-link" href="/sponsors">{{navigationTitles.sponsorsTitle}}</a>
-			</li>
-			<li class="o-header__flyout-list-link">
-				<a class="a-link" href="/about">{{navigationTitles.aboutTitle}}</a>
-			</li>
-			<li class="o-header__flyout-list-link">
-				<a class="a-link" routerLink="/contact">{{navigationTitles.contactTitle}}</a>
+			<li
+				*ngFor="let flyoutItem of navigationItems"
+				(click)="hideFlyoutNavigation()"
+				class="o-header__flyout-list-link"
+				routerLinkActive="o-header__flyout-list-link--active"
+				[routerLinkActiveOptions]="{exact:true}"
+			>
+				<a class="a-link" [routerLink]="flyoutItem.url">{{flyoutItem.title}}</a>
 			</li>
 		</ul>
-
 		<p class="o-header__flyout-close" (click)="setFlyoutState(false)">
 			<rk-icon select="x-circle" height="40" width="40"></rk-icon>
 		</p>

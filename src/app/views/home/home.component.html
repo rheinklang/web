@@ -8,7 +8,7 @@
 					<h2 class="a-heading a-heading--2" *ngIf="slide.title">{{slide.title}}</h2>
 					<p *ngIf="slide.content">{{slide.content}}</p>
 					<p class="v-about__slide-content-link">
-						<rk-link *ngIf="slide.ctaLink && slide.ctaText" prefetch="true" [text]="slide.ctaText" [href]="slide.ctaLink" color="white" showIndicator="true"></rk-link>
+						<rk-link *ngIf="slide.ctaLink && slide.ctaText" prefetch="true" [text]="slide.ctaText" [routerLink]="slide.ctaLink" color="white" showIndicator="true"></rk-link>
 					</p>
 				</div>
 			</li>

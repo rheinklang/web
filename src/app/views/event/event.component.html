@@ -1,5 +1,35 @@
-<!-- TODO: Add dataset to SEO manager component to access title -->
-<rk-seo-manager context="event"></rk-seo-manager>
-<rk-content-block>
-	<p>event works {{eventId}}!</p>
-</rk-content-block>
+<rk-seo-manager context="event" [data]="event"></rk-seo-manager>
+
+<div class="v-event__intro o-content-block--color-grey-light">
+	<div *ngIf="event" class="container h-text-align--center">
+			<rk-heading size="2" visualSize="1" [text]="event.title"></rk-heading>
+			<h3 class="v-event__intro-meta-info">
+				Am {{event.date | date: 'dd.MM.yyyy' }} in {{event.location.city}} ({{event.location.canton}}, {{event.location.country}})
+			</h3>
+	</div>
+</div>
+
+<div *ngIf="event" class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-8 v-event__description">
+			<rk-richtext [text]="event.description"></rk-richtext>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="event" class="v-event__actions container">
+	<div class="row align-items-center justify-content-center v-event__actions-row">
+		<rk-button-link *ngIf="shopLink !== null"  [href]="shopLink" secure="true">
+			<rk-icon select="credit-card" color="#fff" width="23px" height="23px"></rk-icon>
+			Tickets kaufen
+		</rk-button-link>
+		<rk-button-facebook [url]="facebookLink" [campaign]="event.title" version="full">
+			<span>Facebook Event</span>
+		</rk-button-facebook>
+		<rk-button-link *ngIf="event.location.googleMapsURL"  [href]="event.location.googleMapsURL" secure="true" modifier="green">
+				<rk-icon select="map" color="#fff" width="23px" height="23px"></rk-icon>
+				In Maps öffnen
+			</rk-button-link>
+	</div>
+</div>
+

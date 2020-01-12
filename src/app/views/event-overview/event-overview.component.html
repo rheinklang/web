@@ -19,7 +19,7 @@
 				<rk-heading size="2" text="Events – {{group.year}}" [iconPrefix]="eventGroupIcon"></rk-heading>
 			</a>
 		</div>
-		<div *ngFor="let event of group.events" class="col-xs-12 col-sm-6">
+		<div *ngFor="let event of group.events" class="col-xs-12 col-md-6">
 			<rk-teaser-event
 				[slug]="event.slug"
 				[title]="event.title"
