@@ -16,6 +16,7 @@
     "preproduction": "npm run create:version",
     "production": "ng build --configuration=production --aot=true --buildOptimizer=true --optimization=true",
     "postproduction": "node bin/copy-apache-config",
+    "aot": "node_modules/.bin/ngc -p tsconfig.aot.json",
     "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'",
     "deploy:development": "node -r dotenv/config deploy.js --tag=development",
     "deploy:production": "node -r dotenv/config deploy.js --tag=production"
@@ -31,6 +32,7 @@
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
     "@glidejs/glide": "3.3.0",
+    "@ngneat/content-loader": "4.1.0",
     "@ngrx/effects": "8.2.0",
     "@ngrx/router-store": "8.2.0",
     "@ngrx/store": "8.2.0",
