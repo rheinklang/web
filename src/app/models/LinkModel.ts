@@ -2,7 +2,7 @@ export class LinkModel {
 	private $target = '_self';
 	private $needsRelationSafety = false;
 
-	constructor(public href: string, public text: string, public icon?: string) { }
+	constructor(public href: string, public text: string, public icon?: string) {}
 
 	public get relation(): string | null {
 		if (this.$needsRelationSafety) {

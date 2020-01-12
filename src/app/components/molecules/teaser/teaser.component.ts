@@ -13,7 +13,7 @@ export class TeaserComponent implements AfterViewInit {
 	@Input() public excerpt: string;
 	@Input() public link: string;
 	@Input() public subtitle?: string;
-	@Input() public previewImage?: { path: string; };
+	@Input() public previewImage?: { path: string };
 	@Input() public tags: ITag[] = [];
 
 	@Output() public hovered = new EventEmitter<void>();
@@ -31,5 +31,4 @@ export class TeaserComponent implements AfterViewInit {
 	public triggerHoverEvent() {
 		this.hovered.emit();
 	}
-
 }

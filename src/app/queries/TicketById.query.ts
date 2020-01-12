@@ -22,11 +22,14 @@ export interface TicketByIdGQLResponse {
 @Injectable({
 	providedIn: 'root'
 })
-export class TicketByIdGQL extends Query<TicketByIdGQLResponse, {
-	filter: {
-		_id: string
+export class TicketByIdGQL extends Query<
+	TicketByIdGQLResponse,
+	{
+		filter: {
+			_id: string;
+		};
 	}
-}> {
+> {
 	document = gql`
 		query GetTicketById($filter: JsonType!) {
 			ticketshopsCollection {
@@ -43,5 +46,5 @@ export class TicketByIdGQL extends Query<TicketByIdGQLResponse, {
 				endTime
 			}
 		}
-		`;
+	`;
 }

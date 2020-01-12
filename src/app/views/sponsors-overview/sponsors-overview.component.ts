@@ -17,25 +17,28 @@ export class SponsorsOverviewComponent implements OnInit {
 	public sponsors: Array<[string, SponsorsServiceEntry[]]> = [];
 	public pageData: SponsorsSingletonGQLResponse['sponsorsPageSingleton'];
 
-	constructor(private sponsorsService: SponsorsService) { }
+	constructor(private sponsorsService: SponsorsService) {}
 
 	ngOnInit() {
 		this.sponsorsService.getSponsors().subscribe(sponsors => {
-			const groupedSponsors = sponsors.reduce((acc, curr) => ({
-				...acc,
-				[curr.lastActiveYear]: [
-					...(acc[curr.lastActiveYear] || []),
-					curr
-				]
-			}), {} as SponsorsYearMap);
+			const groupedSponsors = sponsors.reduce(
+				(acc, curr) => ({
+					...acc,
+					[curr.lastActiveYear]: [...(acc[curr.lastActiveYear] || []), curr]
+				}),
+				{} as SponsorsYearMap
+			);
 
 			this.sponsors = Object.keys(groupedSponsors)
 				.sort(sortByYear)
 				.filter(y => typeof y === 'string' && y.length > 0)
-				.reduce((acc, curr): [string, SponsorsServiceEntry[]][] => ([
-					...acc,
-					[curr, sponsorSortAlgorithm(groupedSponsors[curr])]
-				]), [] as [string, SponsorsServiceEntry[]][])
+				.reduce(
+					(acc, curr): [string, SponsorsServiceEntry[]][] => [
+						...acc,
+						[curr, sponsorSortAlgorithm(groupedSponsors[curr])]
+					],
+					[] as [string, SponsorsServiceEntry[]][]
+				)
 				.reverse();
 		});
 

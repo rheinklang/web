@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 	public articles: ArticlesGQLEntry[] = [];
 	public slides: (HomeSingletonGQLSlideItem & { index: number })[] = [];
 
-	constructor(private articlesService: ArticlesService, private homeService: HomeService) { }
+	constructor(private articlesService: ArticlesService, private homeService: HomeService) {}
 
 	public ngOnInit() {
 		this.articlesService.getArticles().subscribe(articles => {

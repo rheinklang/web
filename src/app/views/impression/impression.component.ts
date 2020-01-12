@@ -9,12 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ImpressionComponent implements OnInit {
 	public impressionId: string;
 
-	constructor(private route: ActivatedRoute) { }
+	constructor(private route: ActivatedRoute) {}
 
 	public ngOnInit() {
 		this.route.paramMap.subscribe(params => {
 			this.impressionId = params.get('impressionId');
 		});
 	}
-
 }

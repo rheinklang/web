@@ -1,10 +1,4 @@
-import {
-	Component,
-	QueryList,
-	ContentChildren,
-	OnDestroy,
-	Input
-} from '@angular/core';
+import { Component, QueryList, ContentChildren, OnDestroy, Input } from '@angular/core';
 import { LinkComponent } from '../../atoms/link/link.component';
 
 @Component({

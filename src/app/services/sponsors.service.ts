@@ -24,28 +24,32 @@ export interface SponsorsServiceEntry {
 	providedIn: 'root'
 })
 export class SponsorsService {
-	constructor(private sponsorsGQL: SponsorsGQL, private sponsorsSingleton: SponsorsSingletonGQL) { }
+	constructor(private sponsorsGQL: SponsorsGQL, private sponsorsSingleton: SponsorsSingletonGQL) {}
 
 	public getSponsors(): Observable<SponsorsServiceEntry[]> {
-		return this.sponsorsGQL.watch(undefined, {
-			fetchPolicy: CACHED_POLICY
-		}).valueChanges.pipe(
-			map(v => v.data.sponsorsCollection),
-			map(entries => entries.map(entry => ({
-				...entry,
-				level: `${entry.level}` as SponsorLevel,
-				ariaLabel: `${entry.name} ist Sponsor seit ${entry.joinedYear} (${entry.level} level)`,
-				description: `${entry.description}`,
-				sortWeight: entry.sortWeight ? parseInt(entry.sortWeight || '0', 10) : 0
-			})))
-		);
+		return this.sponsorsGQL
+			.watch(undefined, {
+				fetchPolicy: CACHED_POLICY
+			})
+			.valueChanges.pipe(
+				map(v => v.data.sponsorsCollection),
+				map(entries =>
+					entries.map(entry => ({
+						...entry,
+						level: `${entry.level}` as SponsorLevel,
+						ariaLabel: `${entry.name} ist Sponsor seit ${entry.joinedYear} (${entry.level} level)`,
+						description: `${entry.description}`,
+						sortWeight: entry.sortWeight ? parseInt(entry.sortWeight || '0', 10) : 0
+					}))
+				)
+			);
 	}
 
 	public getSingleton() {
-		return this.sponsorsSingleton.watch(undefined, {
-			fetchPolicy: CACHED_POLICY
-		}).valueChanges.pipe(
-			map(v => v.data.sponsorsPageSingleton)
-		);
+		return this.sponsorsSingleton
+			.watch(undefined, {
+				fetchPolicy: CACHED_POLICY
+			})
+			.valueChanges.pipe(map(v => v.data.sponsorsPageSingleton));
 	}
 }

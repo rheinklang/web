@@ -7,7 +7,7 @@ export class TooltipDirective implements AfterViewInit {
 	@Input() public tooltipText = '';
 	@Input() public tooltipPosition: 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' = 'top';
 
-	constructor(private el: ElementRef<HTMLElement>) { }
+	constructor(private el: ElementRef<HTMLElement>) {}
 
 	public ngAfterViewInit(): void {
 		if (!this.tooltipText) {
@@ -19,5 +19,4 @@ export class TooltipDirective implements AfterViewInit {
 		this.el.nativeElement.setAttribute('aria-label', this.tooltipText);
 		this.el.nativeElement.setAttribute('data-microtip-position', this.tooltipPosition);
 	}
-
 }

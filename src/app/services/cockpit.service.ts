@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 	providedIn: 'root'
 })
 export class CockpitService {
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	private get headers() {
 		return {

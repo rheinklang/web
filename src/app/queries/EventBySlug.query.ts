@@ -29,11 +29,14 @@ export interface EventBySlugGQLResponse {
 @Injectable({
 	providedIn: 'root'
 })
-export class EventBySlugGQL extends Query<EventBySlugGQLResponse, {
-	filter: {
-		slug: string
+export class EventBySlugGQL extends Query<
+	EventBySlugGQLResponse,
+	{
+		filter: {
+			slug: string;
+		};
 	}
-}> {
+> {
 	public document = gql`
 		query EventBySlug($filter: JsonType!) {
 			eventsCollection(filter: $filter) {

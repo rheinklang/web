@@ -10,10 +10,9 @@ export class SeoManagerComponent implements OnInit {
 	@Input() public context: string;
 	@Input() public data: Record<TemplateKey, TemplateValue>;
 
-	constructor(private seoService: SEOService) { }
+	constructor(private seoService: SEOService) {}
 
 	ngOnInit() {
 		this.seoService.setCurrentContext(this.context, this.data);
 	}
-
 }

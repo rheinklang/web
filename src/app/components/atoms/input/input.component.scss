@@ -1,21 +1,21 @@
-@import "../../../styles/colors.scss";
+@import '../../../styles/colors.scss';
 
 $input-inner-spacing: 8px 12px;
 $input-border-radius: 5px;
 $input-border-size: 2px;
 
 .a-input {
-  display: inline-block;
-  padding: $input-inner-spacing;
-  border-radius: $input-border-radius;
-  box-shadow: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: $input-border-size solid $color-grey-300;
-  transition: border 0.3s linear;
-  outline: none;
+	display: inline-block;
+	padding: $input-inner-spacing;
+	border-radius: $input-border-radius;
+	box-shadow: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: $input-border-size solid $color-grey-300;
+	transition: border 0.3s linear;
+	outline: none;
 }
 
 .a-input.ng-invalid {
-  border-color: $color-primary-fury-red;
+	border-color: $color-primary-fury-red;
 }

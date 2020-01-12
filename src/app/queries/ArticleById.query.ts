@@ -20,11 +20,14 @@ export interface ArticleByIDGQLResponse {
 @Injectable({
 	providedIn: 'root'
 })
-export class ArticleByIdGQL extends Query<ArticleByIDGQLResponse, {
-	filter: {
-		_id: string
+export class ArticleByIdGQL extends Query<
+	ArticleByIDGQLResponse,
+	{
+		filter: {
+			_id: string;
+		};
 	}
-}> {
+> {
 	document = gql`
 		query GetArticleById($filter: JsonType!) {
 			articlesCollection(filter: $filter) {
@@ -38,5 +41,5 @@ export class ArticleByIdGQL extends Query<ArticleByIDGQLResponse, {
 				}
 			}
 		}
-		`;
+	`;
 }

@@ -19,7 +19,7 @@ export class LinkComponent {
 	private $target = '_self';
 	public needsRelationSafety = false;
 
-	constructor(private flyoutService: FlyoutService) { }
+	constructor(private flyoutService: FlyoutService) {}
 
 	@Input()
 	public set target(value: string) {

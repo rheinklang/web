@@ -10,28 +10,33 @@ import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY, REFETCH_POLICY } from '../confi
 export class ArticlesService {
 	private preloadedArticleIds: string[] = [];
 
-	constructor(private articlesGQL: ArticlesGQL, private articleByIdGQL: ArticleByIdGQL) { }
+	constructor(private articlesGQL: ArticlesGQL, private articleByIdGQL: ArticleByIdGQL) {}
 
 	public getArticles() {
-		return this.articlesGQL.watch(undefined, {
-			fetchPolicy: REFETCH_POLICY
-		}).valueChanges.pipe(
-			map(res => res.data.articlesCollection)
-		);
+		return this.articlesGQL
+			.watch(undefined, {
+				fetchPolicy: REFETCH_POLICY
+			})
+			.valueChanges.pipe(map(res => res.data.articlesCollection));
 	}
 
 	public getArticleById(id: string) {
-		return this.articleByIdGQL.watch({
-			filter: {
-				_id: id
-			}
-		}, {
-			fetchPolicy: CACHED_POLICY
-		}).valueChanges.pipe(
-			map(res => res.data.articlesCollection),
-			flatMap(entry => entry),
-			first()
-		);
+		return this.articleByIdGQL
+			.watch(
+				{
+					filter: {
+						_id: id
+					}
+				},
+				{
+					fetchPolicy: CACHED_POLICY
+				}
+			)
+			.valueChanges.pipe(
+				map(res => res.data.articlesCollection),
+				flatMap(entry => entry),
+				first()
+			);
 	}
 
 	public preloadArticleById(id: string) {
@@ -41,12 +46,17 @@ export class ArticlesService {
 
 		this.preloadedArticleIds.push(id);
 
-		this.articleByIdGQL.watch({
-			filter: {
-				_id: id
-			}
-		}, {
-			fetchPolicy: CACHE_AND_UPDATE_POLICY
-		}).valueChanges.subscribe();
+		this.articleByIdGQL
+			.watch(
+				{
+					filter: {
+						_id: id
+					}
+				},
+				{
+					fetchPolicy: CACHE_AND_UPDATE_POLICY
+				}
+			)
+			.valueChanges.subscribe();
 	}
 }

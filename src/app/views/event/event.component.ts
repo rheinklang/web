@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EventComponent implements OnInit {
 	public eventId: string;
 
-	constructor(private route: ActivatedRoute) { }
+	constructor(private route: ActivatedRoute) {}
 
 	public ngOnInit() {
 		this.route.paramMap.subscribe(params => {

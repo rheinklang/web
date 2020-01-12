@@ -19,10 +19,8 @@ export function template(value: string, data: Record<TemplateKey, TemplateValue>
 	return value.replace(TEMPLATE_EXPRESSION, function replaceArg(match, i, index) {
 		let result: TemplateValue | null;
 
-		if (value[index - 1] === '{' &&
-			value[index + match.length] === '}') {
+		if (value[index - 1] === '{' && value[index + match.length] === '}') {
 			return i;
-
 		} else {
 			result = args.hasOwnProperty(i) ? args[i] : null;
 

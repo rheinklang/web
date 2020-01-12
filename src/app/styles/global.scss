@@ -1,5 +1,5 @@
 body {
-  font-family: Lato, "Helvetica Neue", sans-serif;
+	font-family: Lato, 'Helvetica Neue', sans-serif;
 }
 
 *,
@@ -7,8 +7,8 @@ body {
 *:after,
 *::before,
 *::after {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
 }

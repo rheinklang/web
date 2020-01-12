@@ -11,7 +11,7 @@ import { ArticlesService } from '../../services/articles.service';
 export class ArticlesComponent implements OnInit {
 	public article: ArticleGQLEntry;
 
-	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) { }
+	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) {}
 
 	public ngOnInit() {
 		this.route.paramMap.subscribe(params => {
@@ -28,5 +28,4 @@ export class ArticlesComponent implements OnInit {
 			this.article = article;
 		});
 	}
-
 }

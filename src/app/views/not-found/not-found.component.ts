@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
-	constructor(private route: ActivatedRoute) { }
+	constructor(private route: ActivatedRoute) {}
 
 	public get path() {
 		return this.route.snapshot.url.join('/');

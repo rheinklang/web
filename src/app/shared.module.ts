@@ -16,21 +16,9 @@ import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 		// Pipes
 		SafeHtml
 	],
-	imports: [
-		CommonModule,
-		BrowserModule,
-		FormsModule,
-		ReactiveFormsModule,
-		ContentLoaderModule
-	],
-	schemas: [
-		CUSTOM_ELEMENTS_SCHEMA
-	],
+	imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, ContentLoaderModule],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [],
-	exports: [
-		TooltipDirective,
-		ScrollAnchorDirective,
-		SafeHtml
-	]
+	exports: [TooltipDirective, ScrollAnchorDirective, SafeHtml]
 })
-export class SharedModule { }
+export class SharedModule {}

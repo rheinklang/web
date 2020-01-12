@@ -7,7 +7,7 @@ export interface SEOEntry {
 	description: string;
 	og_title: string;
 	og_image: {
-		path: string
+		path: string;
 	};
 }
 
@@ -18,11 +18,14 @@ export interface SEOContextGQLResponse {
 @Injectable({
 	providedIn: 'root'
 })
-export class SEOContextQueryGQL extends Query<SEOContextGQLResponse, {
-	filter: {
-		context: string
+export class SEOContextQueryGQL extends Query<
+	SEOContextGQLResponse,
+	{
+		filter: {
+			context: string;
+		};
 	}
-}> {
+> {
 	document = gql`
 		query GetSeoForPage($filter: JsonType!) {
 			seoCollection(filter: $filter) {

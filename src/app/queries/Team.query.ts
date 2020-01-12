@@ -37,5 +37,5 @@ export class TeamGQL extends Query<TeamGQLResponse> {
 				sideRole
 			}
 		}
-		`;
+	`;
 }

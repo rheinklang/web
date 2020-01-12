@@ -24,5 +24,4 @@ export class TagListComponent implements ITagList {
 	public isActive(id: string) {
 		return this.active === id;
 	}
-
 }

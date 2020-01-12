@@ -94,12 +94,10 @@ import { ContentLoaderTeaserArticleComponent } from './components/atoms/content-
 		GraphQLModule,
 		HttpClientModule,
 		FormsModule,
-		ReactiveFormsModule,
+		ReactiveFormsModule
 	],
-	schemas: [
-		CUSTOM_ELEMENTS_SCHEMA
-	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

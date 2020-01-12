@@ -15,9 +15,9 @@ export interface HomeSingletonGQLSlideItem {
 export interface HomeSingletonGQLResponse {
 	homePageSingleton: {
 		slides: Array<{
-			value: HomeSingletonGQLSlideItem,
-			__typename: 'RepeaterItemSlides'
-		}>
+			value: HomeSingletonGQLSlideItem;
+			__typename: 'RepeaterItemSlides';
+		}>;
 		showcaseEvent: null | {
 			slug: string;
 			title: string;
@@ -25,7 +25,7 @@ export interface HomeSingletonGQLResponse {
 			date: string;
 			previewImage: CockpitImageSchema;
 			facebookUrl: string | null;
-		}
+		};
 	};
 }
 
@@ -35,7 +35,7 @@ export interface HomeSingletonGQLResponse {
 export class HomeSingletonGQL extends Query<HomeSingletonGQLResponse> {
 	document = gql`
 		query GetHomeSingleton {
-			homePageSingleton(populate:1) {
+			homePageSingleton(populate: 1) {
 				slides {
 					value
 				}
@@ -49,5 +49,5 @@ export class HomeSingletonGQL extends Query<HomeSingletonGQLResponse> {
 				}
 			}
 		}
-		`;
+	`;
 }

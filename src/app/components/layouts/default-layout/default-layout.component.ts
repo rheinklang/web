@@ -11,7 +11,7 @@ export class DefaultLayoutComponent implements OnInit {
 	@ContentChild(FooterComponent, { static: true }) footerComponent: FooterComponent;
 	@ContentChild(HeaderComponent, { static: true }) headerComponent: HeaderComponent;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit() { }
+	ngOnInit() {}
 }

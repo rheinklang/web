@@ -6,7 +6,7 @@ import { LogoQueryResponse, getDynamicLogoQuery } from '../queries/Logo.singleto
 	providedIn: 'root'
 })
 export class LogoService {
-	constructor(private apollo: Apollo) { }
+	constructor(private apollo: Apollo) {}
 
 	public getLogo<T extends string = any>(id: string) {
 		return this.apollo.watchQuery<LogoQueryResponse<T>, void>({

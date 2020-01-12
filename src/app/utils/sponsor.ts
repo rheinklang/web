@@ -36,5 +36,5 @@ export const sponsorSortAlgorithm = (sponsors: SponsorsServiceEntry[]): Sponsors
 	sponsors
 		.map(sponsor => ({ ...sponsor, numericLevelValue: sponsorLevelToOrderNumber(sponsor.level) }))
 		.sort(dynamicSort('name'))
-		.sort((a, b) => a.sortWeight === b.sortWeight ? 0 : (a.sortWeight > b.sortWeight ? - 1 : 1))
-		.sort((a, b) => a.numericLevelValue > b.numericLevelValue ? -1 : 1);
+		.sort((a, b) => (a.sortWeight === b.sortWeight ? 0 : a.sortWeight > b.sortWeight ? -1 : 1))
+		.sort((a, b) => (a.numericLevelValue > b.numericLevelValue ? -1 : 1));

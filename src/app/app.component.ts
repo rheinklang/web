@@ -16,18 +16,12 @@ export class AppComponent {
 			return;
 		}
 
-		const navEndEvents = router.events.pipe(
-			filter(
-				event => event instanceof NavigationEnd
-			)
-		);
+		const navEndEvents = router.events.pipe(filter(event => event instanceof NavigationEnd));
 
-		navEndEvents.subscribe(
-			(event: NavigationEnd) => {
-				gtag('config', 'UA-XXXXXXXXX-X', {
-					page_path: event.urlAfterRedirects,
-				});
-			}
-		);
+		navEndEvents.subscribe((event: NavigationEnd) => {
+			gtag('config', 'UA-XXXXXXXXX-X', {
+				page_path: event.urlAfterRedirects
+			});
+		});
 	}
 }

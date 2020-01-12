@@ -7,13 +7,7 @@ lazySizes.cfg.preloadClass = 'state-a-image--preaload';
 lazySizes.cfg.loadingClass = 'state-a-image--loading';
 lazySizes.cfg.loadedClass = 'state-a-image--loaded';
 
-export const breakpoints = [
-	320,
-	550,
-	786,
-	992,
-	1200
-];
+export const breakpoints = [320, 550, 786, 992, 1200];
 
 const IMAGE_OPT_FACTOR = 1.2;
 

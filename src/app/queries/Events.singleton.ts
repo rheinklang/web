@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-
 export interface EventsSingletonGQLResponse {
 	eventsPageSingleton: {
 		title: string;
@@ -21,5 +20,5 @@ export class EventsSingletonGQL extends Query<EventsSingletonGQLResponse> {
 				description
 			}
 		}
-		`;
+	`;
 }

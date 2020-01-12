@@ -15,15 +15,12 @@ export class LogoComponent implements OnInit {
 
 	public image: string | null;
 
-	constructor(private logoService: LogoService) { }
+	constructor(private logoService: LogoService) {}
 
 	ngOnInit() {
-		this.logoService
-			.getLogo(this.id)
-			.subscribe(({ data }) => {
-				const asset = data.logosSingleton[this.id];
-				this.image = resolveCDNImagePath(asset, null);
-			});
+		this.logoService.getLogo(this.id).subscribe(({ data }) => {
+			const asset = data.logosSingleton[this.id];
+			this.image = resolveCDNImagePath(asset, null);
+		});
 	}
-
 }

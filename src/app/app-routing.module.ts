@@ -16,7 +16,7 @@ const routes: Routes = [
 	{
 		path: '',
 		data: { seoID: 'home' },
-		component: HomeComponent,
+		component: HomeComponent
 	},
 	{
 		path: 'about',
@@ -61,11 +61,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, {
-		scrollPositionRestoration: 'enabled',
-		anchorScrolling: 'enabled'
-		// enableTracing: environment.production !== true
-	})],
+	imports: [
+		RouterModule.forRoot(routes, {
+			scrollPositionRestoration: 'enabled',
+			anchorScrolling: 'enabled'
+			// enableTracing: environment.production !== true
+		})
+	],
 	exports: [RouterModule]
 })
-export class RheinklangRoutingModule { }
+export class RheinklangRoutingModule {}

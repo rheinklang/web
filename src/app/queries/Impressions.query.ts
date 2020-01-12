@@ -18,12 +18,13 @@ export interface ImpressionsGQLResponse {
 export class ImpressionsGQL extends Query<ImpressionsGQLResponse> {
 	document = gql`
 		query GetImpressionById($filter: JsonType!) {
-			impressionsCollection impressionsCollection {
+			impressionsCollection
+			impressionsCollection {
 				title
 				showcaseImage {
 					path
 				}
 			}
 		}
-		`;
+	`;
 }

@@ -7,15 +7,17 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class HomeService {
-	constructor(private homeSingletonGQL: HomeSingletonGQL) { }
+	constructor(private homeSingletonGQL: HomeSingletonGQL) {}
 
 	public getSlides() {
-		return this.homeSingletonGQL.watch(undefined, {
-			fetchPolicy: CACHED_POLICY
-		}).valueChanges.pipe(
-			map(res => res.data.homePageSingleton),
-			map(singleton => singleton.slides.map(slide => slide.value)),
-			map(slides => slides.map((slide, index) => ({ ...slide, index })))
-		);
+		return this.homeSingletonGQL
+			.watch(undefined, {
+				fetchPolicy: CACHED_POLICY
+			})
+			.valueChanges.pipe(
+				map(res => res.data.homePageSingleton),
+				map(singleton => singleton.slides.map(slide => slide.value)),
+				map(slides => slides.map((slide, index) => ({ ...slide, index })))
+			);
 	}
 }

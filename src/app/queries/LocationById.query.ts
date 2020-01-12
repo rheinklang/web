@@ -18,11 +18,14 @@ export interface LocationByIdGQLResponse {
 @Injectable({
 	providedIn: 'root'
 })
-export class LocationByIdGQL extends Query<LocationByIdGQLResponse, {
-	filter: {
-		_id: string
+export class LocationByIdGQL extends Query<
+	LocationByIdGQLResponse,
+	{
+		filter: {
+			_id: string;
+		};
 	}
-}> {
+> {
 	document = gql`
 		query GetLocationById($filter: JsonType!) {
 			locationsCollection {
@@ -34,5 +37,5 @@ export class LocationByIdGQL extends Query<LocationByIdGQLResponse, {
 				googleMapsURL
 			}
 		}
-		`;
+	`;
 }

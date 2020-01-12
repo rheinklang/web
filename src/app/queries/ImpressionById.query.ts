@@ -17,14 +17,18 @@ export interface ImpressionByIdGQLResponse {
 @Injectable({
 	providedIn: 'root'
 })
-export class ImpressionByIdGQL extends Query<ImpressionByIdGQLResponse, {
-	filter: {
-		_id: string
+export class ImpressionByIdGQL extends Query<
+	ImpressionByIdGQLResponse,
+	{
+		filter: {
+			_id: string;
+		};
 	}
-}> {
+> {
 	document = gql`
 		query GetImpressionById($filter: JsonType!) {
-			impressionsCollection impressionsCollection {
+			impressionsCollection
+			impressionsCollection {
 				title
 				description
 				images {
@@ -35,5 +39,5 @@ export class ImpressionByIdGQL extends Query<ImpressionByIdGQLResponse, {
 				}
 			}
 		}
-		`;
+	`;
 }

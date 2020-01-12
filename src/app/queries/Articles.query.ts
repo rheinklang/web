@@ -35,5 +35,5 @@ export class ArticlesGQL extends Query<ArticlesGQLResponse> {
 				}
 			}
 		}
-		`;
+	`;
 }

@@ -1,30 +1,30 @@
-@import "../../../styles/colors.scss";
+@import '../../../styles/colors.scss';
 
 .a-image {
-  display: block;
-  width: 100%;
-  object-fit: cover;
+	display: block;
+	width: 100%;
+	object-fit: cover;
 }
 
 .a-image__description {
-  color: $color-grey-200;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 13px;
+	color: $color-grey-200;
+	font-weight: 300;
+	font-style: italic;
+	font-size: 13px;
 }
 
 .a-image--rounded-small {
-  border-radius: 3px;
+	border-radius: 3px;
 }
 
 .a-image--rounded-medium {
-  border-radius: 7px;
+	border-radius: 7px;
 }
 
 .a-image--rounded-large {
-  border-radius: 12px;
+	border-radius: 12px;
 }
 
 .a-image--rounded-full {
-  border-radius: 100%;
+	border-radius: 100%;
 }

@@ -30,5 +30,5 @@ export class NavigationSingletonGQL extends Query<NavigationSingletonGQLResponse
 				sponsorsTitle
 			}
 		}
-		`;
+	`;
 }

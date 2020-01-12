@@ -1,52 +1,52 @@
-@import "../../../styles/colors.scss";
-@import "../../../styles/responsive.scss";
+@import '../../../styles/colors.scss';
+@import '../../../styles/responsive.scss';
 
 .m-teaser {
-  padding: 0;
-  // margin: 0 15px;
-  cursor: pointer;
-  background-color: $color-white;
-  border-radius: 5px;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
+	padding: 0;
+	// margin: 0 15px;
+	cursor: pointer;
+	background-color: $color-white;
+	border-radius: 5px;
+	transition: all 0.2s ease-in-out;
+	box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
 
-  rk-image img {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
+	rk-image img {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
 
-  @include respond-to-min("sm") {
-    &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4rem 7rem 0 rgba(44, 51, 73, 0.3);
-    }
-  }
+	@include respond-to-min('sm') {
+		&:hover {
+			transform: scale(1.05);
+			box-shadow: 0 4rem 7rem 0 rgba(44, 51, 73, 0.3);
+		}
+	}
 }
 
 .m-teaser__header {
-  padding: 0 20px;
+	padding: 0 20px;
 }
 
 .m-teaser__footer {
-  border-top: 1px solid $color-grey-400;
-  padding: 20px;
+	border-top: 1px solid $color-grey-400;
+	padding: 20px;
 }
 
 .m-teaser__content {
-  padding: 20px;
+	padding: 20px;
 }
 
 .m-teaser__excerpt {
-  margin: 0;
+	margin: 0;
 }
 
 .m-teaser__title {
-  margin: 20px 0 10px 0;
+	margin: 20px 0 10px 0;
 }
 
 .m-teaser__subtitle {
-  color: $color-grey-200;
-  font-weight: 300;
-  font-size: 13px;
-  margin: 0;
+	color: $color-grey-200;
+	font-weight: 300;
+	font-size: 13px;
+	margin: 0;
 }

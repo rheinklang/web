@@ -7,17 +7,22 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class LocationsService {
-	constructor(private locationByIdGQL: LocationByIdGQL) { }
+	constructor(private locationByIdGQL: LocationByIdGQL) {}
 
 	public getLocationById(id: string) {
-		return this.locationByIdGQL.watch({
-			filter: { _id: id }
-		}, {
-			fetchPolicy: CACHED_POLICY
-		}).valueChanges.pipe(
-			map(res => res.data.locationsCollection),
-			flatMap(entry => entry),
-			first()
-		);
+		return this.locationByIdGQL
+			.watch(
+				{
+					filter: { _id: id }
+				},
+				{
+					fetchPolicy: CACHED_POLICY
+				}
+			)
+			.valueChanges.pipe(
+				map(res => res.data.locationsCollection),
+				flatMap(entry => entry),
+				first()
+			);
 	}
 }

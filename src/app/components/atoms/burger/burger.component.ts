@@ -4,10 +4,7 @@ import { FlyoutService } from '../../../services/flyout.service';
 @Component({
 	selector: 'rk-burger',
 	templateUrl: './burger.component.html',
-	styleUrls: [
-		'./burger.component.scss',
-		'./burger.collapse.scss'
-	],
+	styleUrls: ['./burger.component.scss', './burger.collapse.scss'],
 	encapsulation: ViewEncapsulation.None
 })
 export class BurgerComponent {

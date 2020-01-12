@@ -1,72 +1,72 @@
-@import "../../../styles/colors.scss";
+@import '../../../styles/colors.scss';
 
 @keyframes spin3D {
-  from {
-    transform: rotate3d(0.5, 0.5, 0.5, 360deg);
-  }
-  to {
-    transform: rotate3d(0deg);
-  }
+	from {
+		transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+	}
+	to {
+		transform: rotate3d(0deg);
+	}
 }
 
 .a-spinner {
-  display: inline-block;
-  text-align: center;
+	display: inline-block;
+	text-align: center;
 }
 
 .a-spinner__wrapper {
-  width: 250px;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
+	width: 250px;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
 }
 
 .a-spinner__orbit {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
 }
 
 .a-spinner__orbit--blue {
-  width: 165px;
-  height: 165px;
-  border: 1px solid $color-primary-sea-green-light1;
-  animation: spin3D 3s linear 0.2s infinite;
+	width: 165px;
+	height: 165px;
+	border: 1px solid $color-primary-sea-green-light1;
+	animation: spin3D 3s linear 0.2s infinite;
 }
 
 .a-spinner__orbit--green {
-  width: 120px;
-  height: 120px;
-  border: 1px solid $color-primary-grass-green-light1;
-  animation: spin3D 2s linear 0s infinite;
+	width: 120px;
+	height: 120px;
+	border: 1px solid $color-primary-grass-green-light1;
+	animation: spin3D 2s linear 0s infinite;
 }
 
 .a-spinner__orbit--red {
-  width: 90px;
-  height: 90px;
-  border: 1px solid $color-primary-fury-red-light1;
-  animation: spin3D 1s linear 0s infinite;
+	width: 90px;
+	height: 90px;
+	border: 1px solid $color-primary-fury-red-light1;
+	animation: spin3D 1s linear 0s infinite;
 }
 
 .a-spinner__orbit--white {
-  width: 60px;
-  height: 60px;
-  border: 2px solid $color-grey-300;
-  animation: spin3D 10s linear 0s infinite;
+	width: 60px;
+	height: 60px;
+	border: 2px solid $color-grey-300;
+	animation: spin3D 10s linear 0s infinite;
 }
 
 .a-spinner__orbit--w1 {
-  transform: rotate3D(1, 1, 1, 90deg);
+	transform: rotate3D(1, 1, 1, 90deg);
 }
 
 .a-spinner__orbit--w2 {
-  transform: rotate3D(1, 2, 0.5, 90deg);
+	transform: rotate3D(1, 2, 0.5, 90deg);
 }
 
 .a-spinner__orbit--w3 {
-  transform: rotate3D(0.5, 1, 2, 90deg);
+	transform: rotate3D(0.5, 1, 2, 90deg);
 }

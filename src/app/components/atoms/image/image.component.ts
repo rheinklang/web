@@ -6,13 +6,7 @@ lazySizes.cfg.preloadClass = 'state-a-image--preaload';
 lazySizes.cfg.loadingClass = 'state-a-image--loading';
 lazySizes.cfg.loadedClass = 'state-a-image--loaded';
 
-export const breakpoints = [
-	320,
-	550,
-	786,
-	992,
-	1200
-];
+export const breakpoints = [320, 550, 786, 992, 1200];
 
 @Component({
 	selector: 'rk-image',
@@ -30,7 +24,7 @@ export class ImageComponent {
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
 
-	public INITIAL_SOURCE_SET = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+	public INITIAL_SOURCE_SET = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 	public get sourceset() {
 		if (!this.src) {

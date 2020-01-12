@@ -1,44 +1,44 @@
-@import "../../styles/colors.scss";
+@import '../../styles/colors.scss';
 
 .v-about rk-icon {
-  margin-left: 3px;
-  display: inline-block;
-  background-color: $color-primary-fury-red;
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  // padding: 3px;
+	margin-left: 3px;
+	display: inline-block;
+	background-color: $color-primary-fury-red;
+	border-radius: 100%;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	// padding: 3px;
 
-  &[select="pen-tool"] {
-    background-color: $color-primary-retr-orange;
-  }
+	&[select='pen-tool'] {
+		background-color: $color-primary-retr-orange;
+	}
 
-  svg {
-    vertical-align: text-bottom;
-  }
+	svg {
+		vertical-align: text-bottom;
+	}
 }
 
 .v-about__members .a-image {
-  width: 80%;
-  margin: 0 10%;
+	width: 80%;
+	margin: 0 10%;
 }
 
 .v-about__members {
-  margin-top: 80px;
+	margin-top: 80px;
 }
 
 .v-about__members-entry {
-  position: relative;
-  padding: 0 40px;
-  margin: 0 0 60px 0;
-  text-align: center;
+	position: relative;
+	padding: 0 40px;
+	margin: 0 0 60px 0;
+	text-align: center;
 }
 
 .v-about__member-role-symbols {
-  position: absolute;
+	position: absolute;
 }
 
 .v-about__member-intro {
-  margin: 20px 0 0 0;
+	margin: 20px 0 0 0;
 }

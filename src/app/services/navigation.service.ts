@@ -7,14 +7,16 @@ import { CACHE_AND_UPDATE_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class NavigationService {
-	constructor(private navigationSingletonGQL: NavigationSingletonGQL) { }
+	constructor(private navigationSingletonGQL: NavigationSingletonGQL) {}
 
 	public getNavigationTitles() {
-		return this.navigationSingletonGQL.watch(undefined, {
-			fetchPolicy: CACHE_AND_UPDATE_POLICY
-		}).valueChanges.pipe(
-			filter(res => res.loading === false),
-			map(res => res.data.navigationSingleton)
-		);
+		return this.navigationSingletonGQL
+			.watch(undefined, {
+				fetchPolicy: CACHE_AND_UPDATE_POLICY
+			})
+			.valueChanges.pipe(
+				filter(res => res.loading === false),
+				map(res => res.data.navigationSingleton)
+			);
 	}
 }

@@ -1,85 +1,85 @@
-@import "../../../styles/colors.scss";
-@import "../../../styles/responsive.scss";
+@import '../../../styles/colors.scss';
+@import '../../../styles/responsive.scss';
 
 $header-height: 80px;
 
 .o-header {
-  background-color: $color-primary-sea-green;
-  color: #fff;
-  padding: 10px 0;
+	background-color: $color-primary-sea-green;
+	color: #fff;
+	padding: 10px 0;
 }
 
 .o-header .a-logo {
-  height: $header-height;
+	height: $header-height;
 }
 
 .o-header rk-burger {
-  display: inline-block;
-  height: $header-height;
+	display: inline-block;
+	height: $header-height;
 }
 
 .o-header__navigation {
-  text-align: right;
+	text-align: right;
 
-  @include respond-to-max("md") {
-    display: none;
-  }
+	@include respond-to-max('md') {
+		display: none;
+	}
 }
 
 .o-header__trigger-container {
-  text-align: right;
-  display: none;
+	text-align: right;
+	display: none;
 
-  @include respond-to-max("md") {
-    display: inline-block;
-  }
+	@include respond-to-max('md') {
+		display: inline-block;
+	}
 }
 
 // FLLLLLLYYYYOOOOOOOOUUUUUTTT
 
 .o-header__flyout {
-  z-index: 9999;
-  position: fixed;
-  width: 80%;
-  left: -100vh;
-  top: 0;
-  bottom: 0;
-  background-color: $color-black;
-  color: $color-white;
-  transition: transform 0.3s ease-in-out;
+	z-index: 9999;
+	position: fixed;
+	width: 80%;
+	left: -100vh;
+	top: 0;
+	bottom: 0;
+	background-color: $color-black;
+	color: $color-white;
+	transition: transform 0.3s ease-in-out;
 
-  &.state-o-header-flyout--is-active {
-    transform: translateX(100vh);
-  }
+	&.state-o-header-flyout--is-active {
+		transform: translateX(100vh);
+	}
 
-  @include respond-to-min("md") {
-    display: none;
-  }
+	@include respond-to-min('md') {
+		display: none;
+	}
 }
 
 .o-header__flyout-list {
-  padding: 0;
-  margin: 0 0 40px 0;
-  list-style: none;
-  list-style-type: none;
-  font-family: FVAlmelo, Lato, "Helvetica Neue", sans-serif;
+	padding: 0;
+	margin: 0 0 40px 0;
+	list-style: none;
+	list-style-type: none;
+	font-family: FVAlmelo, Lato, 'Helvetica Neue', sans-serif;
 }
 
 .o-header__flyout-list-link {
-  font-size: 23px;
-  border-bottom: 1px solid darken($color-grey-100, 10);
+	font-size: 23px;
+	border-bottom: 1px solid darken($color-grey-100, 10);
 
-  &:last-of-type {
-    border-bottom: 0;
-  }
+	&:last-of-type {
+		border-bottom: 0;
+	}
 }
 
 $flyout-link-padding-base: 15px;
 
 .o-header__flyout-list-link a {
-  padding: #{$flyout-link-padding-base + 3} $flyout-link-padding-base $flyout-link-padding-base $flyout-link-padding-base;
+	padding: #{$flyout-link-padding-base + 3} $flyout-link-padding-base $flyout-link-padding-base $flyout-link-padding-base;
 }
 
 .o-header__flyout-close {
-  text-align: center;
+	text-align: center;
 }

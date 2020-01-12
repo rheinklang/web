@@ -27,5 +27,5 @@ export class PortraitSingletonGQL extends Query<PortraitSingletonGQLResult> {
 				}
 			}
 		}
-		`;
+	`;
 }

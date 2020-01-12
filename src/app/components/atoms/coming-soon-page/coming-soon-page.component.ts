@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
 	templateUrl: './coming-soon-page.component.html',
 	styleUrls: ['./coming-soon-page.component.scss']
 })
-export class ComingSoonPageComponent { }
+export class ComingSoonPageComponent {}

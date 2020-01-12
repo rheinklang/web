@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'rk-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+	selector: 'rk-contact',
+	templateUrl: './contact.component.html',
+	styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	ngOnInit() {}
 }

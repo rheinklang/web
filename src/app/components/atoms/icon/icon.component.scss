@@ -1,19 +1,19 @@
 $size: 16px;
 
 .a-icon {
-  display: inline-block;
-  vertical-align: bottom;
+	display: inline-block;
+	vertical-align: bottom;
 
-  svg {
-    display: inline-block;
-    all: inherit;
-    width: $size;
-    height: $size;
-    vertical-align: top;
-  }
+	svg {
+		display: inline-block;
+		all: inherit;
+		width: $size;
+		height: $size;
+		vertical-align: top;
+	}
 
-  svg,
-  use {
-    fill: #fff;
-  }
+	svg,
+	use {
+		fill: #fff;
+	}
 }

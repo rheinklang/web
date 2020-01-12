@@ -31,10 +31,10 @@ export class FooterComponent {
 			// tslint:disable-next-line: triple-equals
 			if (key.indexOf(coded.charAt(i)) == -1) {
 				ltr = coded.charAt(i);
-				link += (ltr);
+				link += ltr;
 			} else {
 				ltr = (key.indexOf(coded.charAt(i)) - shift + key.length) % key.length;
-				link += (key.charAt(ltr));
+				link += key.charAt(ltr);
 			}
 		}
 
