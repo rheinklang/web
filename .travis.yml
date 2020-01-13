@@ -10,13 +10,10 @@ matrix:
   fast_finish: true
 
 stages:
-  - AOT Compilation
   - Build
 
 jobs:
   include:
-    - stage: AOT Compilation
-      script: npm run aot
     - stage: Build
       script: npm run production
 
