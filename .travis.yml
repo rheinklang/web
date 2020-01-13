@@ -10,10 +10,10 @@ matrix:
   fast_finish: true
 
 stages:
-  - Build
+  - Integration Build
 
 jobs:
   include:
-    - stage: Build
-      script: npm run production
+    - stage: Integration Build
+      script: npm run ci
 

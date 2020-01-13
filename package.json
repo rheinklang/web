@@ -16,8 +16,9 @@
     "preproduction": "npm run create:version",
     "production": "ng build --configuration=production --aot=true --buildOptimizer=true --optimization=true",
     "postproduction": "node bin/copy-apache-config",
-    "preaot": "npm run create:version",
-    "aot": "node_modules/.bin/ngc -p tsconfig.aot.json",
+    "ci": "run-s ci:*",
+    "ci:env": "node bin/create-env production",
+    "ci:build": "npm run production",
     "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'",
     "deploy:development": "node -r dotenv/config deploy.js --tag=development",
     "deploy:production": "node -r dotenv/config deploy.js --tag=production"
@@ -54,8 +55,8 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.802.0",
-    "@angular/cli": "~8.2.0",
+    "@angular-devkit/build-angular": "~0.803.22",
+    "@angular/cli": "~8.3.22",
     "@angular/compiler-cli": "~8.2.0",
     "@angular/language-service": "~8.2.0",
     "@types/chalk": "2.2.0",
