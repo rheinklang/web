@@ -1,8 +1,14 @@
 import { filter } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { injectGTMScript } from './app.gtm';
+import { environment } from '../environments/environment';
+import { trackGTMTimingEvent } from './utils/gtag';
 
 declare var gtag;
+
+// load environment specific tracking initialization
+injectGTMScript();
 
 @Component({
 	selector: 'rk-root',
@@ -11,15 +17,25 @@ declare var gtag;
 })
 export class AppComponent {
 	constructor(router: Router) {
+		debugger;
+		console.log('AppComponent ctor');
+
+		// no google tag manager instance found, skip analytics
 		if (typeof gtag === 'undefined') {
-			// no google tag manager instance found, skip analytics
 			return;
 		}
 
-		const navEndEvents = router.events.pipe(filter(event => event instanceof NavigationEnd));
+		// track initial page view time
+		trackGTMTimingEvent();
 
+		// get last navigation event for final route changes
+		const navEndEvents = router.events.pipe(
+			filter(event => event instanceof NavigationEnd)
+		);
+
+		// page view tracking
 		navEndEvents.subscribe((event: NavigationEnd) => {
-			gtag('config', 'UA-XXXXXXXXX-X', {
+			gtag('config', environment.gtmId, {
 				page_path: event.urlAfterRedirects
 			});
 		});

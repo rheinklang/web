@@ -7,13 +7,16 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class TeamService {
-	constructor(private teamGQL: TeamGQL) {}
+	constructor(private teamGQL: TeamGQL) { }
 
 	public getTeam() {
 		return this.teamGQL
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
 			})
-			.valueChanges.pipe(map(res => res.data.teamCollection));
+			.valueChanges
+			.pipe(
+				map(res => res.data.teamCollection)
+			);
 	}
 }

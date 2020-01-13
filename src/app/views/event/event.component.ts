@@ -1,31 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../services/events.service';
 import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
 import { generateUrchingTrackingURL } from '../../utils/utm';
+import { unsubscribe } from '../../utils/subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'rk-event',
 	templateUrl: './event.component.html',
 	styleUrls: ['./event.component.scss']
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, OnDestroy {
 	public eventSlug: string;
 	public event: EventBySlugGQLEntry;
 
-	constructor(
-		private route: ActivatedRoute,
-		private eventsService: EventsService
-	) { }
+	private routeSub$: Subscription;
+	private eventSub$: Subscription;
+
+	constructor(private route: ActivatedRoute, private eventsService: EventsService) { }
 
 	public ngOnInit() {
-		this.route.paramMap.subscribe(params => {
+		this.routeSub$ = this.route.paramMap.subscribe(params => {
 			this.eventSlug = params.get('eventSlug');
 
-			this.eventsService.getEventBySlug(this.eventSlug).subscribe(event => {
+			this.eventSub$ = this.eventsService.getEventBySlug(this.eventSlug).subscribe(event => {
 				this.event = event;
 			});
 		});
+	}
+
+	public ngOnDestroy() {
+		unsubscribe([
+			this.routeSub$,
+			this.eventSub$
+		]);
 	}
 
 	public get shopLink() {

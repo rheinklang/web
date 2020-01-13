@@ -1,10 +1,11 @@
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 
 import { PortraitService } from '../../services/portrait.service';
 import { TeamService } from '../../services/team.service';
 import { TeamGQLEntry } from '../../queries/Team.query';
+import { unsubscribe } from '../../utils/subscription';
 // import { resolveCDNAssetPath } from '../../utils/image';
 
 @Component({
@@ -13,15 +14,17 @@ import { TeamGQLEntry } from '../../queries/Team.query';
 	styleUrls: ['./about.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, OnDestroy {
 	public groupPortraitImagePath: string;
 	public groupPortraitDescription = '';
 	public teamMembers: TeamGQLEntry[] = [];
 
-	constructor(private portraitService: PortraitService, private teamService: TeamService) {}
+	private combinedSub$: Subscription;
+
+	constructor(private portraitService: PortraitService, private teamService: TeamService) { }
 
 	public ngOnInit() {
-		combineLatest(this.portraitService.getPortrait(), this.teamService.getTeam())
+		this.combinedSub$ = combineLatest(this.portraitService.getPortrait(), this.teamService.getTeam())
 			.pipe(
 				map(([portrait, team]) => {
 					const visibleMemberIds = (portrait.visibleMemberList || []).map(entry => entry._id);
@@ -38,5 +41,9 @@ export class AboutComponent implements OnInit {
 				this.groupPortraitImagePath = values.groupPortraitImagePath;
 				this.teamMembers = values.teamMembers;
 			});
+	}
+
+	public ngOnDestroy() {
+		unsubscribe([this.combinedSub$]);
 	}
 }

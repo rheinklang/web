@@ -24,14 +24,15 @@ export interface SponsorsServiceEntry {
 	providedIn: 'root'
 })
 export class SponsorsService {
-	constructor(private sponsorsGQL: SponsorsGQL, private sponsorsSingleton: SponsorsSingletonGQL) {}
+	constructor(private sponsorsGQL: SponsorsGQL, private sponsorsSingleton: SponsorsSingletonGQL) { }
 
 	public getSponsors(): Observable<SponsorsServiceEntry[]> {
 		return this.sponsorsGQL
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
 			})
-			.valueChanges.pipe(
+			.valueChanges
+			.pipe(
 				map(v => v.data.sponsorsCollection),
 				map(entries =>
 					entries.map(entry => ({
@@ -50,6 +51,9 @@ export class SponsorsService {
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
 			})
-			.valueChanges.pipe(map(v => v.data.sponsorsPageSingleton));
+			.valueChanges
+			.pipe(
+				map(v => v.data.sponsorsPageSingleton)
+			);
 	}
 }

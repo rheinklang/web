@@ -76,6 +76,6 @@ export class TeaserEventComponent {
 		return {
 			select: this.hasTickets ? 'credit-card' : 'eye',
 			color: '#fff'
-		}
+		};
 	}
 }

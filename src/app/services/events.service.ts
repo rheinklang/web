@@ -13,25 +13,34 @@ export class EventsService {
 		private eventsGQL: EventsGQL,
 		private eventBySlugGQL: EventBySlugGQL,
 		private eventsSingletonGQL: EventsSingletonGQL
-	) {}
+	) { }
 
 	public getEvents() {
+		console.log('getEvents');
 		return this.eventsGQL
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
 			})
-			.valueChanges.pipe(map(v => v.data.eventsCollection));
+			.valueChanges
+			.pipe(
+				map(v => v.data.eventsCollection)
+			);
 	}
 
 	public getEventsSingleton() {
+		console.log('getEventsSingleton');
 		return this.eventsSingletonGQL
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
 			})
-			.valueChanges.pipe(map(v => v.data.eventsPageSingleton));
+			.valueChanges
+			.pipe(
+				map(v => v.data.eventsPageSingleton)
+			);
 	}
 
 	public getEventBySlug(slug: string) {
+		console.log('getEventBySlug %s', slug);
 		return this.eventBySlugGQL
 			.watch(
 				{
@@ -41,7 +50,8 @@ export class EventsService {
 					fetchPolicy: CACHED_POLICY
 				}
 			)
-			.valueChanges.pipe(
+			.valueChanges
+			.pipe(
 				map(res => res.data.eventsCollection),
 				flatMap(entry => entry),
 				first()

@@ -7,7 +7,8 @@ export const environment = {
 	assetCDNHost: 'https://example.com',
 	cockpitAPIURL: 'https://example.com/api',
 	cockpitAPIKey: 'token',
-	graphQLHostURL: 'https://example.com/api/graphql'
+	graphQLHostURL: 'https://example.com/api/graphql',
+	gtmId: 'example'
 };
 
 /*
@@ -17,4 +18,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/dist/zone-error';  // Included with Angular CLI.

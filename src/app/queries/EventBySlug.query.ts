@@ -4,57 +4,66 @@ import { EventType } from '../types/Event';
 import { PreviewImagePathOnly } from '../types/PreviewImage';
 import { Injectable } from '@angular/core';
 
-export interface EventBySlugEntry {
+export interface EventBySlugGQLEntry {
 	slug: string;
 	title: string;
 	date: string;
 	description: string;
+	facebookUrl: string;
 	tickets: {
-		_id: string | null;
-	};
-	impression: {
-		_id: string | null;
+		title: string | null;
+		enabled: boolean | null;
+		externalShopLink: string | null;
+		externalShopType: string | null;
 	};
 	location: {
-		_id: string | null;
+		name: string | null;
+		city: string | null;
+		canton: string | null;
+		country: string | null;
+		googleMapsURL: string | null;
 	};
 	type: EventType;
 	previewImage: PreviewImagePathOnly;
 }
 
 export interface EventBySlugGQLResponse {
-	eventsCollection: EventBySlugEntry[];
+	eventsCollection: EventBySlugGQLEntry[];
 }
 
 @Injectable({
 	providedIn: 'root'
 })
 export class EventBySlugGQL extends Query<
-	EventBySlugGQLResponse,
-	{
-		filter: {
-			slug: string;
-		};
-	}
+EventBySlugGQLResponse,
+{
+	filter: {
+		slug: string;
+	};
+}
 > {
 	public document = gql`
 		query EventBySlug($filter: JsonType!) {
-			eventsCollection(filter: $filter) {
+			eventsCollection(filter: $filter, populate: 1) {
 				slug
 				title
 				description
 				type
+				facebookUrl
 				previewImage {
 					path
 				}
-				impression {
-					_id
-				}
 				tickets {
-					_id
+					title
+					enabled
+					externalShopLink
+					externalShopType
 				}
 				location {
-					_id
+					city
+					canton
+					country
+					googleMapsURL
 				}
 			}
 		}

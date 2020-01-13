@@ -1,29 +1,29 @@
 $a-button-facebook-size: 30px;
 
 .a-button-facebook {
-  background-color: #1778f2;
-  text-decoration: none;
-  color: #fff;
-  border-radius: $a-button-facebook-size;
-  display: inline-block;
-  text-align: center;
-  line-height: #{$a-button-facebook-size + 2px};
-  width: $a-button-facebook-size;
-  height: $a-button-facebook-size;
+	background-color: #1778f2;
+	text-decoration: none;
+	color: #fff;
+	border-radius: $a-button-facebook-size;
+	display: inline-block;
+	text-align: center;
+	line-height: #{$a-button-facebook-size + 2px};
+	width: $a-button-facebook-size;
+	height: $a-button-facebook-size;
 
-  rk-icon svg {
-    vertical-align: sub;
-  }
+	rk-icon svg {
+		vertical-align: sub;
+	}
 }
 
 .a-button-facebook--full {
-  display: block;
-  border-radius: 3px;
-  width: auto;
-  height: auto;
-  padding: 10px;
+	display: block;
+	border-radius: 3px;
+	width: auto;
+	height: auto;
+	padding: 10px;
 
-  rk-icon svg {
-    margin-right: 5px;
-  }
+	rk-icon svg {
+		margin-right: 5px;
+	}
 }

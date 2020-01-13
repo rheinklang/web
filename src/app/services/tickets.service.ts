@@ -8,7 +8,7 @@ import { TicketByIdGQL } from '../queries/TicketById.query';
 	providedIn: 'root'
 })
 export class TicketsService {
-	constructor(private ticketsByIdGQL: TicketByIdGQL) {}
+	constructor(private ticketsByIdGQL: TicketByIdGQL) { }
 
 	public getTicketInfoById(id: string) {
 		return this.ticketsByIdGQL
@@ -20,7 +20,8 @@ export class TicketsService {
 					fetchPolicy: CACHED_POLICY
 				}
 			)
-			.valueChanges.pipe(
+			.valueChanges
+			.pipe(
 				map(res => res.data.ticketshopsCollection),
 				flatMap(entry => entry),
 				first()

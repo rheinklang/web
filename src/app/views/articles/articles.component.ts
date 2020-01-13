@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleGQLEntry } from '../../queries/ArticleById.query';
 import { ArticlesService } from '../../services/articles.service';
+import { Subscription } from 'rxjs';
+import { unsubscribe } from '../../utils/subscription';
 
 @Component({
 	selector: 'rk-articles',
 	templateUrl: './articles.component.html',
 	styleUrls: ['./articles.component.scss']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent implements OnInit, OnDestroy {
 	public article: ArticleGQLEntry;
 
-	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) {}
+	private routeSub$: Subscription;
+	private articleSub$: Subscription;
+
+	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) { }
 
 	public ngOnInit() {
-		this.route.paramMap.subscribe(params => {
+		this.routeSub$ = this.route.paramMap.subscribe(params => {
 			const articleId = params.get('articleId');
 
 			if (articleId) {
@@ -23,8 +28,15 @@ export class ArticlesComponent implements OnInit {
 		});
 	}
 
+	public ngOnDestroy() {
+		unsubscribe([
+			this.routeSub$,
+			this.articleSub$
+		]);
+	}
+
 	private fetchCorrespondingArticle(id: string) {
-		this.articlesService.getArticleById(id).subscribe(article => {
+		this.articleSub$ = this.articlesService.getArticleById(id).subscribe(article => {
 			this.article = article;
 		});
 	}

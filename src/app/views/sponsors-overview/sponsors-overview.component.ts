@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SponsorsService, SponsorsServiceEntry } from '../../services/sponsors.service';
 import { SponsorsSingletonGQLResponse } from '../../queries/Sponsors.singleton';
 import { sponsorSortAlgorithm } from '../../utils/sponsor';
 import { sortByYear } from '../../utils/sort';
+import { Subscription } from 'rxjs';
+import { unsubscribe } from '../../utils/subscription';
 
 interface SponsorsYearMap {
 	[year: string]: SponsorsServiceEntry[];
@@ -13,13 +15,16 @@ interface SponsorsYearMap {
 	templateUrl: './sponsors-overview.component.html',
 	styleUrls: ['./sponsors-overview.component.scss']
 })
-export class SponsorsOverviewComponent implements OnInit {
+export class SponsorsOverviewComponent implements OnInit, OnDestroy {
 	public sponsors: Array<[string, SponsorsServiceEntry[]]> = [];
 	public pageData: SponsorsSingletonGQLResponse['sponsorsPageSingleton'];
 
-	constructor(private sponsorsService: SponsorsService) {}
+	private sponsorsSub$: Subscription;
+	private sponsorSingletonSub$: Subscription;
 
-	ngOnInit() {
+	constructor(private sponsorsService: SponsorsService) { }
+
+	public ngOnInit() {
 		this.sponsorsService.getSponsors().subscribe(sponsors => {
 			const groupedSponsors = sponsors.reduce(
 				(acc, curr) => ({
@@ -45,5 +50,12 @@ export class SponsorsOverviewComponent implements OnInit {
 		this.sponsorsService.getSingleton().subscribe(data => {
 			this.pageData = data;
 		});
+	}
+
+	public ngOnDestroy() {
+		unsubscribe([
+			this.sponsorsSub$,
+			this.sponsorSingletonSub$
+		]);
 	}
 }

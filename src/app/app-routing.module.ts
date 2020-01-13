@@ -18,46 +18,46 @@ const routes: Routes = [
 		data: { seoID: 'home' },
 		component: HomeComponent
 	},
-	{
-		path: 'about',
-		component: AboutComponent
-	},
-	{
-		path: 'contact',
-		component: ContactComponent
-	},
-	{
-		path: 'impressions',
-		component: ImpressionOverviewComponent
-	},
-	{
-		path: 'impressions/:impressionId',
-		component: ImpressionComponent
-	},
-	{
-		path: 'sponsors',
-		component: SponsorsOverviewComponent
-	},
-	{
-		path: 'events',
-		component: EventOverviewComponent
-	},
-	{
-		path: 'articles/:articleId',
-		component: ArticlesComponent
-	},
-	{
-		path: 'events/:eventId',
-		component: EventComponent
-	},
-	{
-		path: 'not-found',
-		component: NotFoundComponent
-	},
-	{
-		path: '**',
-		component: NotFoundComponent
-	}
+	// {
+	// 	path: 'about',
+	// 	component: AboutComponent
+	// },
+	// {
+	// 	path: 'contact',
+	// 	component: ContactComponent
+	// },
+	// {
+	// 	path: 'impressions',
+	// 	component: ImpressionOverviewComponent
+	// },
+	// {
+	// 	path: 'impressions/:impressionId',
+	// 	component: ImpressionComponent
+	// },
+	// {
+	// 	path: 'sponsors',
+	// 	component: SponsorsOverviewComponent
+	// },
+	// {
+	// 	path: 'events',
+	// 	component: EventOverviewComponent
+	// },
+	// {
+	// 	path: 'articles/:articleId',
+	// 	component: ArticlesComponent
+	// },
+	// {
+	// 	path: 'events/:eventId',
+	// 	component: EventComponent
+	// },
+	// {
+	// 	path: 'not-found',
+	// 	component: NotFoundComponent
+	// },
+	// {
+	// 	path: '**',
+	// 	component: NotFoundComponent
+	// }
 ];
 
 @NgModule({
@@ -70,4 +70,4 @@ const routes: Routes = [
 	],
 	exports: [RouterModule]
 })
-export class RheinklangRoutingModule {}
+export class RheinklangRoutingModule { }

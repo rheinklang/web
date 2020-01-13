@@ -25,7 +25,8 @@ export const environment = {
 	assetCDNHost: '${process.env.ASSET_CDN_HOST}',
 	cockpitAPIURL: '${process.env.COCKPIT_API_URL}',
 	cockpitAPIKey: '${process.env.COCKPIT_API_KEY}',
-	graphQLHostURL: '${process.env.GRAPHQL_HOST_URL}'
+	graphQLHostURL: '${process.env.GRAPHQL_HOST_URL}',
+	gtmId: '${process.env.GTM_ID}'
 };
 
 import 'zone.js/dist/zone-error';

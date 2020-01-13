@@ -1,16 +1,16 @@
-@import "../../../styles/colors.scss";
+@import '../../../styles/colors.scss';
 
 .a-richtext {
-  font-size: 1.1rem;
-  line-height: 1.25rem;
+	font-size: 1.1rem;
+	line-height: 1.25rem;
 
-  a {
-    color: $color-primary-grass-green;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
+	a {
+		color: $color-primary-grass-green;
+		transition: all 0.2s ease-in-out;
+		text-decoration: none;
 
-    &:hover {
-      color: $color-grey-200;
-    }
-  }
+		&:hover {
+			color: $color-grey-200;
+		}
+	}
 }

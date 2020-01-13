@@ -6,9 +6,11 @@ import { environment } from '../environments/environment';
 
 const uri = environment.graphQLHostURL;
 
+console.log('Using GraphQL Host ' + uri);
+
 export function createApollo(httpLink: HttpLink) {
 	return {
-		connectToDevTools: !environment.production,
+		connectToDevTools: true,
 		queryDeduplication: true,
 		link: httpLink.create({ uri }),
 		cache: new InMemoryCache()
@@ -25,4 +27,4 @@ export function createApollo(httpLink: HttpLink) {
 		}
 	]
 })
-export class GraphQLModule {}
+export class GraphQLModule { }

@@ -1,21 +1,25 @@
 import Glide from '@glidejs/glide';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ArticlesService } from '../../services/articles.service';
 import { ArticlesGQLEntry } from '../../queries/Articles.query';
 import { HomeService } from '../../services/home.service';
-import { HomeSingletonGQLResponse, HomeSingletonGQLSlideItem } from '../../queries/Home.singleton';
+import { HomeSingletonGQLSlideItem } from '../../queries/Home.singleton';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'rk-home',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 	public activeTagId?: string;
 	public articles: ArticlesGQLEntry[] = [];
 	public slides: (HomeSingletonGQLSlideItem & { index: number })[] = [];
 
-	constructor(private articlesService: ArticlesService, private homeService: HomeService) {}
+	private articlesSub$: Subscription | undefined;
+	private homeSub$: Subscription | undefined;
+
+	constructor(private articlesService: ArticlesService, private homeService: HomeService) { }
 
 	public ngOnInit() {
 		this.articlesService.getArticles().subscribe(articles => {
@@ -32,6 +36,16 @@ export class HomeComponent implements OnInit {
 				}, 5);
 			}
 		});
+	}
+
+	public ngOnDestroy() {
+		if (this.articlesSub$) {
+			this.articlesSub$.unsubscribe();
+		}
+
+		if (this.homeSub$) {
+			this.homeSub$.unsubscribe();
+		}
 	}
 
 	public get tags() {

@@ -17,6 +17,7 @@ export interface EventsGQLEntry {
 	facebookUrl: string;
 	tickets: {
 		title: string | null;
+		enabled: boolean | null;
 	};
 	location: {
 		name: string | null;
