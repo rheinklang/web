@@ -18,12 +18,18 @@ export class EventComponent implements OnInit, OnDestroy {
 	private routeSub$: Subscription;
 	private eventSub$: Subscription;
 
-	constructor(private route: ActivatedRoute, private eventsService: EventsService) { }
+	constructor(private route: ActivatedRoute, private eventsService: EventsService) {}
 
 	public ngOnInit() {
-		this.routeSub$ = this.route.paramMap.subscribe(params => {
-			this.eventSlug = params.get('eventSlug');
+		this.routeSub$ = this.route.paramMap.subscribe(paramMap => {
+			console.log(paramMap);
 
+			if (!paramMap.has('eventSlug')) {
+				// skip if no event slug is present
+				return;
+			}
+
+			this.eventSlug = paramMap.get('eventSlug');
 			this.eventSub$ = this.eventsService.getEventBySlug(this.eventSlug).subscribe(event => {
 				this.event = event;
 			});
@@ -31,10 +37,7 @@ export class EventComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy() {
-		unsubscribe([
-			this.routeSub$,
-			this.eventSub$
-		]);
+		unsubscribe([this.routeSub$, this.eventSub$]);
 	}
 
 	public get shopLink() {

@@ -10,7 +10,7 @@ import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY, REFETCH_POLICY } from '../confi
 export class ArticlesService {
 	private preloadedArticleIds: string[] = [];
 
-	constructor(private articlesGQL: ArticlesGQL, private articleByIdGQL: ArticleByIdGQL) { }
+	constructor(private articlesGQL: ArticlesGQL, private articleByIdGQL: ArticleByIdGQL) {}
 
 	public getArticles() {
 		console.log('getArticles');
@@ -18,10 +18,7 @@ export class ArticlesService {
 			.watch(undefined, {
 				fetchPolicy: REFETCH_POLICY
 			})
-			.valueChanges
-			.pipe(
-				map(res => res.data.articlesCollection)
-			);
+			.valueChanges.pipe(map(res => res.data.articlesCollection));
 	}
 
 	public getArticleById(id: string) {
@@ -37,8 +34,7 @@ export class ArticlesService {
 					fetchPolicy: CACHED_POLICY
 				}
 			)
-			.valueChanges
-			.pipe(
+			.valueChanges.pipe(
 				map(res => res.data.articlesCollection),
 				flatMap(entry => entry),
 				first()
@@ -63,7 +59,6 @@ export class ArticlesService {
 					fetchPolicy: CACHE_AND_UPDATE_POLICY
 				}
 			)
-			.valueChanges
-			.subscribe();
+			.valueChanges.subscribe();
 	}
 }

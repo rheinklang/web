@@ -16,7 +16,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 	private routeSub$: Subscription;
 	private articleSub$: Subscription;
 
-	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) { }
+	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) {}
 
 	public ngOnInit() {
 		this.routeSub$ = this.route.paramMap.subscribe(params => {
@@ -29,15 +29,12 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy() {
-		unsubscribe([
-			this.routeSub$,
-			this.articleSub$
-		]);
+		unsubscribe([this.routeSub$, this.articleSub$]);
 	}
 
 	private fetchCorrespondingArticle(id: string) {
-		this.articleSub$ = this.articlesService.getArticleById(id).subscribe(article => {
-			this.article = article;
-		});
+		// this.articleSub$ = this.articlesService.getArticleById(id).subscribe(article => {
+		// 	this.article = article;
+		// });
 	}
 }

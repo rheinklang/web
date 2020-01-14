@@ -51,8 +51,10 @@ import { SafeHtml } from './pipes/safe-html';
 
 @NgModule({
 	declarations: [
-		AboutComponent,
+		SafeHtml,
 		AppComponent,
+		DefaultLayoutComponent,
+		AboutComponent,
 		ArticlesComponent,
 		BurgerComponent,
 		ButtonComponent,
@@ -63,7 +65,6 @@ import { SafeHtml } from './pipes/safe-html';
 		ContactComponent,
 		ContentBlockComponent,
 		ContentLoaderTeaserArticleComponent,
-		DefaultLayoutComponent,
 		EventComponent,
 		EventOverviewComponent,
 		FooterComponent,
@@ -82,7 +83,6 @@ import { SafeHtml } from './pipes/safe-html';
 		NotFoundComponent,
 		PictureComponent,
 		RichtextComponent,
-		SafeHtml,
 		ScrollAnchorDirective,
 		SeoManagerComponent,
 		SpinnerComponent,
@@ -97,15 +97,14 @@ import { SafeHtml } from './pipes/safe-html';
 	imports: [
 		BrowserModule,
 		HttpClientModule,
-		GraphQLModule,
 		AppRoutingModule,
-		HttpClientModule,
+		GraphQLModule,
 		FormsModule,
-		ContentLoaderModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		ContentLoaderModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

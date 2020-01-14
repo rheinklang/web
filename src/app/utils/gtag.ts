@@ -22,12 +22,15 @@ type GTMActionType =
 	| 'view_search_results'
 	| string;
 
-export const trackGTMEvent = (action: GTMActionType, metaInfo: {
-	category: string,
-	label: string,
-	value: string,
-	name?: string
-}) => {
+export const trackGTMEvent = (
+	action: GTMActionType,
+	metaInfo: {
+		category: string;
+		label: string;
+		value: string;
+		name?: string;
+	}
+) => {
 	gtag('event', action, {
 		event_category: metaInfo.category,
 		event_label: metaInfo.label,
@@ -52,4 +55,4 @@ export const trackGTMTimingEvent = () => {
 			category: 'JS Dependencies'
 		});
 	}
-}
+};

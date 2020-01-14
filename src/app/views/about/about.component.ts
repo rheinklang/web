@@ -21,10 +21,13 @@ export class AboutComponent implements OnInit, OnDestroy {
 
 	private combinedSub$: Subscription;
 
-	constructor(private portraitService: PortraitService, private teamService: TeamService) { }
+	constructor(private portraitService: PortraitService, private teamService: TeamService) {}
 
 	public ngOnInit() {
-		this.combinedSub$ = combineLatest(this.portraitService.getPortrait(), this.teamService.getTeam())
+		this.combinedSub$ = combineLatest(
+			this.portraitService.getPortrait(),
+			this.teamService.getTeam()
+		)
 			.pipe(
 				map(([portrait, team]) => {
 					const visibleMemberIds = (portrait.visibleMemberList || []).map(entry => entry._id);

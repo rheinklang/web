@@ -19,19 +19,24 @@ export class HomeComponent implements OnInit, OnDestroy {
 	private articlesSub$: Subscription | undefined;
 	private homeSub$: Subscription | undefined;
 
-	constructor(private articlesService: ArticlesService, private homeService: HomeService) { }
+	constructor(private articlesService: ArticlesService, private homeService: HomeService) {}
 
 	public ngOnInit() {
-		this.articlesService.getArticles().subscribe(articles => {
+		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
 			this.articles = articles;
 		});
 
-		this.homeService.getSlides().subscribe(slides => {
+		this.homeSub$ = this.homeService.getSlides().subscribe(slides => {
 			this.slides = slides;
 
 			if (slides.length > 0) {
 				const tid = setTimeout(() => {
-					this.initSlider();
+					try {
+						this.initSlider();
+					} catch (err) {
+						// slider initialization failed
+					}
+
 					clearTimeout(tid);
 				}, 5);
 			}
@@ -49,7 +54,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	public get tags() {
-		return this.articles.reduce((allTags, article) => [...allTags, ...article.tags], [] as string[]);
+		return this.articles.reduce(
+			(allTags, article) => [...allTags, ...article.tags],
+			[] as string[]
+		);
 	}
 
 	public preloadArticle(id: string) {

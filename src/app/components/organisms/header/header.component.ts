@@ -1,28 +1,47 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NavigationService } from '../../../services/navigation.service';
 import { FlyoutService } from '../../../services/flyout.service';
 import { NavigationSingletonGQLResponse } from '../../../queries/Navigation.singleton';
+import { Subscription } from 'rxjs';
+import { unsubscribe } from '../../../utils/subscription';
 
 @Component({
 	selector: 'rk-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 	@Input() public flyoutNavigationOpen = false;
 
+	public navigationItems: Array<{ url: string; title: string }> = [];
 	public navigationTitles: NavigationSingletonGQLResponse['navigationSingleton'] = {} as NavigationSingletonGQLResponse['navigationSingleton'];
+
+	private flyoutChangeDetectionSub$: Subscription;
+	private navigationServiceSub$: Subscription;
 
 	constructor(private navigationService: NavigationService, private flyoutService: FlyoutService) {}
 
 	public ngOnInit() {
-		this.flyoutService.changeDetection.subscribe(v => {
+		this.flyoutChangeDetectionSub$ = this.flyoutService.changeDetection.subscribe(() => {
 			this.flyoutNavigationOpen = this.flyoutService.isOpen;
 		});
 
-		this.navigationService.getNavigationTitles().subscribe(data => {
+		console.log('ngOnInit', this.navigationTitles);
+		this.navigationServiceSub$ = this.navigationService.getNavigationTitles().subscribe(data => {
 			this.navigationTitles = data;
+			this.navigationItems = [
+				{ url: '/', title: data.homeTitle },
+				{ url: '/events', title: data.eventsTitle },
+				{ url: '/impressions', title: data.galleriesTitle },
+				{ url: '/sponsors', title: data.sponsorsTitle },
+				{ url: '/about', title: data.aboutTitle },
+				{ url: '/contact', title: data.contactTitle }
+			];
 		});
+	}
+
+	public ngOnDestroy() {
+		unsubscribe([this.flyoutChangeDetectionSub$, this.navigationServiceSub$]);
 	}
 
 	public setFlyoutState(isOpen: boolean) {
@@ -31,16 +50,5 @@ export class HeaderComponent implements OnInit {
 
 	public hideFlyoutNavigation() {
 		this.flyoutService.close();
-	}
-
-	public get navigationItems() {
-		return [
-			{ url: '/', title: this.navigationTitles.homeTitle },
-			{ url: '/events', title: this.navigationTitles.eventsTitle },
-			{ url: '/impressions', title: this.navigationTitles.galleriesTitle },
-			{ url: '/sponsors', title: this.navigationTitles.sponsorsTitle },
-			{ url: '/about', title: this.navigationTitles.aboutTitle },
-			{ url: '/contact', title: this.navigationTitles.contactTitle }
-		];
 	}
 }

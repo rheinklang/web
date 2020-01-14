@@ -4,7 +4,10 @@ export type TemplateKey = string | number;
 
 export type TemplateValue = string | number | boolean | undefined | null;
 
-export function template(value: string, data: Record<TemplateKey, TemplateValue> | TemplateValue[] = {}): string {
+export function template(
+	value: string,
+	data: Record<TemplateKey, TemplateValue> | TemplateValue[] = {}
+): string {
 	let args: Record<TemplateKey, TemplateValue> | TemplateValue[] = {};
 
 	if (value && data && typeof data === 'object') {

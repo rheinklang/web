@@ -6,3 +6,6 @@ export const injectGTMScript = () => {
 	script.src = `https://www.googletagmanager.com/gtag/js?id=${environment.gtmId}`;
 	document.head.prepend(script);
 };
+
+export const isAnalyticsMeasurementDisabled = () =>
+	!!window[`ga-disable-${environment.gtmId}`] === true;

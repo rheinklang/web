@@ -34,7 +34,7 @@ export interface HomeSingletonGQLResponse {
 })
 export class HomeSingletonGQL extends Query<HomeSingletonGQLResponse> {
 	document = gql`
-		query GetHomeSingleton {
+		query GetHomeSingletonQuery {
 			homePageSingleton(populate: 1) {
 				slides {
 					value

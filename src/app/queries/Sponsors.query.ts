@@ -25,7 +25,7 @@ export interface SponsorsGQLResponse {
 })
 export class SponsorsGQL extends Query<SponsorsGQLResponse> {
 	public document = gql`
-		query Sponsors {
+		query SponsorsQuery {
 			sponsorsCollection(filter: { enabled: true }) {
 				name
 				logo {

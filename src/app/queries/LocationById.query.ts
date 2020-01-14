@@ -28,7 +28,7 @@ export class LocationByIdGQL extends Query<
 > {
 	document = gql`
 		query GetLocationById($filter: JsonType!) {
-			locationsCollection {
+			locationsCollection(filter: $filter) {
 				name
 				city
 				canton

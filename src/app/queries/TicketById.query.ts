@@ -31,8 +31,8 @@ export class TicketByIdGQL extends Query<
 	}
 > {
 	document = gql`
-		query GetTicketById($filter: JsonType!) {
-			ticketshopsCollection {
+		query GetTicketByIdQuery($filter: JsonType!) {
+			ticketshopsCollection(filter: $filter) {
 				title
 				paymentInfo
 				previewImage {

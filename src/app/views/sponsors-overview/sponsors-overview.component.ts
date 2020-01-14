@@ -22,7 +22,7 @@ export class SponsorsOverviewComponent implements OnInit, OnDestroy {
 	private sponsorsSub$: Subscription;
 	private sponsorSingletonSub$: Subscription;
 
-	constructor(private sponsorsService: SponsorsService) { }
+	constructor(private sponsorsService: SponsorsService) {}
 
 	public ngOnInit() {
 		this.sponsorsService.getSponsors().subscribe(sponsors => {
@@ -53,9 +53,6 @@ export class SponsorsOverviewComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy() {
-		unsubscribe([
-			this.sponsorsSub$,
-			this.sponsorSingletonSub$
-		]);
+		unsubscribe([this.sponsorsSub$, this.sponsorSingletonSub$]);
 	}
 }

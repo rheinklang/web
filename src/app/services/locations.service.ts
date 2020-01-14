@@ -7,7 +7,7 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class LocationsService {
-	constructor(private locationByIdGQL: LocationByIdGQL) { }
+	constructor(private locationByIdGQL: LocationByIdGQL) {}
 
 	public getLocationById(id: string) {
 		return this.locationByIdGQL
@@ -19,8 +19,7 @@ export class LocationsService {
 					fetchPolicy: CACHED_POLICY
 				}
 			)
-			.valueChanges
-			.pipe(
+			.valueChanges.pipe(
 				map(res => res.data.locationsCollection),
 				flatMap(entry => entry),
 				first()

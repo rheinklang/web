@@ -35,18 +35,19 @@ export interface EventBySlugGQLResponse {
 	providedIn: 'root'
 })
 export class EventBySlugGQL extends Query<
-EventBySlugGQLResponse,
-{
-	filter: {
-		slug: string;
-	};
-}
+	EventBySlugGQLResponse,
+	{
+		filter: {
+			slug: string;
+		};
+	}
 > {
 	public document = gql`
-		query EventBySlug($filter: JsonType!) {
+		query EventBySlugQuery($filter: JsonType!) {
 			eventsCollection(filter: $filter, populate: 1) {
 				slug
 				title
+				date
 				description
 				type
 				facebookUrl

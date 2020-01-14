@@ -21,7 +21,7 @@ export class EventOverviewComponent implements OnInit, OnDestroy {
 	private eventsSub$: Subscription | undefined;
 	private eventsSortSub$: Subscription | undefined;
 
-	constructor(private eventsService: EventsService) { }
+	constructor(private eventsService: EventsService) {}
 
 	ngOnInit() {
 		this.eventsService.getEvents().subscribe(events => {
@@ -48,10 +48,7 @@ export class EventOverviewComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		unsubscribe([
-			this.eventsSub$,
-			this.eventsSortSub$
-		]);
+		unsubscribe([this.eventsSub$, this.eventsSortSub$]);
 	}
 
 	public get eventGroupIcon() {

@@ -1,8 +1,9 @@
 @font-face {
 	font-family: 'FVAlmelo';
 	src: url('fv_almelo-webfont.eot');
-	src: url('fv_almelo-webfont.eot?#iefix') format('embedded-opentype'), url('fv_almelo-webfont.woff') format('woff'),
-		url('fv_almelo-webfont.ttf') format('truetype'), url('fv_almelo-webfont.svg#FVAlmeloRegular') format('svg');
+	src: url('fv_almelo-webfont.eot?#iefix') format('embedded-opentype'),
+		url('fv_almelo-webfont.woff') format('woff'), url('fv_almelo-webfont.ttf') format('truetype'),
+		url('fv_almelo-webfont.svg#FVAlmeloRegular') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

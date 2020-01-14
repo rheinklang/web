@@ -35,7 +35,7 @@ export interface EventsGQLResponse {
 })
 export class EventsGQL extends Query<EventsGQLResponse> {
 	public document = gql`
-		query Events {
+		query GetEventsQuery {
 			eventsCollection(populate: 1) {
 				title
 				description

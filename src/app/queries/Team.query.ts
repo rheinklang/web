@@ -23,7 +23,7 @@ export interface TeamGQLResponse {
 })
 export class TeamGQL extends Query<TeamGQLResponse> {
 	document = gql`
-		query GetTeam {
+		query GetTeamQuery {
 			teamCollection(sort: { founder: true, lead: true, fullName: "asc" }) {
 				_id
 				fullName

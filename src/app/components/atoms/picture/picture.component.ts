@@ -37,7 +37,9 @@ export class PictureComponent {
 		}
 
 		const sources = breakpoints.map((breakpoint, index) => ({
-			url: `${resolveDynamicAssetPath({ path: this.src })}&w=${Math.round(breakpoint * IMAGE_OPT_FACTOR)}`,
+			url: `${resolveDynamicAssetPath({ path: this.src })}&w=${Math.round(
+				breakpoint * IMAGE_OPT_FACTOR
+			)}`,
 			breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`
 		}));
 

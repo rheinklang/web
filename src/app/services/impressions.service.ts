@@ -8,17 +8,17 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class ImpressionsService {
-	constructor(private impressionsGQL: ImpressionsGQL, private impressionByIdGQL: ImpressionByIdGQL) { }
+	constructor(
+		private impressionsGQL: ImpressionsGQL,
+		private impressionByIdGQL: ImpressionByIdGQL
+	) {}
 
 	public getImpressions() {
 		return this.impressionsGQL
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
 			})
-			.valueChanges
-			.pipe(
-				map(v => v.data.impressionsCollection)
-			);
+			.valueChanges.pipe(map(v => v.data.impressionsCollection));
 	}
 
 	public getImpressionById(id: string) {
@@ -31,8 +31,7 @@ export class ImpressionsService {
 					fetchPolicy: CACHED_POLICY
 				}
 			)
-			.valueChanges
-			.pipe(
+			.valueChanges.pipe(
 				map(res => res.data.impressionsCollection),
 				flatMap(entry => entry),
 				first()

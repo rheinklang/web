@@ -2,6 +2,12 @@
 
 <div class="v-event__intro o-content-block--color-grey-light">
 	<div *ngIf="event" class="container h-text-align--center">
+			<p class="v-event__back-link">
+				<a href="['/events']">
+					<rk-icon select="arrow-left" color="#585858"></rk-icon>
+					Alle Events
+				</a>
+			</p>
 			<rk-heading size="2" visualSize="1" [text]="event.title"></rk-heading>
 			<h3 class="v-event__intro-meta-info">
 				Am {{event.date | date: 'dd.MM.yyyy' }} in {{event.location.city}} ({{event.location.canton}}, {{event.location.country}})
