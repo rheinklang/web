@@ -1,18 +1,24 @@
 language: node_js
 
+os: linux
+
 node_js:
   - "12"
 
 cache:
-    directories:
-      - "$HOME/.npm"
-
-matrix:
-  fast_finish: true
+  directories:
+    - "$HOME/.npm"
 
 stages:
   - compile
   - test
+
+branches:
+  except:
+  - legacy
+  - experimental
+
+env: NODE_ENV=production
 
 jobs:
   include:
