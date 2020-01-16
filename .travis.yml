@@ -18,7 +18,7 @@ branches:
   - legacy
   - experimental
 
-env: NODE_ENV=production
+env: NODE_ENV=ci
 
 jobs:
   include:
