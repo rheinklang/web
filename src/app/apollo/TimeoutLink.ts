@@ -74,7 +74,7 @@ export class TimeoutLink extends ApolloLink {
 				subscription.unsubscribe();
 			}, requestTimeout);
 
-			let ctxRef = operation.getContext().timeoutRef;
+			const ctxRef = operation.getContext().timeoutRef;
 
 			if (ctxRef) {
 				ctxRef({

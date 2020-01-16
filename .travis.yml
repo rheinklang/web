@@ -4,16 +4,24 @@ node_js:
   - "12"
 
 cache:
-  npm: true
+    directories:
+      - "$HOME/.npm"
 
 matrix:
   fast_finish: true
 
+install:
+  - npm ci
+
 stages:
-  - Integration Build
+  - Build
 
 jobs:
   include:
-    - stage: Integration Build
+    - stage: Test
+      name: "Linting"
+      script: npm run lint
+    - stage: Build
+      name: "AOT Compiler"
       script: npm run pipeline
 

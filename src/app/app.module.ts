@@ -14,6 +14,7 @@ import { CardComponent } from './components/molecules/card/card.component';
 import { ComingSoonPageComponent } from './components/atoms/coming-soon-page/coming-soon-page.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { ContentBlockComponent } from './components/organisms/content-block/content-block.component';
+// tslint:disable-next-line: max-line-length
 import { ContentLoaderTeaserArticleComponent } from './components/atoms/content-loader-teaser-article/content-loader-teaser-article.component';
 import { DefaultLayoutComponent } from './components/layouts/default-layout/default-layout.component';
 import { EventComponent } from './views/event/event.component';

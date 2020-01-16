@@ -1,5 +1,6 @@
 import { environment } from '../../environments/environment';
 
+// tslint:disable-next-line: max-line-length
 export const transparentBase64InlineImage = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=`;
 
 export const resolveCDNImagePath = (

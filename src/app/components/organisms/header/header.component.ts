@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	@Input() public flyoutNavigationOpen = false;
 
 	public navigationItems: Array<{ url: string; title: string }> = [];
-	public navigationTitles: NavigationSingletonGQLResponse['navigationSingleton'] = {} as NavigationSingletonGQLResponse['navigationSingleton'];
+	public navigationTitles: NavigationSingletonGQLResponse['navigationSingleton'] =
+		{} as NavigationSingletonGQLResponse['navigationSingleton'];
 
 	private flyoutChangeDetectionSub$: Subscription;
 	private navigationServiceSub$: Subscription;
