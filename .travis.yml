@@ -14,6 +14,7 @@ install:
   - npm ci
 
 stages:
+  - Test
   - Build
 
 jobs:
