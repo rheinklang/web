@@ -16,9 +16,9 @@
     "preproduction": "npm run create:version",
     "production": "ng build --configuration=production --aot=true --buildOptimizer=true --optimization=true",
     "postproduction": "node bin/copy-apache-config",
-    "ci": "run-s ci:*",
-    "ci:env": "node bin/create-env --environment=production",
-    "ci:build": "npm run production",
+    "pipeline": "run-s pipeline:*",
+    "pipeline:env": "node bin/create-env --environment=production",
+    "pipeline:build": "npm run production",
     "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'",
     "deploy:development": "node -r dotenv/config deploy.js --tag=development",
     "deploy:production": "node -r dotenv/config deploy.js --tag=production"

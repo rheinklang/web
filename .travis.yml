@@ -15,5 +15,5 @@ stages:
 jobs:
   include:
     - stage: Integration Build
-      script: npm run ci
+      script: npm run pipeline
 
