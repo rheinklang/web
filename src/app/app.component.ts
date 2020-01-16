@@ -6,11 +6,15 @@ import { environment } from '../environments/environment';
 import { trackGTMTimingEvent } from './utils/gtag';
 import { Subscription } from 'rxjs';
 import { unsubscribe } from './utils/subscription';
+import { injectGCPMapsScript } from './app.gcp';
 
 declare var gtag;
 
 // load environment specific tracking initialization
 injectGTMScript();
+
+// load environment specific gcp scripts
+injectGCPMapsScript();
 
 @Component({
 	selector: 'rk-root',
