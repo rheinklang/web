@@ -5,7 +5,6 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { AboutComponent } from './views/about/about.component';
 import { EventComponent } from './views/event/event.component';
 import { EventOverviewComponent } from './views/event-overview/event-overview.component';
-import { environment } from '../environments/environment';
 import { ImpressionOverviewComponent } from './views/impression-overview/impression-overview.component';
 import { ImpressionComponent } from './views/impression/impression.component';
 import { ContactComponent } from './views/contact/contact.component';
@@ -70,4 +69,4 @@ const routes: Routes = [
 	],
 	exports: [RouterModule]
 })
-export class RheinklangRoutingModule {}
+export class RheinklangRoutingModule { }

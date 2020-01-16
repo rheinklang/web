@@ -1,4 +1,5 @@
 <rk-seo-manager context="home"></rk-seo-manager>
+
 <div class="v-about__header-slider js-v-about__header-slider">
 	<div class="v-about__track glide__track" data-glide-el="track">
 		<ul class="v-about__slides glide__slides">
@@ -28,6 +29,7 @@
 		<button class="glide__bullet" data-glide-dir="=0" *ngFor="let slide of slides" [attr.data-glide-dir]="'=' + slide.index"></button>
 	</div>
 </div>
+
 <rk-content-block color="grey-lighter" heading="Neuigkeiten & mehr ({{getCurrentArticleCount()}})" space="xlarge">
 	<div class="row">
 		<div class="col-12 v-home__article-filter">
@@ -49,7 +51,10 @@
 				<rk-content-loader-teaser-article></rk-content-loader-teaser-article>
 			</div>
 		</ng-container>
-		<div *ngFor="let article of articles" class="col-12 col-sm-12 col-md-6 col-lg-4">
+		<div class="v-home__news-entry col-12 col-lg-8" *ngIf="eventTeaser">
+			<rk-teaser-event [location]="eventTeaser.location" [date]="eventTeaser.date" [description]="eventTeaser.description" [type]="eventTeaser.type" [title]="eventTeaser.title" [previewImage]="eventTeaser.previewImage" [slug]="eventTeaser.slug"></rk-teaser-event>
+		</div>
+		<div *ngFor="let article of articles" class="v-home__news-entry col-12 col-sm-12 col-md-6 col-lg-4">
 			<rk-teaser
 				routerLink="/articles/{{article._id}}"
 				[title]="article.title"
@@ -59,6 +64,15 @@
 				[previewImage]="article.previewImage"
 				(hovered)="preloadArticle(article._id)"
 			></rk-teaser>
+		</div>
+	</div>
+</rk-content-block>
+
+<rk-content-block color="black" heading="Aktuelle Veranstaltung" space="xxlarge" centerHeading="true">
+	<br />
+	<div class="row justify-content-center">
+		<div class="col-xs-12 col-sm-8 col-md-6 v-home__event-teaser" *ngIf="eventTeaser">
+			<rk-teaser-event *ngIf="eventTeaser" [date]="eventTeaser.date" [description]="eventTeaser.description" [type]="eventTeaser.type" [title]="eventTeaser.title" [previewImage]="eventTeaser.previewImage" [slug]="eventTeaser.slug"></rk-teaser-event>
 		</div>
 	</div>
 </rk-content-block>

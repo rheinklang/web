@@ -2,20 +2,10 @@ import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { PreviewImagePathOnly } from '../types/PreviewImage';
-
-export interface TeamGQLEntry {
-	_id: string;
-	fullName: string;
-	image: PreviewImagePathOnly;
-	lead: boolean;
-	founder: boolean;
-	description: string;
-	mainRole: string;
-	sideRole: string;
-}
+import { TeamSchema } from '../schema/TeamSchema';
 
 export interface TeamGQLResponse {
-	teamCollection: TeamGQLEntry[];
+	teamCollection: TeamSchema[];
 }
 
 @Injectable({

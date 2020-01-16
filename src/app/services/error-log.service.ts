@@ -29,7 +29,7 @@ interface LoggingRequestData extends CreateLoggingRequestOptions {
 	providedIn: 'root'
 })
 export class ErrorLogService {
-	constructor(private cockpitService: CockpitService) {}
+	constructor(private cockpitService: CockpitService) { }
 
 	public static DEFAULT_TRACE_OPTIONS = {
 		message: 'Unknown error',
@@ -60,7 +60,7 @@ export class ErrorLogService {
 		}
 
 		return this.cockpitService
-			.post<LoggingRequestData, {}>('/forms/submit/errorLogs', {
+			.post<LoggingRequestData, {}>('/forms/submit/logs', {
 				...opts,
 				location: window.location.href,
 				timestamp: new Date().toUTCString(),

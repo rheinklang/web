@@ -3,28 +3,23 @@ import { map } from 'rxjs/operators';
 import { CACHED_POLICY } from '../config/policies';
 import { SponsorsGQL } from '../queries/Sponsors.query';
 import { SponsorsSingletonGQL } from '../queries/Sponsors.singleton';
-import { CockpitImageSchema } from '../schema/CockpitImageSchema';
-import { SponsorLevelType, SponsorLevel } from '../types/Sponsor';
+import { SponsorLevel } from '../types/Sponsor';
 import { Observable } from 'rxjs';
+import { SponsorSchema } from '../schema/SponsorSchema';
+import { ImagePathOnlySchema } from '../schema/ImageSchema';
+import { Without } from '../types/generics';
 
-export interface SponsorsServiceEntry {
-	slug: string;
-	name: string;
-	url: string;
-	logo: CockpitImageSchema;
-	description: string;
-	sortWeight: number;
-	level: SponsorLevelType;
-	lastActiveYear: string | null;
-	joinedYear: string | null;
+export type SponsorsServiceEntry = Without<SponsorSchema<ImagePathOnlySchema>, 'sortWeight'> & {
 	ariaLabel: string;
-}
+	sortWeight: number;
+};
+
 
 @Injectable({
 	providedIn: 'root'
 })
 export class SponsorsService {
-	constructor(private sponsorsGQL: SponsorsGQL, private sponsorsSingleton: SponsorsSingletonGQL) {}
+	constructor(private sponsorsGQL: SponsorsGQL, private sponsorsSingleton: SponsorsSingletonGQL) { }
 
 	public getSponsors(): Observable<SponsorsServiceEntry[]> {
 		return this.sponsorsGQL
@@ -34,7 +29,7 @@ export class SponsorsService {
 			.valueChanges.pipe(
 				map(v => v.data.sponsorsCollection),
 				map(entries =>
-					entries.map(entry => ({
+					entries.map((entry): SponsorsServiceEntry => ({
 						...entry,
 						level: `${entry.level}` as SponsorLevel,
 						ariaLabel: `${entry.name} ist Sponsor seit ${entry.joinedYear} (${entry.level} level)`,

@@ -20,7 +20,7 @@ export class ImageComponent {
 	@Input() public rounded: 'none' | 'small' | 'medium' | 'large' | 'full' = 'none';
 	@Input() public width?: string;
 	@Input() public height?: string;
-	@Input() public alt?: string;
+	@Input() public alt = 'Image';
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
 

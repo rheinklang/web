@@ -23,7 +23,7 @@ export class PictureComponent {
 	@Input() public rounded: 'none' | 'small' | 'medium' | 'large' | 'full' = 'none';
 	@Input() public width?: string;
 	@Input() public height?: string;
-	@Input() public alt?: string;
+	@Input() public alt = '';
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
 
@@ -36,12 +36,15 @@ export class PictureComponent {
 			return [];
 		}
 
-		const sources = breakpoints.map((breakpoint, index) => ({
-			url: `${resolveDynamicAssetPath({ path: this.src })}&w=${Math.round(
-				breakpoint * IMAGE_OPT_FACTOR
-			)}`,
-			breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`
-		}));
+		const sources = breakpoints.map((breakpoint, index) => {
+			const resolvedAssetPath = resolveDynamicAssetPath({ path: this.src });
+			const optimizedWidthFactor = Math.round(breakpoint * IMAGE_OPT_FACTOR);
+
+			return {
+				url: `${resolvedAssetPath}&w=${optimizedWidthFactor} x1, ${resolvedAssetPath}&w=${optimizedWidthFactor * 2} x2,`,
+				breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`
+			};
+		});
 
 		return sources.reverse();
 	}

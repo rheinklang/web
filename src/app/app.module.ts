@@ -48,6 +48,8 @@ import { ScrollAnchorDirective } from './directives/scroll-anchor.directive';
 import { RichtextComponent } from './components/atoms/richtext/richtext.component';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { SafeHtml } from './pipes/safe-html';
+import { StaticMapComponent } from './components/molecules/map/static-map.component';
+import { MapComponent } from './components/molecules/map/map.component';
 
 @NgModule({
 	declarations: [
@@ -92,7 +94,9 @@ import { SafeHtml } from './pipes/safe-html';
 		TeaserComponent,
 		TeaserEventComponent,
 		TeaserSponsorComponent,
-		TooltipDirective
+		TooltipDirective,
+		StaticMapComponent,
+		MapComponent
 	],
 	imports: [
 		BrowserModule,
@@ -107,4 +111,4 @@ import { SafeHtml } from './pipes/safe-html';
 	providers: [],
 	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

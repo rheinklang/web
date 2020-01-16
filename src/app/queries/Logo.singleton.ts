@@ -8,7 +8,7 @@ export interface LogoQueryResponse<N extends string = string> {
 }
 
 export const getDynamicLogoQuery = (select: string) => gql`
-	query GetDynamicLogoFor${select} {
+	query GetDynamicLogoFor_${select} {
 		logosSingleton {
 			${select} {
 				path

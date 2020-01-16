@@ -4,7 +4,8 @@ import { ArticlesService } from '../../services/articles.service';
 import { ArticlesGQLEntry } from '../../queries/Articles.query';
 import { HomeService } from '../../services/home.service';
 import { HomeSingletonGQLSlideItem } from '../../queries/Home.singleton';
-import { Subscription } from 'rxjs';
+import { PossibleSubscription, unsubscribe } from '../../utils/subscription';
+import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
 
 @Component({
 	selector: 'rk-home',
@@ -14,16 +15,22 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 	public activeTagId?: string;
 	public articles: ArticlesGQLEntry[] = [];
+	public eventTeaser: EventBySlugGQLEntry | null = null;
 	public slides: (HomeSingletonGQLSlideItem & { index: number })[] = [];
 
-	private articlesSub$: Subscription | undefined;
-	private homeSub$: Subscription | undefined;
+	private articlesSub$: PossibleSubscription;
+	private eventTeaserSub$: PossibleSubscription;
+	private homeSub$: PossibleSubscription;
 
-	constructor(private articlesService: ArticlesService, private homeService: HomeService) {}
+	constructor(private articlesService: ArticlesService, private homeService: HomeService) { }
 
 	public ngOnInit() {
 		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
 			this.articles = articles;
+		});
+
+		this.eventTeaserSub$ = this.homeService.getEventTeaser().subscribe(teaser => {
+			this.eventTeaser = teaser;
 		});
 
 		this.homeSub$ = this.homeService.getSlides().subscribe(slides => {
@@ -44,13 +51,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy() {
-		if (this.articlesSub$) {
-			this.articlesSub$.unsubscribe();
-		}
-
-		if (this.homeSub$) {
-			this.homeSub$.unsubscribe();
-		}
+		unsubscribe([
+			this.articlesSub$,
+			this.homeSub$,
+			this.eventTeaserSub$
+		]);
 	}
 
 	public get tags() {

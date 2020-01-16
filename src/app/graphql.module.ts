@@ -8,8 +8,6 @@ import { ErrorLogService } from './services/error-log.service';
 
 const uri = environment.graphQLHostURL;
 
-console.log('Using GraphQL Host ' + uri);
-
 export function createApollo(httpLink: HttpLink, errorLogService: ErrorLogService) {
 	const link = httpLink.create({ uri });
 
@@ -46,4 +44,4 @@ export function createApollo(httpLink: HttpLink, errorLogService: ErrorLogServic
 		}
 	]
 })
-export class GraphQLModule {}
+export class GraphQLModule { }

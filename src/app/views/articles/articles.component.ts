@@ -4,6 +4,7 @@ import { ArticleGQLEntry } from '../../queries/ArticleById.query';
 import { ArticlesService } from '../../services/articles.service';
 import { Subscription } from 'rxjs';
 import { unsubscribe } from '../../utils/subscription';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
 	selector: 'rk-articles',
@@ -12,17 +13,20 @@ import { unsubscribe } from '../../utils/subscription';
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
 	public article: ArticleGQLEntry;
+	public loaded = false;
+	public articleId: string | null = null;
 
 	private routeSub$: Subscription;
 	private articleSub$: Subscription;
 
-	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) {}
+	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) { }
 
 	public ngOnInit() {
 		this.routeSub$ = this.route.paramMap.subscribe(params => {
 			const articleId = params.get('articleId');
 
 			if (articleId) {
+				this.articleId = articleId;
 				this.fetchCorrespondingArticle(articleId);
 			}
 		});
@@ -33,8 +37,9 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 	}
 
 	private fetchCorrespondingArticle(id: string) {
-		// this.articleSub$ = this.articlesService.getArticleById(id).subscribe(article => {
-		// 	this.article = article;
-		// });
+		this.articleSub$ = this.articlesService.getArticleById(id).subscribe(article => {
+			this.article = article;
+			this.loaded = true;
+		});
 	}
 }

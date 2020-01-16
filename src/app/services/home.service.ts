@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 import { HomeSingletonGQL } from '../queries/Home.singleton';
 import { CACHED_POLICY } from '../config/policies';
 
@@ -7,7 +7,18 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class HomeService {
-	constructor(private homeSingletonGQL: HomeSingletonGQL) {}
+	constructor(private homeSingletonGQL: HomeSingletonGQL) { }
+
+	public getEventTeaser() {
+		return this.homeSingletonGQL
+			.watch(undefined, {
+				fetchPolicy: CACHED_POLICY
+			})
+			.valueChanges.pipe(
+				map(res => res.data.homePageSingleton),
+				map(singleton => singleton.showcaseEvent)
+			);
+	}
 
 	public getSlides() {
 		return this.homeSingletonGQL

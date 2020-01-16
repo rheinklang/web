@@ -1,7 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { EventsGQLEntry } from '../../../queries/Events.query';
 import { EventType } from '../../../types/Event';
-import { generateUrchingTrackingURL } from '../../../utils/utm';
+import { EventSchema } from '../../../schema/EventSchema';
 
 @Component({
 	selector: 'rk-teaser-event',
@@ -10,21 +9,21 @@ import { generateUrchingTrackingURL } from '../../../utils/utm';
 	encapsulation: ViewEncapsulation.None
 })
 export class TeaserEventComponent {
-	@Input() public slug: EventsGQLEntry['slug'];
-	@Input() public title: EventsGQLEntry['title'];
-	@Input() public date: EventsGQLEntry['date'];
-	@Input() public link: EventsGQLEntry['link'];
-	@Input() public linkType: EventsGQLEntry['linkType'];
-	@Input() public facebookUrl: EventsGQLEntry['facebookUrl'];
-	@Input() public description: EventsGQLEntry['description'];
-	@Input() public type: EventsGQLEntry['type'];
-	@Input() public previewImage: EventsGQLEntry['previewImage'];
-	@Input() public secret: EventsGQLEntry['secret'];
-	@Input() public tickets: EventsGQLEntry['tickets'];
-	@Input() public location: EventsGQLEntry['location'];
+	@Input() public slug: EventSchema['slug'];
+	@Input() public title: EventSchema['title'];
+	@Input() public date: EventSchema['date'];
+	@Input() public link: EventSchema['link'];
+	@Input() public linkType: EventSchema['linkType'];
+	@Input() public facebookUrl: EventSchema['facebookUrl'];
+	@Input() public description: EventSchema['description'];
+	@Input() public type: EventSchema['type'];
+	@Input() public previewImage: EventSchema['previewImage'];
+	@Input() public secret: EventSchema['secret'];
+	@Input() public tickets: EventSchema['tickets'];
+	@Input() public location: EventSchema['location'];
 
 	public get hasLocation() {
-		return this.location.name && this.location.city && this.location.country;
+		return this.location && this.location.name && this.location.city && this.location.country;
 	}
 
 	public get fqLocationName() {

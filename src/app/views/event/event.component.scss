@@ -1,34 +1,38 @@
-@import '../../styles/colors.scss';
-@import '../../styles/responsive.scss';
+@import "../../styles/colors.scss";
+@import "../../styles/responsive.scss";
 
 .v-event__back-link {
-	text-transform: uppercase;
-	letter-spacing: 0.1rem;
-	font-size: 0.8rem;
-	margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
 
-	a {
-		color: $color-grey-100;
-		text-decoration: none;
-	}
+  a {
+    color: $color-grey-100;
+    text-decoration: none;
+  }
 }
 
 .v-event__intro {
-	padding: 30px 0;
+  padding: 30px 0;
 }
 
 .v-event__intro__meta-info {
-	margin: 10px 0;
+  margin: 10px 0;
 }
 .v-event__description {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .v-event__actions .v-event__actions-row {
-	margin: 50px auto;
+  margin: 50px auto;
 
-	> * {
-		margin: 10px;
-		display: inline;
-	}
+  > * {
+    margin: 10px;
+    display: inline;
+  }
+}
+
+rk-map {
+  height: 600px;
 }

@@ -8,7 +8,8 @@ export const environment = {
 	cockpitAPIURL: 'https://example.com/api',
 	cockpitAPIKey: 'token',
 	graphQLHostURL: 'https://example.com/api/graphql',
-	gtmId: 'example'
+	gtmId: 'example',
+	gcpKey: 'example'
 };
 
 /*

@@ -1,31 +1,24 @@
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { EventType } from '../types/Event';
-import { PreviewImagePathOnly } from '../types/PreviewImage';
 import { Injectable } from '@angular/core';
+import { EventSchema } from '../schema/EventSchema';
+import { LocationSchema } from '../schema/LocationSchema';
+import { TicketsSchema } from '../schema/TicketsSchema';
 
-export interface EventBySlugGQLEntry {
-	slug: string;
-	title: string;
-	date: string;
-	description: string;
-	facebookUrl: string;
-	tickets: {
-		title: string | null;
-		enabled: boolean | null;
-		externalShopLink: string | null;
-		externalShopType: string | null;
-	};
-	location: {
-		name: string | null;
-		city: string | null;
-		canton: string | null;
-		country: string | null;
-		googleMapsURL: string | null;
-	};
-	type: EventType;
-	previewImage: PreviewImagePathOnly;
-}
+export type EventBySlugGQLEntry = EventSchema<
+	Pick<LocationSchema,
+		'city' |
+		'canton' |
+		'country' |
+		'zoomLevel' |
+		'googleMapsURL'>,
+	Pick<TicketsSchema,
+		'title' |
+		'enabled' |
+		'externalShopLink' |
+		'externalShopType'
+	>
+>;
 
 export interface EventBySlugGQLResponse {
 	eventsCollection: EventBySlugGQLEntry[];
@@ -35,12 +28,12 @@ export interface EventBySlugGQLResponse {
 	providedIn: 'root'
 })
 export class EventBySlugGQL extends Query<
-	EventBySlugGQLResponse,
-	{
-		filter: {
-			slug: string;
-		};
-	}
+EventBySlugGQLResponse,
+{
+	filter: {
+		slug: string;
+	};
+}
 > {
 	public document = gql`
 		query EventBySlugQuery($filter: JsonType!) {
@@ -64,6 +57,7 @@ export class EventBySlugGQL extends Query<
 					city
 					canton
 					country
+					zoomLevel
 					googleMapsURL
 				}
 			}

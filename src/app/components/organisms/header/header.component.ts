@@ -19,14 +19,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	private flyoutChangeDetectionSub$: Subscription;
 	private navigationServiceSub$: Subscription;
 
-	constructor(private navigationService: NavigationService, private flyoutService: FlyoutService) {}
+	constructor(private navigationService: NavigationService, private flyoutService: FlyoutService) { }
 
 	public ngOnInit() {
 		this.flyoutChangeDetectionSub$ = this.flyoutService.changeDetection.subscribe(() => {
 			this.flyoutNavigationOpen = this.flyoutService.isOpen;
 		});
 
-		console.log('ngOnInit', this.navigationTitles);
 		this.navigationServiceSub$ = this.navigationService.getNavigationTitles().subscribe(data => {
 			this.navigationTitles = data;
 			this.navigationItems = [

@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import { PreviewImage } from '../types/PreviewImage';
-import { CockpitImageSchema } from '../schema/CockpitImageSchema';
+import { EventBySlugGQLEntry } from './EventBySlug.query';
 
 export interface HomeSingletonGQLSlideItem {
 	title: string;
@@ -18,14 +18,7 @@ export interface HomeSingletonGQLResponse {
 			value: HomeSingletonGQLSlideItem;
 			__typename: 'RepeaterItemSlides';
 		}>;
-		showcaseEvent: null | {
-			slug: string;
-			title: string;
-			description: string;
-			date: string;
-			previewImage: CockpitImageSchema;
-			facebookUrl: string | null;
-		};
+		showcaseEvent: EventBySlugGQLEntry | null;
 	};
 }
 
@@ -44,7 +37,10 @@ export class HomeSingletonGQL extends Query<HomeSingletonGQLResponse> {
 					title
 					description
 					date
+					type
+					tickets
 					previewImage
+					location
 					facebookUrl
 				}
 			}

@@ -26,7 +26,9 @@ export const environment = {
 	cockpitAPIURL: '${process.env.COCKPIT_API_URL}',
 	cockpitAPIKey: '${process.env.COCKPIT_API_KEY}',
 	graphQLHostURL: '${process.env.GRAPHQL_HOST_URL}',
-	gtmId: '${process.env.GTM_ID}'
+	gtmId: '${process.env.GTM_ID}',
+	gcpKey: '${process.env.GCP_KEY}',
+	gcpStaticMapsSecret: '${process.env.GCP_STATIC_MAPS_SECRET}'
 };
 
 import 'zone.js/dist/zone-error';

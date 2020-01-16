@@ -21,8 +21,6 @@ export class AppComponent implements OnDestroy {
 	private navEndSub$: Subscription;
 
 	constructor(router: Router) {
-		console.log('AppComponent ctor');
-
 		// no google tag manager instance found, skip analytics
 		if (typeof gtag === 'undefined') {
 			return;

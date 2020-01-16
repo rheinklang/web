@@ -17,12 +17,13 @@ import { TagListComponent } from '../tag-list/tag-list.component';
 	encapsulation: ViewEncapsulation.None
 })
 export class TeaserComponent implements AfterViewInit {
+	@Input() public id: string;
 	@Input() public title: string;
 	@Input() public excerpt: string;
-	@Input() public link: string;
 	@Input() public subtitle?: string;
 	@Input() public previewImage?: { path: string };
 	@Input() public tags: ITag[] = [];
+	@Input() public disableAnimation = false;
 
 	@Output() public hovered = new EventEmitter<void>();
 	@Output() public tagClicked = new EventEmitter<string>();
@@ -38,5 +39,9 @@ export class TeaserComponent implements AfterViewInit {
 
 	public triggerHoverEvent() {
 		this.hovered.emit();
+	}
+
+	public get link() {
+		return [`/articles/${this.id}`];
 	}
 }

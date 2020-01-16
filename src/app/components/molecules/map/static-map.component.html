@@ -1,0 +1,8 @@
+<div class="m-map m-map--static" *ngIf="ready">
+	<img
+		class="m-map__static-image a-image a-image--lazy"
+		data-sizes="auto"
+		[attr.data-srcset]="sourceSet"
+		[attr.data-src]="fallbackSource"
+	/>
+</div>

@@ -13,10 +13,9 @@ export class EventsService {
 		private eventsGQL: EventsGQL,
 		private eventBySlugGQL: EventBySlugGQL,
 		private eventsSingletonGQL: EventsSingletonGQL
-	) {}
+	) { }
 
 	public getEvents() {
-		console.log('getEvents');
 		return this.eventsGQL
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
@@ -25,7 +24,6 @@ export class EventsService {
 	}
 
 	public getEventsSingleton() {
-		console.log('getEventsSingleton');
 		return this.eventsSingletonGQL
 			.watch(undefined, {
 				fetchPolicy: CACHED_POLICY
@@ -34,7 +32,6 @@ export class EventsService {
 	}
 
 	public getEventBySlug(slug: string) {
-		console.log('getEventBySlug %s', slug);
 		return this.eventBySlugGQL
 			.watch(
 				{

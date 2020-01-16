@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { CockpitImageSchema } from '../../../schema/CockpitImageSchema';
+import { ImagePathOnlySchema } from '../../../schema/ImageSchema';
 import { SponsorLevel, SponsorLevelType } from '../../../types/Sponsor';
 import { generateUrchingTrackingURL } from '../../../utils/utm';
 import { sponsorLevelToGerman } from '../../../utils/sponsor';
@@ -14,7 +14,7 @@ export class TeaserSponsorComponent {
 	@Input() public slug: string;
 	@Input() public name: string;
 	@Input() public url: string;
-	@Input() public logo: CockpitImageSchema;
+	@Input() public logo: ImagePathOnlySchema;
 	@Input() public description?: string;
 	@Input() public level: SponsorLevelType;
 	@Input() public lastActiveYear: string;

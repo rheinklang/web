@@ -1,9 +1,9 @@
 <rk-seo-manager context="event" [data]="event"></rk-seo-manager>
 
-<div class="v-event__intro o-content-block--color-grey-light">
+<div class="v-event__intro">
 	<div *ngIf="event" class="container h-text-align--center">
 			<p class="v-event__back-link">
-				<a href="['/events']">
+				<a [routerLink]="['/events']">
 					<rk-icon select="arrow-left" color="#585858"></rk-icon>
 					Alle Events
 				</a>
@@ -39,3 +39,26 @@
 	</div>
 </div>
 
+<div *ngIf="shouldShowMaps" class="v-event__map">
+	<rk-map [url]="event.location.googleMapsURL" theme="medium" [zoom]="event.location.zoomLevel"></rk-map>
+</div>
+
+<rk-content-block heading="Schon gelesen?" color="black" [centerHeading]="true" space="xlarge">
+	<div *ngIf="articles && articles.length" class="v-event__articles container">
+		<div class="row justify-content-center align-items-center align-self-center align-content-center">
+			<div *ngFor="let article of articles" class="col-12 col-md-4">
+				<rk-teaser
+					*ngIf="article && article._id"
+					[disableAnimation]="true"
+					[id]="article._id"
+					[title]="article.title"
+					subtitle="Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}"
+					[excerpt]="article.excerpt"
+					[tags]="article.tags"
+					[previewImage]="article.previewImage"
+					(hovered)="preloadArticle(article._id)"
+				></rk-teaser>
+			</div>
+		</div>
+	</div>
+</rk-content-block>

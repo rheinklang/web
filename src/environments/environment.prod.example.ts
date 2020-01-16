@@ -4,5 +4,6 @@ export const environment = {
 	cockpitAPIURL: 'https://example.com/api',
 	cockpitAPIKey: 'token',
 	graphQLHostURL: 'https://example.com/api/graphql',
-	gtmId: 'xxxxxx'
+	gtmId: 'xxxxxx',
+	gcpKey: 'xxxxx'
 };

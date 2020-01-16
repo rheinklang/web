@@ -1,30 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { EventType } from '../types/Event';
-import { PreviewImagePathOnly } from '../types/PreviewImage';
+import { LocationSchema } from '../schema/LocationSchema';
+import { EventSchema } from '../schema/EventSchema';
+import { TicketsSchema } from '../schema/TicketsSchema';
 
-export interface EventsGQLEntry {
-	slug: string;
-	title: string;
-	date: string;
-	description: string;
-	type: EventType;
-	previewImage?: PreviewImagePathOnly;
-	secret: boolean | null;
-	link: string;
-	linkType: 'internal' | 'external';
-	facebookUrl: string;
-	tickets: {
-		title: string | null;
-		enabled: boolean | null;
-	};
-	location: {
-		name: string | null;
-		city: string | null;
-		country: string | null;
-	};
-}
+export type EventsGQLEntry = EventSchema<
+	Pick<LocationSchema, 'city' | 'canton' | 'country'>,
+	Pick<TicketsSchema, 'title' | 'enabled'>
+>;
 
 export interface EventsGQLResponse {
 	eventsCollection: EventsGQLEntry[];

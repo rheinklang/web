@@ -4,9 +4,8 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 
 import { PortraitService } from '../../services/portrait.service';
 import { TeamService } from '../../services/team.service';
-import { TeamGQLEntry } from '../../queries/Team.query';
 import { unsubscribe } from '../../utils/subscription';
-// import { resolveCDNAssetPath } from '../../utils/image';
+import { TeamSchema } from '../../schema/TeamSchema';
 
 @Component({
 	selector: 'rk-about',
@@ -17,17 +16,17 @@ import { unsubscribe } from '../../utils/subscription';
 export class AboutComponent implements OnInit, OnDestroy {
 	public groupPortraitImagePath: string;
 	public groupPortraitDescription = '';
-	public teamMembers: TeamGQLEntry[] = [];
+	public teamMembers: TeamSchema[] = [];
 
 	private combinedSub$: Subscription;
 
-	constructor(private portraitService: PortraitService, private teamService: TeamService) {}
+	constructor(private portraitService: PortraitService, private teamService: TeamService) { }
 
 	public ngOnInit() {
-		this.combinedSub$ = combineLatest(
+		this.combinedSub$ = combineLatest([
 			this.portraitService.getPortrait(),
 			this.teamService.getTeam()
-		)
+		])
 			.pipe(
 				map(([portrait, team]) => {
 					const visibleMemberIds = (portrait.visibleMemberList || []).map(entry => entry._id);
