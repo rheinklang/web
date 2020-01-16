@@ -10,19 +10,14 @@ cache:
 matrix:
   fast_finish: true
 
-install:
-  - npm ci
-
 stages:
-  - Test
-  - Build
+  - compile
+  - test
 
 jobs:
   include:
-    - stage: Test
-      name: "Linting"
-      script: npm run lint
-    - stage: Build
-      name: "AOT Compiler"
+    - stage: compile
       script: npm run pipeline
+    - stage: test
+      script: npm run lint
 
