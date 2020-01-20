@@ -30,6 +30,8 @@ interface SlackErrorPayload extends LoggingRequestData {
 	hash: string;
 }
 
+const repoURL = 'https://github.com/rheinklang/web';
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -39,13 +41,10 @@ export class SlackService {
 	public sendErrorLog(stack: SlackErrorPayload) {
 		return this.http.post(environment.slackErrorHookURL, JSON.stringify({
 			blocks: [
-				{
-					type: 'section',
-					text: {
-						type: 'mrkdwn',
-						text: `Encountered a new issue on _ ${stack.location} _:\n*${stack.message} (${stack.code})*`
-					}
-				},
+				// main message
+				// tslint:disable-next-line: max-line-length
+				this.buildTextBlock(`:warning: Encountered a new issue on _ ${stack.location} _:\n*${stack.message} (${stack.code})*`),
+				// add all meta information
 				{
 					type: 'section',
 					fields: this.buildFields({
@@ -55,22 +54,10 @@ export class SlackService {
 						Version: stack.version,
 					})
 				},
-				{
-					type: 'section',
-					text: {
-						type: 'mrkdwn',
-						text: `:hammer_and_wrench: *Source-Code version*:\n https://github.com/rheinklang/web/commit/${stack.hash}`
-					}
-				},
-				{
-					type: 'context',
-					elements: [
-						{
-							type: 'mrkdwn',
-							text: 'This is a generated message, do not reply.'
-						}
-					]
-				}
+				// add source code information
+				this.buildTextBlock(`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${stack.hash}`),
+				// attach context
+				this.context
 			]
 		} as SlackMessageBody)).subscribe().unsubscribe();
 	}
@@ -83,5 +70,27 @@ export class SlackService {
 				text: `*${curr}*\n${fields[curr]}`
 			}
 		]), [] as SlackField[]);
+	}
+
+	private buildTextBlock(message: string) {
+		return {
+			type: 'section',
+			text: {
+				type: 'mrkdwn',
+				text: message
+			}
+		};
+	}
+
+	private get context() {
+		return {
+			type: 'context',
+			elements: [
+				{
+					type: 'mrkdwn',
+					text: 'This is a generated message, do not reply.'
+				}
+			]
+		};
 	}
 }
