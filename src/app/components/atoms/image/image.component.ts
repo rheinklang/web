@@ -1,10 +1,14 @@
-import lazySizes from 'lazysizes';
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 
-lazySizes.cfg.lazyClass = 'a-image--lazy';
-lazySizes.cfg.preloadClass = 'state-a-image--preaload';
-lazySizes.cfg.loadingClass = 'state-a-image--loading';
-lazySizes.cfg.loadedClass = 'state-a-image--loaded';
+import(/* webpackChunkName: "lazysizes" */'lazysizes');
+
+// tslint:disable-next-line: no-string-literal
+window['lazySizesConfig'] = window['lazySizesConfig'] || {};
+
+(window as any).lazySizesConfig.lazyClass = 'a-image--lazy';
+(window as any).lazySizesConfig.preloadClass = 'state-a-image--preaload';
+(window as any).lazySizesConfig.loadingClass = 'state-a-image--loading';
+(window as any).lazySizesConfig.loadedClass = 'state-a-image--loaded';
 
 export const breakpoints = [320, 550, 786, 992, 1200];
 
