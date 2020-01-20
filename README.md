@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/rheinklang/rheinklang-kollektiv.ch.svg?branch=master)](https://travis-ci.com/rheinklang/rheinklang-kollektiv.ch)
+[![Build Status](https://travis-ci.com/rheinklang/web.svg?branch=master)](https://travis-ci.com/rheinklang/web) ![Snyk](https://img.shields.io/snyk/vulnerabilities/github/rheinklang/web) ![Maintenance](https://img.shields.io/maintenance/yes/2020) ![Types](https://img.shields.io/badge/Types-TypeScript-blue) ![Platform](https://img.shields.io/badge/Platform-Angular-red)
 
 # Rheinklang
 
