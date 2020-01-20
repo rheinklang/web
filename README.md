@@ -2,6 +2,17 @@
 
 # Rheinklang
 
+## Generate environments
+
+Copy the local `.env.example` file to a `.env` file and fill it properly. Afterwards run the following commands to generate the required local files for development:
+
+```
+npm run create:env
+npm run create:version
+
+npm start
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
