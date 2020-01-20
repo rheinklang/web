@@ -64,7 +64,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 	}
 
 	public ngAfterViewInit() {
-		console.log('ngAfterViewInit')
 		CallbackFactory.attachCallback('map', () => {
 			this.ready = true;
 			this.initMap();
