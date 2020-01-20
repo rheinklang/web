@@ -29,10 +29,10 @@
 
   > * {
     margin: 10px;
-    display: inline;
+    // display: inline;
   }
 }
 
-rk-map {
+.m-map--dynamic.m-map--ready {
   height: 600px;
 }

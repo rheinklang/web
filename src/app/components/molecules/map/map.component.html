@@ -1,1 +1,1 @@
-<div #rootInjector class="m-map m-map--dynamic" *ngIf="areCoordinatesValid"></div>
+<div #rootInjector class="m-map m-map--dynamic" [class.m-map--ready]="ready" *ngIf="areCoordinatesValid"></div>

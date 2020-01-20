@@ -51,9 +51,6 @@
 				<rk-content-loader-teaser-article></rk-content-loader-teaser-article>
 			</div>
 		</ng-container>
-		<div class="v-home__news-entry col-12 col-lg-8" *ngIf="eventTeaser">
-			<rk-teaser-event [location]="eventTeaser.location" [date]="eventTeaser.date" [description]="eventTeaser.description" [type]="eventTeaser.type" [title]="eventTeaser.title" [previewImage]="eventTeaser.previewImage" [slug]="eventTeaser.slug"></rk-teaser-event>
-		</div>
 		<div *ngFor="let article of articles" class="v-home__news-entry col-12 col-sm-12 col-md-6 col-lg-4">
 			<rk-teaser
 				routerLink="/articles/{{article._id}}"
@@ -72,7 +69,17 @@
 	<br />
 	<div class="row justify-content-center">
 		<div class="col-xs-12 col-sm-8 col-md-6 v-home__event-teaser" *ngIf="eventTeaser">
-			<rk-teaser-event *ngIf="eventTeaser" [date]="eventTeaser.date" [description]="eventTeaser.description" [type]="eventTeaser.type" [title]="eventTeaser.title" [previewImage]="eventTeaser.previewImage" [slug]="eventTeaser.slug"></rk-teaser-event>
+			<rk-teaser-event
+				*ngIf="eventTeaser"
+				[location]="eventTeaser.location"
+				[date]="eventTeaser.date"
+				[description]="eventTeaser.description"
+				[type]="eventTeaser.type"
+				[title]="eventTeaser.title"
+				[previewImage]="eventTeaser.previewImage"
+				[slug]="eventTeaser.slug"
+				(mouseover)="preloadEvent(eventTeaser.slug)"
+			></rk-teaser-event>
 		</div>
 	</div>
 </rk-content-block>

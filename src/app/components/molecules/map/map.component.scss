@@ -1,12 +1,22 @@
-rk-map {
+rk-map,
+.m-map--dynamic {
   display: block;
+  min-height: 1px;
+
+  rk-map[ready="true"],
+  &.m-map--ready {
+    min-height: 500px;
+    height: auto;
+  }
 }
 
 .m-map--dynamic {
   height: 100%;
-  min-height: 300px;
   width: 100%;
+  overflow: hidden;
   position: relative;
+  height: 1px;
+  transition: all 0.25s ease-in-out;
 
   &::before {
     content: "";

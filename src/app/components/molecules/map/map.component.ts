@@ -1,8 +1,20 @@
 /// <reference types="@types/googlemaps" />
-import { Component, ViewChild, ElementRef, Input, AfterViewInit, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+	Input,
+	Output,
+	EventEmitter,
+	OnInit,
+	AfterViewInit,
+	ViewEncapsulation,
+	Component,
+	ViewChild,
+	ElementRef
+} from '@angular/core';
 import { theme as darkTheme } from './map.theme-dark';
 import { theme as lightTheme } from './map.theme-light';
 import { theme as mediumTheme } from './map.theme-medium';
+import { CallbackFactory } from '../../../utils/callback-factory';
+import { ErrorLogService } from '../../../services/error-log.service';
 
 const extractLatLongExpr = /@(.*),(.*),/gi;
 
@@ -25,14 +37,20 @@ export class MapComponent implements OnInit, AfterViewInit {
 	@Input() public title = '';
 	@Input() public theme: 'light' | 'dark' = 'light';
 
+	@Output() public loaded = new EventEmitter<MapComponent>();
+
 	@ViewChild('rootInjector', { static: false })
 	private node: ElementRef;
+
+	public ready = false;
+
+	constructor(private errorLogService: ErrorLogService) { }
 
 	public get areCoordinatesValid() {
 		return this.coordinates && this.coordinates.length === 2;
 	}
 
-	ngOnInit() {
+	public ngOnInit() {
 		if (this.url && !this.areCoordinatesValid) {
 			const [, lat = 0, lng = 0] = extractLatLongExpr.exec(this.url) || [];
 
@@ -45,13 +63,25 @@ export class MapComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	ngAfterViewInit() {
-		this.initMap();
+	public ngAfterViewInit() {
+		console.log('ngAfterViewInit')
+		CallbackFactory.attachCallback('map', () => {
+			this.ready = true;
+			this.initMap();
+			this.loaded.emit(this);
+		});
 	}
 
 	private initMap() {
-		if (!this.areCoordinatesValid) {
+		if (!this.areCoordinatesValid || 'google' in window === false) {
 			// invalid coordinate set
+			this.errorLogService.trace({
+				message: !this.areCoordinatesValid ?
+					`Invalid coordinates found in URL ${this.url}`
+					: `Google Maps library could not be loaded`,
+				code: 406,
+				module: 'MapComponent'
+			});
 			return;
 		}
 

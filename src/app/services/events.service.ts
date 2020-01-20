@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { EventsGQL } from '../queries/Events.query';
 import { EventBySlugGQL } from '../queries/EventBySlug.query';
 import { map, flatMap, first } from 'rxjs/operators';
-import { CACHED_POLICY } from '../config/policies';
+import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY } from '../config/policies';
 import { EventsSingletonGQL } from '../queries/Events.singleton';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class EventsService {
+	private preloadedEvents: string[] = [];
+
 	constructor(
 		private eventsGQL: EventsGQL,
 		private eventBySlugGQL: EventBySlugGQL,
@@ -46,5 +48,24 @@ export class EventsService {
 				flatMap(entry => entry),
 				first()
 			);
+	}
+	public preloadEventBySlug(slug: string) {
+		if (this.preloadedEvents.indexOf(slug) > -1) {
+			return;
+		}
+
+		this.preloadedEvents.push(slug);
+
+		return this.eventBySlugGQL
+			.watch(
+				{
+					filter: { slug }
+				},
+				{
+					fetchPolicy: CACHE_AND_UPDATE_POLICY
+				}
+			)
+			.valueChanges
+			.subscribe();
 	}
 }

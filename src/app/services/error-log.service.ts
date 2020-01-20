@@ -5,6 +5,8 @@ import { capitalize } from '../utils/string';
 import version from '../../environments/version';
 import { environment } from '../../environments/environment';
 import { Subscription } from 'rxjs';
+import { PossibleSubscription, unsubscribe } from '../utils/subscription';
+import { SlackService } from './slack.service';
 
 interface ErrorLogServiceTraceOptions {
 	message?: string;
@@ -18,7 +20,10 @@ interface CreateLoggingRequestOptions {
 	module: string;
 }
 
-interface LoggingRequestData extends CreateLoggingRequestOptions {
+export interface LoggingRequestData {
+	message: string;
+	code: string;
+	module: string;
 	timestamp: string;
 	location: string;
 	platform: string;
@@ -29,13 +34,13 @@ interface LoggingRequestData extends CreateLoggingRequestOptions {
 	providedIn: 'root'
 })
 export class ErrorLogService {
-	constructor(private cockpitService: CockpitService) { }
-
 	public static DEFAULT_TRACE_OPTIONS = {
 		message: 'Unknown error',
 		code: 500,
 		module: 'RheinklangApplicationModule'
 	};
+
+	constructor(private cockpitService: CockpitService, private slackService: SlackService) { }
 
 	public trace(opts: ErrorLogServiceTraceOptions) {
 		return this.createLoggingRequest({
@@ -45,7 +50,7 @@ export class ErrorLogService {
 		});
 	}
 
-	public traceError(module?: string, err?: Error) {
+	public traceError(module?: string, err: Error = { message: 'Unknown error', name: 'Tracer' }) {
 		return this.trace({
 			module,
 			message: err.message,
@@ -59,14 +64,23 @@ export class ErrorLogService {
 			return null;
 		}
 
-		return this.cockpitService
-			.post<LoggingRequestData, {}>('/forms/submit/logs', {
-				...opts,
-				location: window.location.href,
-				timestamp: new Date().toUTCString(),
-				platform: this.getComputedPlatform(),
-				version: `Angular ${VERSION.full}, Commit #${version.hash}, Package ${version.version}`
-			})
+		const payload: LoggingRequestData = {
+			...opts,
+			location: window.location.href,
+			timestamp: new Date().toUTCString(),
+			platform: this.getComputedPlatform(),
+			version: `Angular ${VERSION.full}, Commit \`#${version.hash}\`, Package ${version.version}`
+		};
+
+		// send message to slack
+		this.slackService.sendErrorLog({
+			...payload,
+			hash: version.hash
+		});
+
+		// send log to cockpit
+		this.cockpitService
+			.post<LoggingRequestData, {}>('/forms/submit/logs', payload)
 			.subscribe();
 	}
 
@@ -74,10 +88,13 @@ export class ErrorLogService {
 		const parser = new UAParser(navigator.userAgent);
 		const { browser, device, os, engine } = parser.getResult();
 
+		const deviceInfo = device.type && device.vendor ?
+			`${capitalize(device.type)}, ${device.vendor} ${device.model}`
+			: 'Desktop';
+
 		// tslint:disable-next-line: max-line-length
 		return [
-			`${capitalize(device.type)}, ${device.vendor} ${device.model}`,
-			`running ${os.name} ${os.version}`,
+			`${deviceInfo} running ${os.name} ${os.version}`,
 			`/ ${browser.name} ${browser.version} (${engine.name})`
 		].join(' ');
 	}

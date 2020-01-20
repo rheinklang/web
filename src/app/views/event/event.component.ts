@@ -56,18 +56,6 @@ export class EventComponent implements OnInit, OnDestroy {
 		unsubscribe([this.routeSub$, this.eventSub$, this.articlesSub$]);
 	}
 
-	public get shopLink() {
-		return this.event && this.event.tickets && this.event.tickets.externalShopLink
-			? generateUrchingTrackingURL(this.event.tickets.externalShopLink, this.event.title)
-			: null;
-	}
-
-	public get facebookLink() {
-		return this.event && this.event.facebookUrl
-			? generateUrchingTrackingURL(this.event.facebookUrl, this.event.title)
-			: null;
-	}
-
 	public get shouldShowMaps() {
 		const { deviceService, event } = this;
 

@@ -23,8 +23,13 @@ injectGCPMapsScript();
 })
 export class AppComponent implements OnDestroy {
 	private navEndSub$: Subscription;
+	private gMapCbAttached = false;
 
 	constructor(router: Router) {
+		if (!this.gMapCbAttached) {
+			this.gMapCbAttached = true;
+		}
+
 		// no google tag manager instance found, skip analytics
 		if (typeof gtag === 'undefined') {
 			return;

@@ -6,6 +6,7 @@ import { HomeService } from '../../services/home.service';
 import { HomeSingletonGQLSlideItem } from '../../queries/Home.singleton';
 import { PossibleSubscription, unsubscribe } from '../../utils/subscription';
 import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
+import { EventsService } from '../../services/events.service';
 
 @Component({
 	selector: 'rk-home',
@@ -22,7 +23,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 	private eventTeaserSub$: PossibleSubscription;
 	private homeSub$: PossibleSubscription;
 
-	constructor(private articlesService: ArticlesService, private homeService: HomeService) { }
+	constructor(
+		private articlesService: ArticlesService,
+		private homeService: HomeService,
+		private eventsService: EventsService
+	) { }
 
 	public ngOnInit() {
 		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
@@ -67,6 +72,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	public preloadArticle(id: string) {
 		this.articlesService.preloadArticleById(id);
+	}
+
+	public preloadEvent(slug: string) {
+		this.eventsService.preloadEventBySlug(slug);
 	}
 
 	private initSlider() {

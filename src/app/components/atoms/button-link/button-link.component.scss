@@ -1,33 +1,59 @@
-@import '../../../styles/colors.scss';
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
+
+rk-button-link {
+  width: 100%;
+
+  @include respond-to-min("sm") {
+    width: auto;
+  }
+}
 
 .a-button-link {
-	display: inline-block;
-	padding: 10px;
-	border-radius: 3px;
-	background-color: $color-black;
-	color: $color-white;
-	text-decoration: none;
-	line-height: 52px;
-	height: 52px;
-	line-height: 34px;
-	transition: all 0.2s ease-in-out;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: $color-black;
+  color: $color-white;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  height: 52px;
+  line-height: 34px;
+  transition: all 0.2s ease-in-out;
 
-	&:hover {
-		background-color: $color-grey-100;
-	}
+  @include respond-to-min("sm") {
+    display: inline-block;
+    width: auto;
+  }
 
-	rk-icon svg {
-		height: 34px;
-		line-height: 34px;
-		vertical-align: sub;
-		margin-right: 5px;
-	}
+  &:hover {
+    background-color: $color-grey-100;
+  }
 
-	&--green {
-		background-color: $color-primary-grass-green;
+  rk-icon svg {
+    height: 34px;
+    line-height: 34px;
+    vertical-align: sub;
+    margin-right: 5px;
+  }
 
-		&:hover {
-			background-color: $color-primary-grass-green-light1;
-		}
-	}
+  &--green {
+    background-color: $color-primary-grass-green;
+
+    &:hover {
+      background-color: $color-primary-grass-green-light1;
+    }
+  }
+
+  &--facebook {
+    background-color: $color-brand-facebook;
+
+    &:hover {
+      background-color: $color-brand-facebook-light;
+    }
+
+    rk-icon svg {
+      vertical-align: sub;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 
@@ -51,6 +51,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { SafeHtml } from './pipes/safe-html';
 import { StaticMapComponent } from './components/molecules/map/static-map.component';
 import { MapComponent } from './components/molecules/map/map.component';
+import { GlobalErrorHandler } from './handler/GlobalErrorHandler';
 
 @NgModule({
 	declarations: [
@@ -109,7 +110,10 @@ import { MapComponent } from './components/molecules/map/map.component';
 		ContentLoaderModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	providers: [],
+	providers: [{
+		provide: ErrorHandler,
+		useClass: GlobalErrorHandler
+	}],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

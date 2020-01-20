@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { generateUrchingTrackingURL } from '../../../utils/utm';
 
 @Component({
 	selector: 'rk-button-link',
@@ -10,10 +11,16 @@ export class ButtonLinkComponent {
 	@Input() public href: string;
 	@Input() public target = '_blank';
 	@Input() public secure = true;
+	@Input() public label = 'link';
+	@Input() public campaign: string;
 	@Input() public modifier: string;
 
 	public get relationAttributeValue() {
 		return this.secure ? 'noopener noreferrer' : '';
+	}
+
+	public get url() {
+		return generateUrchingTrackingURL(this.href, this.campaign);
 	}
 
 	public get classList() {
