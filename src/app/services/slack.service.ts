@@ -46,7 +46,7 @@ export class SlackService {
 			blocks: [
 				// main message
 				// tslint:disable-next-line: max-line-length
-				this.buildTextBlock(`:warning: Encountered a new issue on the website under _ ${stack.location} _:\n*${stack.message} (${stack.code})*`),
+				this.buildTextBlock(`:warning: Encountered a new issue on the website under _ ${stack.location} _:\n\n*${stack.message} (${stack.code})*`),
 				// add all meta information
 				{
 					type: 'section',
