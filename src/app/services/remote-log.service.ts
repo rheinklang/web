@@ -8,17 +8,13 @@ import { Subscription } from 'rxjs';
 import { PossibleSubscription, unsubscribe } from '../utils/subscription';
 import { SlackService } from './slack.service';
 import { IPService } from './ip.service';
-
-interface ErrorLogServiceTraceOptions {
-	message?: string;
-	code?: number | string;
-	module?: string;
-}
+import { LogServiceTraceOptions } from './log.service';
 
 interface CreateLoggingRequestOptions {
 	message: string;
 	code: string;
 	module: string;
+	stack?: string;
 }
 
 export interface LoggingRequestData {
@@ -34,7 +30,7 @@ export interface LoggingRequestData {
 @Injectable({
 	providedIn: 'root'
 })
-export class ErrorLogService {
+export class RemoteLogService {
 	public static DEFAULT_TRACE_OPTIONS = {
 		message: 'Unknown error',
 		code: 500,
@@ -51,11 +47,11 @@ export class ErrorLogService {
 		private ip: IPService
 	) { }
 
-	public trace(opts: ErrorLogServiceTraceOptions) {
+	public trace(opts: LogServiceTraceOptions) {
 		return this.createLoggingRequest({
-			message: opts.message || ErrorLogService.DEFAULT_TRACE_OPTIONS.message,
-			code: `${opts.code || ErrorLogService.DEFAULT_TRACE_OPTIONS.code}`,
-			module: opts.module || ErrorLogService.DEFAULT_TRACE_OPTIONS.module
+			message: opts.message || RemoteLogService.DEFAULT_TRACE_OPTIONS.message,
+			code: `${opts.code || RemoteLogService.DEFAULT_TRACE_OPTIONS.code}`,
+			module: opts.module || RemoteLogService.DEFAULT_TRACE_OPTIONS.module
 		});
 	}
 
@@ -70,13 +66,8 @@ export class ErrorLogService {
 	private createLoggingRequest(opts: CreateLoggingRequestOptions): Subscription | null {
 		if (this.lastErrorSignature && (this.getErrorSignature(opts) === this.lastErrorSignature)) {
 			// issue was already sent to the API
-			console.warn('traced already')
 			return;
 		}
-		// if (!environment.production) {
-		// 	// disable remote logging on non-production systems
-		// 	return null;
-		// }
 
 		const payload: LoggingRequestData = {
 			...opts,
@@ -101,14 +92,10 @@ export class ErrorLogService {
 				hash: version.hash,
 				net: `${ipInfo.ip}`,
 				locale: `${ipInfo.country}, ${ipInfo.region}, ${ipInfo.city}`,
-				org: ipInfo.org || 'unknown'
+				org: ipInfo.org || 'unknown',
+				stack: opts.stack
 			});
 		});
-
-		if (!environment.production) {
-			// disable remote logging on non-production systems
-			return null;
-		}
 
 		// send log in parallel to cockpit
 		this.cockpit

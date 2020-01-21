@@ -1,16 +1,16 @@
 import { ErrorHandler, Injectable } from '@angular/core';
-import { ErrorLogService } from '../services/error-log.service';
+import { LogService } from '../services/log.service';
 
 @Injectable({
 	providedIn: 'root',
-	deps: [ErrorLogService]
+	deps: [LogService]
 })
 export class GlobalErrorHandler implements ErrorHandler {
 
-	constructor(private errorLogService: ErrorLogService) { }
+	constructor(private log: LogService) { }
 
 	public handleError(error: any) {
-		this.errorLogService.traceError('GlobalErrorHandler', error || {
+		this.log.traceError('GlobalErrorHandler', error || {
 			name: 'GlobalErrorHandler',
 			message: `Unknown application error`,
 			code: 500

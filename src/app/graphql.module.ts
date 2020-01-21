@@ -4,17 +4,17 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { environment } from '../environments/environment';
-import { ErrorLogService } from './services/error-log.service';
+import { LogService } from './services/log.service';
 
 const uri = environment.graphQLHostURL;
 
-export function createApollo(httpLink: HttpLink, errorLogService: ErrorLogService) {
+export function createApollo(httpLink: HttpLink, log: LogService) {
 	const link = httpLink.create({ uri });
 
 	onError(({ graphQLErrors, networkError }) => {
 		if (graphQLErrors) {
 			graphQLErrors.forEach(({ message, locations, path, source }) =>
-				errorLogService.trace({
+				log.trace({
 					module: `GraphGQLModule(${source.name || 'Unknown'})`,
 					message: `${message} (location: ${locations}, path: ${path})`
 				})
@@ -22,7 +22,7 @@ export function createApollo(httpLink: HttpLink, errorLogService: ErrorLogServic
 		}
 
 		if (networkError) {
-			errorLogService.traceError('GraphGQLModule', networkError);
+			log.traceError('GraphGQLModule', networkError);
 		}
 	});
 
@@ -40,7 +40,7 @@ export function createApollo(httpLink: HttpLink, errorLogService: ErrorLogServic
 		{
 			provide: APOLLO_OPTIONS,
 			useFactory: createApollo,
-			deps: [HttpLink, ErrorLogService]
+			deps: [HttpLink, LogService]
 		}
 	]
 })

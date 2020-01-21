@@ -52,6 +52,9 @@ import { SafeHtml } from './pipes/safe-html';
 import { StaticMapComponent } from './components/molecules/map/static-map.component';
 import { MapComponent } from './components/molecules/map/map.component';
 import { GlobalErrorHandler } from './handler/GlobalErrorHandler';
+import { LogService } from './services/log.service';
+import { environment } from '../environments/environment';
+import { RemoteLogService } from './services/remote-log.service';
 
 @NgModule({
 	declarations: [
@@ -110,10 +113,15 @@ import { GlobalErrorHandler } from './handler/GlobalErrorHandler';
 		ContentLoaderModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	providers: [{
-		provide: ErrorHandler,
-		useClass: GlobalErrorHandler
-	}],
+	providers: [
+		{
+			provide: ErrorHandler,
+			useClass: GlobalErrorHandler
+		}, {
+			provide: LogService,
+			useClass: environment.production ? RemoteLogService : LogService
+		}
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

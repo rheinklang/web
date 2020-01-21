@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoggingRequestData } from './error-log.service';
+import { LoggingRequestData } from './remote-log.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { PossibleSubscription, unsubscribe } from '../utils/subscription';
@@ -31,6 +31,7 @@ interface SlackErrorPayload extends LoggingRequestData {
 	net: string;
 	locale: string;
 	org: string;
+	stack?: string;
 }
 
 const repoURL = 'https://github.com/rheinklang/web';
@@ -41,27 +42,33 @@ const repoURL = 'https://github.com/rheinklang/web';
 export class SlackService {
 	constructor(private http: HttpClient) { }
 
-	public sendErrorLog(stack: SlackErrorPayload) {
+	public sendErrorLog(err: SlackErrorPayload) {
+		const stackField = err.stack ? {
+			Stacktrace: this.buildCodeMarkdown(err.stack)
+		} : {};
+
 		return this.http.post(environment.slackErrorHookURL, JSON.stringify({
 			blocks: [
 				// main message
 				// tslint:disable-next-line: max-line-length
-				this.buildTextBlock(`:warning: Encountered a new issue on the website under _ ${stack.location} _:\n\n*${stack.message} (${stack.code})*`),
+				this.buildTextBlock(`:warning: Encountered a new issue on the website under _ ${err.location} _:\n\n*${err.message} (${err.code})*`),
 				// add all meta information
 				{
 					type: 'section',
 					fields: this.buildFields({
-						Module: stack.module,
-						When: stack.timestamp,
-						Platform: stack.platform,
-						Version: stack.version,
-						Network: stack.net,
-						Location: stack.locale,
-						Proxy: stack.org
+						Module: err.module,
+						When: err.timestamp,
+						Platform: err.platform,
+						Version: err.version,
+						Network: err.net,
+						Location: err.locale,
+						Proxy: err.org,
+						// add optional stacktrace information
+						...stackField
 					})
 				},
 				// add source code information
-				this.buildTextBlock(`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${stack.hash}`),
+				this.buildTextBlock(`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${err.hash}`),
 				// attach context
 				this.context
 			]
@@ -86,6 +93,10 @@ export class SlackService {
 				text: message
 			}
 		};
+	}
+
+	private buildCodeMarkdown(content: string) {
+		return ['```', content, '```'].join('');
 	}
 
 	private get context() {

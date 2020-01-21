@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ErrorLogService } from '../../services/error-log.service';
+import { LogService } from '../../services/log.service';
+
+class NotFoundError extends Error {
+	public code = 404;
+
+	constructor(message: string) {
+		super(message);
+
+		// Set the prototype explicitly.
+		Object.setPrototypeOf(this, NotFoundError.prototype);
+	}
+}
 
 @Component({
 	selector: 'rk-not-found',
@@ -8,14 +19,11 @@ import { ErrorLogService } from '../../services/error-log.service';
 	styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-	constructor(private route: ActivatedRoute, private errorLogService: ErrorLogService) {}
+	constructor(private route: ActivatedRoute, private log: LogService) { }
 
 	public ngOnInit() {
-		this.errorLogService.trace({
-			message: `Invalid page request for ${this.path}`,
-			module: 'NotFoundComponent',
-			code: 404
-		});
+		const message = `Invalid page request for ${this.path}, no page registered on this route`;
+		this.log.traceError('NotFoundComponent', new NotFoundError(message));
 	}
 
 	public get path() {

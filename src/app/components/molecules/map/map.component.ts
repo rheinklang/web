@@ -14,7 +14,7 @@ import { theme as darkTheme } from './map.theme-dark';
 import { theme as lightTheme } from './map.theme-light';
 import { theme as mediumTheme } from './map.theme-medium';
 import { CallbackFactory } from '../../../utils/callback-factory';
-import { ErrorLogService } from '../../../services/error-log.service';
+import { LogService } from '../../../services/log.service';
 
 const extractLatLongExpr = /@(.*),(.*),/gi;
 
@@ -44,7 +44,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	public ready = false;
 
-	constructor(private errorLogService: ErrorLogService) { }
+	constructor(private log: LogService) { }
 
 	public get areCoordinatesValid() {
 		return this.coordinates && this.coordinates.length === 2;
@@ -74,7 +74,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 	private initMap() {
 		if (!this.areCoordinatesValid || 'google' in window === false) {
 			// invalid coordinate set
-			this.errorLogService.trace({
+			this.log.trace({
 				message: !this.areCoordinatesValid ?
 					`Invalid coordinates found in URL ${this.url}`
 					: `Google Maps library could not be loaded`,
