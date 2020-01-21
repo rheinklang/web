@@ -15,7 +15,6 @@ import { CustomPreloadingStrategy } from './handler/PreloadHandler';
 const routes: Routes = [
 	{
 		path: '',
-		data: { seoID: 'home' },
 		component: HomeComponent
 	},
 	{
