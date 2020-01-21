@@ -28,6 +28,9 @@ interface SlackMessageBody {
 
 interface SlackErrorPayload extends LoggingRequestData {
 	hash: string;
+	net: string;
+	locale: string;
+	org: string;
 }
 
 const repoURL = 'https://github.com/rheinklang/web';
@@ -43,7 +46,7 @@ export class SlackService {
 			blocks: [
 				// main message
 				// tslint:disable-next-line: max-line-length
-				this.buildTextBlock(`:warning: Encountered a new issue on _ ${stack.location} _:\n*${stack.message} (${stack.code})*`),
+				this.buildTextBlock(`:warning: Encountered a new issue on the website under _ ${stack.location} _:\n*${stack.message} (${stack.code})*`),
 				// add all meta information
 				{
 					type: 'section',
@@ -52,6 +55,9 @@ export class SlackService {
 						When: stack.timestamp,
 						Platform: stack.platform,
 						Version: stack.version,
+						Network: stack.net,
+						Location: stack.locale,
+						Proxy: stack.org
 					})
 				},
 				// add source code information
@@ -59,7 +65,7 @@ export class SlackService {
 				// attach context
 				this.context
 			]
-		} as SlackMessageBody)).subscribe().unsubscribe();
+		} as SlackMessageBody)).subscribe();
 	}
 
 	private buildFields(fields: Record<string, string>) {

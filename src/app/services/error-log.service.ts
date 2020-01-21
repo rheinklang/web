@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { Subscription } from 'rxjs';
 import { PossibleSubscription, unsubscribe } from '../utils/subscription';
 import { SlackService } from './slack.service';
+import { IPService } from './ip.service';
 
 interface ErrorLogServiceTraceOptions {
 	message?: string;
@@ -40,7 +41,15 @@ export class ErrorLogService {
 		module: 'RheinklangApplicationModule'
 	};
 
-	constructor(private cockpitService: CockpitService, private slackService: SlackService) { }
+	private enableDevMode = false;
+	private lastErrorSignature: string | null = null;
+	private lastIPTrace: string | null = null;
+
+	constructor(
+		private cockpit: CockpitService,
+		private slack: SlackService,
+		private ip: IPService
+	) { }
 
 	public trace(opts: ErrorLogServiceTraceOptions) {
 		return this.createLoggingRequest({
@@ -59,10 +68,15 @@ export class ErrorLogService {
 	}
 
 	private createLoggingRequest(opts: CreateLoggingRequestOptions): Subscription | null {
-		if (!environment.production) {
-			// disable remote logging on non-production systems
-			return null;
+		if (this.lastErrorSignature && (this.getErrorSignature(opts) === this.lastErrorSignature)) {
+			// issue was already sent to the API
+			console.warn('traced already')
+			return;
 		}
+		// if (!environment.production) {
+		// 	// disable remote logging on non-production systems
+		// 	return null;
+		// }
 
 		const payload: LoggingRequestData = {
 			...opts,
@@ -72,14 +86,32 @@ export class ErrorLogService {
 			version: `Angular ${VERSION.full}, Commit \`#${version.hash}\`, Package ${version.version}`
 		};
 
-		// send message to slack
-		this.slackService.sendErrorLog({
-			...payload,
-			hash: version.hash
+		this.lastErrorSignature = this.getErrorSignature(opts);
+
+		this.ip.getIP().subscribe(ipInfo => {
+			if (this.lastIPTrace === ipInfo.ip) {
+				// same host, do not send issue
+				return;
+			}
+
+			this.lastIPTrace = ipInfo.ip;
+			// send message to slack
+			this.slack.sendErrorLog({
+				...payload,
+				hash: version.hash,
+				net: `${ipInfo.ip}`,
+				locale: `${ipInfo.country}, ${ipInfo.region}, ${ipInfo.city}`,
+				org: ipInfo.org || 'unknown'
+			});
 		});
 
-		// send log to cockpit
-		this.cockpitService
+		if (!environment.production) {
+			// disable remote logging on non-production systems
+			return null;
+		}
+
+		// send log in parallel to cockpit
+		this.cockpit
 			.post<LoggingRequestData, {}>('/forms/submit/logs', payload)
 			.subscribe();
 	}
@@ -94,8 +126,12 @@ export class ErrorLogService {
 
 		// tslint:disable-next-line: max-line-length
 		return [
-			`${deviceInfo} running ${os.name} ${os.version}`,
+			`${deviceInfo} – ${os.name} ${os.version}`,
 			`/ ${browser.name} ${browser.version} (${engine.name})`
 		].join(' ');
+	}
+
+	private getErrorSignature(opts: CreateLoggingRequestOptions) {
+		return `${opts.module}_${opts.code}_${opts.message}`;
 	}
 }

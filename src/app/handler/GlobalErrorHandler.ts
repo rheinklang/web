@@ -10,6 +10,10 @@ export class GlobalErrorHandler implements ErrorHandler {
 	constructor(private errorLogService: ErrorLogService) { }
 
 	public handleError(error: any) {
-		this.errorLogService.traceError('GlobalErrorHandler', error);
+		this.errorLogService.traceError('GlobalErrorHandler', error || {
+			name: 'GlobalErrorHandler',
+			message: `Unknown application error`,
+			code: 500
+		});
 	}
 }
