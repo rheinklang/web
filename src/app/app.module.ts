@@ -52,43 +52,45 @@ import { SafeHtml } from './pipes/safe-html';
 import { StaticMapComponent } from './components/molecules/map/static-map.component';
 import { MapComponent } from './components/molecules/map/map.component';
 import { GlobalErrorHandler } from './handler/GlobalErrorHandler';
+import { CustomPreloadingStrategy } from './handler/PreloadHandler';
+import { SharedModule } from './shared.module';
 
 @NgModule({
 	declarations: [
 		SafeHtml,
 		AppComponent,
 		DefaultLayoutComponent,
-		AboutComponent,
+		// AboutComponent,
 		ArticlesComponent,
 		BurgerComponent,
 		ButtonComponent,
 		ButtonFacebookComponent,
 		ButtonLinkComponent,
-		CardComponent,
+		// CardComponent,
 		ComingSoonPageComponent,
 		ContactComponent,
-		ContentBlockComponent,
+		// ContentBlockComponent,
 		ContentLoaderTeaserArticleComponent,
 		EventComponent,
 		EventOverviewComponent,
 		FooterComponent,
 		HeaderComponent,
-		HeadingComponent,
+		// HeadingComponent,
 		HomeComponent,
-		IconComponent,
-		ImageComponent,
+		// IconComponent,
+		// ImageComponent,
 		ImpressionComponent,
 		ImpressionOverviewComponent,
 		InputComponent,
-		LinkComponent,
+		// LinkComponent,
 		LinkListComponent,
 		LogoComponent,
 		NewsletterComponent,
 		NotFoundComponent,
-		PictureComponent,
+		// PictureComponent,
 		RichtextComponent,
-		ScrollAnchorDirective,
-		SeoManagerComponent,
+		// ScrollAnchorDirective,
+		// SeoManagerComponent,
 		SpinnerComponent,
 		SponsorsOverviewComponent,
 		TagComponent,
@@ -96,11 +98,12 @@ import { GlobalErrorHandler } from './handler/GlobalErrorHandler';
 		TeaserComponent,
 		TeaserEventComponent,
 		TeaserSponsorComponent,
-		TooltipDirective,
+		// TooltipDirective,
 		StaticMapComponent,
 		MapComponent
 	],
 	imports: [
+		SharedModule,
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
@@ -110,10 +113,12 @@ import { GlobalErrorHandler } from './handler/GlobalErrorHandler';
 		ContentLoaderModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	providers: [{
-		provide: ErrorHandler,
-		useClass: GlobalErrorHandler
-	}],
+	providers: [
+		CustomPreloadingStrategy,
+		{
+			provide: ErrorHandler,
+			useClass: GlobalErrorHandler
+		}],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

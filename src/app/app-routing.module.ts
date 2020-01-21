@@ -10,6 +10,7 @@ import { ImpressionComponent } from './views/impression/impression.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { ArticlesComponent } from './views/articles/articles.component';
 import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
+import { CustomPreloadingStrategy } from './handler/PreloadHandler';
 
 const routes: Routes = [
 	{
@@ -19,7 +20,10 @@ const routes: Routes = [
 	},
 	{
 		path: 'about',
-		component: AboutComponent
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "about" */ './views/about/about.module')
+				.then(mod => mod.AboutModule)
 	},
 	{
 		path: 'contact',
@@ -63,7 +67,8 @@ const routes: Routes = [
 	imports: [
 		RouterModule.forRoot(routes, {
 			scrollPositionRestoration: 'enabled',
-			anchorScrolling: 'enabled'
+			anchorScrolling: 'enabled',
+			preloadingStrategy: CustomPreloadingStrategy
 			// enableTracing: environment.production !== true
 		})
 	],

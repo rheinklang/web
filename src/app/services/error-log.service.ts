@@ -60,6 +60,7 @@ export class ErrorLogService {
 
 	private createLoggingRequest(opts: CreateLoggingRequestOptions): Subscription | null {
 		if (!environment.production) {
+			console.error(`[${opts.module}] ${opts.message}`);
 			// disable remote logging on non-production systems
 			return null;
 		}
