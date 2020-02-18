@@ -28,7 +28,7 @@ export class EventComponent implements OnInit, OnDestroy {
 		private deviceService: DeviceService,
 		private eventsService: EventsService,
 		private articlesService: ArticlesService
-	) { }
+	) {}
 
 	public ngOnInit() {
 		this.articlesSub$ = this.articlesService.getArticles().subscribe(entries => {

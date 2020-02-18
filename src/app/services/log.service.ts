@@ -12,7 +12,9 @@ export interface LogServiceTraceOptions {
 })
 export class LogService {
 	public trace(opts: LogServiceTraceOptions) {
-		console.error(`[${opts.module}] ${opts.message} (${opts.code})\n\n${opts.stack || 'No stack available'}`);
+		console.error(
+			`[${opts.module}] ${opts.message} (${opts.code})\n\n${opts.stack || 'No stack available'}`
+		);
 	}
 
 	public traceError(module?: string, err: Error = { message: 'Unknown error', name: 'Tracer' }) {

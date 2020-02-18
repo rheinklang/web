@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit, OnDestroy {
 
 	private combinedSub$: Subscription;
 
-	constructor(private portraitService: PortraitService, private teamService: TeamService) { }
+	constructor(private portraitService: PortraitService, private teamService: TeamService) {}
 
 	public ngOnInit() {
 		this.combinedSub$ = combineLatest([

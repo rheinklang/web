@@ -11,12 +11,12 @@ export interface TicketByIdGQLResponse {
 	providedIn: 'root'
 })
 export class TicketByIdGQL extends Query<
-TicketByIdGQLResponse,
-{
-	filter: {
-		_id: string;
-	};
-}
+	TicketByIdGQLResponse,
+	{
+		filter: {
+			_id: string;
+		};
+	}
 > {
 	document = gql`
 		query GetTicketByIdQuery($filter: JsonType!) {

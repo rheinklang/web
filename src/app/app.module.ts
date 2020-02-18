@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@ngneat/content-loader';
+
+import { MatInputModule, MatSelectModule, MatCheckboxModule } from '@angular/material';
 
 import { AboutComponent } from './views/about/about.component';
 import { AppComponent } from './app.component';
@@ -55,6 +57,16 @@ import { GlobalErrorHandler } from './handler/GlobalErrorHandler';
 import { LogService } from './services/log.service';
 import { environment } from '../environments/environment';
 import { RemoteLogService } from './services/remote-log.service';
+import { SelectComponent } from './components/atoms/select/select.component';
+import { CheckboxComponent } from './components/atoms/checkbox/checkbox.component';
+import { FormGroupComponent } from './components/molecules/form-group/form-group.component';
+import { AccordionPanelComponent } from './components/atoms/accordion-panel/accordion-panel.component';
+import { AccordionComponent } from './components/molecules/accordion/accordion.component';
+import { GuestAppearanceFormComponent } from './forms/guest-appearance-form/guest-appearance-form.component';
+import { FormComponent } from './components/organisms/form/form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SupplierFormComponent } from './forms/supplier-form/supplier-form.component';
+import { TeamFormComponent } from './forms/team-form/team-form.component';
 
 @NgModule({
 	declarations: [
@@ -101,23 +113,38 @@ import { RemoteLogService } from './services/remote-log.service';
 		TeaserSponsorComponent,
 		TooltipDirective,
 		StaticMapComponent,
-		MapComponent
+		MapComponent,
+		SelectComponent,
+		CheckboxComponent,
+		FormGroupComponent,
+		AccordionPanelComponent,
+		AccordionComponent,
+		GuestAppearanceFormComponent,
+		FormComponent,
+		SupplierFormComponent,
+		TeamFormComponent
 	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
 		GraphQLModule,
-		FormsModule,
+		// FormsModule,
 		ReactiveFormsModule,
-		ContentLoaderModule
+		ContentLoaderModule,
+		BrowserAnimationsModule,
+		// Material
+		MatInputModule,
+		MatSelectModule,
+		MatCheckboxModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [
 		{
 			provide: ErrorHandler,
 			useClass: GlobalErrorHandler
-		}, {
+		},
+		{
 			provide: LogService,
 			useClass: environment.production ? RemoteLogService : LogService
 		}

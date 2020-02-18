@@ -1,0 +1,30 @@
+@import '../../../styles/colors.scss';
+
+$input-inner-spacing: 8px 12px;
+$input-border-radius: 5px;
+$input-border-size: 2px;
+
+.a-select-wrapper {
+	position: relative;
+}
+
+.a-select {
+	background-color: transparent;
+	display: inline-block;
+	padding: $input-inner-spacing;
+	border-radius: $input-border-radius;
+	box-shadow: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: $input-border-size solid $color-grey-300;
+	transition: border 0.3s linear;
+	outline: none;
+	display: block;
+	width: 100%;
+}
+
+.a-select-wrapper rk-icon {
+	position: absolute;
+	right: 8px;
+	top: 10px;
+}

@@ -1,8 +1,6 @@
 import { PreviewImage, PreviewImagePathOnly } from '../types/PreviewImage';
 
-export interface ArticleSchmea<
-	TPreviewImage extends Partial<PreviewImage> = PreviewImagePathOnly
-	> {
+export interface ArticleSchmea<TPreviewImage extends Partial<PreviewImage> = PreviewImagePathOnly> {
 	_id: string;
 	title: string;
 	author: string;

@@ -6,18 +6,8 @@ import { LocationSchema } from '../schema/LocationSchema';
 import { TicketsSchema } from '../schema/TicketsSchema';
 
 export type EventBySlugGQLEntry = EventSchema<
-	Pick<LocationSchema,
-		'city' |
-		'canton' |
-		'country' |
-		'zoomLevel' |
-		'googleMapsURL'>,
-	Pick<TicketsSchema,
-		'title' |
-		'enabled' |
-		'externalShopLink' |
-		'externalShopType'
-	>
+	Pick<LocationSchema, 'city' | 'canton' | 'country' | 'zoomLevel' | 'googleMapsURL'>,
+	Pick<TicketsSchema, 'title' | 'enabled' | 'externalShopLink' | 'externalShopType'>
 >;
 
 export interface EventBySlugGQLResponse {
@@ -28,12 +18,12 @@ export interface EventBySlugGQLResponse {
 	providedIn: 'root'
 })
 export class EventBySlugGQL extends Query<
-EventBySlugGQLResponse,
-{
-	filter: {
-		slug: string;
-	};
-}
+	EventBySlugGQLResponse,
+	{
+		filter: {
+			slug: string;
+		};
+	}
 > {
 	public document = gql`
 		query EventBySlugQuery($filter: JsonType!) {

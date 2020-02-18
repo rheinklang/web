@@ -7,7 +7,7 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class HomeService {
-	constructor(private homeSingletonGQL: HomeSingletonGQL) { }
+	constructor(private homeSingletonGQL: HomeSingletonGQL) {}
 
 	public getEventTeaser() {
 		return this.homeSingletonGQL

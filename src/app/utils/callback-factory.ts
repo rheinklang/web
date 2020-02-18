@@ -52,12 +52,13 @@ export class CallbackFactory {
 	}
 
 	public static safe(types: string[]) {
-		types.map(type => CallbackFactory.getIdFor(type)).forEach(type => {
-			window[type] = noop;
-		});
+		types
+			.map(type => CallbackFactory.getIdFor(type))
+			.forEach(type => {
+				window[type] = noop;
+			});
 	}
 }
-
 
 // @ts-ignore
 window.CallbackService = CallbackFactory;

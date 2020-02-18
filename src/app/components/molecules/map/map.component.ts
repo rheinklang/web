@@ -44,7 +44,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	public ready = false;
 
-	constructor(private log: LogService) { }
+	constructor(private log: LogService) {}
 
 	public get areCoordinatesValid() {
 		return this.coordinates && this.coordinates.length === 2;
@@ -55,10 +55,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 			const [, lat = 0, lng = 0] = extractLatLongExpr.exec(this.url) || [];
 
 			if (lat && lng) {
-				this.coordinates = [
-					parseFloat(lat),
-					parseFloat(lng)
-				];
+				this.coordinates = [parseFloat(lat), parseFloat(lng)];
 			}
 		}
 	}
@@ -75,8 +72,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 		if (!this.areCoordinatesValid || 'google' in window === false) {
 			// invalid coordinate set
 			this.log.trace({
-				message: !this.areCoordinatesValid ?
-					`Invalid coordinates found in URL ${this.url}`
+				message: !this.areCoordinatesValid
+					? `Invalid coordinates found in URL ${this.url}`
 					: `Google Maps library could not be loaded`,
 				code: 406,
 				module: 'MapComponent'

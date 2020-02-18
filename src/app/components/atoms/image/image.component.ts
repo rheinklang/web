@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 
-import(/* webpackChunkName: "lazysizes" */'lazysizes');
+import(/* webpackChunkName: "lazysizes" */ 'lazysizes');
 
 // tslint:disable-next-line: no-string-literal
 window['lazySizesConfig'] = window['lazySizesConfig'] || {};

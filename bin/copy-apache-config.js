@@ -11,4 +11,4 @@ fs.copyFile(SOURCE, DEST, (err) => {
 	console.log('');
 	console.log(green('📡 .htaccess was copied to compiled output directory'));
 	console.log('');
-});
+})

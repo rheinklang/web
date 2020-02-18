@@ -12,7 +12,6 @@ export type MapCoordinates = [number, number];
 	styleUrls: ['./static-map.component.scss']
 })
 export class StaticMapComponent {
-
 	public static STYLE_PARAMS = theme;
 
 	@Input() public coordinates: MapCoordinates;
@@ -53,5 +52,4 @@ export class StaticMapComponent {
 	public get sourceSet() {
 		return `${this.generatedMapsURL(false)} x1, ${this.generatedMapsURL(true)} x2`;
 	}
-
 }

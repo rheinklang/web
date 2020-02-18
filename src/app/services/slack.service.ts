@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { LoggingRequestData } from './remote-log.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { PossibleSubscription, unsubscribe } from '../utils/subscription';
+import { readableKey } from '../utils/string';
 
 interface SlackField {
-	type: 'text' | 'mrkdwn';
-	text: string;
+	type?: 'text' | 'mrkdwn' | string;
+	text?: string;
+	fields?: SlackField[];
 }
 
 interface SlackBlock {
-	type: 'section';
+	type?: 'section' | string;
 	text?: SlackField;
 	fields?: SlackField;
 }
@@ -22,7 +23,7 @@ interface SlackMessageBody {
 	/**
 	 * @deprecated
 	 */
-	attachments: any[];
+	attachments?: any[];
 	mrkdwn?: boolean;
 }
 
@@ -42,16 +43,24 @@ const repoURL = 'https://github.com/rheinklang/web';
 export class SlackService {
 	constructor(private http: HttpClient) { }
 
-	public sendErrorLog(err: SlackErrorPayload) {
-		const stackField = err.stack ? {
-			Stacktrace: this.buildCodeMarkdown(err.stack)
-		} : {};
+	public send(payload: SlackMessageBody) {
+		return this.http.post(environment.slackErrorHookURL, JSON.stringify(payload));
+	}
 
-		return this.http.post(environment.slackErrorHookURL, JSON.stringify({
+	public sendErrorLog(err: SlackErrorPayload) {
+		const stackField = err.stack
+			? {
+				Stacktrace: this.buildCodeMarkdown(err.stack)
+			}
+			: {};
+
+		return this.send({
 			blocks: [
 				// main message
 				// tslint:disable-next-line: max-line-length
-				this.buildTextBlock(`:warning: Encountered a new issue on the website under _ ${err.location} _:\n\n*${err.message} (${err.code})*`),
+				this.buildTextBlock(
+					`:warning: Encountered a new issue on the website under _ ${err.location} _:\n\n*${err.message} (${err.code})*`
+				),
 				// add all meta information
 				{
 					type: 'section',
@@ -68,24 +77,29 @@ export class SlackService {
 					})
 				},
 				// add source code information
-				this.buildTextBlock(`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${err.hash}`),
+				this.buildTextBlock(
+					`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${err.hash}`
+				),
 				// attach context
 				this.context
 			]
-		} as SlackMessageBody)).subscribe();
+		}).subscribe();
 	}
 
-	private buildFields(fields: Record<string, string>) {
-		return Object.keys(fields).reduce((prev, curr, i) => ([
-			...prev,
-			{
-				type: 'mrkdwn',
-				text: `*${curr}*\n${fields[curr]}`
-			}
-		]), [] as SlackField[]);
+	public buildFields(fields: Record<string, string>, transformKeys = true): SlackField[] {
+		return Object.keys(fields).reduce(
+			(prev, curr, i) => [
+				...prev,
+				{
+					type: 'mrkdwn',
+					text: `*${transformKeys ? readableKey(curr) : curr}*\n${fields[curr]}`
+				}
+			],
+			[] as SlackField[]
+		);
 	}
 
-	private buildTextBlock(message: string) {
+	public buildTextBlock(message: string): SlackBlock {
 		return {
 			type: 'section',
 			text: {
@@ -95,11 +109,11 @@ export class SlackService {
 		};
 	}
 
-	private buildCodeMarkdown(content: string) {
+	public buildCodeMarkdown(content: string) {
 		return ['```', content, '```'].join('');
 	}
 
-	private get context() {
+	public get context(): any {
 		return {
 			type: 'context',
 			elements: [

@@ -19,7 +19,7 @@ class NotFoundError extends Error {
 	styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-	constructor(private route: ActivatedRoute, private log: LogService) { }
+	constructor(private route: ActivatedRoute, private log: LogService) {}
 
 	public ngOnInit() {
 		const message = `Invalid page request for ${this.path}, no page registered on this route`;

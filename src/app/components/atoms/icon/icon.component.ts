@@ -1,6 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
-import(/* webpackChunkName: "svgxuse" */'svgxuse/svgxuse.min.js');
+import(/* webpackChunkName: "svgxuse" */ 'svgxuse/svgxuse.min.js');
 
 @Component({
 	selector: 'rk-icon',

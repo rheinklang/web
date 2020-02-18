@@ -22,6 +22,8 @@ type GTMActionType =
 	| 'view_search_results'
 	| string;
 
+export const saveGTMEventAction = (name: string) => name.replace(/\d/gi, '_').replace('-', '_');
+
 export const trackGTMEvent = (
 	action: GTMActionType,
 	metaInfo: {
@@ -31,7 +33,11 @@ export const trackGTMEvent = (
 		name?: string;
 	}
 ) => {
-	gtag('event', action, {
+	if (!gtag) {
+		return;
+	}
+
+	gtag('event', saveGTMEventAction(action), {
 		event_category: metaInfo.category,
 		event_label: metaInfo.label,
 		value: metaInfo.value,
@@ -42,7 +48,7 @@ export const trackGTMEvent = (
 
 export const trackGTMTimingEvent = () => {
 	// Feature detects Navigation Timing API support.
-	if (window.performance) {
+	if (window.performance && gtag) {
 		// Gets the number of milliseconds since page load
 		// (and rounds the result since the value must be an integer).
 		const timeSincePageLoad = Math.round(performance.now());

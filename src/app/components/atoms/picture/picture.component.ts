@@ -41,7 +41,8 @@ export class PictureComponent {
 			const optimizedWidthFactor = Math.round(breakpoint * IMAGE_OPT_FACTOR);
 
 			return {
-				url: `${resolvedAssetPath}&w=${optimizedWidthFactor} x1, ${resolvedAssetPath}&w=${optimizedWidthFactor * 2} x2,`,
+				url: `${resolvedAssetPath}&w=${optimizedWidthFactor} x1, ${resolvedAssetPath}&w=${optimizedWidthFactor *
+					2} x2,`,
 				breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`
 			};
 		});

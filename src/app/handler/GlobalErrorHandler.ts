@@ -6,14 +6,16 @@ import { LogService } from '../services/log.service';
 	deps: [LogService]
 })
 export class GlobalErrorHandler implements ErrorHandler {
-
-	constructor(private log: LogService) { }
+	constructor(private log: LogService) {}
 
 	public handleError(error: any) {
-		this.log.traceError('GlobalErrorHandler', error || {
-			name: 'GlobalErrorHandler',
-			message: `Unknown application error`,
-			code: 500
-		});
+		this.log.traceError(
+			'GlobalErrorHandler',
+			error || {
+				name: 'GlobalErrorHandler',
+				message: `Unknown application error`,
+				code: 500
+			}
+		);
 	}
 }

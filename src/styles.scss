@@ -1,3 +1,36 @@
+@import './app/styles/colors.scss';
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$rheinklang-kollektiv-primary: mat-palette($mat-green);
+$rheinklang-kollektiv-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$rheinklang-kollektiv-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$rheinklang-kollektiv-theme: mat-light-theme(
+	$rheinklang-kollektiv-primary,
+	$rheinklang-kollektiv-accent,
+	$rheinklang-kollektiv-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($rheinklang-kollektiv-theme);
+
 // fonts
 @import './assets/fonts/fv-almelo/stylesheet.css';
 // @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
@@ -13,3 +46,12 @@
 @import './app/styles/helpers.scss';
 @import './app/styles/spacings.scss';
 @import './app/styles/glide.scss';
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

@@ -19,7 +19,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 	private routeSub$: Subscription;
 	private articleSub$: Subscription;
 
-	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) { }
+	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) {}
 
 	public ngOnInit() {
 		this.routeSub$ = this.route.paramMap.subscribe(params => {

@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private articlesService: ArticlesService,
 		private homeService: HomeService,
 		private eventsService: EventsService
-	) { }
+	) {}
 
 	public ngOnInit() {
 		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
@@ -56,11 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy() {
-		unsubscribe([
-			this.articlesSub$,
-			this.homeSub$,
-			this.eventTeaserSub$
-		]);
+		unsubscribe([this.articlesSub$, this.homeSub$, this.eventTeaserSub$]);
 	}
 
 	public get tags() {
