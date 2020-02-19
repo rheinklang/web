@@ -13,9 +13,11 @@ const checkEnvironment = keys => {
 		valid: pair.value && pair.value.length > 0
 	}));
 
+	console.log('');
 	map.forEach(entry => {
 		console.log(`[env] ${entry.key} = ${new Array(entry.value.length).fill('*').join('')}`);
 	});
+	console.log('');
 
 	const allValid = map.every(entry => entry.valid === true);
 
