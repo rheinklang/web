@@ -33,11 +33,11 @@ jobs:
         GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
         SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
     - run: npm run production
-    - name: Archive production artifacts
+    - name: Generate production artifacts
       uses: actions/upload-artifact@v1
-        with:
-          name: aot
-          path: dist
+      with:
+        name: aot
+        path: dist
 
 
   beta:
