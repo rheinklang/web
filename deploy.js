@@ -19,7 +19,7 @@ const deployer = new FTPDeployClient();
 const TAG = argv.tag ? argv.tag : 'beta';
 const NEXT = argv.next || false;
 const REMOTE_DIR = join(process.env.FTP_REMOTE_ROOT, NEXT ? `${TAG}-${pkg.version}` : TAG);
-const SOURCE_DIR = resolve(__dirname, 'dist/rheinklang');
+const SOURCE_DIR = resolve(__dirname, 'dist');
 
 const loader = ora(`Uploading to ${cyan(REMOTE_DIR)}`).start();
 
