@@ -63,8 +63,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
         run: npm install
         run: npm run deploy:development
-          env:
-            DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-            DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-            DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
-            DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
+          DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
