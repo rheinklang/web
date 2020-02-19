@@ -61,8 +61,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        run: npm install
-        run: npm run deploy:development
+      - run: npm install
+      - run: npm run deploy:development
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
