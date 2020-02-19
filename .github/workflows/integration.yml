@@ -17,7 +17,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
       env:
         ASSET_CDN_HOST: 'ci'
         COCKPIT_API_URL: 'ci'
@@ -27,5 +26,6 @@ jobs:
         GCP_KEY: 'ci'
         GCP_STATIC_MAPS_SECRET: 'ci'
         SLACK_ERROR_HOOK_URL: 'ci'
+    - run: npm install
     - run: npm run pipeline --if-present
     - run: npm run lint --if-present
