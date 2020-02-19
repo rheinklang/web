@@ -69,4 +69,4 @@ const routes: Routes = [
 	],
 	exports: [RouterModule]
 })
-export class RheinklangRoutingModule { }
+export class RheinklangRoutingModule {}

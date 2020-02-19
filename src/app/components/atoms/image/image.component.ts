@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 
-import(/* webpackChunkName: "lazysizes" */'lazysizes');
+import(/* webpackChunkName: "lazysizes" */ 'lazysizes');
 
 // tslint:disable-next-line: no-string-literal
 window['lazySizesConfig'] = window['lazySizesConfig'] || {};
@@ -28,8 +28,7 @@ export class ImageComponent {
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
 
-	public INITIAL_SOURCE_SET =
-		'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+	public INITIAL_SOURCE_SET = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 	public get sourceset() {
 		if (!this.src) {

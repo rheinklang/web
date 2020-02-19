@@ -1,5 +1,41 @@
 <rk-seo-manager context="contact"></rk-seo-manager>
-<!-- <rk-content-block>
-	<p>contact works!</p>
-</rk-content-block> -->
-<rk-coming-soon-page></rk-coming-soon-page>
+
+<rk-content-block [heading]="pageData.title" [centerHeading]="true" space="xxlarge">
+	<div class="row justify-content-center">
+		<div class="col-xs-12 col-sm-10 h-text-align--center" [innerHTML]="pageData.description"></div>
+	</div>
+</rk-content-block>
+
+<div class="container container-small">
+	<rk-accordion>
+		<rk-accordion-panel id="guest-appearance-submission" [title]="guestSubmissionTitle">
+			<ng-container *ngIf="pageData.guestAppearanceSubmissionEnabled">
+				<rk-guest-appearance-form></rk-guest-appearance-form>
+			</ng-container>
+			<ng-container *ngIf="!pageData.guestAppearanceSubmissionEnabled">
+				<p>{{pageData.noGuestAppearanceSubmissionText}}</p>
+			</ng-container>
+		</rk-accordion-panel>
+		<rk-accordion-panel id="supplier-submission" [title]="supplierSubmissionTitle">
+			<ng-container *ngIf="pageData.supplierSubmissionEnabled">
+				<rk-supplier-form></rk-supplier-form>
+			</ng-container>
+			<ng-container *ngIf="!pageData.supplierSubmissionEnabled">
+				<p>{{pageData.noSupplierSubmissionText}}</p>
+			</ng-container>
+		</rk-accordion-panel>
+		<rk-accordion-panel id="team-submission" title="Dem Team beitreten">
+			<ng-container *ngIf="pageData.teamSubmissionEnabled">
+				<rk-team-form></rk-team-form>
+			</ng-container>
+			<ng-container *ngIf="!pageData.teamSubmissionEnabled">
+				<p>{{pageData.noTeamSubmissionText}}</p>
+			</ng-container>
+		</rk-accordion-panel>
+		<rk-accordion-panel id="rights-submission" title="Rechtliches">
+			<p>Für rechtliche Anfragen kontaktieren Sie bitte direkt <a class="a-link a-link--static-indicator" href="mailto:hello@rhnklng.ch">hello@rhnklng.ch</a> mit dem Betreff <em>"Rechtliches: "</em>.</p>
+		</rk-accordion-panel>
+	</rk-accordion>
+</div>
+
+<rk-content-block></rk-content-block>

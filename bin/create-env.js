@@ -3,12 +3,24 @@ const { resolve } = require('path');
 const { writeFile } = require('fs');
 // @ts-ignore
 const { argv } = require('yargs');
+const { checkEnvironment } = require('./utils');
 // @ts-ignore
 const pkg = require('../package.json');
 
 // This is good for local dev environments, when it's better to
 // store a projects environment variables in a .gitignore'd file
 require('dotenv').config();
+
+checkEnvironment([
+	'ASSET_CDN_HOST',
+	'COCKPIT_API_URL',
+	'COCKPIT_API_KEY',
+	'GRAPHQL_HOST_URL',
+	'GTM_ID',
+	'GCP_KEY',
+	'GCP_STATIC_MAPS_SECRET',
+	'SLACK_ERROR_HOOK_URL',
+]);
 
 // Would be passed to script like this:
 // `ts-node set-env.ts --environment=dev`

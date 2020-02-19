@@ -5,13 +5,7 @@ import { Directive, ElementRef, Input, AfterViewInit } from '@angular/core';
 })
 export class TooltipDirective implements AfterViewInit {
 	@Input() public tooltipText = '';
-	@Input() public tooltipPosition:
-		| 'top'
-		| 'top-left'
-		| 'top-right'
-		| 'bottom'
-		| 'bottom-left'
-		| 'bottom-right' = 'top';
+	@Input() public tooltipPosition: 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' = 'top';
 
 	constructor(private el: ElementRef<HTMLElement>) {}
 

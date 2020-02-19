@@ -14,6 +14,14 @@ $input-border-size: 2px;
 	border: $input-border-size solid $color-grey-300;
 	transition: border 0.3s linear;
 	outline: none;
+	display: block;
+	width: 100%;
+}
+
+.a-input[disabled] {
+	color: $color-grey-200;
+	background-color: $color-grey-400;
+	cursor: not-allowed;
 }
 
 .a-input.ng-invalid {

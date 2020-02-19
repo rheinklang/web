@@ -9,8 +9,16 @@ const argv = require('yargs').argv
 const ora = require('ora');
 // @ts-ignore
 const pkg = require('./package.json');
+const { checkEnvironment } = require('./bin/utils');
 // @ts-ignore
 const deployer = new FTPDeployClient();
+
+checkEnvironment([
+	'DEPLOY_ROOT',
+	'DEPLOY_USER',
+	'DEPLOY_PASS',
+	'DEPLOY_HOST',
+]);
 
 /**
  * @type {string}
@@ -18,16 +26,16 @@ const deployer = new FTPDeployClient();
 // @ts-ignore
 const TAG = argv.tag ? argv.tag : 'beta';
 const NEXT = argv.next || false;
-const REMOTE_DIR = join(process.env.FTP_REMOTE_ROOT, NEXT ? `${TAG}-${pkg.version}` : TAG);
-const SOURCE_DIR = resolve(__dirname, 'dist/rheinklang');
+const REMOTE_DIR = join(process.env.DEPLOY_ROOT, NEXT ? `${TAG}-${pkg.version}` : TAG);
+const SOURCE_DIR = resolve(__dirname, 'dist');
 
 const loader = ora(`Uploading to ${cyan(REMOTE_DIR)}`).start();
 
 const config = {
-	user: process.env.FTP_USER,
+	user: process.env.DEPLOY_USER,
 	// Password optional, prompted if none given
-	password: process.env.FTP_PASSWORD,
-	host: process.env.FTP_HOST,
+	password: process.env.DEPLOY_PASS,
+	host: process.env.DEPLOY_HOST,
 	port: 21,
 	localRoot: SOURCE_DIR,
 	remoteRoot: REMOTE_DIR,

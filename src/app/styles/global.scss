@@ -1,5 +1,11 @@
+@import './responsive.scss';
+
 body {
 	font-family: Lato, 'Helvetica Neue', sans-serif;
+
+	@include respond-to-max('sm') {
+		overflow-x: hidden;
+	}
 }
 
 *,
@@ -11,4 +17,11 @@ body {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
+}
+
+div,
+p {
+	@include respond-to-max('sm') {
+		line-height: 1.2;
+	}
 }

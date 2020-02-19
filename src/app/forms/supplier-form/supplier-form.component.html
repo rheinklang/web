@@ -1,0 +1,46 @@
+<rk-form>
+	<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+		<mat-form-field>
+			<input matInput placeholder="Jahr" formControlName="year" type="number" />
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Firma / Verein" formControlName="company" type="text" />
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Webseite" formControlName="website" type="url" />
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="E-Mail" formControlName="mail" type="mail" />
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Spezifikation</mat-label>
+			<mat-select formControlName="type">
+				<mat-option *ngFor="let supplyType of supplyType" [value]="supplyType">
+					{{supplyType}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput rows="8" maxlength="1000" placeholder="Nachricht" formControlName="message"></textarea>
+			<mat-hint align="end">{{supplierForm.value.message.length}} / 1000</mat-hint>
+		</mat-form-field>
+		<div class="o-form__field">
+			<mat-checkbox formControlName="termsAccepted">Ich stimme den Datenschutzbestimmungen zu</mat-checkbox>
+		</div>
+		<button type="submit" [disabled]="!supplierForm.valid" [class.state--error]="sent === false" [class.state--sent]="sent === true">
+			<ng-container *ngIf="sent === null">
+				<rk-icon select="send"></rk-icon>
+				<ng-container *ngIf="submitting === true">Wird eingereicht ...</ng-container>
+				<ng-container *ngIf="submitting === false">Einreichen</ng-container>
+			</ng-container>
+			<ng-container *ngIf="sent === true">
+				<rk-icon select="check"></rk-icon>
+				Erfolgreich übermittelt
+			</ng-container>
+			<ng-container *ngIf="sent === false">
+				<rk-icon select="flag"></rk-icon>
+				Fehler beim übermitteln
+			</ng-container>
+		</button>
+	</form>
+</rk-form>

@@ -1,0 +1,8 @@
+.m-accordion {
+	margin: 30px auto;
+	padding: 10px;
+}
+
+.m-accordion > rk-accordion-panel:last-child > .a-accordion-panel {
+	border-bottom: 2px solid #000;
+}

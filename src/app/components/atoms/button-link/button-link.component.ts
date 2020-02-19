@@ -24,8 +24,6 @@ export class ButtonLinkComponent {
 	}
 
 	public get classList() {
-		return ['a-button-link', this.modifier ? `a-button-link--${this.modifier}` : null]
-			.filter(Boolean)
-			.join(' ');
+		return ['a-button-link', this.modifier ? `a-button-link--${this.modifier}` : null].filter(Boolean).join(' ');
 	}
 }

@@ -21,16 +21,20 @@
     "pipeline:env": "npm run create:env",
     "pipeline:build": "npm run production",
     "prettier": "prettier --write './src/**/*.{css,scss,tsx,ts,js,json}'",
-    "deploy:development": "node -r dotenv/config deploy.js --tag=development",
-    "deploy:production": "node -r dotenv/config deploy.js --tag=production"
+    "deploy:development": "node deploy.js --tag=development",
+    "deploy:production": "node deploy.js --tag=production",
+    "deploy:local:development": "node -r dotenv/config deploy.js --tag=development",
+    "deploy:local:production": "node -r dotenv/config deploy.js --tag=production"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.0",
+    "@angular/cdk": "~8.2.0",
     "@angular/common": "~8.2.0",
     "@angular/compiler": "~8.2.0",
     "@angular/core": "~8.2.0",
     "@angular/forms": "~8.2.0",
+    "@angular/material": "~8.2.0",
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",

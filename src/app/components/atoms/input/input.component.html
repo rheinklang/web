@@ -1,11 +1,15 @@
-<input
-	ngModel
+<!-- <input
+	[ngModel]="initialValue"
 	#inputModel
 	class="a-input"
-	[class.state-a-input--error]="inputModel.value !== '' && inputModel.untouched && inputModel.invalid"
+	[disabled]="disabled"
+	[id]="name"
 	[type]="type"
 	[name]="name"
 	[placeholder]="placeholder"
+	[formControlName]="formControlName"
+	[class.state-a-input--error]="inputModel.value !== '' && inputModel.untouched && inputModel.invalid"
 	[email]="type === 'email'"
+	(blur)="setInputLeave(inputModel.value)"
 	(keyup)="setUserInput(inputModel.value)"
->
+> -->

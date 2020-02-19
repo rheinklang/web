@@ -1,6 +1,7 @@
 @import '../../../styles/colors.scss';
 
-.a-button {
+.a-button,
+button {
 	color: $color-white;
 	background-color: $color-primary-fury-red;
 	border: none;
@@ -8,4 +9,6 @@
 	padding: 10px 20px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
+	appearance: none;
+	-webkit-appearance: none;
 }

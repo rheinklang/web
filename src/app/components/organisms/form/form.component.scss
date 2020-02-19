@@ -1,0 +1,71 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/responsive.scss';
+
+rk-form {
+	display: block;
+	max-width: 800px;
+	padding: 10px;
+	margin: 15px auto;
+}
+
+.mat-form-field {
+	margin-top: 15px;
+	display: block !important;
+}
+
+.mat-checkbox-layout {
+	white-space: normal !important;
+
+	@include respond-to-max('sm') {
+		.mat-checkbox-inner-container {
+			margin-right: 15px !important;
+		}
+	}
+}
+
+.o-form__field {
+	margin-top: 15px;
+	padding: 1.25em 0;
+}
+
+@import '../../../styles/responsive.scss';
+
+button[type='submit'] {
+	margin-top: 20px;
+	background-color: $color-black;
+	color: $color-white;
+	display: block;
+	width: 100%;
+	padding: 15px 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	border-radius: 3px;
+	border: none;
+	appearance: none;
+	-webkit-appearance: none;
+
+	@include respond-to-min('sm') {
+		padding: 15px 30px;
+		display: inline-block;
+		width: auto;
+	}
+
+	&[disabled] {
+		background-color: $color-grey-200;
+		color: $color-grey-400;
+		cursor: not-allowed;
+	}
+
+	&.state--sent {
+		background-color: $color-primary-grass-green;
+	}
+
+	&.state--error {
+		background-color: $color-primary-fury-red;
+	}
+
+	svg {
+		vertical-align: bottom;
+		margin-right: 5px;
+	}
+}

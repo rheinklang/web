@@ -59,6 +59,11 @@ html {
 	margin-left: auto;
 }
 
+.container-small {
+	max-width: 800px;
+	padding: 0;
+}
+
 .row {
 	display: -webkit-box;
 	display: -ms-flexbox;

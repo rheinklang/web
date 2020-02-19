@@ -1,0 +1,11 @@
+<div class="m-form-group row">
+	<div class="col-12 col-md-3">
+	<label class="m-form-group__label" [for]="'#' + id">
+		{{title}}
+		<sup *ngIf="note" class="m-form-group__label-note">{{note}}</sup>
+	</label>
+	</div>
+	<div class="col-12 col-md-9">
+		<ng-content></ng-content>
+	</div>
+</div>

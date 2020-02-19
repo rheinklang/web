@@ -15,7 +15,7 @@ export class EventsService {
 		private eventsGQL: EventsGQL,
 		private eventBySlugGQL: EventBySlugGQL,
 		private eventsSingletonGQL: EventsSingletonGQL
-	) { }
+	) {}
 
 	public getEvents() {
 		return this.eventsGQL
@@ -65,7 +65,6 @@ export class EventsService {
 					fetchPolicy: CACHE_AND_UPDATE_POLICY
 				}
 			)
-			.valueChanges
-			.subscribe();
+			.valueChanges.subscribe();
 	}
 }

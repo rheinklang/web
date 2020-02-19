@@ -1,0 +1,8 @@
+<article class="a-accordion-panel" [class.a-accordion-panel--open]="opened" [id]="id">
+	<header class="a-accordion-panel__heading" (click)="toggle.emit()">
+		<rk-heading [size]="3" [text]="title" [iconPrefix]="iconPrefix"></rk-heading>
+	</header>
+	<div *ngIf="opened">
+		<ng-content></ng-content>
+	</div>
+</article>

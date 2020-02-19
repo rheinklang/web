@@ -33,7 +33,7 @@ interface GetIPResponse {
 	providedIn: 'root'
 })
 export class IPService {
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	public getIP() {
 		return this.http.get<GetIPResponse>(`https://ipapi.co/json/`);
