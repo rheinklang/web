@@ -8,18 +8,32 @@ on:
       - develop
 
 jobs:
-  deploy:
-
+  beta:
+    if: contains(github.ref, 'develop')
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: echo "Deploy to beta ..."
+    - run: echo ${{github.ref}}
+
+  production:
+    if: contains(github.ref, 'master')
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: echo "Deploy to production ..."
     - run: echo ${{github.ref}}
