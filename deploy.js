@@ -18,8 +18,11 @@ const allRequiredEnvironmentsSets = [
 	process.env.DEPLOY_PASS,
 	process.env.DEPLOY_HOST,
 ]
-	.map(val => val && val.length > 0)
-	.every(val => val === true);
+	.map((value = '', index) => {
+		console.log(`checking [${index}] -> ${value.length} ...`);
+		return value && value.length > 0
+	})
+	.every(value => value === true);
 
 if (!allRequiredEnvironmentsSets) {
 	console.log('Error: not all valid environment variables found, exiting process ...');

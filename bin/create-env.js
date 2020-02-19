@@ -20,7 +20,10 @@ const areAllEnvironmentsAvailable = [
 	process.env.GCP_STATIC_MAPS_SECRET,
 	process.env.SLACK_ERROR_HOOK_URL,
 ]
-	.map(value => value && value.length > 0)
+	.map((value = '', index) => {
+		console.log(`checking [${index}] -> ${value.length} ...`);
+		return value && value.length > 0
+	})
 	.every(value => value === true);
 
 if (!areAllEnvironmentsAvailable) {
