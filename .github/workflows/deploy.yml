@@ -17,7 +17,7 @@ jobs:
         node-version: [12.x]
     steps:
     - uses: actions/checkout@v2
-    - name: AOT build on Node.js ${{ matrix.node-version }}
+    - name: Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
@@ -40,8 +40,7 @@ jobs:
         path: dist
 
 
-  beta:
-    if: contains(github.ref, 'develop')
+  publish:
     needs: [aot]
     runs-on: ubuntu-latest
 
@@ -52,17 +51,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
           name: aot
           path: dist
-      - name: Deploy to beta via Node.js ${{ matrix.node-version }}
+      - name: Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
-      - run: npm run deploy:development
+      - name: Deploy to staging
+        if: contains(github.ref, 'develop')
+        run: npm run deploy:development
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
+          DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
+      - name: Deploy to production
+        if: contains(github.ref, 'production')
+        run: npm run deploy:production
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
