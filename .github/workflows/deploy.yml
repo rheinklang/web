@@ -12,16 +12,22 @@ jobs:
   aot:
     if: contains(github.ref, 'develop') || contains(github.ref, 'master')  || contains(github.ref, 'production')
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [12.x]
+
     steps:
     - uses: actions/checkout@v2
+
     - name: Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+
     - run: npm install
+
+    # create environment based on the secrets
     - run: npm run create:env:prod
       env:
         ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
@@ -32,7 +38,11 @@ jobs:
         GCP_KEY: ${{ secrets.GCP_KEY }}
         GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
         SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
+
     - run: npm run production
+
+    # generate artifact for publishing process which saves the
+    # AOT compiled output from the /dist folder
     - name: Generate production artifacts
       uses: actions/upload-artifact@v1
       with:
@@ -52,6 +62,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      # cache all modules for the deployment process only
       - name: Cache node modules
         uses: actions/cache@v1
         env:
@@ -64,6 +75,8 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      # use the AOT output from the previous build process
+      # and restore it as fake compilation output
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
@@ -77,8 +90,10 @@ jobs:
 
       - run: npm install
 
+      # deploy to staging if we're on develop branch or
+      # if we get a new production release to sync the systems
       - name: Deploy to staging
-        if: contains(github.ref, 'develop')
+        if: contains(github.ref, 'develop') || contains(github.ref, 'production')
         run: npm run deploy:development
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
@@ -86,6 +101,7 @@ jobs:
           DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
           DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
 
+      # deploy to production host
       - name: Deploy to production
         if: contains(github.ref, 'production')
         run: npm run deploy:production
