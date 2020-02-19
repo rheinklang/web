@@ -21,16 +21,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: npm run production
+    - run: npm run create:env:prod
       env:
-        ASSET_CDN_HOST: 'ci'
-        COCKPIT_API_URL: 'ci'
-        COCKPIT_API_KEY: 'ci'
-        GRAPHQL_HOST_URL: 'ci'
-        GTM_ID: 'ci'
-        GCP_KEY: 'ci'
-        GCP_STATIC_MAPS_SECRET: 'ci'
-        SLACK_ERROR_HOOK_URL: 'ci'
+        ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
+        COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}
+        COCKPIT_API_KEY: ${{ secrets.COCKPIT_API_KEY }}
+        GRAPHQL_HOST_URL: ${{ secrets.GRAPHQL_HOST_URL }}
+        GTM_ID: ${{ secrets.GTM_ID }}
+        GCP_KEY: ${{ secrets.GCP_KEY }}
+        GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
+        SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
+    - run: npm run production
 
   beta:
     if: contains(github.ref, 'develop')
@@ -45,8 +46,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: echo "Deploy to beta ..."
-    - run: echo ${{github.ref}}
+    - run: echo "Deploy ${{github.ref}} to beta ..."
+      env:
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
+        DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
 
   production:
     if: contains(github.ref, 'master')
@@ -61,5 +66,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: echo "Deploy to production ..."
-    - run: echo ${{github.ref}}
+    - run: echo "Deploy ${{github.ref}} to productions ..."
+      env:
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
+        DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}

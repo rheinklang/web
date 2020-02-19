@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/rheinklang/web.svg?branch=master)](https://travis-ci.com/rheinklang/web) ![Snyk](https://img.shields.io/snyk/vulnerabilities/github/rheinklang/web) ![Maintenance](https://img.shields.io/maintenance/yes/2020) ![Types](https://img.shields.io/badge/types-TypeScript-blue) ![Platform](https://img.shields.io/badge/platform-Angular-red)
+![CI](https://github.com/rheinklang/web/workflows/CI/badge.svg?branch=master) ![Compressed Size](https://github.com/rheinklang/web/workflows/Compressed%20Size/badge.svg) ![Deploy](https://github.com/rheinklang/web/workflows/Deploy/badge.svg?branch=master) ![Snyk](https://img.shields.io/snyk/vulnerabilities/github/rheinklang/web) ![Maintenance](https://img.shields.io/maintenance/yes/2020) ![Types](https://img.shields.io/badge/types-TypeScript-blue) ![Platform](https://img.shields.io/badge/platform-Angular-red)
 
 # Rheinklang
 
