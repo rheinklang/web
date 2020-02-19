@@ -12,22 +12,36 @@ const pkg = require('./package.json');
 // @ts-ignore
 const deployer = new FTPDeployClient();
 
+const allRequiredEnvironmentsSets = [
+	process.env.DEPLOY_ROOT,
+	process.env.DEPLOY_USER,
+	process.env.DEPLOY_PASS,
+	process.env.DEPLOY_HOST,
+]
+	.map(val => val && val.length > 0)
+	.every(val => val === true);
+
+if (!allRequiredEnvironmentsSets) {
+	console.log('Error: not all valid environment variables found, exiting process ...');
+	process.exit(1);
+}
+
 /**
  * @type {string}
  */
 // @ts-ignore
 const TAG = argv.tag ? argv.tag : 'beta';
 const NEXT = argv.next || false;
-const REMOTE_DIR = join(process.env.FTP_REMOTE_ROOT, NEXT ? `${TAG}-${pkg.version}` : TAG);
+const REMOTE_DIR = join(process.env.DEPLOY_ROOT, NEXT ? `${TAG}-${pkg.version}` : TAG);
 const SOURCE_DIR = resolve(__dirname, 'dist');
 
 const loader = ora(`Uploading to ${cyan(REMOTE_DIR)}`).start();
 
 const config = {
-	user: process.env.FTP_USER,
+	user: process.env.DEPLOY_USER,
 	// Password optional, prompted if none given
-	password: process.env.FTP_PASSWORD,
-	host: process.env.FTP_HOST,
+	password: process.env.DEPLOY_PASS,
+	host: process.env.DEPLOY_HOST,
 	port: 21,
 	localRoot: SOURCE_DIR,
 	remoteRoot: REMOTE_DIR,

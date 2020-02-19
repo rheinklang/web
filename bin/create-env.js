@@ -10,6 +10,24 @@ const pkg = require('../package.json');
 // store a projects environment variables in a .gitignore'd file
 require('dotenv').config();
 
+const areAllEnvironmentsAvailable = [
+	process.env.ASSET_CDN_HOST,
+	process.env.COCKPIT_API_URL,
+	process.env.COCKPIT_API_KEY,
+	process.env.GRAPHQL_HOST_URL,
+	process.env.GTM_ID,
+	process.env.GCP_KEY,
+	process.env.GCP_STATIC_MAPS_SECRET,
+	process.env.SLACK_ERROR_HOOK_URL,
+]
+	.map(value => value && value.length > 0)
+	.every(value => value === true);
+
+if (!areAllEnvironmentsAvailable) {
+	console.log(`Error: not all environments are present, exiting generation`);
+	process.exit(1);
+}
+
 // Would be passed to script like this:
 // `ts-node set-env.ts --environment=dev`
 // we get it from yargs's argv object
