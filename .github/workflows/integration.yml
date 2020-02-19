@@ -18,5 +18,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
+      env:
+        ASSET_CDN_HOST: 'ci'
+        COCKPIT_API_URL: 'ci'
+        COCKPIT_API_KEY: 'ci'
+        GRAPHQL_HOST_URL: 'ci'
+        GTM_ID: 'ci'
+        GCP_KEY: 'ci'
+        GCP_STATIC_MAPS_SECRET: 'ci'
+        SLACK_ERROR_HOOK_URL: 'ci'
     - run: npm run pipeline --if-present
     - run: npm run lint --if-present

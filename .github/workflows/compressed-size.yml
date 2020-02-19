@@ -12,3 +12,12 @@ jobs:
     - uses: preactjs/compressed-size-action@v1
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      env:
+        ASSET_CDN_HOST: 'compressed-size'
+        COCKPIT_API_URL: 'compressed-size'
+        COCKPIT_API_KEY: 'compressed-size'
+        GRAPHQL_HOST_URL: 'compressed-size'
+        GTM_ID: 'compressed-size'
+        GCP_KEY: 'compressed-size'
+        GCP_STATIC_MAPS_SECRET: 'compressed-size'
+        SLACK_ERROR_HOOK_URL: 'compressed-size'
