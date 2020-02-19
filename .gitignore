@@ -42,6 +42,10 @@ yarn-error.log
 testem.log
 /typings
 
+# editors
+.vscode
+.idea
+
 # System Files
 .DS_Store
 Thumbs.db
