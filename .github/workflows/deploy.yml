@@ -8,8 +8,33 @@ on:
       - develop
 
 jobs:
+  aot:
+    if: contains(github.ref, 'develop') || contains(github.ref, 'master')
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run production
+      env:
+        ASSET_CDN_HOST: 'ci'
+        COCKPIT_API_URL: 'ci'
+        COCKPIT_API_KEY: 'ci'
+        GRAPHQL_HOST_URL: 'ci'
+        GTM_ID: 'ci'
+        GCP_KEY: 'ci'
+        GCP_STATIC_MAPS_SECRET: 'ci'
+        SLACK_ERROR_HOOK_URL: 'ci'
+
   beta:
     if: contains(github.ref, 'develop')
+    needs: [aot]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,6 +50,7 @@ jobs:
 
   production:
     if: contains(github.ref, 'master')
+    needs: [aot]
     runs-on: ubuntu-latest
     strategy:
       matrix:
