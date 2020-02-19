@@ -39,47 +39,32 @@ jobs:
           name: aot
           path: dist
 
+
   beta:
     if: contains(github.ref, 'develop')
     needs: [aot]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/download-artifact@v1
-      with:
-        name: aot
-        path: dist
-    - name: Deploy to beta via Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run deploy:development
-      env:
-        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-        DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
-        DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
 
-  production:
-    if: contains(github.ref, 'production')
-    needs: [aot]
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Deploy to production via Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm run deploy:production
-      env:
-        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-        DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
-        DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: aot
+          path: dist
+      - name: Deploy to beta via Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        run: npm install
+        run: npm run deploy:development
+          env:
+            DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+            DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+            DEPLOY_PASS: ${{ secrets.DEPLOY_PASS }}
+            DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
