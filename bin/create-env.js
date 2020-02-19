@@ -3,6 +3,7 @@ const { resolve } = require('path');
 const { writeFile } = require('fs');
 // @ts-ignore
 const { argv } = require('yargs');
+const { checkEnvironment } = require('./utils');
 // @ts-ignore
 const pkg = require('../package.json');
 
@@ -10,26 +11,16 @@ const pkg = require('../package.json');
 // store a projects environment variables in a .gitignore'd file
 require('dotenv').config();
 
-const areAllEnvironmentsAvailable = [
-	process.env.ASSET_CDN_HOST,
-	process.env.COCKPIT_API_URL,
-	process.env.COCKPIT_API_KEY,
-	process.env.GRAPHQL_HOST_URL,
-	process.env.GTM_ID,
-	process.env.GCP_KEY,
-	process.env.GCP_STATIC_MAPS_SECRET,
-	process.env.SLACK_ERROR_HOOK_URL,
-]
-	.map((value = '', index) => {
-		console.log(`checking [${index}] -> ${value.length} ...`);
-		return value && value.length > 0
-	})
-	.every(value => value === true);
-
-if (!areAllEnvironmentsAvailable) {
-	console.log(`Error: not all environments are present, exiting generation`);
-	process.exit(1);
-}
+checkEnvironment([
+	'ASSET_CDN_HOST',
+	'COCKPIT_API_URL',
+	'COCKPIT_API_KEY',
+	'GRAPHQL_HOST_URL',
+	'GTM_ID',
+	'GCP_KEY',
+	'GCP_STATIC_MAPS_SECRET',
+	'SLACK_ERROR_HOOK_URL',
+]);
 
 // Would be passed to script like this:
 // `ts-node set-env.ts --environment=dev`

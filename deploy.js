@@ -9,25 +9,16 @@ const argv = require('yargs').argv
 const ora = require('ora');
 // @ts-ignore
 const pkg = require('./package.json');
+const { checkEnvironment } = require('./bin/utils');
 // @ts-ignore
 const deployer = new FTPDeployClient();
 
-const allRequiredEnvironmentsSets = [
-	process.env.DEPLOY_ROOT,
-	process.env.DEPLOY_USER,
-	process.env.DEPLOY_PASS,
-	process.env.DEPLOY_HOST,
-]
-	.map((value = '', index) => {
-		console.log(`checking [${index}] -> ${value.length} ...`);
-		return value && value.length > 0
-	})
-	.every(value => value === true);
-
-if (!allRequiredEnvironmentsSets) {
-	console.log('Error: not all valid environment variables found, exiting process ...');
-	process.exit(1);
-}
+checkEnvironment([
+	'DEPLOY_ROOT',
+	'DEPLOY_USER',
+	'DEPLOY_PASS',
+	'DEPLOY_HOST',
+]);
 
 /**
  * @type {string}
