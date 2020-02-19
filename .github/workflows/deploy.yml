@@ -9,14 +9,14 @@ on:
 
 jobs:
   aot:
-    if: contains(github.ref, 'develop') || contains(github.ref, 'master')
+    if: contains(github.ref, 'develop') || contains(github.ref, 'master')  || contains(github.ref, 'production')
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: AOT build on Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
@@ -42,11 +42,11 @@ jobs:
         node-version: [12.x]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Deploy to beta via Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: echo "Deploy ${{github.ref}} to beta ..."
+    - run: npm run deploy:development
       env:
         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
@@ -54,7 +54,7 @@ jobs:
         DEPLOY_ROOT: ${{ secrets.DEPLOY_ROOT }}
 
   production:
-    if: contains(github.ref, 'master')
+    if: contains(github.ref, 'production')
     needs: [aot]
     runs-on: ubuntu-latest
     strategy:
@@ -62,11 +62,11 @@ jobs:
         node-version: [12.x]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Deploy to production via Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: echo "Deploy ${{github.ref}} to productions ..."
+    - run: npm run deploy:production
       env:
         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
