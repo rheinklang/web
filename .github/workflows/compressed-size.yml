@@ -3,7 +3,7 @@ name: Compressed Size
 on: [pull_request]
 
 jobs:
-  check_compressed_size:
+  check:
 
     runs-on: ubuntu-latest
 

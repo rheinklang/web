@@ -4,7 +4,7 @@
  * Checks environment variables for validation purposes
  * @param {string[]} keys
  */
-export const checkEnvironment = keys => {
+const checkEnvironment = keys => {
 	const map = keys.map(key => ({
 		key,
 		value: process.env[key] || ''
@@ -26,3 +26,5 @@ export const checkEnvironment = keys => {
 
 	return true;
 }
+
+module.exports.checkEnvironment = checkEnvironment;
