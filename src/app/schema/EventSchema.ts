@@ -12,12 +12,8 @@ export enum EventType {
 }
 
 export interface EventSchema<
-	TLocation extends CockpitPopulatedField<Partial<LocationSchema>> = CockpitPopulatedField<
-		Partial<LocationSchema>
-	>,
-	TTickets extends CockpitPopulatedField<Partial<TicketsSchema>> = CockpitPopulatedField<
-		Partial<TicketsSchema>
-	>
+	TLocation extends CockpitPopulatedField<Partial<LocationSchema>> = CockpitPopulatedField<Partial<LocationSchema>>,
+	TTickets extends CockpitPopulatedField<Partial<TicketsSchema>> = CockpitPopulatedField<Partial<TicketsSchema>>
 > {
 	slug: CockpitRequiredField<string>;
 	title: CockpitRequiredField<string>;

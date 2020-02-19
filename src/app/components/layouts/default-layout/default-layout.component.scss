@@ -5,9 +5,7 @@ $default-layout-content-inner-spacing: 20px;
 
 :host main {
 	// padding: $default-layout-content-inner-spacing 0;
-	min-height: calc(
-		100vh - #{$header-height + $footer-min-height} - #{$default-layout-content-inner-spacing * 2}
-	);
+	min-height: calc(100vh - #{$header-height + $footer-min-height} - #{$default-layout-content-inner-spacing * 2});
 
 	h2:first-of-type {
 		margin-top: 0;

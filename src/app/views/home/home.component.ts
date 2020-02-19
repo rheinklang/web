@@ -60,10 +60,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	public get tags() {
-		return this.articles.reduce(
-			(allTags, article) => [...allTags, ...article.tags],
-			[] as string[]
-		);
+		return this.articles.reduce((allTags, article) => [...allTags, ...article.tags], [] as string[]);
 	}
 
 	public preloadArticle(id: string) {

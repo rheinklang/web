@@ -20,13 +20,10 @@ export class CockpitService {
 	 * @param url target URL
 	 */
 	public get<T extends object = object>(url: string) {
-		return this.http.get<T>(
-			`${environment.cockpitAPIURL}${url}?token=${environment.cockpitAPIKey}`,
-			{
-				headers: this.headers,
-				responseType: 'json'
-			}
-		);
+		return this.http.get<T>(`${environment.cockpitAPIURL}${url}?token=${environment.cockpitAPIKey}`, {
+			headers: this.headers,
+			responseType: 'json'
+		});
 	}
 
 	/**

@@ -7,5 +7,4 @@ export const injectGTMScript = () => {
 	document.head.prepend(script);
 };
 
-export const isAnalyticsMeasurementDisabled = () =>
-	!!window[`ga-disable-${environment.gtmId}`] === true;
+export const isAnalyticsMeasurementDisabled = () => !!window[`ga-disable-${environment.gtmId}`] === true;

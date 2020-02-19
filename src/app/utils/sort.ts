@@ -1,9 +1,7 @@
 /**
  * Function to sort alphabetically an array of objects by some specific key.
  */
-export function dynamicSort<TFactory extends Record<string, any>>(
-	property: string & keyof TFactory
-) {
+export function dynamicSort<TFactory extends Record<string, any>>(property: string & keyof TFactory) {
 	let sortOrder = 1;
 
 	if (property[0] === '-') {

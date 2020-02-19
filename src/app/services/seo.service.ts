@@ -9,16 +9,9 @@ import { REFETCH_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class SEOService {
-	constructor(
-		private title: Title,
-		private meta: Meta,
-		private seoContextQueryGQL: SEOContextQueryGQL
-	) {}
+	constructor(private title: Title, private meta: Meta, private seoContextQueryGQL: SEOContextQueryGQL) {}
 
-	private rewriteSEOContext(
-		data: SEOEntry,
-		additionalTemplateData: Record<TemplateKey, TemplateValue> = {}
-	) {
+	private rewriteSEOContext(data: SEOEntry, additionalTemplateData: Record<TemplateKey, TemplateValue> = {}) {
 		// aggregate full template data
 		const templateData = {
 			...additionalTemplateData,

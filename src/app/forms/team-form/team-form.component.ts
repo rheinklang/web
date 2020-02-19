@@ -30,7 +30,7 @@ export class TeamFormComponent {
 		private formsService: FormsService,
 		private slackService: SlackService,
 		private logService: RemoteLogService
-	) { }
+	) {}
 
 	public teamForm = new FormGroup({
 		year: new FormControl({
@@ -44,15 +44,14 @@ export class TeamFormComponent {
 		telephone: new FormControl(''),
 		job: new FormControl('', Validators.required),
 		message: new FormControl(''),
-		termsAccepted: new FormControl('', [Validators.requiredTrue]),
+		termsAccepted: new FormControl('', [Validators.requiredTrue])
 	});
 
 	public onSubmit() {
 		this.submitting = true;
 
-		this.formsService
-			.submit(FORMS_TEAM, this.teamForm.value)
-			.subscribe(() => {
+		this.formsService.submit(FORMS_TEAM, this.teamForm.value).subscribe(
+			() => {
 				this.sent = true;
 				this.submitting = false;
 
@@ -68,11 +67,12 @@ export class TeamFormComponent {
 						]
 					})
 					.subscribe();
-			}, err => {
+			},
+			err => {
 				this.sent = false;
 				this.submitting = false;
 				this.logService.traceError('TeamSubmission', err);
-			});
-
+			}
+		);
 	}
 }

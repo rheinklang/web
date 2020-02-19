@@ -8,10 +8,7 @@ import { CACHED_POLICY } from '../config/policies';
 	providedIn: 'root'
 })
 export class ImpressionsService {
-	constructor(
-		private impressionsGQL: ImpressionsGQL,
-		private impressionByIdGQL: ImpressionByIdGQL
-	) {}
+	constructor(private impressionsGQL: ImpressionsGQL, private impressionByIdGQL: ImpressionByIdGQL) {}
 
 	public getImpressions() {
 		return this.impressionsGQL

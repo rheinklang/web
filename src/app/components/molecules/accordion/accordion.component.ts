@@ -1,11 +1,4 @@
-import {
-	Component,
-	ContentChildren,
-	QueryList,
-	AfterContentInit,
-	Input,
-	ViewEncapsulation
-} from '@angular/core';
+import { Component, ContentChildren, QueryList, AfterContentInit, Input, ViewEncapsulation } from '@angular/core';
 import { AccordionPanelComponent } from '../../atoms/accordion-panel/accordion-panel.component';
 import { ActivatedRoute } from '@angular/router';
 

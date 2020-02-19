@@ -6,4 +6,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
 	styleUrls: ['./form.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class FormComponent { }
+export class FormComponent {}

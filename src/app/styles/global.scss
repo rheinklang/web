@@ -1,11 +1,11 @@
-@import "./responsive.scss";
+@import './responsive.scss';
 
 body {
-  font-family: Lato, "Helvetica Neue", sans-serif;
+	font-family: Lato, 'Helvetica Neue', sans-serif;
 
-  @include respond-to-max("sm") {
-    overflow-x: hidden;
-  }
+	@include respond-to-max('sm') {
+		overflow-x: hidden;
+	}
 }
 
 *,
@@ -13,15 +13,15 @@ body {
 *:after,
 *::before,
 *::after {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
 }
 
 div,
 p {
-  @include respond-to-max("sm") {
-    line-height: 1.2;
-  }
+	@include respond-to-max('sm') {
+		line-height: 1.2;
+	}
 }

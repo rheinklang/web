@@ -11,14 +11,7 @@ import { FORMS_SUPPLIER } from '../../config/forms';
 	styleUrls: ['./supplier-form.component.scss']
 })
 export class SupplierFormComponent {
-	public supplyType = [
-		'Food',
-		'Infrastruktur',
-		'Personal',
-		'Sponsoring',
-		'Medien & Kommunikation',
-		'Andere ...'
-	];
+	public supplyType = ['Food', 'Infrastruktur', 'Personal', 'Sponsoring', 'Medien & Kommunikation', 'Andere ...'];
 	public submitting = false;
 	public sent: boolean | null = null;
 
@@ -26,7 +19,7 @@ export class SupplierFormComponent {
 		private formsService: FormsService,
 		private slackService: SlackService,
 		private logService: RemoteLogService
-	) { }
+	) {}
 
 	public supplierForm = new FormGroup({
 		year: new FormControl({
@@ -38,15 +31,14 @@ export class SupplierFormComponent {
 		website: new FormControl(''),
 		type: new FormControl('', Validators.required),
 		message: new FormControl('', Validators.required),
-		termsAccepted: new FormControl('', [Validators.requiredTrue]),
+		termsAccepted: new FormControl('', [Validators.requiredTrue])
 	});
 
 	public onSubmit() {
 		this.submitting = true;
 
-		this.formsService
-			.submit(FORMS_SUPPLIER, this.supplierForm.value)
-			.subscribe(() => {
+		this.formsService.submit(FORMS_SUPPLIER, this.supplierForm.value).subscribe(
+			() => {
 				this.sent = true;
 				this.submitting = false;
 
@@ -62,10 +54,12 @@ export class SupplierFormComponent {
 						]
 					})
 					.subscribe();
-			}, err => {
+			},
+			err => {
 				this.sent = false;
 				this.submitting = false;
 				this.logService.traceError('SupplierSubmission', err);
-			});
+			}
+		);
 	}
 }

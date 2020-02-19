@@ -10,7 +10,7 @@ import { ContactSingletonGQLResponse } from '../../queries/Contact.singleton';
 export class ContactComponent implements OnInit {
 	public pageData: Partial<ContactSingletonGQLResponse['contactsPageSingleton']> = {};
 
-	constructor(private contactService: ContactService) { }
+	constructor(private contactService: ContactService) {}
 
 	public ngOnInit() {
 		this.contactService.getSingleton().subscribe(res => {

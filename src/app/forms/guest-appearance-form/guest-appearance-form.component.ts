@@ -29,7 +29,7 @@ export class GuestAppearanceFormComponent {
 		private formsService: FormsService,
 		private slackService: SlackService,
 		private logService: RemoteLogService
-	) { }
+	) {}
 
 	public guestAppearanceForm = new FormGroup({
 		year: new FormControl({
@@ -49,9 +49,8 @@ export class GuestAppearanceFormComponent {
 	public onSubmit() {
 		this.submitting = true;
 
-		this.formsService
-			.submit(FORMS_GUEST_APPEARANCE, this.guestAppearanceForm.value)
-			.subscribe(() => {
+		this.formsService.submit(FORMS_GUEST_APPEARANCE, this.guestAppearanceForm.value).subscribe(
+			() => {
 				this.sent = true;
 				this.submitting = false;
 
@@ -67,11 +66,12 @@ export class GuestAppearanceFormComponent {
 						]
 					})
 					.subscribe();
-			}, err => {
+			},
+			err => {
 				this.sent = false;
 				this.submitting = false;
 				this.logService.traceError('GuestAppearanceSubmission', err);
-			});
-
+			}
+		);
 	}
 }

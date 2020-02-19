@@ -41,18 +41,14 @@ const repoURL = 'https://github.com/rheinklang/web';
 	providedIn: 'root'
 })
 export class SlackService {
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	public send(payload: SlackMessageBody) {
 		return this.http.post(environment.slackErrorHookURL, JSON.stringify(payload));
 	}
 
 	public sendErrorLog(err: SlackErrorPayload) {
-		const stackField = err.stack
-			? {
-				Stacktrace: this.buildCodeMarkdown(err.stack)
-			}
-			: {};
+		const stackField = err.stack ? { Stacktrace: this.buildCodeMarkdown(err.stack) } : {};
 
 		return this.send({
 			blocks: [
@@ -77,9 +73,7 @@ export class SlackService {
 					})
 				},
 				// add source code information
-				this.buildTextBlock(
-					`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${err.hash}`
-				),
+				this.buildTextBlock(`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${err.hash}`),
 				// attach context
 				this.context
 			]

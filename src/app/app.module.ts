@@ -151,4 +151,4 @@ import { TeamFormComponent } from './forms/team-form/team-form.component';
 	],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

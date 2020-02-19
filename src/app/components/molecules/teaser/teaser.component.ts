@@ -1,12 +1,4 @@
-import {
-	Component,
-	Input,
-	Output,
-	EventEmitter,
-	ViewEncapsulation,
-	ViewChild,
-	AfterViewInit
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
 import { ITag } from '../../atoms/tag/tag.component';
 import { TagListComponent } from '../tag-list/tag-list.component';
 

@@ -61,11 +61,7 @@
 		width: 100%;
 		height: 45px;
 		pointer-events: none;
-		background-image: linear-gradient(
-			to bottom,
-			rgba(255, 255, 255, 10%),
-			rgba(255, 255, 255, 1) 100%
-		);
+		background-image: linear-gradient(to bottom, rgba(255, 255, 255, 10%), rgba(255, 255, 255, 1) 100%);
 	}
 }
 

@@ -41,11 +41,7 @@ export class RemoteLogService {
 	private lastErrorSignature: string | null = null;
 	private lastIPTrace: string | null = null;
 
-	constructor(
-		private cockpit: CockpitService,
-		private slack: SlackService,
-		private ip: IPService
-	) {}
+	constructor(private cockpit: CockpitService, private slack: SlackService, private ip: IPService) {}
 
 	public trace(opts: LogServiceTraceOptions) {
 		return this.createLoggingRequest({
@@ -106,15 +102,12 @@ export class RemoteLogService {
 		const { browser, device, os, engine } = parser.getResult();
 
 		const deviceInfo =
-			device.type && device.vendor
-				? `${capitalize(device.type)}, ${device.vendor} ${device.model}`
-				: 'Desktop';
+			device.type && device.vendor ? `${capitalize(device.type)}, ${device.vendor} ${device.model}` : 'Desktop';
 
 		// tslint:disable-next-line: max-line-length
-		return [
-			`${deviceInfo} – ${os.name} ${os.version}`,
-			`/ ${browser.name} ${browser.version} (${engine.name})`
-		].join(' ');
+		return [`${deviceInfo} – ${os.name} ${os.version}`, `/ ${browser.name} ${browser.version} (${engine.name})`].join(
+			' '
+		);
 	}
 
 	private getErrorSignature(opts: CreateLoggingRequestOptions) {
