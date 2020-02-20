@@ -21,7 +21,7 @@ export const resolveDynamicAssetPath = (imageField: { path: string }, fallback: 
 	}
 
 	return imageField && imageField.path
-		// tslint:disable-next-line: max-line-length
-		? `${environment.assetCDNHost}/api/cockpit/image?token=${environment.cockpitAPIKey}&src=/storage/uploads${imageField.path}&o=1`
+		? // tslint:disable-next-line: max-line-length
+		  `${environment.assetCDNHost}/api/cockpit/image?token=${environment.cockpitAPIKey}&src=/storage/uploads${imageField.path}&o=1`
 		: fallback;
 };

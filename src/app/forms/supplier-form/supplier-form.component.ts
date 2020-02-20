@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
 import { SlackService } from '../../services/slack.service';
 import { RemoteLogService } from '../../services/remote-log.service';
