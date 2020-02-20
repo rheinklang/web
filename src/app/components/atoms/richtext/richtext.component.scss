@@ -1,16 +1,27 @@
-@import '../../../styles/colors.scss';
+@import "../../../styles/colors.scss";
 
 .a-richtext {
-	font-size: 1.1rem;
-	line-height: 1.4rem;
+  font-size: 1.1rem;
+  line-height: 1.4rem;
 
-	a {
-		color: $color-primary-grass-green;
-		transition: all 0.2s ease-in-out;
-		text-decoration: none;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: FVAlmelo, Lato, "Helvetica Neue", sans-serif;
+    line-height: 1.6rem;
+    font-weight: normal;
+  }
 
-		&:hover {
-			color: $color-primary-sea-green;
-		}
-	}
+  a {
+    color: $color-primary-grass-green;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-primary-sea-green;
+    }
+  }
 }

@@ -67,6 +67,8 @@ import { FormComponent } from './components/organisms/form/form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SupplierFormComponent } from './forms/supplier-form/supplier-form.component';
 import { TeamFormComponent } from './forms/team-form/team-form.component';
+import { PrivacyBannerComponent } from './components/molecules/privacy-banner/privacy-banner.component';
+import { PrivacyComponent } from './views/privacy/privacy.component';
 
 @NgModule({
 	declarations: [
@@ -122,7 +124,9 @@ import { TeamFormComponent } from './forms/team-form/team-form.component';
 		GuestAppearanceFormComponent,
 		FormComponent,
 		SupplierFormComponent,
-		TeamFormComponent
+		TeamFormComponent,
+		PrivacyBannerComponent,
+		PrivacyComponent
 	],
 	imports: [
 		BrowserModule,

@@ -5,7 +5,7 @@ const { resolve, join } = require('path');
 // @ts-ignore
 const { cyan, green, red, grey } = require('chalk');
 const FTPDeployClient = require('ftp-deploy');
-const argv = require('yargs').argv
+const argv = require('yargs').argv;
 const ora = require('ora');
 // @ts-ignore
 const pkg = require('./package.json');
@@ -13,12 +13,7 @@ const { checkEnvironment } = require('./bin/utils');
 // @ts-ignore
 const deployer = new FTPDeployClient();
 
-checkEnvironment([
-	'DEPLOY_ROOT',
-	'DEPLOY_USER',
-	'DEPLOY_PASS',
-	'DEPLOY_HOST',
-]);
+checkEnvironment(['DEPLOY_ROOT', 'DEPLOY_USER', 'DEPLOY_PASS', 'DEPLOY_HOST']);
 
 /**
  * @type {string}
@@ -49,9 +44,11 @@ const config = {
 };
 
 // @ts-ignore
-deployer.on('uploading', function (data) {
-	const percentage = (data.transferredFileCount / data.totalFilesCount * 100).toFixed(0)
-	loader.text = `Uploading ${cyan(data.filename)} ` + grey(`(${percentage}% / ${(data.transferredFileCount)} of ${data.totalFilesCount})`);
+deployer.on('uploading', function(data) {
+	const percentage = ((data.transferredFileCount / data.totalFilesCount) * 100).toFixed(0);
+	loader.text =
+		`Uploading ${cyan(data.filename)} ` +
+		grey(`(${percentage}% / ${data.transferredFileCount} of ${data.totalFilesCount})`);
 });
 
 // use with callback
@@ -60,10 +57,12 @@ deployer.deploy(config, (err, res) => {
 		loader.fail(red(`${err}`));
 	} else {
 		loader.succeed(green('📦 Deployed application successfully'));
-		res.reduce((p, c) => p.concat(c), []).forEach(entry => {
-			const readable = `${entry}`.replace(SOURCE_DIR, '').replace('uploaded', '')
-			console.log(grey(`-> ${readable}`));
-		});
+		res
+			.reduce((p, c) => p.concat(c), [])
+			.forEach(entry => {
+				const readable = `${entry}`.replace(SOURCE_DIR, '').replace('uploaded', '');
+				console.log(grey(`-> ${readable}`));
+			});
 	}
 
 	console.log('');
