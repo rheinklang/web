@@ -120,6 +120,7 @@ jobs:
           args: '{\"channel\":\"CSVP1C7D2\",\"text\":\":tired_face: Deployment failed, please view GitHub Action output. \"}'
 
   message:
+    runs-on: ubuntu-latest
     needs: [publish]
     steps:
       - name: Notify slack
