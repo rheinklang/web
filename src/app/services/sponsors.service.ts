@@ -34,7 +34,7 @@ export class SponsorsService {
 							level: `${entry.level}` as SponsorLevel,
 							ariaLabel: `${entry.name} ist Sponsor seit ${entry.joinedYear} (${entry.level} level)`,
 							description: `${entry.description}`,
-							sortWeight: entry.sortWeight ? parseInt(entry.sortWeight || '0', 10) : 0
+							sortWeight: parseInt(entry.sortWeight || '0', 10)
 						})
 					)
 				)

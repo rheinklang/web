@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { PreviewImagePathOnly } from '../types/PreviewImage';
 import { TeamSchema } from '../schema/TeamSchema';
 
 export interface TeamGQLResponse {

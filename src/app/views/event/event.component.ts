@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../services/events.service';
 import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
-import { generateUrchingTrackingURL } from '../../utils/utm';
 import { unsubscribe, PossibleSubscription } from '../../utils/subscription';
 import { ArticlesService } from '../../services/articles.service';
 import { DeviceService } from '../../services/device.service';

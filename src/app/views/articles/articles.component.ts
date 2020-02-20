@@ -1,10 +1,9 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleGQLEntry } from '../../queries/ArticleById.query';
 import { ArticlesService } from '../../services/articles.service';
-import { Subscription } from 'rxjs';
 import { unsubscribe } from '../../utils/subscription';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
 	selector: 'rk-articles',
