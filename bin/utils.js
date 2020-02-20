@@ -5,13 +5,15 @@
  * @param {string[]} keys
  */
 const checkEnvironment = keys => {
-	const map = keys.map(key => ({
-		key,
-		value: process.env[key] || ''
-	})).map(pair => ({
-		...pair,
-		valid: pair.value && pair.value.length > 0
-	}));
+	const map = keys
+		.map(key => ({
+			key,
+			value: process.env[key] || ''
+		}))
+		.map(pair => ({
+			...pair,
+			valid: pair.value && pair.value.length > 0
+		}));
 
 	console.log('');
 	map.forEach(entry => {
@@ -27,6 +29,6 @@ const checkEnvironment = keys => {
 	}
 
 	return true;
-}
+};
 
 module.exports.checkEnvironment = checkEnvironment;

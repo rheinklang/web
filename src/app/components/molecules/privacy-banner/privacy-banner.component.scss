@@ -1,0 +1,41 @@
+rk-privacy-banner {
+  z-index: 999;
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.83);
+  backdrop-filter: blur(6px);
+}
+
+.m-privacy-banner {
+  position: relative;
+  padding: 20px;
+
+  rk-heading .a-heading {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  p,
+  a {
+    font-size: 12px;
+  }
+
+  p {
+    padding-right: 34px;
+    white-space: normal;
+  }
+}
+
+.m-privacy-banner--hidden {
+  display: none;
+}
+
+.m-privacy-banner__dismiss {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: calc(50% - 12px);
+}

@@ -1,0 +1,8 @@
+<div class="m-privacy-banner container container-small" [class.m-privacy-banner--hidden]="accepted">
+	<rk-heading size="4" text="Datenschutzbestimmungen"></rk-heading>
+	<p>{{data.bannerText}}</p>
+	<a class="a-link a-link--static-indicator" [routerLink]="['/privacy']">{{data.bannerLinkText}}</a>
+	<div class="m-privacy-banner__dismiss" (click)="acceptTerms()">
+		<rk-icon select="check-circle" color="#000" width="24" height="24"></rk-icon>
+	</div>
+</div>
