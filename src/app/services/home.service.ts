@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, flatMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { HomeSingletonGQL } from '../queries/Home.singleton';
 import { CACHED_POLICY } from '../config/policies';
 

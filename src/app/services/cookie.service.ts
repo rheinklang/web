@@ -44,7 +44,7 @@ export class CookieService {
 		const cookies: {} = {};
 		const document: any = this.document;
 
-		if (document.cookie && document.cookie !== '') {
+		if (document.cookie && document.cookie.length > 0) {
 			const split: Array<string> = document.cookie.split(';');
 
 			// tslint:disable-next-line: prefer-for-of
