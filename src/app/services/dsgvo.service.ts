@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { DSGVOSingletonGQL } from '../queries/DSGVO.singleton';
-import { CACHE_AND_UPDATE_POLICY, CACHED_POLICY } from '../config/policies';
+import { CACHED_POLICY } from '../config/policies';
 
 @Injectable({
 	providedIn: 'root'
