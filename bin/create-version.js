@@ -12,7 +12,8 @@ const gitInfo = gitDescribeSync(resolve(__dirname, '..'), {
 gitInfo.version = version;
 
 const file = resolve(__dirname, '..', 'src', 'environments', 'version.ts');
-writeFileSync(file,
+writeFileSync(
+	file,
 	`// IMPORTANT: THIS FILE IS AUTO GENERATED! DO NOT MANUALLY EDIT OR CHECKIN!
 /* tslint:disable */
 export const VERSION = '${gitInfo.version}';
@@ -22,6 +23,8 @@ export const HASH = '${gitInfo.hash}';
 
 export default ${JSON.stringify(gitInfo, null, 4)};
 /* tslint:enable */
-`, { encoding: 'utf-8' });
+`,
+	{ encoding: 'utf-8' }
+);
 
 console.log(green(`🧬  Wrote version info ${gitInfo.raw} to ${relative(resolve(__dirname, '..'), file)}`));

@@ -1,7 +1,19 @@
 import { Injectable, Inject, PLATFORM_ID, InjectionToken } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
-@Injectable()
+export interface ICookieOptions {
+	name: string;
+	value: string;
+	expires?: number | Date;
+	path?: string;
+	domain?: string;
+	secure?: boolean;
+	sameSite?: 'Lax' | 'None' | 'Strict';
+}
+
+@Injectable({
+	providedIn: 'root'
+})
 export class CookieService {
 	private readonly documentIsAccessible: boolean;
 
@@ -58,15 +70,7 @@ export class CookieService {
 		return cookies as T;
 	}
 
-	set(
-		name: string,
-		value: string,
-		expires?: number | Date,
-		path?: string,
-		domain?: string,
-		secure?: boolean,
-		sameSite: 'Lax' | 'None' | 'Strict' = 'None'
-	): void {
+	set({ name, value, expires, path, domain, secure, sameSite = 'None' }: ICookieOptions): void {
 		if (!this.documentIsAccessible) {
 			return;
 		}
@@ -83,16 +87,16 @@ export class CookieService {
 		}
 
 		if (path) {
-			cookieString += 'path=' + path + ';';
+			cookieString += `path=${path};`;
 		}
 		if (domain) {
-			cookieString += 'domain=' + domain + ';';
+			cookieString += `domain=${domain};`;
 		}
 		if (secure) {
 			cookieString += 'secure;';
 		}
 
-		cookieString += 'sameSite=' + sameSite + ';';
+		cookieString += `sameSite=${sameSite};`;
 		this.document.cookie = cookieString;
 	}
 
@@ -101,7 +105,13 @@ export class CookieService {
 			return;
 		}
 
-		this.set(name, '', new Date('Thu, 01 Jan 1970 00:00:01 GMT'), path, domain);
+		this.set({
+			name,
+			value: '',
+			path,
+			domain,
+			expires: new Date('Thu, 01 Jan 1970 00:00:01 GMT')
+		});
 	}
 
 	deleteAll(path?: string, domain?: string): void {

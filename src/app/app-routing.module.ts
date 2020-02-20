@@ -10,6 +10,7 @@ import { ImpressionComponent } from './views/impression/impression.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { ArticlesComponent } from './views/articles/articles.component';
 import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
+import { PrivacyComponent } from './views/privacy/privacy.component';
 
 const routes: Routes = [
 	{
@@ -48,6 +49,10 @@ const routes: Routes = [
 	{
 		path: 'events/:eventSlug',
 		component: EventComponent
+	},
+	{
+		path: 'privacy',
+		component: PrivacyComponent
 	},
 	{
 		path: 'not-found',
