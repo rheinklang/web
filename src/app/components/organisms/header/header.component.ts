@@ -5,6 +5,8 @@ import { NavigationSingletonGQLResponse } from '../../../queries/Navigation.sing
 import { Subscription } from 'rxjs';
 import { unsubscribe } from '../../../utils/subscription';
 
+type NavigationSingleton = NavigationSingletonGQLResponse['navigationSingleton'];
+
 @Component({
 	selector: 'rk-header',
 	templateUrl: './header.component.html',
@@ -14,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	@Input() public flyoutNavigationOpen = false;
 
 	public navigationItems: Array<{ url: string; title: string }> = [];
-	public navigationTitles: NavigationSingletonGQLResponse['navigationSingleton'] = {} as NavigationSingletonGQLResponse['navigationSingleton'];
+	public navigationTitles: NavigationSingleton = {} as NavigationSingleton;
 
 	private flyoutChangeDetectionSub$: Subscription;
 	private navigationServiceSub$: Subscription;
