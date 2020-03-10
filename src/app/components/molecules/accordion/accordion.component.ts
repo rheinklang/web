@@ -25,12 +25,14 @@ export class AccordionComponent implements AfterContentInit {
 	}
 
 	public ngAfterContentInit() {
+		const panels = this.panels.toArray();
+
 		if (this.initialOpenPanel) {
-			this.panels.toArray()[this.initialOpenPanel].opened = true;
+			panels[this.initialOpenPanel].opened = true;
 		}
 
 		if (this.initialSelectedId) {
-			const matchingSection = this.panels.toArray().find(panel => panel.id === this.initialSelectedId);
+			const matchingSection = panels.find(panel => panel.id === this.initialSelectedId);
 			if (matchingSection) {
 				matchingSection.opened = true;
 			}

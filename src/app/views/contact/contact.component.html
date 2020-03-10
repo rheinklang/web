@@ -24,7 +24,15 @@
 				<p>{{pageData.noSupplierSubmissionText}}</p>
 			</ng-container>
 		</rk-accordion-panel>
-		<rk-accordion-panel id="team-submission" title="Dem Team beitreten">
+		<rk-accordion-panel id="artist-booking-submission" [title]="artistBookingSubmissionTitle">
+			<ng-container *ngIf="pageData.artistBookingSubmissionEnabled">
+				<rk-artist-booking-form></rk-artist-booking-form>
+			</ng-container>
+			<ng-container *ngIf="!pageData.artistBookingSubmissionEnabled">
+				<p>{{pageData.noArtistBookingSubmissionText}}</p>
+			</ng-container>
+		</rk-accordion-panel>
+		<rk-accordion-panel id="team-submission" [title]="teamSubmissionTitle">
 			<ng-container *ngIf="pageData.teamSubmissionEnabled">
 				<rk-team-form></rk-team-form>
 			</ng-container>
@@ -33,7 +41,7 @@
 			</ng-container>
 		</rk-accordion-panel>
 		<rk-accordion-panel id="rights-submission" title="Rechtliches">
-			<p>Für rechtliche Anfragen kontaktieren Sie bitte direkt <a class="a-link a-link--static-indicator" href="mailto:hello@rhnklng.ch">hello@rhnklng.ch</a> mit dem Betreff <em>"Rechtliches: "</em>.</p>
+			<p>Für rechtliche Anfragen kontaktieren Sie bitte direkt <a class="a-link a-link--static-indicator" href="mailto:hello@rhnklng.ch">hello@rhnklng.ch</a> mit dem Betreff <em>"Rechtliches: ... "</em>.</p>
 		</rk-accordion-panel>
 	</rk-accordion>
 </div>

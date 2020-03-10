@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../../services/contact.service';
-import { ContactSingletonGQLResponse } from '../../queries/Contact.singleton';
+import { ContactSingletonGQLResponse, ContactSingletonGQL } from '../../queries/Contact.singleton';
+import { template } from '../../utils/templating';
 
 @Component({
 	selector: 'rk-contact',
@@ -9,6 +10,10 @@ import { ContactSingletonGQLResponse } from '../../queries/Contact.singleton';
 })
 export class ContactComponent implements OnInit {
 	public pageData: Partial<ContactSingletonGQLResponse['contactsPageSingleton']> = {};
+
+	private titleTemplateData = {
+		year: new Date().getFullYear()
+	};
 
 	constructor(private contactService: ContactService) {}
 
@@ -21,10 +26,18 @@ export class ContactComponent implements OnInit {
 	}
 
 	public get guestSubmissionTitle() {
-		return `Gastauftritt ${new Date().getFullYear()}`;
+		return template(this.pageData.guestAppearanceSubmissionTitle, this.titleTemplateData);
 	}
 
 	public get supplierSubmissionTitle() {
-		return `Aussteller ${new Date().getFullYear()}`;
+		return template(this.pageData.supplierSubmissionTitle, this.titleTemplateData);
+	}
+
+	public get teamSubmissionTitle() {
+		return template(this.pageData.teamSubmissionTitle, this.titleTemplateData);
+	}
+
+	public get artistBookingSubmissionTitle() {
+		return template(this.pageData.artistBookingSubmissionTitle, this.titleTemplateData);
 	}
 }

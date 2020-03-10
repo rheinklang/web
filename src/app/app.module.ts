@@ -3,7 +3,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 
-import { MatInputModule, MatSelectModule, MatCheckboxModule } from '@angular/material';
+import { MatInputModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { AboutComponent } from './views/about/about.component';
 import { AppComponent } from './app.component';
@@ -69,6 +70,7 @@ import { SupplierFormComponent } from './forms/supplier-form/supplier-form.compo
 import { TeamFormComponent } from './forms/team-form/team-form.component';
 import { PrivacyBannerComponent } from './components/molecules/privacy-banner/privacy-banner.component';
 import { PrivacyComponent } from './views/privacy/privacy.component';
+import { ArtistBookingFormComponent } from './forms/artist-booking-form/artist-booking-form.component';
 
 @NgModule({
 	declarations: [
@@ -126,21 +128,25 @@ import { PrivacyComponent } from './views/privacy/privacy.component';
 		SupplierFormComponent,
 		TeamFormComponent,
 		PrivacyBannerComponent,
-		PrivacyComponent
+		PrivacyComponent,
+		ArtistBookingFormComponent
 	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
 		GraphQLModule,
-		// FormsModule,
+		// Forms Module,
 		ReactiveFormsModule,
 		ContentLoaderModule,
 		BrowserAnimationsModule,
+		// Material Dependencies
+		MatMomentDateModule,
 		// Material
 		MatInputModule,
 		MatSelectModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		MatDatepickerModule
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [
