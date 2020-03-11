@@ -1,0 +1,58 @@
+<rk-form>
+	<form [formGroup]="artistBookingForm" (ngSubmit)="onSubmit()">
+		<mat-form-field>
+			<input matInput placeholder="E-Mail" formControlName="mail" type="mail" />
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Datum" formControlName="date" [matDatepicker]="picker">
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Club oder Ort" formControlName="location" />
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Artist</mat-label>
+			<mat-select formControlName="artist">
+				<mat-option *ngFor="let artistName of bookableArtistsNames" [value]="artistName">
+					{{artistName}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<div class="o-form__field o-form__field--inline" *ngIf="isAbleToPlayLive">
+			<mat-checkbox formControlName="live">Live Set erwünscht</mat-checkbox>
+			<mat-hint>Dieser Künstler bietet auch Live Sets an, der Tech-Rider unterscheidet sich bei Selektion dieser Option.</mat-hint>
+		</div>
+		<mat-form-field>
+			<input matInput placeholder="Offerierte Gage" formControlName="offer" type="number" />
+			<mat-hint *ngIf="artistBookingForm.value.artist">{{offerHint}}</mat-hint>
+			<mat-hint *ngIf="!artistBookingForm.value.artist">Exklusiv Spesen, mehr Details nach der Artist-Auswahl.</mat-hint>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Presskit oder Referenz-Link" formControlName="presskitURL" />
+			<mat-hint>Nur Zip oder Tar Archive für Presskits erlaubt.</mat-hint>
+		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput placeholder="Ihre Nachricht" formControlName="message" rows="10" maxlength="1000"></textarea>
+			<mat-hint align="end">{{artistBookingForm.value.message.length}} / 1000</mat-hint>
+		</mat-form-field>
+		<div class="o-form__field">
+			<mat-checkbox formControlName="termsAccepted">Ich stimme den Datenschutzbestimmungen zu</mat-checkbox>
+		</div>
+		<button type="submit" [disabled]="!artistBookingForm.valid" [class.state--error]="sent === false" [class.state--sent]="sent === true">
+			<ng-container *ngIf="sent === null">
+				<rk-icon select="send"></rk-icon>
+				<ng-container *ngIf="submitting === true">Wird eingereicht ...</ng-container>
+				<ng-container *ngIf="submitting === false">Einreichen</ng-container>
+			</ng-container>
+			<ng-container *ngIf="sent === true">
+				<rk-icon select="check"></rk-icon>
+				Erfolgreich übermittelt
+			</ng-container>
+			<ng-container *ngIf="sent === false">
+				<rk-icon select="flag"></rk-icon>
+				Fehler beim Einreichen
+			</ng-container>
+		</button>
+	</form>
+</rk-form>

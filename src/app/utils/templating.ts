@@ -1,10 +1,12 @@
+import { isNumber } from 'util';
+
 const TEMPLATE_EXPRESSION = /\{([0-9a-zA-Z_\$\^\!\?]+)\}/g;
 
 export type TemplateKey = string | number;
 
 export type TemplateValue = string | number | boolean | undefined | null;
 
-export function template(value: string, data: Record<TemplateKey, TemplateValue> | TemplateValue[] = {}): string {
+export function template(value: string = '', data: Record<TemplateKey, TemplateValue> | TemplateValue[] = {}): string {
 	let args: Record<TemplateKey, TemplateValue> | TemplateValue[] = {};
 
 	if (value && data && typeof data === 'object') {
@@ -32,3 +34,11 @@ export function template(value: string, data: Record<TemplateKey, TemplateValue>
 		}
 	});
 }
+
+export const pluralize = (num: number, singular: string, plural: string, fallback: string = '') => {
+	if (!isNumber(num) || num === 0) {
+		return fallback;
+	}
+
+	return num === 1 ? `1 ${singular}` : `${num} ${plural}`;
+};
