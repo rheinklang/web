@@ -1,0 +1,31 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
+
+.a-livestream-indicator {
+  background-color: $color-primary-fury-red;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 30px;
+  padding: 18px 18px 16px 18px;
+  z-index: 999;
+
+  @include respond-to-max("sm") {
+    width: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  rk-icon svg {
+    vertical-align: baseline;
+  }
+
+  h5 {
+    display: inline-block;
+    font-size: 23px;
+    text-align: center;
+    margin: 0 0 0 8px;
+    padding: 0;
+    color: $color-white;
+  }
+}

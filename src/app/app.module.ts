@@ -71,6 +71,9 @@ import { TeamFormComponent } from './forms/team-form/team-form.component';
 import { PrivacyBannerComponent } from './components/molecules/privacy-banner/privacy-banner.component';
 import { PrivacyComponent } from './views/privacy/privacy.component';
 import { ArtistBookingFormComponent } from './forms/artist-booking-form/artist-booking-form.component';
+import { LivestreamComponent } from './components/organisms/livestream/livestream.component';
+import { LivestreamIndicatorComponent } from './components/atoms/livestream-indicator/livestream-indicator.component';
+import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
 
 @NgModule({
 	declarations: [
@@ -129,7 +132,10 @@ import { ArtistBookingFormComponent } from './forms/artist-booking-form/artist-b
 		TeamFormComponent,
 		PrivacyBannerComponent,
 		PrivacyComponent,
-		ArtistBookingFormComponent
+		ArtistBookingFormComponent,
+		LivestreamComponent,
+		LivestreamIndicatorComponent,
+		LivestreamEmbeddPageComponent
 	],
 	imports: [
 		BrowserModule,
