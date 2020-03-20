@@ -58,7 +58,7 @@ const routes: Routes = [
 	{
 		path: 'live',
 		component: LivestreamEmbeddPageComponent,
-		data: { disableLiveIndicator: true }
+		data: { disableLiveIndicator: true, modifier: 'no-space' }
 	},
 	{
 		path: 'not-found',

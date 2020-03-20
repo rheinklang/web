@@ -1,7 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@ngneat/content-loader';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+
+// set i18n language context
+registerLocaleData(localeDe);
 
 import { MatInputModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -156,6 +161,10 @@ import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/li
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [
+		{
+			provide: LOCALE_ID,
+			useValue: 'de'
+		},
 		{
 			provide: ErrorHandler,
 			useClass: GlobalErrorHandler
