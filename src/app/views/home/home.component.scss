@@ -13,6 +13,10 @@
   position: relative;
 }
 
+.v-about__slide {
+  position: relative;
+}
+
 .v-home__event-teaser {
   color: $color-black;
   margin-left: auto;
@@ -34,9 +38,26 @@
 
   @include respond-to-min("md") {
     position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    // top: 30%;
+    top: 22%;
+    text-align: center;
+    display: block;
+    width: 100%;
+
+    h2,
+    p {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+    }
+
+    h2 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 25px;
+    }
   }
 
   > * {
