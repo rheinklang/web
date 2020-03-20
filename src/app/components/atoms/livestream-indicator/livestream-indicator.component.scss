@@ -2,6 +2,7 @@
 @import "../../../styles/responsive.scss";
 
 .a-livestream-indicator {
+  cursor: pointer;
   background-color: $color-primary-fury-red;
   position: fixed;
   right: 30px;

@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { map, filter } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LiveStreamService } from '../../../services/livestream.service';
 import { LiveStreamSchema } from '../../../schema/LiveStreamSchema';
+import { unsubscribe } from '../../../utils/subscription';
 
 @Component({
 	selector: 'rk-livestream-indicator',
@@ -11,18 +12,20 @@ import { LiveStreamSchema } from '../../../schema/LiveStreamSchema';
 	styleUrls: ['./livestream-indicator.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class LivestreamIndicatorComponent implements OnInit {
+export class LivestreamIndicatorComponent implements OnInit, OnDestroy {
 	public isIndicatorDisabledByPageData = true;
 	public liveStreamData?: LiveStreamSchema;
+	private routeSubscription$?: Subscription;
+	private streamSubscription$?: Subscription;
 
 	constructor(private route: ActivatedRoute, private router: Router, private liveStreamService: LiveStreamService) {}
 
 	ngOnInit() {
-		this.liveStreamService.getLiveStream().subscribe(data => {
+		this.streamSubscription$ = this.liveStreamService.getLiveStream().subscribe(data => {
 			this.liveStreamData = data;
 		});
 
-		this.router.events
+		this.routeSubscription$ = this.router.events
 			.pipe(
 				filter(event => event instanceof NavigationEnd),
 				map(() => {
@@ -33,6 +36,8 @@ export class LivestreamIndicatorComponent implements OnInit {
 						} else if (child.snapshot.data && typeof child.snapshot.data.disableLiveIndicator !== 'undefined') {
 							return child.snapshot.data.disableLiveIndicator;
 						}
+
+						return null;
 					}
 					return null;
 				})
@@ -42,6 +47,10 @@ export class LivestreamIndicatorComponent implements OnInit {
 					this.isIndicatorDisabledByPageData = false;
 				}
 			});
+	}
+
+	public ngOnDestroy() {
+		unsubscribe([this.routeSubscription$, this.streamSubscription$]);
 	}
 
 	public get isVisible() {
