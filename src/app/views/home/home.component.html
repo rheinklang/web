@@ -51,11 +51,11 @@
 				<rk-content-loader-teaser-article></rk-content-loader-teaser-article>
 			</div>
 		</ng-container>
-		<div *ngFor="let article of articles" class="v-home__news-entry col-12 col-sm-12 col-md-6 col-lg-4">
+		<div *ngFor="let article of filteredArticles" class="v-home__news-entry col-12 col-sm-12 col-md-6 col-lg-4">
 			<rk-teaser
-				routerLink="/articles/{{article._id}}"
-				[title]="article.title"
+				link="/articles/{{article.slug}}"
 				subtitle="Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}"
+				[title]="article.title"
 				[excerpt]="article.excerpt"
 				[tags]="article.tags"
 				[previewImage]="article.previewImage"

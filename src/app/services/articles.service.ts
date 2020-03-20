@@ -20,6 +20,25 @@ export class ArticlesService {
 			.valueChanges.pipe(map(res => res.data.articlesCollection));
 	}
 
+	public getArticleBySlug(slug: string) {
+		return this.articleByIdGQL
+			.watch(
+				{
+					filter: {
+						slug
+					}
+				},
+				{
+					fetchPolicy: CACHED_POLICY
+				}
+			)
+			.valueChanges.pipe(
+				map(res => res.data.articlesCollection),
+				flatMap(entry => entry),
+				first()
+			);
+	}
+
 	public getArticleById(id: string) {
 		return this.articleByIdGQL
 			.watch(

@@ -1,5 +1,7 @@
 <ng-container *ngIf="article; else noArticle">
-	<rk-picture [src]="article.previewImage.path" [alt]="article.title"></rk-picture>
+	<div class="container v-articles__image">
+		<rk-picture [src]="article.previewImage.path" [alt]="article.title"></rk-picture>
+	</div>
 	<rk-content-block space="large" *ngIf="article">
 			<rk-heading size="1" [text]="article.title"></rk-heading>
 			<h2>Publiziert am {{article.releaseDate | date:'dd. MMMM yyyy'}} von {{article.author}}</h2>

@@ -7,6 +7,7 @@ import { HomeSingletonGQLSlideItem } from '../../queries/Home.singleton';
 import { PossibleSubscription, unsubscribe } from '../../utils/subscription';
 import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
 import { EventsService } from '../../services/events.service';
+import { sortByDate } from '../../utils/sort';
 
 @Component({
 	selector: 'rk-home',
@@ -16,6 +17,7 @@ import { EventsService } from '../../services/events.service';
 export class HomeComponent implements OnInit, OnDestroy {
 	public activeTagId?: string;
 	public articles: ArticlesGQLEntry[] = [];
+	public filteredArticles: ArticlesGQLEntry[] = [];
 	public eventTeaser: EventBySlugGQLEntry | null = null;
 	public slides: (HomeSingletonGQLSlideItem & { index: number })[] = [];
 
@@ -31,7 +33,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	public ngOnInit() {
 		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
-			this.articles = articles;
+			// order all articles by ISO date
+			this.articles = sortByDate(articles, article => article.releaseDate);
+
+			// use initial articles at the beginning
+			this.filteredArticles = this.articles;
 		});
 
 		this.eventTeaserSub$ = this.homeService.getEventTeaser().subscribe(teaser => {
@@ -60,7 +66,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	public get tags() {
-		return this.articles.reduce((allTags, article) => [...allTags, ...article.tags], [] as string[]);
+		return this.articles.reduce(
+			(allTags, article) => {
+				const newTags = article.tags.map(tag => (allTags.indexOf(tag) === -1 ? tag : null)).filter(Boolean);
+				return [...allTags, ...newTags];
+			},
+			[] as string[]
+		);
 	}
 
 	public preloadArticle(id: string) {
@@ -85,12 +97,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public setActiveTag(id: string) {
 		if (this.activeTagId === id) {
 			this.activeTagId = undefined;
-		} else {
+			this.filteredArticles = this.articles;
+		} else if (this.activeTagId !== id) {
+			// only update if tag changed
 			this.activeTagId = id;
+			this.filteredArticles = this.articles.filter(article => this.articleContainsActiveTag(article));
 		}
 	}
 
-	public articleContainsActiveTag(article: ArticlesGQLEntry) {
+	public articleContainsActiveTag = (article: ArticlesGQLEntry) => {
 		if (!this.activeTagId) {
 			// no filter set, should render
 			return true;
@@ -101,8 +116,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 			return true;
 		}
 
+		// filter not matching, do not render
 		return false;
-	}
+	};
 
 	public getCurrentArticleCount() {
 		if (!this.activeTagId) {

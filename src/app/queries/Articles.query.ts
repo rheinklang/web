@@ -7,6 +7,7 @@ export interface ArticlesGQLEntry {
 	_id: string;
 	title: string;
 	author: string;
+	slug: string;
 	excerpt: string;
 	tags: string[];
 	releaseDate?: string;
@@ -25,6 +26,7 @@ export class ArticlesGQL extends Query<ArticlesGQLResponse> {
 		query GetArticles {
 			articlesCollection {
 				_id
+				slug
 				title
 				author
 				excerpt
