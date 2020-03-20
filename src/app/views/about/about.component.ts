@@ -6,6 +6,7 @@ import { PortraitService } from '../../services/portrait.service';
 import { TeamService } from '../../services/team.service';
 import { unsubscribe } from '../../utils/subscription';
 import { TeamSchema } from '../../schema/TeamSchema';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
 	selector: 'rk-about',
@@ -17,12 +18,21 @@ export class AboutComponent implements OnInit, OnDestroy {
 	public groupPortraitImagePath: string;
 	public groupPortraitDescription = '';
 	public teamMembers: TeamSchema[] = [];
+	public showTeamSubmissionHint = false;
 
 	private combinedSub$: Subscription;
 
-	constructor(private portraitService: PortraitService, private teamService: TeamService) {}
+	constructor(
+		private portraitService: PortraitService,
+		private teamService: TeamService,
+		private contactService: ContactService
+	) {}
 
 	public ngOnInit() {
+		this.contactService.getSingleton().subscribe(data => {
+			this.showTeamSubmissionHint = data.teamSubmissionEnabled;
+		});
+
 		this.combinedSub$ = combineLatest([this.portraitService.getPortrait(), this.teamService.getTeam()])
 			.pipe(
 				map(([portrait, team]) => {
