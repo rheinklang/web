@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Sanitizer } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { LiveStreamService } from '../../../services/livestream.service';
 import { LiveStreamSchema } from '../../../schema/LiveStreamSchema';
-import { DomSanitizer } from '@angular/platform-browser';
 
 const PARENT_STREAM_HOST = 'rheinklang-festival.ch';
 const TWITCH_PLAYER_HOST = 'https://player.twitch.tv';
