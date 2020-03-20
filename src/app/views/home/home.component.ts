@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 					}
 
 					clearTimeout(tid);
-				}, 5);
+				}, 4);
 			}
 		});
 	}

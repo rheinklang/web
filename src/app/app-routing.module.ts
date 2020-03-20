@@ -11,6 +11,7 @@ import { ContactComponent } from './views/contact/contact.component';
 import { ArticlesComponent } from './views/articles/articles.component';
 import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
 import { PrivacyComponent } from './views/privacy/privacy.component';
+import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
 
 const routes: Routes = [
 	{
@@ -53,6 +54,11 @@ const routes: Routes = [
 	{
 		path: 'privacy',
 		component: PrivacyComponent
+	},
+	{
+		path: 'live',
+		component: LivestreamEmbeddPageComponent,
+		data: { disableLiveIndicator: true }
 	},
 	{
 		path: 'not-found',
