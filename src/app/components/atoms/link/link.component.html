@@ -23,6 +23,7 @@
 		[class.a-link--has-icon]="icon"
 		[class.a-link--static-indicator]="showIndicator"
 		[routerLink]="href"
+		[queryParams]="queryParams"
 		(click)="handleLinkClick()"
 	>
 		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>

@@ -15,6 +15,7 @@ export class LinkComponent {
 	@Input() public icon?: string;
 	@Input() public iconPosition: 'pre' | 'post' = 'pre';
 	@Input() public color?: string;
+	@Input() public queryParams?: Record<string, any> = {};
 
 	private $target = '_self';
 	public needsRelationSafety = false;

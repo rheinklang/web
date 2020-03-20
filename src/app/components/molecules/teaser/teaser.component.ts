@@ -16,6 +16,7 @@ export class TeaserComponent implements AfterViewInit {
 	@Input() public previewImage?: { path: string };
 	@Input() public tags: ITag[] = [];
 	@Input() public disableAnimation = false;
+	@Input() public link?: string;
 
 	@Output() public hovered = new EventEmitter<void>();
 	@Output() public tagClicked = new EventEmitter<string>();
@@ -33,7 +34,7 @@ export class TeaserComponent implements AfterViewInit {
 		this.hovered.emit();
 	}
 
-	public get link() {
-		return [`/articles/${this.id}`];
+	public get linkToArticle() {
+		return [this.link];
 	}
 }

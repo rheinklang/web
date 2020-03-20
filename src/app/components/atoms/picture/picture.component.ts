@@ -28,7 +28,9 @@ export class PictureComponent {
 	@Input() public description?: string;
 
 	public get source() {
-		return resolveDynamicAssetPath({ path: this.src });
+		return resolveDynamicAssetPath({
+			path: this.src
+		});
 	}
 
 	public get sources() {

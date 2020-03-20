@@ -1,31 +1,33 @@
-@import '../../../styles/colors.scss';
-@import '../../../styles/responsive.scss';
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
 
 rk-tag {
-	display: block;
+  display: block;
 }
 
 .a-tag {
-	background-color: $color-primary-fury-red;
-	color: $color-white;
-	border-radius: 4px;
-	display: inline-block;
-	text-transform: uppercase;
-	padding: 5px 8px;
-	font-size: 0.75rem;
+  background-color: $color-primary-fury-red;
+  color: $color-white;
+  border-radius: 4px;
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 5px 8px;
+  font-size: 0.75rem;
 }
 
 .a-tag--interactive {
-	cursor: pointer;
-	background-color: $color-grey-100;
-	transition: background-color 0.2s ease-in-out;
-	will-change: background-color;
+  cursor: pointer;
+  background-color: $color-grey-100;
+  transition: background-color 0.2s ease-in-out;
+  will-change: background-color;
 
-	&:hover {
-		background-color: $color-primary-fury-red-light1;
-	}
+  &:hover {
+    @include respond-to-min("sm") {
+      background-color: $color-primary-fury-red-light1;
+    }
+  }
 }
 
 .a-tag--active {
-	background-color: $color-primary-fury-red;
+  background-color: $color-primary-fury-red;
 }
