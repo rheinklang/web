@@ -1,5 +1,25 @@
 <rk-seo-manager context="impressions-overview"></rk-seo-manager>
-<!-- <rk-content-block>
-	<p>impression-overview works!</p>
-</rk-content-block> -->
-<rk-coming-soon-page></rk-coming-soon-page>
+
+<rk-content-block
+	color="sea-light"
+	space="xlarge"
+	centerHeading="true"
+	skew="true"
+	size="1"
+	[heading]="'Impressionen'"
+>
+	<div class="row justify-content-center">
+			<div class="col-xs-12 col-sm-10 h-text-align--center" [innerHTML]="'some content later from singleton'"></div>
+	</div>
+</rk-content-block>
+
+<div *ngFor="let impression of impressions" class="v-impressions-overview container">
+	<div class="row" [id]="impression.slug">
+		<div class="col-12 col-xl-6">
+			<a [routerLink]="'/impressions/' + impression.slug" class="v-impressions-overview__entry v-impressions-overview__entry--{{getEntryModifier(impression)}}">
+				<rk-picture *ngIf="impression.showcaseImage" [src]="impression.showcaseImage.path"></rk-picture>
+				<rk-heading [size]="3" [text]="impression.title"></rk-heading>
+			</a>
+		</div>
+	</div>
+</div>

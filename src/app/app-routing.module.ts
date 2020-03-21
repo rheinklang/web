@@ -32,7 +32,7 @@ const routes: Routes = [
 		component: ImpressionOverviewComponent
 	},
 	{
-		path: 'impressions/:impressionId',
+		path: 'impressions/:impressionSlug',
 		component: ImpressionComponent
 	},
 	{

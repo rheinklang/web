@@ -1,0 +1,44 @@
+@import "../../styles/colors.scss";
+@import "../../styles/responsive.scss";
+
+.v-impressions-overview {
+  margin-bottom: 40px;
+}
+
+.v-impressions-overview__entry {
+  margin-top: 30px;
+  display: block;
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  text-decoration: none;
+
+  &--black rk-heading {
+    color: $color-black;
+  }
+
+  &--white rk-heading {
+    color: $color-white;
+  }
+
+  rk-heading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 75%;
+
+    @include respond-to-max("sm") {
+      width: 100%;
+      margin: 0 15px;
+    }
+
+    > h2,
+    > h3,
+    > h4 {
+      font-size: 50px;
+      text-shadow: 0 0 1rem rgba(44, 51, 73, 0.1);
+    }
+  }
+}

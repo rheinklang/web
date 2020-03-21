@@ -1,5 +1,16 @@
 <!-- TODO: Add dataset to SEO manager component to access title -->
-<rk-seo-manager context="impression"></rk-seo-manager>
-<rk-content-block>
-	<p>impression works {{impressionId}}!</p>
+<rk-seo-manager context="impression" [data]="impression"></rk-seo-manager>
+
+<rk-content-block space="large" *ngIf="impression" color="sea-light" [heading]="impression.title" [centerHeading]="true">
+	<div class="row justify-content-center">
+		<div class="col-xs-12 col-sm-10 h-text-align--center" [innerHTML]="impression.description"></div>
+	</div>
 </rk-content-block>
+
+<div class="v-impression__gallery container">
+	<div class="row" *ngIf="impression">
+		<div *ngFor="let image of images; let i = index" class="v-impression__gallery-entry col-12 col-sm-6">
+			<rk-picture [src]="image.path"></rk-picture>
+		</div>
+	</div>
+</div>

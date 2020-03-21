@@ -25,9 +25,9 @@ export class ImpressionByIdGQL extends Query<
 		};
 	}
 > {
-	document = gql`
+	public document = gql`
 		query GetImpressionById($filter: JsonType!) {
-			impressionsCollection(filter: $filter) {
+			impressionsCollection(filter: $filter, populate: 1) {
 				title
 				description
 				images {

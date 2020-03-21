@@ -26,6 +26,7 @@ export class PictureComponent {
 	@Input() public alt = '';
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
+	@Input() public downscale = 0;
 
 	public get source() {
 		return resolveDynamicAssetPath({
@@ -39,8 +40,9 @@ export class PictureComponent {
 		}
 
 		const sources = breakpoints.map((breakpoint, index) => {
+			const baseScale = this.downscale > 0 ? breakpoint / this.downscale : breakpoint;
 			const resolvedAssetPath = resolveDynamicAssetPath({ path: this.src });
-			const optimizedWidthFactor = Math.round(breakpoint * IMAGE_OPT_FACTOR);
+			const optimizedWidthFactor = Math.round(baseScale * IMAGE_OPT_FACTOR);
 
 			return {
 				url: `${resolvedAssetPath}&w=${optimizedWidthFactor} x1, ${resolvedAssetPath}&w=${optimizedWidthFactor *

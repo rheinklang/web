@@ -1,0 +1,8 @@
+<div class="m-lightbox">
+	<a class="m-lightbox__thumbnail" href="#{{id}}" (click)="prevent(ev)">
+		<rk-picture [src]="src" [downscale]="1.5"></rk-picture>
+	</a>
+	<a href="" (click)="prevent(ev)" class="m-lightbox__overlay" id="{{id}}">
+		<rk-picture [src]="src"></rk-picture>
+	</a>
+</div>
