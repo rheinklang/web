@@ -79,7 +79,6 @@ import { ArtistBookingFormComponent } from './forms/artist-booking-form/artist-b
 import { LivestreamComponent } from './components/organisms/livestream/livestream.component';
 import { LivestreamIndicatorComponent } from './components/atoms/livestream-indicator/livestream-indicator.component';
 import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
-import { LightboxComponent } from './components/molecules/lightbox/lightbox.component';
 
 @NgModule({
 	declarations: [
@@ -142,7 +141,6 @@ import { LightboxComponent } from './components/molecules/lightbox/lightbox.comp
 		LivestreamComponent,
 		LivestreamIndicatorComponent,
 		LivestreamEmbeddPageComponent,
-		LightboxComponent,
 	],
 	imports: [
 		BrowserModule,
