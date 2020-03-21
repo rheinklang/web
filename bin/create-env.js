@@ -1,10 +1,8 @@
-// @ts-check
 const { resolve } = require('path');
-const { writeFile } = require('fs');
-// @ts-ignore
+const { writeFile, mkdirp } = require('fs-extra');
 const { argv } = require('yargs');
+const { green, red } = require('chalk');
 const { checkEnvironment } = require('./utils');
-// @ts-ignore
 const pkg = require('../package.json');
 
 // This is good for local dev environments, when it's better to
@@ -52,10 +50,15 @@ export const environment = {
 };
 ${!isProd ? `import 'zone.js/dist/zone-error';` : ''}
 `;
-writeFile(targetPath, envConfigFile, function(err) {
-	if (err) {
-		console.log(err);
-	}
 
-	console.log(`🛠 Environment generated at ${targetPath}`);
-});
+(async () => {
+	try {
+		await mkdirp(resolve(__dirname, '..', 'src', 'environments'));
+		await writeFile(targetPath, envConfigFile);
+		console.log(green(`🛠  Environment generated at ${targetPath}`));
+		process.exit(0);
+	} catch (err) {
+		console.log(red(`🛠  Environment couldn't be generated: ${err}`));
+		process.exit(2);
+	}
+})();
