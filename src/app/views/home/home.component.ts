@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	public articleContainsActiveTag = (article: ArticlesGQLEntry) => {
+	public articleContainsActiveTag(article: ArticlesGQLEntry) {
 		if (!this.activeTagId) {
 			// no filter set, should render
 			return true;
@@ -118,14 +118,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 		// filter not matching, do not render
 		return false;
-	};
+	}
 
 	public getCurrentArticleCount() {
 		if (!this.activeTagId) {
 			return this.articles.length;
 		}
 
-		return this.articles.filter(this.articleContainsActiveTag).length;
+		return this.articles.filter(art => this.articleContainsActiveTag(art)).length;
 	}
 
 	public get articlesLoaded() {

@@ -5,14 +5,14 @@
  */
 export const environment = {
 	production: false,
-	buildNumber: 'v0.9.182-rc.1#1584748022426',
-	assetCDNHost: 'https://cockpit.rheinklang-festival.ch',
-	cockpitAPIURL: 'https://cockpit.rheinklang-festival.ch/api',
-	cockpitAPIKey: 'fd436a0918d8fda6c085efff20da14',
-	graphQLHostURL: 'https://cockpit.rheinklang-festival.ch/api/graphql/query?token=fd436a0918d8fda6c085efff20da14',
-	gtmId: 'UA-57645783-5',
-	gcpKey: 'AIzaSyBlnVDRpM9VqsiptUWa4IfiKu7C-aObCCs',
-	gcpStaticMapsSecret: 'd00duD8kGHzu7n5GKWruaYlFUWU',
-	slackErrorHookURL: 'https://hooks.slack.com/services/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'
+	buildNumber: '',
+	assetCDNHost: '',
+	cockpitAPIURL: '',
+	cockpitAPIKey: '',
+	graphQLHostURL: '',
+	gtmId: '',
+	gcpKey: '',
+	gcpStaticMapsSecret: '',
+	slackErrorHookURL: ''
 };
 import 'zone.js/dist/zone-error';
