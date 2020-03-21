@@ -1,4 +1,3 @@
-import Glide from '@glidejs/glide';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ArticlesService } from '../../services/articles.service';
 import { ArticlesGQLEntry } from '../../queries/Articles.query';
