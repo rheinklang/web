@@ -4,7 +4,7 @@ import { TeamGQL } from '../queries/Team.query';
 import { CACHED_POLICY } from '../config/policies';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class TeamService {
 	constructor(private teamGQL: TeamGQL) {}
@@ -12,8 +12,8 @@ export class TeamService {
 	public getTeam() {
 		return this.teamGQL
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
-			.valueChanges.pipe(map(res => res.data.teamCollection));
+			.valueChanges.pipe(map((res) => res.data.teamCollection));
 	}
 }

@@ -5,7 +5,7 @@ import { ArticleByIdGQL } from '../queries/ArticleById.query';
 import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY, REFETCH_POLICY } from '../config/policies';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ArticlesService {
 	private preloadedArticleIds: string[] = [];
@@ -15,9 +15,28 @@ export class ArticlesService {
 	public getArticles() {
 		return this.articlesGQL
 			.watch(undefined, {
-				fetchPolicy: REFETCH_POLICY
+				fetchPolicy: REFETCH_POLICY,
 			})
-			.valueChanges.pipe(map(res => res.data.articlesCollection));
+			.valueChanges.pipe(map((res) => res.data.articlesCollection));
+	}
+
+	public getArticleBySlug(slug: string) {
+		return this.articleByIdGQL
+			.watch(
+				{
+					filter: {
+						slug,
+					},
+				},
+				{
+					fetchPolicy: CACHED_POLICY,
+				}
+			)
+			.valueChanges.pipe(
+				map((res) => res.data.articlesCollection),
+				flatMap((entry) => entry),
+				first()
+			);
 	}
 
 	public getArticleById(id: string) {
@@ -25,16 +44,16 @@ export class ArticlesService {
 			.watch(
 				{
 					filter: {
-						_id: id
-					}
+						_id: id,
+					},
 				},
 				{
-					fetchPolicy: CACHED_POLICY
+					fetchPolicy: CACHED_POLICY,
 				}
 			)
 			.valueChanges.pipe(
-				map(res => res.data.articlesCollection),
-				flatMap(entry => entry),
+				map((res) => res.data.articlesCollection),
+				flatMap((entry) => entry),
 				first()
 			);
 	}
@@ -50,11 +69,11 @@ export class ArticlesService {
 			.watch(
 				{
 					filter: {
-						_id: id
-					}
+						_id: id,
+					},
 				},
 				{
-					fetchPolicy: CACHE_AND_UPDATE_POLICY
+					fetchPolicy: CACHE_AND_UPDATE_POLICY,
 				}
 			)
 			.valueChanges.subscribe();

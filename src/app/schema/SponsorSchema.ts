@@ -5,7 +5,7 @@ export enum SponsorLevel {
 	BRONZE = 'bronze',
 	SILVER = 'silver',
 	GOLD = 'gold',
-	PLATINUM = 'platinum'
+	PLATINUM = 'platinum',
 }
 
 export type SponsorLevelType = SponsorLevel | null;

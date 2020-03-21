@@ -6,7 +6,7 @@ import { resolveCDNImagePath } from '../../../utils/image';
 @Component({
 	selector: 'rk-logo',
 	templateUrl: './logo.component.html',
-	styleUrls: ['./logo.component.scss']
+	styleUrls: ['./logo.component.scss'],
 })
 export class LogoComponent implements OnInit {
 	@Input() id: string;

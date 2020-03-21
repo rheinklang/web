@@ -8,7 +8,7 @@ export interface BookableArtistsGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class BookableArtistsGQL extends Query<BookableArtistsGQLResponse> {
 	document = gql`

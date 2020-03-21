@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { PreviewImagePathOnly, PreviewImage } from '../types/PreviewImage';
+import { ImageSchema } from '../schema/ImageSchema';
 
 export interface ImpressionsGQLEntry {
 	title: string;
-	showcaseImage: PreviewImagePathOnly;
+	showcaseImage: ImageSchema;
 }
 
 export interface ImpressionsGQLResponse {
@@ -13,15 +13,17 @@ export interface ImpressionsGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ImpressionsGQL extends Query<ImpressionsGQLResponse> {
 	document = gql`
-		query GetImpressionById($filter: JsonType!) {
+		query ImpressionsQuery {
 			impressionsCollection {
 				title
+				slug
 				showcaseImage {
 					path
+					colors
 				}
 			}
 		}

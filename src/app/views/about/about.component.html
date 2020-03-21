@@ -3,10 +3,10 @@
 	<rk-content-block color="sea-light" space="large" title="Unser Team">
 			<rk-picture *ngIf="groupPortraitImagePath" rounded="small" [src]="groupPortraitImagePath" [description]="groupPortraitDescription" alt="Team Portrait"></rk-picture>
 	</rk-content-block>
-	<rk-content-block color="orange" space="small">
+	<rk-content-block color="orange" space="small" *ngIf="showTeamSubmissionHint">
 		<div class="row">
 				<div class="col-12 h-text-align--center">
-						<p>Du möchtest ein Teil unseres Teams werden? Dann nichts wie los zur <rk-link showIndicator="true" href="/contact?view=team-submission" text="Kontakt Sektion"></rk-link> unserer Seite!</p>
+						<p>Du möchtest ein Teil unseres Teams werden? Dann nichts wie los zur <rk-link showIndicator="true" href="/contact" [queryParams]="{view: 'team-submission'}" text="Kontakt Sektion"></rk-link> unserer Seite!</p>
 				</div>
 		</div>
 	</rk-content-block>
@@ -16,28 +16,29 @@
 				<div class="v-about__members-entry col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let member of teamMembers">
 					<rk-card>
 						<!-- [src]="member.image.path" -->
-						<div class="v-about__member-role-symbols">
+						<!-- TODO: Remove later on -->
+						<!-- <div class="v-about__member-role-symbols">
 							<span rkTooltip [tooltipText]="'Gründungsmitglied'">
 								<rk-icon *ngIf="member.founder" select="pen-tool" width="15" height="15"></rk-icon>
 							</span>
 							<span rkTooltip [tooltipText]="'Leitungsfunktion'">
 								<rk-icon *ngIf="member.lead" select="users" width="15" height="15"></rk-icon>
 							</span>
-						</div>
+						</div> -->
 						<rk-image *ngIf="member.image" rounded="full" [src]="member.image.path || 'https://via.placeholder.com/400x400?text=' + member.fullName" alt="Portrait von {{member.fullName}}"></rk-image>
 						<div class="v-about__member-intro">
 							<rk-heading size="3" [text]="member.fullName" noSpace="true"></rk-heading>
 							<rk-heading *ngIf="member.mainRole" size="4" noSpace="true" [text]="member.mainRole"></rk-heading>
 							<rk-heading *ngIf="member.sideRole" size="5" noSpace="true" [text]="member.sideRole"></rk-heading>
 						</div>
-						<p>{{member.description}}</p>
 					</rk-card>
 				</div>
 			</div>
-			<div class="v-about__members-icon-description">
+			<!-- TODO: Remove later on -->
+			<!-- <div class="v-about__members-icon-description">
 				<p><rk-icon select="pen-tool"></rk-icon> Gründungsmitglied</p>
 				<p><rk-icon select="users"></rk-icon> Leitungsfunktion</p>
-			</div>
+			</div> -->
 		</ng-container>
 	</rk-content-block>
 </div>

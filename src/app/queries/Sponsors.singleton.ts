@@ -10,7 +10,7 @@ export interface SponsorsSingletonGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class SponsorsSingletonGQL extends Query<SponsorsSingletonGQLResponse> {
 	document = gql`

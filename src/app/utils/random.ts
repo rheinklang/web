@@ -18,5 +18,5 @@ export const getRandomItemsFrom = <T>(list: T[], amount: number, unique = true) 
 
 			return null;
 		})
-		.map(randomIndex => list[randomIndex] || null);
+		.map((randomIndex) => list[randomIndex] || null);
 };

@@ -8,7 +8,7 @@ describe('ContentBlockComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ContentBlockComponent]
+			declarations: [ContentBlockComponent],
 		}).compileComponents();
 	}));
 

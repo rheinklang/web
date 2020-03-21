@@ -6,7 +6,7 @@ import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY } from '../config/policies';
 import { EventsSingletonGQL } from '../queries/Events.singleton';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class EventsService {
 	private preloadedEvents: string[] = [];
@@ -20,32 +20,32 @@ export class EventsService {
 	public getEvents() {
 		return this.eventsGQL
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
-			.valueChanges.pipe(map(v => v.data.eventsCollection));
+			.valueChanges.pipe(map((v) => v.data.eventsCollection));
 	}
 
 	public getEventsSingleton() {
 		return this.eventsSingletonGQL
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
-			.valueChanges.pipe(map(v => v.data.eventsPageSingleton));
+			.valueChanges.pipe(map((v) => v.data.eventsPageSingleton));
 	}
 
 	public getEventBySlug(slug: string) {
 		return this.eventBySlugGQL
 			.watch(
 				{
-					filter: { slug }
+					filter: { slug },
 				},
 				{
-					fetchPolicy: CACHED_POLICY
+					fetchPolicy: CACHED_POLICY,
 				}
 			)
 			.valueChanges.pipe(
-				map(res => res.data.eventsCollection),
-				flatMap(entry => entry),
+				map((res) => res.data.eventsCollection),
+				flatMap((entry) => entry),
 				first()
 			);
 	}
@@ -59,10 +59,10 @@ export class EventsService {
 		return this.eventBySlugGQL
 			.watch(
 				{
-					filter: { slug }
+					filter: { slug },
 				},
 				{
-					fetchPolicy: CACHE_AND_UPDATE_POLICY
+					fetchPolicy: CACHE_AND_UPDATE_POLICY,
 				}
 			)
 			.valueChanges.subscribe();

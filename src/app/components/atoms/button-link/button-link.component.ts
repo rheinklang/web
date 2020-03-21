@@ -5,7 +5,7 @@ import { generateUrchingTrackingURL } from '../../../utils/utm';
 	selector: 'rk-button-link',
 	templateUrl: './button-link.component.html',
 	styleUrls: ['./button-link.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class ButtonLinkComponent {
 	@Input() public href: string;

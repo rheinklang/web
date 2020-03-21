@@ -13,7 +13,7 @@ interface SponsorsYearMap {
 @Component({
 	selector: 'rk-sponsors-overview',
 	templateUrl: './sponsors-overview.component.html',
-	styleUrls: ['./sponsors-overview.component.scss']
+	styleUrls: ['./sponsors-overview.component.scss'],
 })
 export class SponsorsOverviewComponent implements OnInit, OnDestroy {
 	public sponsors: Array<[string, SponsorsServiceEntry[]]> = [];
@@ -25,29 +25,29 @@ export class SponsorsOverviewComponent implements OnInit, OnDestroy {
 	constructor(private sponsorsService: SponsorsService) {}
 
 	public ngOnInit() {
-		this.sponsorsService.getSponsors().subscribe(sponsors => {
+		this.sponsorsService.getSponsors().subscribe((sponsors) => {
 			const groupedSponsors = sponsors.reduce(
 				(acc, curr) => ({
 					...acc,
-					[curr.lastActiveYear]: [...(acc[curr.lastActiveYear] || []), curr]
+					[curr.lastActiveYear]: [...(acc[curr.lastActiveYear] || []), curr],
 				}),
 				{} as SponsorsYearMap
 			);
 
 			this.sponsors = Object.keys(groupedSponsors)
 				.sort(sortByYear)
-				.filter(y => typeof y === 'string' && y.length > 0)
+				.filter((y) => typeof y === 'string' && y.length > 0)
 				.reduce(
 					(acc, curr): [string, SponsorsServiceEntry[]][] => [
 						...acc,
-						[curr, sponsorSortAlgorithm(groupedSponsors[curr])]
+						[curr, sponsorSortAlgorithm(groupedSponsors[curr])],
 					],
 					[] as [string, SponsorsServiceEntry[]][]
 				)
 				.reverse();
 		});
 
-		this.sponsorsService.getSingleton().subscribe(data => {
+		this.sponsorsService.getSingleton().subscribe((data) => {
 			this.pageData = data;
 		});
 	}

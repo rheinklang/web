@@ -3,7 +3,7 @@ import { trackGTMEvent } from '../utils/gtag';
 import { CockpitService } from './cockpit.service';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class FormsService {
 	constructor(private cockpit: CockpitService) {}
@@ -12,13 +12,13 @@ export class FormsService {
 		const payload: T = {
 			...data,
 			location: window.location.href,
-			timestamp: new Date().toUTCString()
+			timestamp: new Date().toUTCString(),
 		};
 
 		trackGTMEvent(`submit_${name}`, {
 			category: 'submission',
 			label: `Submission for ${name}`,
-			value: JSON.stringify(data)
+			value: JSON.stringify(data),
 		});
 
 		// send log in parallel to cockpit

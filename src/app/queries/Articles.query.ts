@@ -7,6 +7,7 @@ export interface ArticlesGQLEntry {
 	_id: string;
 	title: string;
 	author: string;
+	slug: string;
 	excerpt: string;
 	tags: string[];
 	releaseDate?: string;
@@ -18,13 +19,14 @@ export interface ArticlesGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ArticlesGQL extends Query<ArticlesGQLResponse> {
 	document = gql`
 		query GetArticles {
 			articlesCollection {
 				_id
+				slug
 				title
 				author
 				excerpt

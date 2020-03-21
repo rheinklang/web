@@ -6,7 +6,7 @@ import { EventSchema } from '../../../schema/EventSchema';
 	selector: 'rk-teaser-event',
 	templateUrl: './teaser-event.component.html',
 	styleUrls: ['./teaser-event.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class TeaserEventComponent {
 	@Input() public slug: EventSchema['slug'];
@@ -74,7 +74,7 @@ export class TeaserEventComponent {
 	public get eventDetailIcon() {
 		return {
 			select: this.hasTickets ? 'credit-card' : 'eye',
-			color: '#fff'
+			color: '#fff',
 		};
 	}
 }

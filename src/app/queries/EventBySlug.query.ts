@@ -15,7 +15,7 @@ export interface EventBySlugGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class EventBySlugGQL extends Query<
 	EventBySlugGQLResponse,

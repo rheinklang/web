@@ -26,13 +26,13 @@ export interface LoggingRequestData {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class RemoteLogService {
 	public static DEFAULT_TRACE_OPTIONS = {
 		message: 'Unknown error',
 		code: 500,
-		module: 'RheinklangApplicationModule'
+		module: 'RheinklangApplicationModule',
 	};
 
 	private enableDevMode = false;
@@ -45,7 +45,7 @@ export class RemoteLogService {
 		return this.createLoggingRequest({
 			message: opts.message || RemoteLogService.DEFAULT_TRACE_OPTIONS.message,
 			code: `${opts.code || RemoteLogService.DEFAULT_TRACE_OPTIONS.code}`,
-			module: opts.module || RemoteLogService.DEFAULT_TRACE_OPTIONS.module
+			module: opts.module || RemoteLogService.DEFAULT_TRACE_OPTIONS.module,
 		});
 	}
 
@@ -53,7 +53,7 @@ export class RemoteLogService {
 		return this.trace({
 			module,
 			message: err.message,
-			code: err.name
+			code: err.name,
 		});
 	}
 
@@ -68,12 +68,12 @@ export class RemoteLogService {
 			location: window.location.href,
 			timestamp: new Date().toUTCString(),
 			platform: this.getComputedPlatform(),
-			version: `Angular ${VERSION.full}, Commit \`#${version.hash}\`, Package ${version.version}`
+			version: `Angular ${VERSION.full}, Commit \`#${version.hash}\`, Package ${version.version}`,
 		};
 
 		this.lastErrorSignature = this.getErrorSignature(opts);
 
-		this.ip.getIP().subscribe(ipInfo => {
+		this.ip.getIP().subscribe((ipInfo) => {
 			if (this.lastIPTrace === ipInfo.ip) {
 				// same host, do not send issue
 				return;
@@ -87,7 +87,7 @@ export class RemoteLogService {
 				net: `${ipInfo.ip}`,
 				locale: `${ipInfo.country}, ${ipInfo.region}, ${ipInfo.city}`,
 				org: ipInfo.org || 'unknown',
-				stack: opts.stack
+				stack: opts.stack,
 			});
 		});
 
@@ -103,9 +103,10 @@ export class RemoteLogService {
 			device.type && device.vendor ? `${capitalize(device.type)}, ${device.vendor} ${device.model}` : 'Desktop';
 
 		// tslint:disable-next-line: max-line-length
-		return [`${deviceInfo} – ${os.name} ${os.version}`, `/ ${browser.name} ${browser.version} (${engine.name})`].join(
-			' '
-		);
+		return [
+			`${deviceInfo} – ${os.name} ${os.version}`,
+			`/ ${browser.name} ${browser.version} (${engine.name})`,
+		].join(' ');
 	}
 
 	private getErrorSignature(opts: CreateLoggingRequestOptions) {

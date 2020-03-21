@@ -12,7 +12,7 @@ export interface ICookieOptions {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class CookieService {
 	private readonly documentIsAccessible: boolean;
@@ -110,7 +110,7 @@ export class CookieService {
 			value: '',
 			path,
 			domain,
-			expires: new Date('Thu, 01 Jan 1970 00:00:01 GMT')
+			expires: new Date('Thu, 01 Jan 1970 00:00:01 GMT'),
 		});
 	}
 

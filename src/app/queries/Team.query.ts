@@ -8,7 +8,7 @@ export interface TeamGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class TeamGQL extends Query<TeamGQLResponse> {
 	document = gql`

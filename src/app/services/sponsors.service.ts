@@ -15,7 +15,7 @@ export type SponsorsServiceEntry = Without<SponsorSchema<ImagePathOnlySchema>, '
 };
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class SponsorsService {
 	constructor(private sponsorsGQL: SponsorsGQL, private sponsorsSingleton: SponsorsSingletonGQL) {}
@@ -23,18 +23,18 @@ export class SponsorsService {
 	public getSponsors(): Observable<SponsorsServiceEntry[]> {
 		return this.sponsorsGQL
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
 			.valueChanges.pipe(
-				map(v => v.data.sponsorsCollection),
-				map(entries =>
+				map((v) => v.data.sponsorsCollection),
+				map((entries) =>
 					entries.map(
 						(entry): SponsorsServiceEntry => ({
 							...entry,
 							level: `${entry.level}` as SponsorLevel,
 							ariaLabel: `${entry.name} ist Sponsor seit ${entry.joinedYear} (${entry.level} level)`,
 							description: `${entry.description}`,
-							sortWeight: parseInt(entry.sortWeight || '0', 10)
+							sortWeight: parseInt(entry.sortWeight || '0', 10),
 						})
 					)
 				)
@@ -44,8 +44,8 @@ export class SponsorsService {
 	public getSingleton() {
 		return this.sponsorsSingleton
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
-			.valueChanges.pipe(map(v => v.data.sponsorsPageSingleton));
+			.valueChanges.pipe(map((v) => v.data.sponsorsPageSingleton));
 	}
 }

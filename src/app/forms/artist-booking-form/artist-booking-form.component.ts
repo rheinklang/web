@@ -12,7 +12,7 @@ const visibleAgencies = ['Waehlscheibe', 'Beyond Souls', 'Schwarzmatt', 'Rheinkl
 @Component({
 	selector: 'rk-artist-booking-form',
 	templateUrl: './artist-booking-form.component.html',
-	styleUrls: ['./artist-booking-form.component.scss']
+	styleUrls: ['./artist-booking-form.component.scss'],
 })
 export class ArtistBookingFormComponent implements OnInit {
 	public bookableArtists: BookableArtistsForDropdown[] = [];
@@ -28,7 +28,7 @@ export class ArtistBookingFormComponent implements OnInit {
 		live: new FormControl(''),
 		termsAccepted: new FormControl('', [Validators.requiredTrue]),
 		presskitURL: new FormControl(''),
-		message: new FormControl('')
+		message: new FormControl(''),
 	});
 
 	constructor(
@@ -39,11 +39,11 @@ export class ArtistBookingFormComponent implements OnInit {
 	) {}
 
 	public ngOnInit() {
-		this.artistsService.getBookableArtistsDropdownList().subscribe(list => {
+		this.artistsService.getBookableArtistsDropdownList().subscribe((list) => {
 			this.bookableArtists = list;
 			this.bookableArtistsNames = list
-				.filter(artist => visibleAgencies.indexOf(artist.agency) > -1)
-				.map(artist => artist.name)
+				.filter((artist) => visibleAgencies.indexOf(artist.agency) > -1)
+				.map((artist) => artist.name)
 				.sort();
 		});
 	}
@@ -62,14 +62,14 @@ export class ArtistBookingFormComponent implements OnInit {
 							this.slackService.buildTextBlock(`:tada: Artist booking request received`),
 							{
 								type: 'section',
-								fields: this.slackService.buildFields(this.artistBookingForm.value) as any
+								fields: this.slackService.buildFields(this.artistBookingForm.value) as any,
 							},
-							this.slackService.context
-						]
+							this.slackService.context,
+						],
 					})
 					.subscribe();
 			},
-			err => {
+			(err) => {
 				this.sent = false;
 				this.submitting = false;
 				this.logService.traceError('ArtistBookingSubmission', err);
@@ -101,11 +101,11 @@ export class ArtistBookingFormComponent implements OnInit {
 			pluralize(artistInfo.hotelAmount, 'Hotelübernachtung, ', 'Hotelübernachtungen, '),
 			pluralize(artistInfo.transferAmount, 'Transfer, ', 'Transfers, '),
 			pluralize(artistInfo.mealAmount, 'Mahlzeit ', 'Mahlzeiten '),
-			` lokale Gebühren (Booking via ${artistInfo.agency}).`
+			` lokale Gebühren (Booking via ${artistInfo.agency}).`,
 		].join('');
 	}
 
 	private getArtistByName(name: string): BookableArtistsForDropdown | void {
-		return this.bookableArtists.find(artist => artist.name === name);
+		return this.bookableArtists.find((artist) => artist.name === name);
 	}
 }

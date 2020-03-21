@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 	selector: 'rk-accordion',
 	templateUrl: './accordion.component.html',
 	styleUrls: ['./accordion.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class AccordionComponent implements AfterContentInit {
 	@Input() public initialOpenPanel?: number;
@@ -17,7 +17,7 @@ export class AccordionComponent implements AfterContentInit {
 	private initialSelectedId: string | undefined;
 
 	constructor(route: ActivatedRoute) {
-		route.queryParams.subscribe(params => {
+		route.queryParams.subscribe((params) => {
 			if (params.view) {
 				this.initialSelectedId = params.view;
 			}
@@ -32,7 +32,7 @@ export class AccordionComponent implements AfterContentInit {
 		}
 
 		if (this.initialSelectedId) {
-			const matchingSection = panels.find(panel => panel.id === this.initialSelectedId);
+			const matchingSection = panels.find((panel) => panel.id === this.initialSelectedId);
 			if (matchingSection) {
 				matchingSection.opened = true;
 			}
@@ -50,12 +50,12 @@ export class AccordionComponent implements AfterContentInit {
 	}
 
 	public openPanel(panel: AccordionPanelComponent) {
-		this.panels.toArray().forEach(p => (p.opened = false));
+		this.panels.toArray().forEach((p) => (p.opened = false));
 		panel.opened = true;
 	}
 
 	public closePanel(panel: AccordionPanelComponent) {
-		const found = this.panels.toArray().find(p => p === panel);
+		const found = this.panels.toArray().find((p) => p === panel);
 		found.opened = false;
 	}
 }

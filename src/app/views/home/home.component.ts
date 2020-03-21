@@ -7,15 +7,17 @@ import { HomeSingletonGQLSlideItem } from '../../queries/Home.singleton';
 import { PossibleSubscription, unsubscribe } from '../../utils/subscription';
 import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
 import { EventsService } from '../../services/events.service';
+import { sortByDate } from '../../utils/sort';
 
 @Component({
 	selector: 'rk-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
 	public activeTagId?: string;
 	public articles: ArticlesGQLEntry[] = [];
+	public filteredArticles: ArticlesGQLEntry[] = [];
 	public eventTeaser: EventBySlugGQLEntry | null = null;
 	public slides: (HomeSingletonGQLSlideItem & { index: number })[] = [];
 
@@ -30,15 +32,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
-		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
-			this.articles = articles;
+		this.articlesSub$ = this.articlesService.getArticles().subscribe((articles) => {
+			// order all articles by ISO date
+			this.articles = sortByDate(articles, (article) => article.releaseDate);
+
+			// use initial articles at the beginning
+			this.filteredArticles = this.articles;
 		});
 
-		this.eventTeaserSub$ = this.homeService.getEventTeaser().subscribe(teaser => {
+		this.eventTeaserSub$ = this.homeService.getEventTeaser().subscribe((teaser) => {
 			this.eventTeaser = teaser;
 		});
 
-		this.homeSub$ = this.homeService.getSlides().subscribe(slides => {
+		this.homeSub$ = this.homeService.getSlides().subscribe((slides) => {
 			this.slides = slides;
 
 			if (slides.length > 0) {
@@ -60,7 +66,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	public get tags() {
-		return this.articles.reduce((allTags, article) => [...allTags, ...article.tags], [] as string[]);
+		return this.articles.reduce(
+			(allTags, article) => {
+				const newTags = article.tags.map((tag) => (allTags.indexOf(tag) === -1 ? tag : null)).filter(Boolean);
+				return [...allTags, ...newTags];
+			},
+			[] as string[]
+		);
 	}
 
 	public preloadArticle(id: string) {
@@ -78,15 +90,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 			autoplay: 8000, // ms
 			hoverpause: true,
 			swipeThreshold: 100, // px
-			animationDuration: 500
+			animationDuration: 500,
 		}).mount();
 	}
 
 	public setActiveTag(id: string) {
 		if (this.activeTagId === id) {
 			this.activeTagId = undefined;
-		} else {
+			this.filteredArticles = this.articles;
+		} else if (this.activeTagId !== id) {
+			// only update if tag changed
 			this.activeTagId = id;
+			this.filteredArticles = this.articles.filter((article) => this.articleContainsActiveTag(article));
 		}
 	}
 
@@ -101,6 +116,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 			return true;
 		}
 
+		// filter not matching, do not render
 		return false;
 	}
 
@@ -109,7 +125,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 			return this.articles.length;
 		}
 
-		return this.articles.filter(this.articleContainsActiveTag).length;
+		return this.articles.filter((art) => this.articleContainsActiveTag(art)).length;
 	}
 
 	public get articlesLoaded() {

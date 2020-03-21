@@ -6,7 +6,7 @@ import(/* webpackChunkName: "svgxuse" */ 'svgxuse/svgxuse.min.js');
 	selector: 'rk-icon',
 	templateUrl: './icon.component.html',
 	styleUrls: ['./icon.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class IconComponent {
 	@Input() public select: string;

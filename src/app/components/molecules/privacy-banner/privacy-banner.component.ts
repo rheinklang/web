@@ -13,7 +13,7 @@ type DSGVOData = DSGVOSingletonGQLResponse['dsgvoSingleton'];
 	selector: 'rk-privacy-banner',
 	templateUrl: './privacy-banner.component.html',
 	styleUrls: ['./privacy-banner.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class PrivacyBannerComponent implements OnInit {
 	public data: DSGVOData = {} as DSGVOData;
@@ -25,7 +25,7 @@ export class PrivacyBannerComponent implements OnInit {
 	constructor(private dsgvoService: DSGVOService, private cookieService: CookieService) {}
 
 	ngOnInit() {
-		this.dsgvoService.getSingleton().subscribe(data => {
+		this.dsgvoService.getSingleton().subscribe((data) => {
 			this.data = data;
 			// we require the DSGVO ID for invalidation purposes
 			this.initializeStateBasedOnCookie();
@@ -37,7 +37,7 @@ export class PrivacyBannerComponent implements OnInit {
 			name: PRIVACY_TERMS_KEY,
 			value: this.acceptedCookieValue,
 			expires: createExpirationDate(new Date(), 182),
-			sameSite: 'Lax'
+			sameSite: 'Lax',
 		});
 
 		this.accepted = true;
@@ -45,7 +45,7 @@ export class PrivacyBannerComponent implements OnInit {
 		trackGTMEvent('accept_terms', {
 			category: 'privacy',
 			label: 'DSGVO accepted',
-			value: `Terms accepted on ${new Date()}`
+			value: `Terms accepted on ${new Date()}`,
 		});
 	}
 

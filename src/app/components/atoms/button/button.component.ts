@@ -4,7 +4,7 @@ import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angu
 	selector: 'rk-button',
 	templateUrl: './button.component.html',
 	styleUrls: ['./button.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent {
 	@Input() type?: string;

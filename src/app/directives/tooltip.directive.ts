@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, AfterViewInit } from '@angular/core';
 
 @Directive({
-	selector: 'rkTooltip, [rkTooltip]'
+	selector: 'rkTooltip, [rkTooltip]',
 })
 export class TooltipDirective implements AfterViewInit {
 	@Input() public tooltipText = '';

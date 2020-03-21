@@ -4,7 +4,7 @@ import { NavigationSingletonGQL } from '../queries/Navigation.singleton';
 import { CACHE_AND_UPDATE_POLICY } from '../config/policies';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class NavigationService {
 	constructor(private navigationSingletonGQL: NavigationSingletonGQL) {}
@@ -12,11 +12,11 @@ export class NavigationService {
 	public getNavigationTitles() {
 		return this.navigationSingletonGQL
 			.watch(undefined, {
-				fetchPolicy: CACHE_AND_UPDATE_POLICY
+				fetchPolicy: CACHE_AND_UPDATE_POLICY,
 			})
 			.valueChanges.pipe(
-				filter(res => res.loading === false),
-				map(res => res.data.navigationSingleton)
+				filter((res) => res.loading === false),
+				map((res) => res.data.navigationSingleton)
 			);
 	}
 }

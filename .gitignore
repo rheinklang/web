@@ -52,9 +52,6 @@ Thumbs.db
 
 # Production configuration
 .env
-/src/environments/version.ts
-/src/environments/environment.ts
-/src/environments/environment.production.ts
-/src/environments/environment.prod.ts
+/src/environments
 
 .vscode

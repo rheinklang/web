@@ -4,6 +4,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 	selector: 'rk-form',
 	templateUrl: './form.component.html',
 	styleUrls: ['./form.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class FormComponent {}

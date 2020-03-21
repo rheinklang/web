@@ -8,7 +8,7 @@ import { RemoteLogService } from '../../services/remote-log.service';
 @Component({
 	selector: 'rk-team-form',
 	templateUrl: './team-form.component.html',
-	styleUrls: ['./team-form.component.scss']
+	styleUrls: ['./team-form.component.scss'],
 })
 export class TeamFormComponent {
 	public jobs = [
@@ -21,7 +21,7 @@ export class TeamFormComponent {
 		'Audio Infrastruktur',
 		'Booking Management',
 		'Investor',
-		'Andere ...'
+		'Andere ...',
 	];
 	public submitting = false;
 	public sent: boolean | null = null;
@@ -35,7 +35,7 @@ export class TeamFormComponent {
 	public teamForm = new FormGroup({
 		year: new FormControl({
 			value: `${new Date().getFullYear()}`,
-			disabled: true
+			disabled: true,
 		}),
 		name: new FormControl('', Validators.required),
 		location: new FormControl('', Validators.required),
@@ -44,7 +44,7 @@ export class TeamFormComponent {
 		telephone: new FormControl(''),
 		job: new FormControl('', Validators.required),
 		message: new FormControl(''),
-		termsAccepted: new FormControl('', [Validators.requiredTrue])
+		termsAccepted: new FormControl('', [Validators.requiredTrue]),
 	});
 
 	public onSubmit() {
@@ -61,14 +61,14 @@ export class TeamFormComponent {
 							this.slackService.buildTextBlock(`:tada: Team submission received`),
 							{
 								type: 'section',
-								fields: this.slackService.buildFields(this.teamForm.value) as any
+								fields: this.slackService.buildFields(this.teamForm.value) as any,
 							},
-							this.slackService.context
-						]
+							this.slackService.context,
+						],
 					})
 					.subscribe();
 			},
-			err => {
+			(err) => {
 				this.sent = false;
 				this.submitting = false;
 				this.logService.traceError('TeamSubmission', err);

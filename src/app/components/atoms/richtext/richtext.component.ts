@@ -4,7 +4,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 	selector: 'rk-richtext',
 	templateUrl: './richtext.component.html',
 	styleUrls: ['./richtext.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class RichtextComponent {
 	@Input() public text = '';

@@ -11,7 +11,7 @@ import { ArticlesGQLEntry } from '../../queries/Articles.query';
 @Component({
 	selector: 'rk-event',
 	templateUrl: './event.component.html',
-	styleUrls: ['./event.component.scss']
+	styleUrls: ['./event.component.scss'],
 })
 export class EventComponent implements OnInit, OnDestroy {
 	public eventSlug: string;
@@ -30,18 +30,18 @@ export class EventComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
-		this.articlesSub$ = this.articlesService.getArticles().subscribe(entries => {
+		this.articlesSub$ = this.articlesService.getArticles().subscribe((entries) => {
 			this.articles = getRandomItemsFrom(entries, 3);
 		});
 
-		this.routeSub$ = this.route.paramMap.subscribe(paramMap => {
+		this.routeSub$ = this.route.paramMap.subscribe((paramMap) => {
 			if (!paramMap.has('eventSlug')) {
 				// skip if no event slug is present
 				return;
 			}
 
 			this.eventSlug = paramMap.get('eventSlug');
-			this.eventSub$ = this.eventsService.getEventBySlug(this.eventSlug).subscribe(event => {
+			this.eventSub$ = this.eventsService.getEventBySlug(this.eventSlug).subscribe((event) => {
 				this.event = event;
 			});
 		});

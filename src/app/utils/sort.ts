@@ -24,3 +24,21 @@ export const sortByYear = (ai: string | 0, bi: string | 0) => {
 
 	return a === b ? 0 : a > b ? 1 : -1;
 };
+
+export const sortByDate = <T extends any>(arr: T[], dateFieldExtractor: (entry: T) => string | undefined) => {
+	return arr
+		.map((article) => {
+			const dateField = dateFieldExtractor(article);
+			return {
+				...article,
+				__isoDate__: dateField ? Date.parse(dateField) : 0,
+			};
+		})
+		.sort((a, b) => {
+			if (a.__isoDate__ === b.__isoDate__) {
+				return 0;
+			}
+
+			return a.__isoDate__ > b.__isoDate__ ? -1 : 1;
+		});
+};

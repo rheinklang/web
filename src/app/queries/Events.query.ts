@@ -15,7 +15,7 @@ export interface EventsGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class EventsGQL extends Query<EventsGQLResponse> {
 	public document = gql`

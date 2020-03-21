@@ -1,4 +1,4 @@
-<article class="m-teaser" [class.m-teaser--no-animation]="disableAnimation" [routerLink]="link" (mouseover)="triggerHoverEvent()">
+<article class="m-teaser" [class.m-teaser--no-animation]="disableAnimation" [routerLink]="linkToArticle" (mouseover)="triggerHoverEvent()">
 	<rk-picture *ngIf="previewImage" [src]="previewImage.path"></rk-picture>
 	<header class="m-teaser__header">
 		<h3 class="m-teaser__title a-heading a-heading--3">{{title}}</h3>

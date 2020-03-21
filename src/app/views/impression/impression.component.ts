@@ -1,19 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterContentInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ImpressionsService } from '../../services/impressions.service';
+import { unsubscribe } from '../../utils/subscription';
+import { ImpressionSchema } from '../../schema/ImpressionSchema';
 
 @Component({
 	selector: 'rk-impression',
 	templateUrl: './impression.component.html',
-	styleUrls: ['./impression.component.scss']
+	styleUrls: ['./impression.component.scss'],
 })
-export class ImpressionComponent implements OnInit {
-	public impressionId: string;
+export class ImpressionComponent implements OnInit, OnDestroy, AfterContentInit {
+	public impressionSlug?: string;
+	public loaded = false;
+	public impression: ImpressionSchema;
 
-	constructor(private route: ActivatedRoute) {}
+	private impressionSubscription$: Subscription;
+	private masonry?: typeof import('masonry-layout').prototype;
+
+	constructor(private route: ActivatedRoute, private impressionsService: ImpressionsService) {}
 
 	public ngOnInit() {
-		this.route.paramMap.subscribe(params => {
-			this.impressionId = params.get('impressionId');
+		this.route.paramMap.subscribe((params) => {
+			this.impressionSlug = params.get('impressionSlug');
+
+			if (this.impressionSlug) {
+				this.fetchCorrespondingImpression(this.impressionSlug);
+			}
+		});
+	}
+
+	public ngOnDestroy() {
+		if (this.masonry) {
+			this.masonry.destroy();
+		}
+
+		unsubscribe([this.impressionSubscription$]);
+	}
+
+	public ngAfterContentInit() {
+		// import(/* webpackChunkName: "masnory-layout" */ 'masonry-layout').then(module => {
+		// 	console.log('init')
+		// 	// TODO: typing is wrong, create custom types
+		// 	this.masonry = new (module as any).default('.v-impression__gallery', {
+		// 		itemSelector: '.v-impression__gallery-entry',
+		// 		columnWidth: 0.8,
+		// 		percentPosition: true,
+		// 		transitionDuration: 250
+		// 	});
+		// });
+	}
+
+	public get images() {
+		return (this.impression.images || []).map((image) => image.value);
+	}
+
+	private fetchCorrespondingImpression(slug: string) {
+		this.impressionSubscription$ = this.impressionsService.getImpressionBySlug(slug).subscribe((impression) => {
+			this.impression = impression;
+			this.loaded = true;
 		});
 	}
 }

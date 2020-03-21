@@ -1,0 +1,22 @@
+@import "../../styles/colors.scss";
+@import "../../styles/responsive.scss";
+
+.v-impression__back-link {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.8rem;
+  margin: 50px 0;
+
+  a {
+    color: $color-grey-100;
+    text-decoration: none;
+  }
+}
+
+.v-impression__gallery {
+  margin: 40px auto 10px auto;
+}
+
+.v-impression__gallery-entry {
+  margin-bottom: 30px;
+}

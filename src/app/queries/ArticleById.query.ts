@@ -9,6 +9,7 @@ export interface ArticleGQLEntry {
 	author: string;
 	content: string;
 	tags: string[];
+	slug: string;
 	releaseDate?: string;
 	previewImage?: PreviewImageWithColors;
 }
@@ -18,19 +19,21 @@ export interface ArticleByIDGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ArticleByIdGQL extends Query<
 	ArticleByIDGQLResponse,
 	{
 		filter: {
-			_id: string;
+			_id?: string;
+			slug?: string;
 		};
 	}
 > {
 	document = gql`
 		query GetArticleById($filter: JsonType!) {
 			articlesCollection(filter: $filter) {
+				slug
 				title
 				author
 				content

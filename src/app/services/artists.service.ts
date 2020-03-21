@@ -5,7 +5,7 @@ import { CACHE_AND_UPDATE_POLICY } from '../config/policies';
 import { BookableArtistsGQL } from '../queries/BookableArtists.query';
 import {
 	BookableArtistsForDropdownGQL,
-	BookableArtistsForDropdownGQLEntry
+	BookableArtistsForDropdownGQLEntry,
 } from '../queries/BookableArtistsForDropdown.query';
 
 export type BookableArtistsForDropdown = Pick<
@@ -19,7 +19,7 @@ export type BookableArtistsForDropdown = Pick<
 };
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ArtistsService {
 	constructor(
@@ -34,12 +34,12 @@ export class ArtistsService {
 	public getBookableArtists() {
 		return this.bookableArtistsGQL
 			.watch(undefined, {
-				fetchPolicy: CACHE_AND_UPDATE_POLICY
+				fetchPolicy: CACHE_AND_UPDATE_POLICY,
 			})
 			.valueChanges.pipe(
-				map(res => res.data.bookableArtistsCollection),
-				map(entries =>
-					entries.map(entry => ({
+				map((res) => res.data.bookableArtistsCollection),
+				map((entries) =>
+					entries.map((entry) => ({
 						...entry,
 						wage: tryParse(entry.wage, 'float'),
 						bookingFee: tryParse(entry.bookingFee, 'float'),
@@ -50,7 +50,7 @@ export class ArtistsService {
 						mealAmount: tryParse(entry.mealAmount),
 						subtotalEUR: tryParse(entry.subtotalEUR, 'float'),
 						subtotalCHF: tryParse(entry.subtotalCHF, 'float'),
-						total: tryParse(entry.total, 'float')
+						total: tryParse(entry.total, 'float'),
 					}))
 				)
 			);
@@ -62,15 +62,15 @@ export class ArtistsService {
 	 */
 	public getBookableArtistsDropdownList() {
 		return this.bookableArtistsForDropdownGQL.watch().valueChanges.pipe(
-			map(res => res.data.bookableArtistsCollection),
-			map(entries =>
+			map((res) => res.data.bookableArtistsCollection),
+			map((entries) =>
 				entries.map(
 					(entry): BookableArtistsForDropdown => ({
 						...entry,
 						flights: tryParse(entry.flights),
 						hotelAmount: tryParse(entry.hotelAmount),
 						mealAmount: tryParse(entry.mealAmount),
-						transferAmount: tryParse(entry.transferAmount)
+						transferAmount: tryParse(entry.transferAmount),
 					})
 				)
 			)

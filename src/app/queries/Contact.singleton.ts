@@ -22,7 +22,7 @@ export interface ContactSingletonGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ContactSingletonGQL extends Query<ContactSingletonGQLResponse> {
 	document = gql`

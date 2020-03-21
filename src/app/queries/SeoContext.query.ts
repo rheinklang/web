@@ -16,7 +16,7 @@ export interface SEOContextGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class SEOContextQueryGQL extends Query<
 	SEOContextGQLResponse,

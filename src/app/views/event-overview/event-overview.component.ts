@@ -9,7 +9,7 @@ import { unsubscribe } from '../../utils/subscription';
 	selector: 'rk-event-overview',
 	templateUrl: './event-overview.component.html',
 	styleUrls: ['./event-overview.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class EventOverviewComponent implements OnInit, OnDestroy {
 	public events: Array<{ year: string; events: EventsGQLEntry[] }> = [];
@@ -24,11 +24,11 @@ export class EventOverviewComponent implements OnInit, OnDestroy {
 	constructor(private eventsService: EventsService) {}
 
 	ngOnInit() {
-		this.eventsService.getEvents().subscribe(events => {
+		this.eventsService.getEvents().subscribe((events) => {
 			from(events)
 				.pipe(
-					groupBy(event => event.date.split('-')[0]),
-					mergeMap(group => zip(of(group.key), group.pipe(toArray())))
+					groupBy((event) => event.date.split('-')[0]),
+					mergeMap((group) => zip(of(group.key), group.pipe(toArray())))
 				)
 				.subscribe(([year, correspondingEvents]) => {
 					const sortedEvents = correspondingEvents.sort((a, b) => {
@@ -37,12 +37,12 @@ export class EventOverviewComponent implements OnInit, OnDestroy {
 
 					this.events.push({
 						year,
-						events: sortedEvents
+						events: sortedEvents,
 					});
 				});
 		});
 
-		this.eventsService.getEventsSingleton().subscribe(pageData => {
+		this.eventsService.getEventsSingleton().subscribe((pageData) => {
 			this.pageData = pageData;
 		});
 	}
@@ -56,7 +56,7 @@ export class EventOverviewComponent implements OnInit, OnDestroy {
 			select: 'navigation',
 			color: '#000',
 			height: '32px',
-			width: '32px'
+			width: '32px',
 		};
 	}
 }

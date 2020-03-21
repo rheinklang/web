@@ -1,13 +1,17 @@
-@import '../../organisms/header/header.component.scss';
-@import '../../organisms/footer/footer.component.scss';
+@import "../../organisms/header/header.component.scss";
+@import "../../organisms/footer/footer.component.scss";
 
 $default-layout-content-inner-spacing: 20px;
 
 :host main {
-	// padding: $default-layout-content-inner-spacing 0;
-	min-height: calc(100vh - #{$header-height + $footer-min-height} - #{$default-layout-content-inner-spacing * 2});
+  // padding: $default-layout-content-inner-spacing 0;
+  min-height: calc(100vh - #{$header-height + $footer-min-height} - #{$default-layout-content-inner-spacing * 2});
 
-	h2:first-of-type {
-		margin-top: 0;
-	}
+  &.l-default-layout--no-space {
+    min-height: 0;
+  }
+
+  h2:first-of-type {
+    margin-top: 0;
+  }
 }

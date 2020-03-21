@@ -5,7 +5,7 @@ import { FlyoutService } from '../../../services/flyout.service';
 	selector: 'rk-link',
 	templateUrl: './link.component.html',
 	styleUrls: ['./link.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class LinkComponent {
 	@Input() public href: string;
@@ -15,6 +15,7 @@ export class LinkComponent {
 	@Input() public icon?: string;
 	@Input() public iconPosition: 'pre' | 'post' = 'pre';
 	@Input() public color?: string;
+	@Input() public queryParams?: Record<string, any> = {};
 
 	private $target = '_self';
 	public needsRelationSafety = false;

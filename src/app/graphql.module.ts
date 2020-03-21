@@ -16,7 +16,7 @@ export function createApollo(httpLink: HttpLink, log: LogService) {
 			graphQLErrors.forEach(({ message, locations, path, source }) =>
 				log.trace({
 					module: `GraphGQLModule(${source.name || 'Unknown'})`,
-					message: `${message} (location: ${locations}, path: ${path})`
+					message: `${message} (location: ${locations}, path: ${path})`,
 				})
 			);
 		}
@@ -30,7 +30,7 @@ export function createApollo(httpLink: HttpLink, log: LogService) {
 		link,
 		connectToDevTools: true,
 		queryDeduplication: false,
-		cache: new InMemoryCache()
+		cache: new InMemoryCache(),
 	};
 }
 
@@ -40,8 +40,8 @@ export function createApollo(httpLink: HttpLink, log: LogService) {
 		{
 			provide: APOLLO_OPTIONS,
 			useFactory: createApollo,
-			deps: [HttpLink, LogService]
-		}
-	]
+			deps: [HttpLink, LogService],
+		},
+	],
 })
 export class GraphQLModule {}

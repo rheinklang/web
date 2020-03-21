@@ -15,7 +15,7 @@ const IMAGE_OPT_FACTOR = 1.2;
 	selector: 'rk-picture',
 	templateUrl: './picture.component.html',
 	styleUrls: ['./picture.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class PictureComponent {
 	@Input() public src: string;
@@ -26,9 +26,12 @@ export class PictureComponent {
 	@Input() public alt = '';
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
+	@Input() public downscale = 0;
 
 	public get source() {
-		return resolveDynamicAssetPath({ path: this.src });
+		return resolveDynamicAssetPath({
+			path: this.src,
+		});
 	}
 
 	public get sources() {
@@ -37,13 +40,14 @@ export class PictureComponent {
 		}
 
 		const sources = breakpoints.map((breakpoint, index) => {
+			const baseScale = this.downscale > 0 ? breakpoint / this.downscale : breakpoint;
 			const resolvedAssetPath = resolveDynamicAssetPath({ path: this.src });
-			const optimizedWidthFactor = Math.round(breakpoint * IMAGE_OPT_FACTOR);
+			const optimizedWidthFactor = Math.round(baseScale * IMAGE_OPT_FACTOR);
 
 			return {
 				url: `${resolvedAssetPath}&w=${optimizedWidthFactor} x1, ${resolvedAssetPath}&w=${optimizedWidthFactor *
 					2} x2,`,
-				breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`
+				breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`,
 			};
 		});
 

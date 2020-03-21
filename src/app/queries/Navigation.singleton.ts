@@ -15,7 +15,7 @@ export interface NavigationSingletonGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class NavigationSingletonGQL extends Query<NavigationSingletonGQLResponse> {
 	document = gql`

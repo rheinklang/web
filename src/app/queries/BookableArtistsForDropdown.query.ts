@@ -27,7 +27,7 @@ export interface BookableArtistsForDropdownGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class BookableArtistsForDropdownGQL extends Query<BookableArtistsForDropdownGQLResponse> {
 	document = gql`

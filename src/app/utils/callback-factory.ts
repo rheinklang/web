@@ -17,7 +17,7 @@ export class CallbackFactory {
 		if (CallbackFactory.calledCallbacks.indexOf(callbackId) > -1) {
 			if (CallbackFactory.callbacks.has(callbackId)) {
 				const userCallbacks = CallbackFactory.callbacks.get(callbackId) || [];
-				userCallbacks.forEach(callback => {
+				userCallbacks.forEach((callback) => {
 					callback();
 				});
 				window[callbackId] = undefined;
@@ -53,8 +53,8 @@ export class CallbackFactory {
 
 	public static safe(types: string[]) {
 		types
-			.map(type => CallbackFactory.getIdFor(type))
-			.forEach(type => {
+			.map((type) => CallbackFactory.getIdFor(type))
+			.forEach((type) => {
 				window[type] = noop;
 			});
 	}

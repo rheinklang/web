@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class FlyoutService {
 	public isOpen: boolean;

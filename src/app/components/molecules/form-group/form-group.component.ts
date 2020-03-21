@@ -6,7 +6,7 @@ import { CheckboxComponent } from '../../atoms/checkbox/checkbox.component';
 @Component({
 	selector: 'rk-form-group',
 	templateUrl: './form-group.component.html',
-	styleUrls: ['./form-group.component.scss']
+	styleUrls: ['./form-group.component.scss'],
 })
 export class FormGroupComponent implements AfterContentInit {
 	@Input() public title: string;
@@ -24,8 +24,8 @@ export class FormGroupComponent implements AfterContentInit {
 	private checkboxes: QueryList<CheckboxComponent>;
 
 	public ngAfterContentInit() {
-		this.inputs.toArray().forEach(input => (input.name = this.id));
-		this.selects.toArray().forEach(input => (input.name = this.id));
-		this.checkboxes.toArray().forEach(input => (input.name = this.id));
+		this.inputs.toArray().forEach((input) => (input.name = this.id));
+		this.selects.toArray().forEach((input) => (input.name = this.id));
+		this.checkboxes.toArray().forEach((input) => (input.name = this.id));
 	}
 }
