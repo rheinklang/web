@@ -1,0 +1,18 @@
+
+<div class="o-stage-slider swiper-container o-stage-slider--{{id}}">
+	<div class="o-stage-slider__slides-wrapper swiper-wrapper">
+		<div *ngFor="let slide of slides" class="o-stage-slider__slide swiper-slide">
+			<rk-stage-slide-item
+				[title]="slide.title"
+				[text]="slide.text"
+				[ctaLink]="slide.ctaLink"
+				[ctaText]="slide.ctaText"
+				[image]="slide.image"
+			></rk-stage-slide-item>
+		</div>
+	</div>
+	<div *ngIf="enablePagination" class="swiper-pagination o-stage-slider__control-pagination"></div>
+	<div (click)="switchSlide('prev')" *ngIf="enableNavigation" class="swiper-button-prev o-stage-slider__control-prev"></div>
+	<div (click)="switchSlide('next')" *ngIf="enableNavigation" class="swiper-button-next o-stage-slider__control-next"></div>
+	<div *ngIf="enableScrollbar" class="swiper-scrollbar o-stage-slider__control-scrollbar"></div>
+</div>

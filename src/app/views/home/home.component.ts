@@ -8,6 +8,7 @@ import { PossibleSubscription, unsubscribe } from '../../utils/subscription';
 import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
 import { EventsService } from '../../services/events.service';
 import { sortByDate } from '../../utils/sort';
+import { StageSliderSlide } from '../../components/organisms/stage-slider/stage-slider.component';
 
 @Component({
 	selector: 'rk-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public articles: ArticlesGQLEntry[] = [];
 	public filteredArticles: ArticlesGQLEntry[] = [];
 	public eventTeaser: EventBySlugGQLEntry | null = null;
-	public slides: (HomeSingletonGQLSlideItem & { index: number })[] = [];
+	public slides: StageSliderSlide[] = [];
 
 	private articlesSub$: PossibleSubscription;
 	private eventTeaserSub$: PossibleSubscription;
@@ -45,19 +46,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 		});
 
 		this.homeSub$ = this.homeService.getSlides().subscribe((slides) => {
-			this.slides = slides;
-
-			if (slides.length > 0) {
-				const tid = setTimeout(() => {
-					try {
-						this.initSlider();
-					} catch (err) {
-						// slider initialization failed
-					}
-
-					clearTimeout(tid);
-				}, 4);
-			}
+			this.slides = slides.map((slide) => ({
+				title: slide.title,
+				text: slide.content,
+				image: slide.image.path,
+				ctaLink: slide.ctaLink,
+				ctaText: slide.ctaText,
+			}));
 		});
 	}
 
@@ -81,17 +76,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	public preloadEvent(slug: string) {
 		this.eventsService.preloadEventBySlug(slug);
-	}
-
-	private initSlider() {
-		new Glide('.js-v-about__header-slider', {
-			focusAt: 'center',
-			gap: 0,
-			autoplay: 8000, // ms
-			hoverpause: true,
-			swipeThreshold: 100, // px
-			animationDuration: 500,
-		}).mount();
 	}
 
 	public setActiveTag(id: string) {

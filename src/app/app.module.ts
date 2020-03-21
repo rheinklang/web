@@ -79,6 +79,8 @@ import { ArtistBookingFormComponent } from './forms/artist-booking-form/artist-b
 import { LivestreamComponent } from './components/organisms/livestream/livestream.component';
 import { LivestreamIndicatorComponent } from './components/atoms/livestream-indicator/livestream-indicator.component';
 import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
+import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
+import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
 
 @NgModule({
 	declarations: [
@@ -141,6 +143,8 @@ import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/li
 		LivestreamComponent,
 		LivestreamIndicatorComponent,
 		LivestreamEmbeddPageComponent,
+		StageSliderComponent,
+		StageSlideItemComponent,
 	],
 	imports: [
 		BrowserModule,

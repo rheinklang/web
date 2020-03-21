@@ -1,49 +1,54 @@
-@import '../../../styles/colors.scss';
+@import "../../../styles/colors.scss";
+
+rk-link,
+.a-link {
+  display: inline-block;
+}
 
 .a-link {
-	color: inherit;
-	text-decoration: none;
-	display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 
-	&::after {
-		content: '';
-		display: block;
-		width: 0;
-		height: 2px;
-		background-color: $color-primary-sea-green;
-		transition: width 0.3s;
-	}
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: $color-primary-sea-green;
+    transition: width 0.3s;
+  }
 
-	&:hover::after {
-		width: 100%;
-	}
+  &:hover::after {
+    width: 100%;
+  }
 }
 
 .a-link--static-indicator {
-	&::after {
-		width: 100%;
-	}
+  &::after {
+    width: 100%;
+  }
 
-	&:hover::after {
-		width: 0;
-	}
+  &:hover::after {
+    width: 0;
+  }
 }
 
 .a-link--white {
-	color: #fff;
-	&::after {
-		background-color: #fff;
-	}
+  color: #fff;
+  &::after {
+    background-color: #fff;
+  }
 }
 
 .state-a-link--active {
-	cursor: default;
+  cursor: default;
 
-	&::after {
-		width: 100%;
-	}
+  &::after {
+    width: 100%;
+  }
 
-	&:hover::after {
-		width: 100%;
-	}
+  &:hover::after {
+    width: 100%;
+  }
 }
