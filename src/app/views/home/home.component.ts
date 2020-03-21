@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private articlesService: ArticlesService,
 		private homeService: HomeService,
 		private eventsService: EventsService
-	) { }
+	) {}
 
 	public ngOnInit() {
 		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
