@@ -29,15 +29,15 @@ jobs:
 
     # replacable environment, required for ngc
     - run: npm run create:env:dev
-    env:
-      ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
-      COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}
-      COCKPIT_API_KEY: ${{ secrets.COCKPIT_API_KEY }}
-      GRAPHQL_HOST_URL: ${{ secrets.GRAPHQL_HOST_URL }}
-      GTM_ID: ${{ secrets.GTM_ID }}
-      GCP_KEY: ${{ secrets.GCP_KEY }}
-      GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
-      SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
+      env:
+        ASSET_CDN_HOST: 'stub'
+        COCKPIT_API_URL: 'stub'
+        COCKPIT_API_KEY: 'stub'
+        GRAPHQL_HOST_URL: 'stub'
+        GTM_ID: 'stub'
+        GCP_KEY: 'stub'
+        GCP_STATIC_MAPS_SECRET: 'stub'
+        SLACK_ERROR_HOOK_URL: 'stub'
 
     # create environment based on the secrets
     - run: npm run create:env:prod
