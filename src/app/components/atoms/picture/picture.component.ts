@@ -15,7 +15,7 @@ const IMAGE_OPT_FACTOR = 1.2;
 	selector: 'rk-picture',
 	templateUrl: './picture.component.html',
 	styleUrls: ['./picture.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class PictureComponent {
 	@Input() public src: string;
@@ -30,7 +30,7 @@ export class PictureComponent {
 
 	public get source() {
 		return resolveDynamicAssetPath({
-			path: this.src
+			path: this.src,
 		});
 	}
 
@@ -47,7 +47,7 @@ export class PictureComponent {
 			return {
 				url: `${resolvedAssetPath}&w=${optimizedWidthFactor} x1, ${resolvedAssetPath}&w=${optimizedWidthFactor *
 					2} x2,`,
-				breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`
+				breakpoint: index === 0 ? undefined : `(min-width: ${breakpoint}px)`,
 			};
 		});
 

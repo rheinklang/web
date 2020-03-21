@@ -17,7 +17,7 @@ checkEnvironment([
 	'GTM_ID',
 	'GCP_KEY',
 	'GCP_STATIC_MAPS_SECRET',
-	'SLACK_ERROR_HOOK_URL'
+	'SLACK_ERROR_HOOK_URL',
 ]);
 
 // Would be passed to script like this:

@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { ContactSingletonGQL } from '../queries/Contact.singleton';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ContactService {
 	constructor(private contactSingletonGQL: ContactSingletonGQL) {}
@@ -13,6 +13,6 @@ export class ContactService {
 			.watch(undefined, {
 				// fetchPolicy: CACHE_AND_UPDATE_POLICY
 			})
-			.valueChanges.pipe(map(res => res.data.contactsPageSingleton));
+			.valueChanges.pipe(map((res) => res.data.contactsPageSingleton));
 	}
 }

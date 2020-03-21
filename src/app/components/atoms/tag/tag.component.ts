@@ -8,7 +8,7 @@ export interface ITag {
 	selector: 'rk-tag',
 	templateUrl: './tag.component.html',
 	styleUrls: ['./tag.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class TagComponent implements ITag {
 	@Input() public text: string;

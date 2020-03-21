@@ -12,7 +12,7 @@ import { sortByDate } from '../../utils/sort';
 @Component({
 	selector: 'rk-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
 	public activeTagId?: string;
@@ -32,19 +32,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
-		this.articlesSub$ = this.articlesService.getArticles().subscribe(articles => {
+		this.articlesSub$ = this.articlesService.getArticles().subscribe((articles) => {
 			// order all articles by ISO date
-			this.articles = sortByDate(articles, article => article.releaseDate);
+			this.articles = sortByDate(articles, (article) => article.releaseDate);
 
 			// use initial articles at the beginning
 			this.filteredArticles = this.articles;
 		});
 
-		this.eventTeaserSub$ = this.homeService.getEventTeaser().subscribe(teaser => {
+		this.eventTeaserSub$ = this.homeService.getEventTeaser().subscribe((teaser) => {
 			this.eventTeaser = teaser;
 		});
 
-		this.homeSub$ = this.homeService.getSlides().subscribe(slides => {
+		this.homeSub$ = this.homeService.getSlides().subscribe((slides) => {
 			this.slides = slides;
 
 			if (slides.length > 0) {
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public get tags() {
 		return this.articles.reduce(
 			(allTags, article) => {
-				const newTags = article.tags.map(tag => (allTags.indexOf(tag) === -1 ? tag : null)).filter(Boolean);
+				const newTags = article.tags.map((tag) => (allTags.indexOf(tag) === -1 ? tag : null)).filter(Boolean);
 				return [...allTags, ...newTags];
 			},
 			[] as string[]
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 			autoplay: 8000, // ms
 			hoverpause: true,
 			swipeThreshold: 100, // px
-			animationDuration: 500
+			animationDuration: 500,
 		}).mount();
 	}
 
@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		} else if (this.activeTagId !== id) {
 			// only update if tag changed
 			this.activeTagId = id;
-			this.filteredArticles = this.articles.filter(article => this.articleContainsActiveTag(article));
+			this.filteredArticles = this.articles.filter((article) => this.articleContainsActiveTag(article));
 		}
 	}
 
@@ -125,7 +125,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 			return this.articles.length;
 		}
 
-		return this.articles.filter(art => this.articleContainsActiveTag(art)).length;
+		return this.articles.filter((art) => this.articleContainsActiveTag(art)).length;
 	}
 
 	public get articlesLoaded() {

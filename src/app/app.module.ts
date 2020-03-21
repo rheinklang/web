@@ -142,7 +142,7 @@ import { LightboxComponent } from './components/molecules/lightbox/lightbox.comp
 		LivestreamComponent,
 		LivestreamIndicatorComponent,
 		LivestreamEmbeddPageComponent,
-		LightboxComponent
+		LightboxComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -159,23 +159,23 @@ import { LightboxComponent } from './components/molecules/lightbox/lightbox.comp
 		MatInputModule,
 		MatSelectModule,
 		MatCheckboxModule,
-		MatDatepickerModule
+		MatDatepickerModule,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [
 		{
 			provide: LOCALE_ID,
-			useValue: 'de'
+			useValue: 'de',
 		},
 		{
 			provide: ErrorHandler,
-			useClass: GlobalErrorHandler
+			useClass: GlobalErrorHandler,
 		},
 		{
 			provide: LogService,
-			useClass: environment.production ? RemoteLogService : LogService
-		}
+			useClass: environment.production ? RemoteLogService : LogService,
+		},
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

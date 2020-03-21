@@ -4,7 +4,7 @@ import { SEOService } from '../../../services/seo.service';
 
 @Component({
 	selector: 'rk-seo-manager',
-	templateUrl: './seo-manager.component.html'
+	templateUrl: './seo-manager.component.html',
 })
 export class SeoManagerComponent implements OnInit {
 	@Input() public context: string;

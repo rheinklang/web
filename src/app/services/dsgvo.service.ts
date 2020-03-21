@@ -4,7 +4,7 @@ import { DSGVOSingletonGQL } from '../queries/DSGVO.singleton';
 import { CACHED_POLICY } from '../config/policies';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class DSGVOService {
 	constructor(private dsgvoSingletonGQL: DSGVOSingletonGQL) {}
@@ -12,8 +12,8 @@ export class DSGVOService {
 	public getSingleton() {
 		return this.dsgvoSingletonGQL
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
-			.valueChanges.pipe(map(res => res.data.dsgvoSingleton));
+			.valueChanges.pipe(map((res) => res.data.dsgvoSingleton));
 	}
 }

@@ -3,7 +3,7 @@ import { LogService } from '../services/log.service';
 
 @Injectable({
 	providedIn: 'root',
-	deps: [LogService]
+	deps: [LogService],
 })
 export class GlobalErrorHandler implements ErrorHandler {
 	constructor(private log: LogService) {}
@@ -14,7 +14,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 			error || {
 				name: 'GlobalErrorHandler',
 				message: `Unknown application error`,
-				code: 500
+				code: 500,
 			}
 		);
 	}

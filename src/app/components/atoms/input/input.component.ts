@@ -3,7 +3,7 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
 @Component({
 	selector: 'rk-input',
 	templateUrl: './input.component.html',
-	styleUrls: ['./input.component.scss']
+	styleUrls: ['./input.component.scss'],
 })
 export class InputComponent {
 	@Input() public disabled = false;

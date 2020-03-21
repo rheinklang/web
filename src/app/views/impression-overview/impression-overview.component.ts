@@ -7,7 +7,7 @@ import { getContrastModifierForImage } from '../../utils/colors';
 	selector: 'rk-impression-overview',
 	templateUrl: './impression-overview.component.html',
 	styleUrls: ['./impression-overview.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class ImpressionOverviewComponent implements OnInit {
 	public impressions: ImpressionsGQLEntry[] = [];
@@ -15,7 +15,7 @@ export class ImpressionOverviewComponent implements OnInit {
 	constructor(private impressionsService: ImpressionsService) {}
 
 	ngOnInit() {
-		this.impressionsService.getImpressions().subscribe(impressions => {
+		this.impressionsService.getImpressions().subscribe((impressions) => {
 			this.impressions = impressions;
 		});
 	}

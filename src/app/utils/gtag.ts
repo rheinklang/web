@@ -42,7 +42,7 @@ export const trackGTMEvent = (
 		event_label: metaInfo.label,
 		value: metaInfo.value,
 		// add optional properties below
-		...(name ? { name } : {})
+		...(name ? { name } : {}),
 	});
 };
 
@@ -58,7 +58,7 @@ export const trackGTMTimingEvent = () => {
 			name: 'load',
 			label: 'Cockpit CDN',
 			value: `${timeSincePageLoad}`,
-			category: 'JS Dependencies'
+			category: 'JS Dependencies',
 		});
 	}
 };

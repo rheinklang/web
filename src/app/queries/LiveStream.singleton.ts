@@ -8,7 +8,7 @@ export interface LiveStreamGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class LiveStreamGQL extends Query<LiveStreamGQLResponse> {
 	document = gql`

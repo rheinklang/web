@@ -17,67 +17,67 @@ const routes: Routes = [
 	{
 		path: '',
 		data: { seoID: 'home' },
-		component: HomeComponent
+		component: HomeComponent,
 	},
 	{
 		path: 'about',
-		component: AboutComponent
+		component: AboutComponent,
 	},
 	{
 		path: 'contact',
-		component: ContactComponent
+		component: ContactComponent,
 	},
 	{
 		path: 'impressions',
-		component: ImpressionOverviewComponent
+		component: ImpressionOverviewComponent,
 	},
 	{
 		path: 'impressions/:impressionSlug',
-		component: ImpressionComponent
+		component: ImpressionComponent,
 	},
 	{
 		path: 'sponsors',
-		component: SponsorsOverviewComponent
+		component: SponsorsOverviewComponent,
 	},
 	{
 		path: 'events',
-		component: EventOverviewComponent
+		component: EventOverviewComponent,
 	},
 	{
 		path: 'articles/:articleId',
-		component: ArticlesComponent
+		component: ArticlesComponent,
 	},
 	{
 		path: 'events/:eventSlug',
-		component: EventComponent
+		component: EventComponent,
 	},
 	{
 		path: 'privacy',
-		component: PrivacyComponent
+		component: PrivacyComponent,
 	},
 	{
 		path: 'live',
 		component: LivestreamEmbeddPageComponent,
-		data: { disableLiveIndicator: true, modifier: 'no-space' }
+		data: { disableLiveIndicator: true, modifier: 'no-space' },
 	},
 	{
 		path: 'not-found',
-		component: NotFoundComponent
+		component: NotFoundComponent,
 	},
 	{
 		path: '**',
-		component: NotFoundComponent
-	}
+		component: NotFoundComponent,
+	},
 ];
 
 @NgModule({
 	imports: [
 		RouterModule.forRoot(routes, {
 			scrollPositionRestoration: 'enabled',
-			anchorScrolling: 'enabled'
+			anchorScrolling: 'enabled',
 			// enableTracing: environment.production !== true
-		})
+		}),
 	],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class RheinklangRoutingModule {}

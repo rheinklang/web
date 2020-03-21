@@ -8,7 +8,7 @@ export interface LocationByIdGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class LocationByIdGQL extends Query<
 	LocationByIdGQLResponse,

@@ -23,7 +23,7 @@ export interface HomeSingletonGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class HomeSingletonGQL extends Query<HomeSingletonGQLResponse> {
 	document = gql`

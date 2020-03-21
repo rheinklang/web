@@ -8,7 +8,7 @@ import {
 	ViewEncapsulation,
 	Component,
 	ViewChild,
-	ElementRef
+	ElementRef,
 } from '@angular/core';
 import { theme as darkTheme } from './map.theme-dark';
 import { theme as lightTheme } from './map.theme-light';
@@ -21,14 +21,14 @@ const extractLatLongExpr = /@(.*),(.*),/gi;
 const themeMap = {
 	light: lightTheme,
 	dark: darkTheme,
-	medium: mediumTheme
+	medium: mediumTheme,
 } as const;
 
 @Component({
 	selector: 'rk-map',
 	templateUrl: './map.component.html',
 	styleUrls: ['./map.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class MapComponent implements OnInit, AfterViewInit {
 	@Input() public url?: string;
@@ -76,7 +76,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 					? `Invalid coordinates found in URL ${this.url}`
 					: `Google Maps library could not be loaded`,
 				code: 406,
-				module: 'MapComponent'
+				module: 'MapComponent',
 			});
 			return;
 		}
@@ -89,7 +89,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 		return new google.maps.Marker({
 			map,
 			title: this.title,
-			position: this.gcoords
+			position: this.gcoords,
 		});
 	}
 
@@ -108,7 +108,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 			streetViewControl: false,
 			rotateControl: false,
 			fullscreenControl: false,
-			styles: themeMap[this.theme]
+			styles: themeMap[this.theme],
 		} as google.maps.MapOptions;
 	}
 }

@@ -6,7 +6,7 @@ import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY } from '../config/policies';
 import { ImpressionBySlugGQL } from '../queries/ImpressionBySlug.query';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ImpressionsService {
 	private preloadedImpressions: string[] = [];
@@ -16,24 +16,24 @@ export class ImpressionsService {
 	public getImpressions() {
 		return this.impressionsGQL
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
-			.valueChanges.pipe(map(v => v.data.impressionsCollection));
+			.valueChanges.pipe(map((v) => v.data.impressionsCollection));
 	}
 
 	public getImpressionBySlug(slug: string) {
 		return this.impressionBySlugGQL
 			.watch(
 				{
-					filter: { slug }
+					filter: { slug },
 				},
 				{
-					fetchPolicy: CACHED_POLICY
+					fetchPolicy: CACHED_POLICY,
 				}
 			)
 			.valueChanges.pipe(
-				map(res => res.data.impressionsCollection),
-				flatMap(entry => entry),
+				map((res) => res.data.impressionsCollection),
+				flatMap((entry) => entry),
 				first()
 			);
 	}
@@ -48,10 +48,10 @@ export class ImpressionsService {
 		return this.impressionBySlugGQL
 			.watch(
 				{
-					filter: { slug }
+					filter: { slug },
 				},
 				{
-					fetchPolicy: CACHE_AND_UPDATE_POLICY
+					fetchPolicy: CACHE_AND_UPDATE_POLICY,
 				}
 			)
 			.valueChanges.subscribe();

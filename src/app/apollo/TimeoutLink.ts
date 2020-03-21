@@ -47,17 +47,17 @@ export class TimeoutLink extends ApolloLink {
 
 		// create local observable with timeout functionality (unsubscibe from chain observable and
 		// return an error if the timeout expires before chain observable resolves)
-		const localObservable = new Observable(observer => {
+		const localObservable = new Observable((observer) => {
 			let timer: any;
 
 			// listen to chainObservable for result and pass to localObservable if received before timeout
 			const subscription = chainObservable.subscribe(
-				result => {
+				(result) => {
 					clearTimeout(timer);
 					observer.next(result);
 					observer.complete();
 				},
-				error => {
+				(error) => {
 					clearTimeout(timer);
 					observer.error(error);
 					observer.complete();
@@ -81,7 +81,7 @@ export class TimeoutLink extends ApolloLink {
 					unsubscribe: () => {
 						clearTimeout(timer);
 						subscription.unsubscribe();
-					}
+					},
 				});
 			}
 

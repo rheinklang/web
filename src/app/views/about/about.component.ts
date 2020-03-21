@@ -12,7 +12,7 @@ import { ContactService } from '../../services/contact.service';
 	selector: 'rk-about',
 	templateUrl: './about.component.html',
 	styleUrls: ['./about.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class AboutComponent implements OnInit, OnDestroy {
 	public groupPortraitImagePath: string;
@@ -29,23 +29,23 @@ export class AboutComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
-		this.contactService.getSingleton().subscribe(data => {
+		this.contactService.getSingleton().subscribe((data) => {
 			this.showTeamSubmissionHint = data.teamSubmissionEnabled;
 		});
 
 		this.combinedSub$ = combineLatest([this.portraitService.getPortrait(), this.teamService.getTeam()])
 			.pipe(
 				map(([portrait, team]) => {
-					const visibleMemberIds = (portrait.visibleMemberList || []).map(entry => entry._id);
+					const visibleMemberIds = (portrait.visibleMemberList || []).map((entry) => entry._id);
 
 					return {
 						groupPortraitDescription: portrait.groupPortraitDescription || '',
 						groupPortraitImagePath: portrait.groupPortraitImage.path,
-						teamMembers: team.filter(({ _id }) => visibleMemberIds.indexOf(_id) >= 0)
+						teamMembers: team.filter(({ _id }) => visibleMemberIds.indexOf(_id) >= 0),
 					};
 				})
 			)
-			.subscribe(values => {
+			.subscribe((values) => {
 				this.groupPortraitDescription = values.groupPortraitDescription;
 				this.groupPortraitImagePath = values.groupPortraitImagePath;
 				this.teamMembers = values.teamMembers;

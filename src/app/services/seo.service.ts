@@ -6,7 +6,7 @@ import { SEOContextQueryGQL, SEOEntry } from '../queries/SeoContext.query';
 import { REFETCH_POLICY } from '../config/policies';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class SEOService {
 	constructor(private title: Title, private meta: Meta, private seoContextQueryGQL: SEOContextQueryGQL) {}
@@ -16,7 +16,7 @@ export class SEOService {
 		const templateData = {
 			...additionalTemplateData,
 			seoTitle: data.title,
-			seoDescription: data.description
+			seoDescription: data.description,
 		};
 
 		// set new page title with opt. template data
@@ -28,7 +28,7 @@ export class SEOService {
 			// add opengraph title or use page title
 			{ name: 'og:title', content: template(data.og_title || data.title || '', templateData) },
 			// add opengraph image if defined
-			data.og_image.path ? { name: 'og:image', content: data.og_image.path } : undefined
+			data.og_image.path ? { name: 'og:image', content: data.og_image.path } : undefined,
 		]);
 	}
 
@@ -41,19 +41,19 @@ export class SEOService {
 			.watch(
 				{
 					filter: {
-						context
-					}
+						context,
+					},
 				},
 				{
-					fetchPolicy: REFETCH_POLICY
+					fetchPolicy: REFETCH_POLICY,
 				}
 			)
 			.valueChanges.pipe(
-				map(result => result.data.seoCollection),
-				flatMap(entry => entry),
+				map((result) => result.data.seoCollection),
+				flatMap((entry) => entry),
 				first()
 			)
-			.subscribe(data => {
+			.subscribe((data) => {
 				if (data) {
 					this.rewriteSEOContext(data, additionalTemplateData);
 				}

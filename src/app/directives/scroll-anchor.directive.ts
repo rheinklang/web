@@ -1,7 +1,7 @@
 import { Directive, AfterViewInit, ElementRef, Input } from '@angular/core';
 
 @Directive({
-	selector: 'rkScrollAnchor, [rkScrollAnchor]'
+	selector: 'rkScrollAnchor, [rkScrollAnchor]',
 })
 export class ScrollAnchorDirective implements AfterViewInit {
 	@Input() public scrollAnchorId?: string;

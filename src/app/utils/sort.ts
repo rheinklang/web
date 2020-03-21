@@ -27,11 +27,11 @@ export const sortByYear = (ai: string | 0, bi: string | 0) => {
 
 export const sortByDate = <T extends any>(arr: T[], dateFieldExtractor: (entry: T) => string | undefined) => {
 	return arr
-		.map(article => {
+		.map((article) => {
 			const dateField = dateFieldExtractor(article);
 			return {
 				...article,
-				__isoDate__: dateField ? Date.parse(dateField) : 0
+				__isoDate__: dateField ? Date.parse(dateField) : 0,
 			};
 		})
 		.sort((a, b) => {

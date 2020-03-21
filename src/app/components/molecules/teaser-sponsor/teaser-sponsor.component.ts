@@ -8,7 +8,7 @@ import { sponsorLevelToGerman } from '../../../utils/sponsor';
 	selector: 'rk-teaser-sponsor',
 	templateUrl: './teaser-sponsor.component.html',
 	styleUrls: ['./teaser-sponsor.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class TeaserSponsorComponent {
 	@Input() public slug: string;
@@ -37,7 +37,7 @@ export class TeaserSponsorComponent {
 	public get icon() {
 		return {
 			color: this.iconLevelColor,
-			select: 'award'
+			select: 'award',
 		};
 	}
 

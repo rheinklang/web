@@ -10,7 +10,7 @@ import { RemoteLogService } from '../../services/remote-log.service';
 	selector: 'rk-guest-appearance-form',
 	templateUrl: './guest-appearance-form.component.html',
 	styleUrls: ['./guest-appearance-form.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class GuestAppearanceFormComponent {
 	public genres = [
@@ -20,7 +20,7 @@ export class GuestAppearanceFormComponent {
 		'Tech-House',
 		'Melodic House & Techno',
 		'Techno',
-		'Andere ...'
+		'Andere ...',
 	];
 	public submitting = false;
 	public sent: boolean | null = null;
@@ -34,7 +34,7 @@ export class GuestAppearanceFormComponent {
 	public guestAppearanceForm = new FormGroup({
 		year: new FormControl({
 			value: `${new Date().getFullYear()}`,
-			disabled: true
+			disabled: true,
 		}),
 		location: new FormControl('', Validators.required),
 		mail: new FormControl('', Validators.required),
@@ -43,7 +43,7 @@ export class GuestAppearanceFormComponent {
 		genre: new FormControl('', Validators.required),
 		specificGenre: new FormControl(''),
 		termsAccepted: new FormControl('', [Validators.requiredTrue]),
-		mixtapeLink: new FormControl('', [Validators.required, Validators.pattern(EXPR_URL)])
+		mixtapeLink: new FormControl('', [Validators.required, Validators.pattern(EXPR_URL)]),
 	});
 
 	public onSubmit() {
@@ -60,14 +60,14 @@ export class GuestAppearanceFormComponent {
 							this.slackService.buildTextBlock(`:tada: Guest DJ contest submission received`),
 							{
 								type: 'section',
-								fields: this.slackService.buildFields(this.guestAppearanceForm.value) as any
+								fields: this.slackService.buildFields(this.guestAppearanceForm.value) as any,
 							},
-							this.slackService.context
-						]
+							this.slackService.context,
+						],
 					})
 					.subscribe();
 			},
-			err => {
+			(err) => {
 				this.sent = false;
 				this.submitting = false;
 				this.logService.traceError('GuestAppearanceSubmission', err);

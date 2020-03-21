@@ -8,7 +8,7 @@ export interface TicketByIdGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class TicketByIdGQL extends Query<
 	TicketByIdGQLResponse,

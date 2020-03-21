@@ -19,7 +19,7 @@ export interface ArticlesGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ArticlesGQL extends Query<ArticlesGQLResponse> {
 	document = gql`

@@ -8,7 +8,7 @@ import { ImpressionSchema } from '../../schema/ImpressionSchema';
 @Component({
 	selector: 'rk-impression',
 	templateUrl: './impression.component.html',
-	styleUrls: ['./impression.component.scss']
+	styleUrls: ['./impression.component.scss'],
 })
 export class ImpressionComponent implements OnInit, OnDestroy, AfterContentInit {
 	public impressionSlug?: string;
@@ -21,7 +21,7 @@ export class ImpressionComponent implements OnInit, OnDestroy, AfterContentInit 
 	constructor(private route: ActivatedRoute, private impressionsService: ImpressionsService) {}
 
 	public ngOnInit() {
-		this.route.paramMap.subscribe(params => {
+		this.route.paramMap.subscribe((params) => {
 			this.impressionSlug = params.get('impressionSlug');
 
 			if (this.impressionSlug) {
@@ -52,11 +52,11 @@ export class ImpressionComponent implements OnInit, OnDestroy, AfterContentInit 
 	}
 
 	public get images() {
-		return (this.impression.images || []).map(image => image.value);
+		return (this.impression.images || []).map((image) => image.value);
 	}
 
 	private fetchCorrespondingImpression(slug: string) {
-		this.impressionSubscription$ = this.impressionsService.getImpressionBySlug(slug).subscribe(impression => {
+		this.impressionSubscription$ = this.impressionsService.getImpressionBySlug(slug).subscribe((impression) => {
 			this.impression = impression;
 			this.loaded = true;
 		});

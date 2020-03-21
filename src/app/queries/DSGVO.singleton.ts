@@ -12,7 +12,7 @@ export interface DSGVOSingletonGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class DSGVOSingletonGQL extends Query<DSGVOSingletonGQLResponse> {
 	document = gql`

@@ -6,7 +6,7 @@ import { TagListComponent } from '../tag-list/tag-list.component';
 	selector: 'rk-teaser',
 	templateUrl: './teaser.component.html',
 	styleUrls: ['./teaser.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class TeaserComponent implements AfterViewInit {
 	@Input() public id: string;

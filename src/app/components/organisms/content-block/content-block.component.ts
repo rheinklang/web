@@ -8,8 +8,8 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 		'./content-block.component.scss',
 		'./content-block.colors.scss',
 		'./content-block.patterns.scss',
-		'./content-block.spacings.scss'
-	]
+		'./content-block.spacings.scss',
+	],
 })
 export class ContentBlockComponent {
 	@Input() public heading?: string;

@@ -5,7 +5,7 @@ import { FlyoutService } from '../../../services/flyout.service';
 	selector: 'rk-burger',
 	templateUrl: './burger.component.html',
 	styleUrls: ['./burger.component.scss', './burger.collapse.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class BurgerComponent {
 	@Input() public type = 'collapse';

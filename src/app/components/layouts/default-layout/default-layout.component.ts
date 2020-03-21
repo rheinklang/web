@@ -9,7 +9,7 @@ import { unsubscribe } from '../../../utils/subscription';
 @Component({
 	selector: 'rk-default-layout',
 	templateUrl: './default-layout.component.html',
-	styleUrls: ['./default-layout.component.scss']
+	styleUrls: ['./default-layout.component.scss'],
 })
 export class DefaultLayoutComponent implements OnInit, OnDestroy, AfterContentInit {
 	@ContentChild(FooterComponent, { static: true })
@@ -39,7 +39,7 @@ export class DefaultLayoutComponent implements OnInit, OnDestroy, AfterContentIn
 	private getMetaInformation() {
 		this.routeSubscription$ = this.router.events
 			.pipe(
-				filter(event => event instanceof NavigationEnd),
+				filter((event) => event instanceof NavigationEnd),
 				map(() => {
 					let child = this.route.firstChild;
 					while (child) {

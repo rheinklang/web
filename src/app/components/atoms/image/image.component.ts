@@ -16,7 +16,7 @@ export const breakpoints = [320, 550, 786, 992, 1200];
 	selector: 'rk-image',
 	templateUrl: './image.component.html',
 	styleUrls: ['./image.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class ImageComponent {
 	@Input() public src: string;
@@ -35,7 +35,7 @@ export class ImageComponent {
 			return null;
 		}
 
-		return breakpoints.map(breakpoint => `${this.src}&w=${breakpoint}`).join(',');
+		return breakpoints.map((breakpoint) => `${this.src}&w=${breakpoint}`).join(',');
 	}
 
 	public get sources() {
@@ -45,7 +45,7 @@ export class ImageComponent {
 
 		return breakpoints.map((breakpoint, index) => ({
 			url: `${this.src}&w=${breakpoint}`,
-			breakpoint: index === 0 ? undefined : `(max-width: ${breakpoint}px)`
+			breakpoint: index === 0 ? undefined : `(max-width: ${breakpoint}px)`,
 		}));
 	}
 }

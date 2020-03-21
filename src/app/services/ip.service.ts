@@ -30,7 +30,7 @@ interface GetIPResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class IPService {
 	constructor(private http: HttpClient) {}

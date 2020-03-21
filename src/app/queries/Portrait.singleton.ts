@@ -12,7 +12,7 @@ export interface PortraitSingletonGQLResult {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class PortraitSingletonGQL extends Query<PortraitSingletonGQLResult> {
 	document = gql`

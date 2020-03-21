@@ -19,7 +19,7 @@ export interface ArticleByIDGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ArticleByIdGQL extends Query<
 	ArticleByIDGQLResponse,

@@ -13,7 +13,7 @@ export interface ImpressionsGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ImpressionsGQL extends Query<ImpressionsGQLResponse> {
 	document = gql`

@@ -5,7 +5,7 @@ import { FlyoutService } from '../../../services/flyout.service';
 	selector: 'rk-link',
 	templateUrl: './link.component.html',
 	styleUrls: ['./link.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class LinkComponent {
 	@Input() public href: string;

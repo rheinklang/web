@@ -8,7 +8,7 @@ export interface ImpressionBySlugGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ImpressionBySlugGQL extends Query<
 	ImpressionBySlugGQLResponse,

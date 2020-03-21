@@ -19,7 +19,7 @@ injectGCPMapsScript();
 @Component({
 	selector: 'rk-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
 	private navEndSub$: Subscription;
@@ -39,12 +39,12 @@ export class AppComponent implements OnDestroy {
 		trackGTMTimingEvent();
 
 		// get last navigation event for final route changes
-		const navEndEvents = router.events.pipe(filter(event => event instanceof NavigationEnd));
+		const navEndEvents = router.events.pipe(filter((event) => event instanceof NavigationEnd));
 
 		// page view tracking
 		this.navEndSub$ = navEndEvents.subscribe((event: NavigationEnd) => {
 			gtag('config', environment.gtmId, {
-				page_path: event.urlAfterRedirects
+				page_path: event.urlAfterRedirects,
 			});
 		});
 	}

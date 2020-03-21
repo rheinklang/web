@@ -9,7 +9,7 @@ export interface SponsorsGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class SponsorsGQL extends Query<SponsorsGQLResponse> {
 	public document = gql`

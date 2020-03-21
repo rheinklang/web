@@ -10,7 +10,7 @@ type NavigationSingleton = NavigationSingletonGQLResponse['navigationSingleton']
 @Component({
 	selector: 'rk-header',
 	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss']
+	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 	@Input() public flyoutNavigationOpen = false;
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 			this.flyoutNavigationOpen = this.flyoutService.isOpen;
 		});
 
-		this.navigationServiceSub$ = this.navigationService.getNavigationTitles().subscribe(data => {
+		this.navigationServiceSub$ = this.navigationService.getNavigationTitles().subscribe((data) => {
 			this.navigationTitles = data;
 			this.navigationItems = [
 				{ url: '/', title: data.homeTitle },
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 				{ url: '/impressions', title: data.galleriesTitle },
 				{ url: '/sponsors', title: data.sponsorsTitle },
 				{ url: '/about', title: data.aboutTitle },
-				{ url: '/contact', title: data.contactTitle }
+				{ url: '/contact', title: data.contactTitle },
 			];
 		});
 	}

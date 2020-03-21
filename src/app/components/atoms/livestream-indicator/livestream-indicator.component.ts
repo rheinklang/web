@@ -10,7 +10,7 @@ import { unsubscribe } from '../../../utils/subscription';
 	selector: 'rk-livestream-indicator',
 	templateUrl: './livestream-indicator.component.html',
 	styleUrls: ['./livestream-indicator.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class LivestreamIndicatorComponent implements OnInit, OnDestroy {
 	public isIndicatorDisabledByPageData = true;
@@ -21,19 +21,22 @@ export class LivestreamIndicatorComponent implements OnInit, OnDestroy {
 	constructor(private route: ActivatedRoute, private router: Router, private liveStreamService: LiveStreamService) {}
 
 	ngOnInit() {
-		this.streamSubscription$ = this.liveStreamService.getLiveStream().subscribe(data => {
+		this.streamSubscription$ = this.liveStreamService.getLiveStream().subscribe((data) => {
 			this.liveStreamData = data;
 		});
 
 		this.routeSubscription$ = this.router.events
 			.pipe(
-				filter(event => event instanceof NavigationEnd),
+				filter((event) => event instanceof NavigationEnd),
 				map(() => {
 					let child = this.route.firstChild;
 					while (child) {
 						if (child.firstChild) {
 							child = child.firstChild;
-						} else if (child.snapshot.data && typeof child.snapshot.data.disableLiveIndicator !== 'undefined') {
+						} else if (
+							child.snapshot.data &&
+							typeof child.snapshot.data.disableLiveIndicator !== 'undefined'
+						) {
 							return child.snapshot.data.disableLiveIndicator;
 						}
 

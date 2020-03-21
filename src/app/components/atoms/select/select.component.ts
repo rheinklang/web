@@ -9,7 +9,7 @@ export interface ISelectOption {
 	selector: 'rk-select',
 	templateUrl: './select.component.html',
 	styleUrls: ['./select.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class SelectComponent {
 	@Input() public placeholder = '';

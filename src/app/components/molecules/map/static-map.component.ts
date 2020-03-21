@@ -9,7 +9,7 @@ export type MapCoordinates = [number, number];
 @Component({
 	selector: 'rk-static-map',
 	templateUrl: './static-map.component.html',
-	styleUrls: ['./static-map.component.scss']
+	styleUrls: ['./static-map.component.scss'],
 })
 export class StaticMapComponent {
 	public static STYLE_PARAMS = theme;
@@ -41,7 +41,7 @@ export class StaticMapComponent {
 			`&format=${this.type}`,
 			`&maptype=${this.type}`,
 			`&markers=color:white&7CRheinklang+Festival`,
-			StaticMapComponent.STYLE_PARAMS
+			StaticMapComponent.STYLE_PARAMS,
 		].join('');
 	}
 

@@ -3,5 +3,5 @@ export enum EventType {
 	EXCLUSIVE = 'Exclusive',
 	DAYDANCE = 'DayDance',
 	FESTIVAL = 'Festival',
-	NONE = 'None'
+	NONE = 'None',
 }

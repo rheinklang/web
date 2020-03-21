@@ -40,7 +40,7 @@ const config = {
 	// delete ALL existing files at destination before uploading, if true
 	deleteRemote: true,
 	// Passive mode is forced (EPSV command is not sent)
-	forcePasv: true
+	forcePasv: true,
 };
 
 // @ts-ignore
@@ -57,12 +57,10 @@ deployer.deploy(config, (err, res) => {
 		loader.fail(red(`${err}`));
 	} else {
 		loader.succeed(green('📦 Deployed application successfully'));
-		res
-			.reduce((p, c) => p.concat(c), [])
-			.forEach(entry => {
-				const readable = `${entry}`.replace(SOURCE_DIR, '').replace('uploaded', '');
-				console.log(grey(`-> ${readable}`));
-			});
+		res.reduce((p, c) => p.concat(c), []).forEach((entry) => {
+			const readable = `${entry}`.replace(SOURCE_DIR, '').replace('uploaded', '');
+			console.log(grey(`-> ${readable}`));
+		});
 	}
 
 	console.log('');

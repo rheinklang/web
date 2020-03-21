@@ -8,7 +8,7 @@ export interface LogServiceTraceOptions {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class LogService {
 	public trace(opts: LogServiceTraceOptions) {
@@ -20,7 +20,7 @@ export class LogService {
 			module,
 			message: err.message,
 			code: err.name,
-			stack: err.stack
+			stack: err.stack,
 		});
 	}
 }

@@ -15,7 +15,7 @@ export interface ImpressionByIdGQLResponse {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class ImpressionByIdGQL extends Query<
 	ImpressionByIdGQLResponse,

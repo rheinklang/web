@@ -8,7 +8,7 @@ import { unsubscribe } from '../../utils/subscription';
 @Component({
 	selector: 'rk-articles',
 	templateUrl: './articles.component.html',
-	styleUrls: ['./articles.component.scss']
+	styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
 	public article: ArticleGQLEntry;
@@ -21,7 +21,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 	constructor(private route: ActivatedRoute, private articlesService: ArticlesService) {}
 
 	public ngOnInit() {
-		this.routeSub$ = this.route.paramMap.subscribe(params => {
+		this.routeSub$ = this.route.paramMap.subscribe((params) => {
 			// TODO: parameter should be "articleSlug"
 			const articleId = params.get('articleId');
 
@@ -37,7 +37,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 	}
 
 	private fetchCorrespondingArticle(slug: string) {
-		this.articleSub$ = this.articlesService.getArticleBySlug(slug).subscribe(article => {
+		this.articleSub$ = this.articlesService.getArticleBySlug(slug).subscribe((article) => {
 			this.article = article;
 			this.loaded = true;
 		});

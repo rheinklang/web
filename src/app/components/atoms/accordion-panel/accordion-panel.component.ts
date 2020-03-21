@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation, AfterViewIni
 	selector: 'rk-accordion-panel',
 	templateUrl: './accordion-panel.component.html',
 	styleUrls: ['./accordion-panel.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class AccordionPanelComponent implements AfterViewInit {
 	@Input() opened = false;
@@ -17,7 +17,7 @@ export class AccordionPanelComponent implements AfterViewInit {
 	public ngAfterViewInit() {
 		if (this.opened && this.elementRef.nativeElement) {
 			window.scrollTo({
-				top: this.elementRef.nativeElement.offsetTop
+				top: this.elementRef.nativeElement.offsetTop,
 			});
 		}
 	}
@@ -27,7 +27,7 @@ export class AccordionPanelComponent implements AfterViewInit {
 			select: this.opened ? 'arrow-up' : 'arrow-down',
 			color: '#000',
 			width: 32,
-			height: 32
+			height: 32,
 		};
 	}
 }

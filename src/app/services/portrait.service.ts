@@ -4,7 +4,7 @@ import { PortraitSingletonGQL } from '../queries/Portrait.singleton';
 import { CACHED_POLICY } from '../config/policies';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class PortraitService {
 	constructor(private portraitSingletonGQL: PortraitSingletonGQL) {}
@@ -12,8 +12,8 @@ export class PortraitService {
 	public getPortrait() {
 		return this.portraitSingletonGQL
 			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY
+				fetchPolicy: CACHED_POLICY,
 			})
-			.valueChanges.pipe(map(res => res.data.portraitPageSingleton));
+			.valueChanges.pipe(map((res) => res.data.portraitPageSingleton));
 	}
 }

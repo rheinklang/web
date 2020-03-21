@@ -38,7 +38,7 @@ interface SlackErrorPayload extends LoggingRequestData {
 const repoURL = 'https://github.com/rheinklang/web';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class SlackService {
 	constructor(private http: HttpClient) {}
@@ -69,14 +69,14 @@ export class SlackService {
 						Location: err.locale,
 						Proxy: err.org,
 						// add optional stacktrace information
-						...stackField
-					})
+						...stackField,
+					}),
 				},
 				// add source code information
 				this.buildTextBlock(`:hammer_and_wrench: *Source-Code version*:\n ${repoURL}/commit/${err.hash}`),
 				// attach context
-				this.context
-			]
+				this.context,
+			],
 		}).subscribe();
 	}
 
@@ -86,8 +86,8 @@ export class SlackService {
 				...prev,
 				{
 					type: 'mrkdwn',
-					text: `*${transformKeys ? readableKey(curr) : curr}*\n${fields[curr]}`
-				}
+					text: `*${transformKeys ? readableKey(curr) : curr}*\n${fields[curr]}`,
+				},
 			],
 			[] as SlackField[]
 		);
@@ -98,8 +98,8 @@ export class SlackService {
 			type: 'section',
 			text: {
 				type: 'mrkdwn',
-				text: message
-			}
+				text: message,
+			},
 		};
 	}
 
@@ -113,9 +113,9 @@ export class SlackService {
 			elements: [
 				{
 					type: 'mrkdwn',
-					text: 'This is a generated message, do not reply.'
-				}
-			]
+					text: 'This is a generated message, do not reply.',
+				},
+			],
 		};
 	}
 }

@@ -10,7 +10,7 @@ const TWITCH_PLAYER_HOST = 'https://player.twitch.tv';
 	selector: 'rk-livestream',
 	templateUrl: './livestream.component.html',
 	styleUrls: ['./livestream.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
 })
 export class LivestreamComponent implements OnInit {
 	// basic UI settings
@@ -25,13 +25,13 @@ export class LivestreamComponent implements OnInit {
 		startDate: '',
 		startTime: '',
 		duration: '',
-		channel: ''
+		channel: '',
 	};
 
 	constructor(private liveStreamService: LiveStreamService, private sanitizer: DomSanitizer) {}
 
 	ngOnInit() {
-		this.liveStreamService.getLiveStream().subscribe(data => {
+		this.liveStreamService.getLiveStream().subscribe((data) => {
 			this.liveStreamInfo = data;
 		});
 	}
