@@ -1,34 +1,6 @@
 <rk-seo-manager context="home"></rk-seo-manager>
 
-<div class="v-about__header-slider js-v-about__header-slider">
-	<div class="v-about__track glide__track" data-glide-el="track">
-		<ul class="v-about__slides glide__slides">
-			<li *ngFor="let slide of slides" class="v-about__slide">
-				<rk-picture *ngIf="slide.image" [src]="slide.image.path" [alt]="slide.title"></rk-picture>
-				<div class="v-about__slide-content col-xs-12">
-					<h2 class="a-heading a-heading--2" *ngIf="slide.title">{{slide.title}}</h2>
-					<p *ngIf="slide.content">{{slide.content}}</p>
-					<p class="v-about__slide-content-link">
-						<rk-link *ngIf="slide.ctaLink && slide.ctaText" prefetch="true" [text]="slide.ctaText" [routerLink]="slide.ctaLink" color="white" showIndicator="true"></rk-link>
-					</p>
-				</div>
-			</li>
-		</ul>
-	</div>
-
-	<div class="glide__arrows" *ngIf="slides.length > 1" data-glide-el="controls">
-		<button class="v-about__arrow glide__arrow glide__arrow--left" data-glide-dir="<">
-			<rk-icon select="arrow-left" height="20px" width="20px"></rk-icon>
-		</button>
-		<button class="v-about__arrow glide__arrow glide__arrow--right" data-glide-dir=">">
-			<rk-icon select="arrow-right" height="20px" width="20px"></rk-icon>
-		</button>
-	</div>
-
-	<div class="glide__bullets" *ngIf="slides.length > 1" data-glide-el="controls[nav]">
-		<button class="glide__bullet" data-glide-dir="=0" *ngFor="let slide of slides" [attr.data-glide-dir]="'=' + slide.index"></button>
-	</div>
-</div>
+<rk-stage-slider *ngIf="slides.length > 0" id="home" [slides]="slides"></rk-stage-slider>
 
 <rk-content-block color="grey-lighter" heading="Neuigkeiten & mehr ({{getCurrentArticleCount()}})" space="xlarge">
 	<div class="row">

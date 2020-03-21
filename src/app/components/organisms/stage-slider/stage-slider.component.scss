@@ -1,0 +1,79 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
+
+$stage-slider-height: 600px;
+$stage-slider-mobile-height: 500px;
+$stage-slider-width: 100%;
+
+rk-stage-slider,
+.o-stage-slider {
+  display: block;
+}
+
+rk-stage-slider,
+.o-stage-slider,
+.o-stage-slider__slide {
+  height: $stage-slider-height;
+  width: $stage-slider-width;
+
+  @include respond-to-max("sm") {
+    height: $stage-slider-mobile-height;
+    background-color: $color-black;
+  }
+}
+
+/* swiper library overrides */
+
+.o-stage-slider {
+  .o-stage-slider__control-next,
+  .o-stage-slider__control-prev {
+    color: $color-white;
+    transition: all 0.15s ease-in-out;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @include respond-to-max("sm") {
+      display: none;
+    }
+  }
+
+  .o-stage-slider__control-next {
+    right: 20px;
+
+    &:hover {
+      right: 16px;
+    }
+  }
+
+  .o-stage-slider__control-prev {
+    left: 20px;
+
+    &:hover {
+      left: 16px;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    width: 18px;
+    height: 8px;
+    border-radius: 0;
+    opacity: 0.5;
+    margin: 0 10px;
+    background-color: $color-white;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      height: 18px;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: $color-primary-fury-red;
+    height: 18px;
+  }
+}

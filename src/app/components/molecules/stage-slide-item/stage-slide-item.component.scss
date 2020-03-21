@@ -1,0 +1,53 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
+
+.m-stage-slide-item {
+  position: relative;
+  text-align: center;
+  color: $color-white;
+  background-color: $color-black;
+
+  @include respond-to-min("sm") {
+    background-color: transparent;
+  }
+}
+
+.m-stage-slide-item__content {
+  margin-top: 20px;
+  z-index: 100;
+
+  @include respond-to-min("sm") {
+    margin-top: 0;
+    max-width: 95%;
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 10px);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.m-stage-slide-item__title,
+.m-stage-slide-item__text,
+.m-stage-slide-item__link {
+  margin: 10px;
+  text-shadow: 0 0 5px $color-grey-100;
+}
+
+.m-stage-slide-item__title {
+  font-size: 38px;
+}
+
+.m-stage-slide-item__text {
+  font-size: 20px;
+  line-height: 25px;
+  margin: 15px 0;
+}
+
+.m-stage-slide-item__content rk-link,
+.m-stage-slide-item__link {
+  z-index: 190;
+  @include respond-to-min("md") {
+    cursor: pointer;
+  }
+}

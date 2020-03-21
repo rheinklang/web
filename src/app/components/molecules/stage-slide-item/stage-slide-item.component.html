@@ -1,0 +1,10 @@
+<div class="m-stage-slide-item">
+	<rk-picture [src]="image"></rk-picture>
+	<div class="m-stage-slide-item__content">
+		<h2 class="m-stage-slide-item__title a-heading a-heading--2" *ngIf="title">{{title}}</h2>
+		<p class="m-stage-slide-item__text" *ngIf="text">{{text}}</p>
+		<p class="m-stage-slide-item__link">
+			<rk-link *ngIf="ctaLink && ctaText" prefetch="true" [text]="ctaText" [routerLink]="ctaLink" color="white" showIndicator="true" icon="arrow-up-right" iconPosition="post"></rk-link>
+		</p>
+	</div>
+</div>

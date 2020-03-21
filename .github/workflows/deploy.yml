@@ -27,6 +27,18 @@ jobs:
 
     - run: npm install
 
+    # replacable environment, required for ngc
+    - run: npm run create:env:dev
+      env:
+        ASSET_CDN_HOST: 'stub'
+        COCKPIT_API_URL: 'stub'
+        COCKPIT_API_KEY: 'stub'
+        GRAPHQL_HOST_URL: 'stub'
+        GTM_ID: 'stub'
+        GCP_KEY: 'stub'
+        GCP_STATIC_MAPS_SECRET: 'stub'
+        SLACK_ERROR_HOOK_URL: 'stub'
+
     # create environment based on the secrets
     - run: npm run create:env:prod
       env:
