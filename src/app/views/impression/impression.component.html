@@ -7,6 +7,15 @@
 	</div>
 </rk-content-block>
 
+<div class="container h-text-align--center">
+	<p class="v-impression__back-link">
+		<a [routerLink]="['/impressions']">
+			<rk-icon select="arrow-left" color="#585858"></rk-icon>
+			Alle Impressionen
+		</a>
+	</p>
+</div>
+
 <div class="v-impression__gallery container">
 	<div class="row" *ngIf="impression">
 		<div *ngFor="let image of images; let i = index" class="v-impression__gallery-entry col-12 col-sm-6">
