@@ -1,5 +1,6 @@
 import { Component, Input, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import Swiper from 'swiper';
+import 'swiper/css/swiper.min.css';
 
 export interface StageSliderSlide {
 	image: string;
@@ -12,7 +13,7 @@ export interface StageSliderSlide {
 @Component({
 	selector: 'rk-stage-slider',
 	templateUrl: './stage-slider.component.html',
-	styleUrls: ['../../../../../node_modules/swiper/css/swiper.min.css', './stage-slider.component.scss'],
+	styleUrls: ['./stage-slider.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 })
 export class StageSliderComponent implements AfterViewInit, OnDestroy {
