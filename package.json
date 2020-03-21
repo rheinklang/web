@@ -14,7 +14,7 @@
 		"test": "echo 'No tests defined'",
 		"lint": "ng lint",
 		"commit": "git-cz",
-		"preproduction": "npm run create:version",
+		"preproduction": "run-s run create:*",
 		"production": "ng build --configuration=production --aot=true --buildOptimizer=true --optimization=true",
 		"postproduction": "node bin/copy-apache-config",
 		"pipeline": "npx npm-run-all pipeline:*",

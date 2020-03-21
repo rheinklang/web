@@ -4,6 +4,7 @@ import { ImpressionsGQL } from '../queries/Impressions.query';
 import { ImpressionByIdGQL } from '../queries/ImpressionById.query';
 import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY } from '../config/policies';
 import { ImpressionBySlugGQL } from '../queries/ImpressionBySlug.query';
+import { ImpressionsSingletonGQL } from '../queries/Impressions.singleton';
 
 @Injectable({
 	providedIn: 'root',
@@ -11,7 +12,19 @@ import { ImpressionBySlugGQL } from '../queries/ImpressionBySlug.query';
 export class ImpressionsService {
 	private preloadedImpressions: string[] = [];
 
-	constructor(private impressionsGQL: ImpressionsGQL, private impressionBySlugGQL: ImpressionBySlugGQL) {}
+	constructor(
+		private impressionsGQL: ImpressionsGQL,
+		private impressionBySlugGQL: ImpressionBySlugGQL,
+		private impressionsSingletonGQL: ImpressionsSingletonGQL
+	) {}
+
+	public getImpressionsPageData() {
+		return this.impressionsSingletonGQL
+			.watch(undefined, {
+				fetchPolicy: CACHE_AND_UPDATE_POLICY,
+			})
+			.valueChanges.pipe(map((v) => (v.data ? v.data.impressionsSingleton : null)));
+	}
 
 	public getImpressions() {
 		return this.impressionsGQL

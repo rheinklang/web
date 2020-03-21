@@ -34,6 +34,13 @@ export class EventBySlugGQL extends Query<
 				description
 				type
 				facebookUrl
+				impression {
+					slug
+					title
+					description
+					images
+					showcaseImage
+				}
 				previewImage {
 					path
 				}
