@@ -2,6 +2,7 @@ import { PreviewImagePathOnly } from '../types/PreviewImage';
 import { CockpitPopulatedField, CockpitOptionalField, CockpitRequiredField } from './CockpitField';
 import { LocationSchema } from './LocationSchema';
 import { TicketsSchema } from './TicketsSchema';
+import { ImpressionSchema } from './ImpressionSchema';
 
 export enum EventType {
 	COOPERATION = 'Cooperation',
@@ -24,6 +25,7 @@ export interface EventSchema<
 	linkType: CockpitOptionalField<'internal' | 'external'>;
 	secret: CockpitOptionalField<boolean>;
 	type: CockpitOptionalField<EventType>;
+	impression: CockpitOptionalField<ImpressionSchema>;
 	previewImage: CockpitOptionalField<PreviewImagePathOnly>;
 	tickets: CockpitOptionalField<TTickets>;
 	location: CockpitOptionalField<TLocation>;

@@ -26,8 +26,8 @@
 		[queryParams]="queryParams"
 		(click)="handleLinkClick()"
 	>
-		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>
+		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon" [color]="iconColor"></rk-icon>
 		{{text}}
-		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon"></rk-icon>
+		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon" [color]="iconColor"></rk-icon>
 	</a>
 </ng-container>

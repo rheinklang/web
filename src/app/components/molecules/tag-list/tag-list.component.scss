@@ -1,14 +1,15 @@
-@import '../../../styles/colors.scss';
-@import '../../../styles/responsive.scss';
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
 
 .m-tag-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	display: flex;
-	align-items: left;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: left;
 }
 
 .m-tag-list__tag {
-	margin-right: 8px;
+  margin: 0 8px 8px 0;
 }

@@ -40,6 +40,33 @@
 	</div>
 </div>
 
+<rk-content-block [heading]="impressionTitle" color="grey-lighter" *ngIf="event && event.impression" centerHeading="true" space="xlarge">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<p class="h-text-align--center" [innerHTML]="impression.description"></p>
+			</div>
+		</div>
+		<div class="row v-event__impression-images">
+			<div *ngFor="let impressionImage of impression.images" class="col-12 col-md-6 v-event__impression-image">
+				<rk-picture [src]="impressionImage.path"></rk-picture>
+			</div>
+		</div>
+		<div class="row v-event__impression-link-wrapper">
+			<div class="col-12 h-text-align--center">
+				<rk-link
+					href="/impressions/{{impression.slug}}"
+					text="Alle Impressionen – {{impression.title}}"
+					showIndicator="true"
+					icon="arrow-right"
+					iconPosition="post"
+					iconColor="#000000"
+				></rk-link>
+			</div>
+		</div>
+	</div>
+</rk-content-block>
+
 <div *ngIf="shouldShowMaps" class="v-event__map">
 	<rk-map [url]="event.location.googleMapsURL" theme="medium" [zoom]="event.location.zoomLevel"></rk-map>
 </div>
