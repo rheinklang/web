@@ -12,6 +12,8 @@
   border-radius: 3px;
   overflow: hidden;
   text-decoration: none;
+  transform-style: preserve-3d; /* tilt */
+  transform: perspective(1000px); /* tilt */
 
   &--black rk-heading {
     color: $color-black;
@@ -22,6 +24,7 @@
   }
 
   rk-heading {
+    transform: translateZ(20px); /* tilt */
     position: absolute;
     left: 50%;
     top: 50%;

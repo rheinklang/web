@@ -5,6 +5,7 @@ import { ImageSchema } from '../schema/ImageSchema';
 
 export interface ImpressionsGQLEntry {
 	title: string;
+	slug: string;
 	showcaseImage: ImageSchema;
 }
 

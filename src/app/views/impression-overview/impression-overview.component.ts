@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import Tilt from 'vanilla-tilt';
 import { ImpressionsService } from '../../services/impressions.service';
 import { ImpressionsGQLEntry } from '../../queries/Impressions.query';
 import { getContrastModifierForImage } from '../../utils/colors';
@@ -24,6 +25,7 @@ export class ImpressionOverviewComponent implements OnInit, OnDestroy {
 	public ngOnInit() {
 		this.impressionsSubscription$ = this.impressionsService.getImpressions().subscribe((impressions) => {
 			this.impressions = impressions;
+			this.enableTilt();
 		});
 
 		this.pageDataSubscription$ = this.impressionsService.getImpressionsPageData().subscribe((pageData) => {
@@ -43,5 +45,14 @@ export class ImpressionOverviewComponent implements OnInit, OnDestroy {
 
 	public getEntryModifier(impression: ImpressionsGQLEntry) {
 		return getContrastModifierForImage(impression.showcaseImage);
+	}
+
+	private enableTilt() {
+		Tilt.init((document.querySelectorAll('.v-impressions-overview__entry') as any) as HTMLElement[], {
+			max: 25,
+			speed: 400,
+			glare: true,
+			'max-glare': 0.4,
+		});
 	}
 }
