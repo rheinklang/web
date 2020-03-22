@@ -11,6 +11,9 @@ export interface StageSliderSlide {
 	ctaLinkParams?: Record<string, any>;
 }
 
+const AUTOPLAY_MOBILE_INTERVAL = 60 * 1000 * 10; // 10min
+const AUTOPLAY_DESKTOP_INTERVAL = 6 * 1000; // 6s^
+
 @Component({
 	selector: 'rk-stage-slider',
 	templateUrl: './stage-slider.component.html',
@@ -43,8 +46,7 @@ export class StageSliderComponent implements AfterViewInit, OnDestroy {
 			slideClass: 'o-stage-slider__slide',
 			preventClicks: false,
 			autoplay: {
-				// mobile shouldn't autoplay => 10mins, otherwise 5s
-				delay: isMobile ? 1000 * 60 * 10 : 5000,
+				delay: isMobile ? AUTOPLAY_MOBILE_INTERVAL : AUTOPLAY_DESKTOP_INTERVAL,
 				disableOnInteraction: true,
 			},
 			pagination: {
