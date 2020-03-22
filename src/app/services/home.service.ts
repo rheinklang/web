@@ -20,6 +20,26 @@ export class HomeService {
 			);
 	}
 
+	public getSwiperConfig() {
+		return this.homeSingletonGQL
+			.watch(undefined, {
+				fetchPolicy: CACHED_POLICY,
+			})
+			.valueChanges.pipe(
+				map((res) => res.data.homePageSingleton),
+				map((singleton) => ({
+					autoplayDelay: {
+						mobile: singleton.sliderAutoplaySpeedMobile
+							? parseInt(singleton.sliderAutoplaySpeedMobile, 10)
+							: undefined,
+						desktop: singleton.sliderAutoplaySpeedDesktop
+							? parseInt(singleton.sliderAutoplaySpeedDesktop, 10)
+							: undefined,
+					},
+				}))
+			);
+	}
+
 	public getSlides() {
 		return this.homeSingletonGQL
 			.watch(undefined, {
