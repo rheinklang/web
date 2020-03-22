@@ -28,7 +28,7 @@
 			<mat-hint *ngIf="artistBookingForm.value.artist">{{offerHint}}</mat-hint>
 			<mat-hint *ngIf="!artistBookingForm.value.artist">Exklusiv Spesen, mehr Details nach der Artist-Auswahl.</mat-hint>
 		</mat-form-field>
-		<mat-form-field>
+		<mat-form-field class="o-form__field--space-top">
 			<input matInput placeholder="Presskit oder Referenz-Link" formControlName="presskitURL" />
 			<mat-hint>Nur Zip oder Tar Archive für Presskits erlaubt.</mat-hint>
 		</mat-form-field>
