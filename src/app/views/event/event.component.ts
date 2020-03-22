@@ -9,6 +9,7 @@ import { getRandomItemsFrom } from '../../utils/random';
 import { ArticlesGQLEntry } from '../../queries/Articles.query';
 import { ImpressionsService } from '../../services/impressions.service';
 import { generateUrchingTrackingURL } from '../../utils/utm';
+import { EventsSingletonGQLResponse } from '../../queries/Events.singleton';
 
 @Component({
 	selector: 'rk-event',
@@ -21,9 +22,11 @@ export class EventComponent implements OnInit, OnDestroy {
 	public eventSlug: string;
 	public event: EventBySlugGQLEntry;
 	public articles: ArticlesGQLEntry[] = [];
+	public eventsPageData?: EventsSingletonGQLResponse['eventsPageSingleton'];
 
 	private routeSub$: PossibleSubscription;
 	private eventSub$: PossibleSubscription;
+	private eventsPageSub$: PossibleSubscription;
 	private articlesSub$: PossibleSubscription;
 
 	constructor(
@@ -35,6 +38,9 @@ export class EventComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
+		this.eventsPageSub$ = this.eventsService.getEventsSingleton().subscribe((pageData) => {
+			this.eventsPageData = pageData;
+		});
 		this.articlesSub$ = this.articlesService.getArticles().subscribe((entries) => {
 			this.articles = getRandomItemsFrom(entries, 3);
 		});

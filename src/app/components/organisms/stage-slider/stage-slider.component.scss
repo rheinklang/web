@@ -3,23 +3,34 @@
 
 $stage-slider-height: 600px;
 $stage-slider-mobile-height: 500px;
+$stage-slider-tablet-height: 400px;
 $stage-slider-width: 100%;
 
 rk-stage-slider,
 .o-stage-slider {
   display: block;
+  background-color: $color-black; // fallback for xxlarge
 }
 
 rk-stage-slider,
 .o-stage-slider,
 .o-stage-slider__slide {
-  height: $stage-slider-height;
   width: $stage-slider-width;
+  height: $stage-slider-mobile-height;
+  background-color: $color-black;
 
-  @include respond-to-max("sm") {
-    height: $stage-slider-mobile-height;
-    background-color: $color-black;
+  @include respond-to-min("sm") {
+    height: $stage-slider-tablet-height;
   }
+
+  @include respond-to-min("lg") {
+    height: $stage-slider-height;
+    background-color: transparent;
+  }
+}
+
+.o-stage-slider__slide {
+  position: relative;
 }
 
 /* swiper library overrides */
@@ -30,13 +41,14 @@ rk-stage-slider,
     color: $color-white;
     transition: all 0.15s ease-in-out;
     opacity: 0.5;
+    display: none;
 
     &:hover {
       opacity: 1;
     }
 
-    @include respond-to-max("sm") {
-      display: none;
+    @include respond-to-min("md") {
+      display: initial;
     }
   }
 

@@ -77,10 +77,10 @@
 	<rk-map [url]="event.location.googleMapsURL" theme="medium" [zoom]="event.location.zoomLevel"></rk-map>
 </div>
 
-<rk-content-block heading="Schon gelesen?" color="black" [centerHeading]="true" space="xlarge">
+<rk-content-block *ngIf="eventsPageData" [heading]="eventsPageData.articlesTeaserTitle" color="black" [centerHeading]="true" space="xlarge">
 	<div *ngIf="articles && articles.length" class="v-event__articles container">
 		<div class="row justify-content-center align-self-center">
-			<div *ngFor="let article of articles" class="col-xs-12 col-md-6 col-lg-4">
+			<div *ngFor="let article of articles" class="v-event__article col-xs-12 col-md-6 col-lg-4">
 				<rk-teaser
 					*ngIf="article && article._id"
 					[disableAnimation]="true"

@@ -10,6 +10,7 @@ export interface HomeSingletonGQLSlideItem {
 	image: PreviewImage;
 	ctaText?: string;
 	ctaLink?: string;
+	ctaLinkparams?: string; // JSON
 }
 
 export interface HomeSingletonGQLResponse {

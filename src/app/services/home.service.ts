@@ -27,8 +27,14 @@ export class HomeService {
 			})
 			.valueChanges.pipe(
 				map((res) => res.data.homePageSingleton),
+				// extract cockpit set value field
 				map((singleton) => singleton.slides.map((slide) => slide.value)),
-				map((slides) => slides.map((slide, index) => ({ ...slide, index })))
+				// add index count to each slide
+				map((slides) => slides.map((slide, index) => ({ ...slide, index }))),
+				// parse query parameters to object to pass to router link
+				map((slides) =>
+					slides.map((slide) => ({ ...slide, ctaLinkparams: JSON.parse(slide.ctaLinkparams || '{}') }))
+				)
 			);
 	}
 }

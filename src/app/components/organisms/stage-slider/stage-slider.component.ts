@@ -1,5 +1,6 @@
 import { Component, Input, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import Swiper from 'swiper';
+import { isMobileDevice } from '../../../utils/device';
 
 export interface StageSliderSlide {
 	image: string;
@@ -7,6 +8,7 @@ export interface StageSliderSlide {
 	text?: string;
 	ctaLink?: string;
 	ctaText?: string;
+	ctaLinkParams?: Record<string, any>;
 }
 
 @Component({
@@ -31,6 +33,8 @@ export class StageSliderComponent implements AfterViewInit, OnDestroy {
 			return console.error(`StageSliderComponent didn't receive any slides, check your implementation`);
 		}
 
+		const isMobile = isMobileDevice();
+
 		this.swiperInstance = new Swiper(`.o-stage-slider--${this.id}`, {
 			direction: 'horizontal',
 			centeredSlides: true,
@@ -39,15 +43,16 @@ export class StageSliderComponent implements AfterViewInit, OnDestroy {
 			slideClass: 'o-stage-slider__slide',
 			preventClicks: false,
 			autoplay: {
-				delay: 5000,
+				// mobile shouldn't autoplay => 10mins, otherwise 5s
+				delay: isMobile ? 1000 * 60 * 10 : 5000,
 				disableOnInteraction: true,
 			},
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
 			},
-			height: 600,
-			autoHeight: false,
+			height: isMobileDevice ? undefined : 600,
+			autoHeight: isMobileDevice ? true : false,
 		});
 	}
 	public ngOnDestroy() {

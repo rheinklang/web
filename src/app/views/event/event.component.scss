@@ -27,7 +27,7 @@
   font-weight: 300;
 }
 .v-event__description {
-  margin: 0 auto;
+  margin: 0 auto 15px auto;
 }
 
 .v-event__actions {
@@ -72,6 +72,16 @@
 
 .v-event__impression-link-wrapper {
   margin-top: 20px;
+}
+
+.v-event__articles {
+  .v-event__article {
+    margin-bottom: 20px;
+
+    @include respond-to-min("sm") {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .m-map--dynamic.m-map--ready {
