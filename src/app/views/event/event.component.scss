@@ -1,6 +1,14 @@
 @import "../../styles/colors.scss";
 @import "../../styles/responsive.scss";
 
+.v-event__intro {
+  padding: 30px 0 10px 0;
+
+  @include respond-to-min("md") {
+    padding: 30px 0;
+  }
+}
+
 .v-event__back-link {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
@@ -13,10 +21,6 @@
   }
 }
 
-.v-event__intro {
-  padding: 30px 0;
-}
-
 .v-event__intro-meta-info {
   margin: 0 0 10px 0;
   color: $color-grey-100;
@@ -26,12 +30,35 @@
   margin: 0 auto;
 }
 
-.v-event__actions .v-event__actions-row {
-  margin: 50px auto;
+.v-event__actions {
+  .v-event__actions-row {
+    margin: 50px auto;
 
-  > * {
-    margin: 10px;
-    // display: inline;
+    > * {
+      margin: 10px;
+      // display: inline;
+    }
+  }
+
+  // Mobile sticky layer
+  @include respond-to-max("sm") {
+    padding: 0;
+
+    .v-event__actions-row {
+      margin: 20px 0 0 0;
+
+      rk-button-link {
+        margin: 0;
+
+        svg {
+          vertical-align: baseline;
+        }
+
+        a {
+          border-radius: 0;
+        }
+      }
+    }
   }
 }
 

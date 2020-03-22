@@ -59,6 +59,6 @@ export class TeaserSponsorComponent {
 			return this.url;
 		}
 
-		return generateUrchingTrackingURL(this.url);
+		return generateUrchingTrackingURL(this.url, 'Sponsors Overview');
 	}
 }

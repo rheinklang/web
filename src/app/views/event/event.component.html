@@ -25,22 +25,28 @@
 
 <div *ngIf="event" class="v-event__actions container">
 	<div class="row align-items-center justify-content-center v-event__actions-row">
-		<rk-button-link *ngIf="event.tickets && event.tickets.externalShopLink" [href]="event.tickets.externalShopLink" [secure]="true">
-			<rk-icon select="credit-card" color="#fff" width="23px" height="23px"></rk-icon>
+		<rk-button-link *ngIf="event.tickets && event.tickets.externalShopLink" [href]="trackableCheckoutLink" [secure]="true" modifier="tickets" campaign="event-detail">
+			<rk-icon select="credit-card" color="#000" width="23px" height="23px"></rk-icon>
 			Tickets kaufen
 		</rk-button-link>
-		<rk-button-link *ngIf="event.facebookUrl" [href]="event.facebookUrl" [campaign]="event.title" [secure]="true" modifier="facebook">
+		<rk-button-link *ngIf="event.facebookUrl" [href]="event.facebookUrl" [campaign]="event.title" [secure]="true" modifier="facebook" campaign="event-detail">
 			<rk-icon select="facebook3" width="23px" height="23px"></rk-icon>
 			Facebook Event
 		</rk-button-link>
-		<rk-button-link *ngIf="event.location.googleMapsURL" [href]="event.location.googleMapsURL" [secure]="true" modifier="green">
+		<rk-button-link *ngIf="event.location.googleMapsURL" [href]="event.location.googleMapsURL" [secure]="true" modifier="green" campaign="event-detail">
 			<rk-icon select="map" color="#fff" width="23px" height="23px"></rk-icon>
 			In Maps öffnen
 		</rk-button-link>
 	</div>
 </div>
 
-<rk-content-block [heading]="impressionTitle" color="grey-lighter" *ngIf="event && event.impression" centerHeading="true" space="xlarge">
+<rk-content-block
+	*ngIf="event && event.impression && event.impression.images"
+	[heading]="impressionTitle"
+	color="grey-lighter"
+	centerHeading="true"
+	space="xlarge"
+>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
