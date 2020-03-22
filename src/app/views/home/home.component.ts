@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 			this.slides = slides.map((slide) => ({
 				title: slide.title,
 				text: isMobile ? excerptWords(slide.content, slide.ctaLink ? 180 : 210) : slide.content,
-				image: slide.image.path,
+				image: slide.image ? slide.image.path : '',
 				ctaLink: slide.ctaLink,
 				ctaText: slide.ctaText,
 			}));

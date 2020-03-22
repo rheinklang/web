@@ -66,7 +66,10 @@
 	</div>
 	<!-- CTA Section -->
 	<div class="m-teaser-event__actions container">
-		<rk-button-facebook *ngIf="facebookUrl" [url]="facebookUrl"></rk-button-facebook>
+		<a *ngIf="facebookUrl" [href]="facebookUrl" class="m-teaser-event__facebook-link">
+			<rk-icon select="facebook3"></rk-icon>
+			Facebook Event
+		</a>
 		<a [routerLink]='eventDetailURL' class="m-teaser-event__detail-link">
 			<rk-icon [select]="eventDetailIcon.select" color="#fff"></rk-icon>
 			{{eventDetailText}}

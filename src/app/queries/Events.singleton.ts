@@ -6,6 +6,7 @@ export interface EventsSingletonGQLResponse {
 	eventsPageSingleton: {
 		title: string;
 		description: string;
+		articlesTeaserTitle: string;
 	};
 }
 
@@ -18,6 +19,7 @@ export class EventsSingletonGQL extends Query<EventsSingletonGQLResponse> {
 			eventsPageSingleton {
 				title
 				description
+				articlesTeaserTitle
 			}
 		}
 	`;

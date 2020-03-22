@@ -1,5 +1,12 @@
-import { Component, Input, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, Input, AfterViewInit, OnDestroy, ViewEncapsulation, OnInit } from '@angular/core';
 import Swiper from 'swiper';
+import { isMobileDevice } from '../../../utils/device';
+import {
+	SliderConfigService,
+	SliderConfig,
+	DEFAULT_AUTOPLAY_MOBILE_INTERVAL,
+	DEFAULT_AUTOPLAY_DESKTOP_INTERVAL,
+} from '../../../services/sliderConfig.service';
 
 export interface StageSliderSlide {
 	image: string;
@@ -7,6 +14,7 @@ export interface StageSliderSlide {
 	text?: string;
 	ctaLink?: string;
 	ctaText?: string;
+	ctaLinkParams?: Record<string, any>;
 }
 
 @Component({
@@ -15,7 +23,7 @@ export interface StageSliderSlide {
 	styleUrls: ['./stage-slider.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 })
-export class StageSliderComponent implements AfterViewInit, OnDestroy {
+export class StageSliderComponent implements AfterViewInit, OnInit, OnDestroy {
 	public static instanceCount = 0;
 
 	@Input() public id = StageSliderComponent.instanceCount++;
@@ -23,13 +31,29 @@ export class StageSliderComponent implements AfterViewInit, OnDestroy {
 	@Input() public enablePagination = true;
 	@Input() public enableNavigation = true;
 	@Input() public enableScrollbar = false;
+	public sliderConfig: SliderConfig = {
+		loopEnabled: true,
+		sliderAutoplaySpeedMobile: DEFAULT_AUTOPLAY_MOBILE_INTERVAL,
+		sliderAutoplaySpeedDesktop: DEFAULT_AUTOPLAY_DESKTOP_INTERVAL,
+	};
 
 	private swiperInstance?: Swiper;
+
+	constructor(private sliderConfigService: SliderConfigService) {}
+
+	public ngOnInit() {
+		this.sliderConfigService.getConfig().subscribe((config) => {
+			this.sliderConfig = config;
+		});
+	}
 
 	public ngAfterViewInit() {
 		if (!this.slides || this.slides.length === 0) {
 			return console.error(`StageSliderComponent didn't receive any slides, check your implementation`);
 		}
+
+		const isMobile = isMobileDevice();
+		const { loopEnabled, sliderAutoplaySpeedDesktop, sliderAutoplaySpeedMobile } = this.sliderConfig;
 
 		this.swiperInstance = new Swiper(`.o-stage-slider--${this.id}`, {
 			direction: 'horizontal',
@@ -39,15 +63,16 @@ export class StageSliderComponent implements AfterViewInit, OnDestroy {
 			slideClass: 'o-stage-slider__slide',
 			preventClicks: false,
 			autoplay: {
-				delay: 5000,
+				delay: isMobile ? sliderAutoplaySpeedMobile : sliderAutoplaySpeedDesktop,
 				disableOnInteraction: true,
 			},
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
 			},
-			height: 600,
-			autoHeight: false,
+			loop: loopEnabled,
+			height: isMobileDevice ? undefined : 600,
+			autoHeight: isMobileDevice ? true : false,
 		});
 	}
 	public ngOnDestroy() {

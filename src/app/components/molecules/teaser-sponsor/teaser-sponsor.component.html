@@ -1,13 +1,19 @@
-<div *ngIf="url; else noLink">
-	<a [href]="sponsorCampaignUrl" target="_blank" rel="noopener noreferrer"s>
-		<rk-picture *ngIf="logo && logo.path" [src]="logo.path" [lazy]="true"></rk-picture>
+<div class="m-teaser-sponsor" *ngIf="url; else noLink">
+	<a [href]="sponsorCampaignUrl" target="_blank" rel="noopener noreferrer">
+		<div class="m-teaser-sponsor__logo">
+			<rk-picture *ngIf="logo && logo.path" [src]="logo.path" [lazy]="true"></rk-picture>
+		</div>
 		<rk-heading *ngIf="name" [icon]="icon" [text]="name" size="3" visualSize="4" center="true"></rk-heading>
 		<p class="m-teaser-sponsor__period">{{yearInformation}}</p>
 	</a>
 </div>
 
 <ng-template #noLink>
-	<rk-picture *ngIf="logo && logo.path" [src]="logo.path" [lazy]="true"></rk-picture>
-	<rk-heading *ngIf="name" [icon]="icon" [text]="name" size="3" visualSize="4" center="true"></rk-heading>
-	<p class="m-teaser-sponsor__period">{{yearInformation}}</p>
+	<div class="m-teaser-sponsor">
+		<div class="m-teaser-sponsor__logo">
+			<rk-picture *ngIf="logo && logo.path" [src]="logo.path" [lazy]="true"></rk-picture>
+		</div>
+		<rk-heading *ngIf="name" [icon]="icon" [text]="name" size="3" visualSize="4" center="true"></rk-heading>
+		<p class="m-teaser-sponsor__period">{{yearInformation}}</p>
+	</div>
 </ng-template>

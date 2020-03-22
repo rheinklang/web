@@ -10,5 +10,6 @@ export class StageSlideItemComponent {
 	@Input() public title?: string;
 	@Input() public text?: string;
 	@Input() public ctaLink?: string;
+	@Input() public ctaLinkParams: Record<string, any> = {};
 	@Input() public ctaText?: string;
 }

@@ -10,6 +10,7 @@ export interface HomeSingletonGQLSlideItem {
 	image: PreviewImage;
 	ctaText?: string;
 	ctaLink?: string;
+	ctaLinkparams?: string; // JSON
 }
 
 export interface HomeSingletonGQLResponse {
@@ -19,6 +20,8 @@ export interface HomeSingletonGQLResponse {
 			__typename: 'RepeaterItemSlides';
 		}>;
 		showcaseEvent: EventBySlugGQLEntry | null;
+		sliderAutoplaySpeedMobile?: string;
+		sliderAutoplaySpeedDesktop?: string;
 	};
 }
 
@@ -32,6 +35,8 @@ export class HomeSingletonGQL extends Query<HomeSingletonGQLResponse> {
 				slides {
 					value
 				}
+				sliderAutoplaySpeedMobile
+				sliderAutoplaySpeedDesktop
 				showcaseEvent {
 					slug
 					title

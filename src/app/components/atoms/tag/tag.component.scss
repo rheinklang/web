@@ -11,18 +11,23 @@ rk-tag {
   border-radius: 4px;
   display: inline-block;
   text-transform: uppercase;
-  padding: 5px 8px;
-  font-size: 0.75rem;
+  padding: 7px 10px;
+  font-size: 0.8rem;
+
+  @include respond-to-min("sm") {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
 }
 
 .a-tag--interactive {
-  cursor: pointer;
   background-color: $color-grey-100;
   transition: background-color 0.2s ease-in-out;
   will-change: background-color;
 
   &:hover {
     @include respond-to-min("sm") {
+      cursor: pointer;
       background-color: $color-primary-fury-red-light1;
     }
   }

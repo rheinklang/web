@@ -1,59 +1,72 @@
-@import '../../../styles/colors.scss';
-@import '../../../styles/responsive.scss';
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
 
 rk-button-link {
-	width: 100%;
+  width: 100%;
 
-	@include respond-to-min('sm') {
-		width: auto;
-	}
+  @include respond-to-min("sm") {
+    width: auto;
+  }
 }
 
 .a-button-link {
-	padding: 10px;
-	border-radius: 3px;
-	background-color: $color-black;
-	color: $color-white;
-	text-decoration: none;
-	display: block;
-	text-align: center;
-	height: 52px;
-	line-height: 34px;
-	transition: all 0.2s ease-in-out;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: $color-black;
+  color: $color-white;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  height: 52px;
+  line-height: 34px;
+  transition: all 0.2s ease-in-out;
 
-	@include respond-to-min('sm') {
-		display: inline-block;
-		width: auto;
-	}
+  @include respond-to-min("sm") {
+    display: inline-block;
+    width: auto;
+  }
 
-	&:hover {
-		background-color: $color-grey-100;
-	}
+  &:hover {
+    background-color: $color-grey-100;
+  }
 
-	rk-icon svg {
-		height: 34px;
-		line-height: 34px;
-		vertical-align: sub;
-		margin-right: 5px;
-	}
+  rk-icon svg {
+    height: 34px;
+    line-height: 34px;
+    vertical-align: sub;
+    margin-right: 5px;
+  }
 
-	&--green {
-		background-color: $color-primary-grass-green;
+  &--green {
+    background-color: $color-primary-grass-green;
 
-		&:hover {
-			background-color: $color-primary-grass-green-light1;
-		}
-	}
+    &:hover {
+      background-color: $color-primary-grass-green-light1;
+    }
+  }
 
-	&--facebook {
-		background-color: $color-brand-facebook;
+  &--facebook {
+    background-color: $color-brand-facebook;
 
-		&:hover {
-			background-color: $color-brand-facebook-light;
-		}
+    &:hover {
+      background-color: $color-brand-facebook-light;
+    }
 
-		rk-icon svg {
-			vertical-align: sub;
-		}
-	}
+    rk-icon svg {
+      vertical-align: sub;
+    }
+  }
+
+  &--tickets {
+    background-color: $color-primary-retr-orange;
+    color: $color-primary-sea-green;
+
+    &:hover {
+      background-color: $color-primary-retr-orange-light1;
+    }
+
+    rk-icon svg {
+      fill: $color-black;
+    }
+  }
 }

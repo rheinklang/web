@@ -20,6 +20,26 @@ export class HomeService {
 			);
 	}
 
+	public getSwiperConfig() {
+		return this.homeSingletonGQL
+			.watch(undefined, {
+				fetchPolicy: CACHED_POLICY,
+			})
+			.valueChanges.pipe(
+				map((res) => res.data.homePageSingleton),
+				map((singleton) => ({
+					autoplayDelay: {
+						mobile: singleton.sliderAutoplaySpeedMobile
+							? parseInt(singleton.sliderAutoplaySpeedMobile, 10)
+							: undefined,
+						desktop: singleton.sliderAutoplaySpeedDesktop
+							? parseInt(singleton.sliderAutoplaySpeedDesktop, 10)
+							: undefined,
+					},
+				}))
+			);
+	}
+
 	public getSlides() {
 		return this.homeSingletonGQL
 			.watch(undefined, {
@@ -27,8 +47,14 @@ export class HomeService {
 			})
 			.valueChanges.pipe(
 				map((res) => res.data.homePageSingleton),
+				// extract cockpit set value field
 				map((singleton) => singleton.slides.map((slide) => slide.value)),
-				map((slides) => slides.map((slide, index) => ({ ...slide, index })))
+				// add index count to each slide
+				map((slides) => slides.map((slide, index) => ({ ...slide, index }))),
+				// parse query parameters to object to pass to router link
+				map((slides) =>
+					slides.map((slide) => ({ ...slide, ctaLinkparams: JSON.parse(slide.ctaLinkparams || '{}') }))
+				)
 			);
 	}
 }

@@ -20,6 +20,9 @@
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
+		<mat-form-field *ngIf="supplierForm.value.type === 'Andere ...'">
+			<input matInput placeholder="Unternehmenskategorie" formControlName="specificType" />
+		</mat-form-field>
 		<mat-form-field>
 			<textarea matInput rows="8" maxlength="1000" placeholder="Nachricht" formControlName="message"></textarea>
 			<mat-hint align="end">{{supplierForm.value.message.length}} / 1000</mat-hint>
