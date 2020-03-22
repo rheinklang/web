@@ -12,7 +12,7 @@ export interface StageSliderSlide {
 }
 
 const AUTOPLAY_MOBILE_INTERVAL = 60 * 1000 * 10; // 10min
-const AUTOPLAY_DESKTOP_INTERVAL = 6 * 1000; // 6s^
+const AUTOPLAY_DESKTOP_INTERVAL = 10000000; // 6 * 1000; // 6s^
 
 @Component({
 	selector: 'rk-stage-slider',
@@ -28,6 +28,9 @@ export class StageSliderComponent implements AfterViewInit, OnDestroy {
 	@Input() public enablePagination = true;
 	@Input() public enableNavigation = true;
 	@Input() public enableScrollbar = false;
+
+	@Input() public mobileAutoScrollInterval = AUTOPLAY_MOBILE_INTERVAL;
+	@Input() public desktopAutoScrollInterval = AUTOPLAY_DESKTOP_INTERVAL;
 
 	private swiperInstance?: Swiper;
 
@@ -46,13 +49,14 @@ export class StageSliderComponent implements AfterViewInit, OnDestroy {
 			slideClass: 'o-stage-slider__slide',
 			preventClicks: false,
 			autoplay: {
-				delay: isMobile ? AUTOPLAY_MOBILE_INTERVAL : AUTOPLAY_DESKTOP_INTERVAL,
+				delay: isMobile ? this.mobileAutoScrollInterval : this.desktopAutoScrollInterval,
 				disableOnInteraction: true,
 			},
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
 			},
+			loop: true,
 			height: isMobileDevice ? undefined : 600,
 			autoHeight: isMobileDevice ? true : false,
 		});

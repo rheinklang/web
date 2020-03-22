@@ -21,16 +21,28 @@ rk-stage-slider,
 
   @include respond-to-min("sm") {
     height: $stage-slider-tablet-height;
+
+    img {
+      height: $stage-slider-tablet-height;
+    }
   }
 
   @include respond-to-min("lg") {
     height: $stage-slider-height;
     background-color: transparent;
+
+    img {
+      height: $stage-slider-height;
+    }
   }
 }
 
-.o-stage-slider__slide {
+.o-stage-slider {
   position: relative;
+
+  @include respond-to-min("xxl") {
+    background-color: $color-black;
+  }
 }
 
 /* swiper library overrides */

@@ -29,12 +29,12 @@
 
     &:before {
       left: 0;
-      background: linear-gradient(to-left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
+      background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
     }
 
     &:after {
       right: 0;
-      background: linear-gradient(to-right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
     }
   }
 }
@@ -57,7 +57,7 @@
 .m-stage-slide-item__title,
 .m-stage-slide-item__text,
 .m-stage-slide-item__link {
-  margin: 10px;
+  margin: 10px 20px;
   text-shadow: 0 0 5px $color-grey-100;
 }
 
