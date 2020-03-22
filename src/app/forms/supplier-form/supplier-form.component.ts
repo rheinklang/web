@@ -30,6 +30,7 @@ export class SupplierFormComponent {
 		mail: new FormControl('', Validators.required),
 		website: new FormControl(''),
 		type: new FormControl('', Validators.required),
+		specificType: new FormControl(''),
 		message: new FormControl('', Validators.required),
 		termsAccepted: new FormControl('', [Validators.requiredTrue]),
 	});
