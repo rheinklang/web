@@ -31,7 +31,7 @@
 			<input matInput placeholder="Mixtape Link" formControlName="mixtapeLink" />
 			<mat-hint>Privater SoundCloud oder Mixcloud Link, mindestlänge von 60 Minuten und nicht älter als 3 Monate.</mat-hint>
 		</mat-form-field>
-		<div class="o-form__field">
+		<div class="o-form__field o-form__field--space-top">
 			<mat-checkbox formControlName="termsAccepted">Ich stimme den Datenschutzbestimmungen zu</mat-checkbox>
 		</div>
 		<button type="submit" [disabled]="!guestAppearanceForm.valid" [class.state--error]="sent === false" [class.state--sent]="sent === true">
