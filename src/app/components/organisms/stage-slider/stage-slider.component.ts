@@ -1,6 +1,5 @@
 import { Component, Input, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import Swiper from 'swiper';
-import 'swiper/css/swiper.min.css';
 
 export interface StageSliderSlide {
 	image: string;
