@@ -11,7 +11,10 @@ import { ApolloClientOptions } from 'apollo-client';
 
 const uri = environment.graphQLHostURL;
 
-export function createApolloInitializer(httpLink: HttpLink, log: LogService, storage: Storage) {
+/**
+ * Initialize basic apollo configuration for the wrapper library provider
+ */
+export function createApolloInitializer(httpLink: HttpLink, log: LogService) {
 	const link = httpLink.create({ uri });
 
 	onError(({ graphQLErrors, networkError }) => {
@@ -39,31 +42,37 @@ export function createApolloInitializer(httpLink: HttpLink, log: LogService, sto
 	};
 }
 
+/**
+ * Ensure that the cache was persistet before the application starts
+ * by using the core initializer provider.
+ */
+export function mountPersistentCache(opts: ApolloClientOptions<any>, storage: Storage) {
+	return async () =>
+		await persistCache({
+			cache: opts.cache,
+			key: 'rk-gql-cache',
+			storage: {
+				setItem: (key, data) => storage.set(key, data),
+				getItem: (key) => storage.get(key),
+				removeItem: (key) => storage.remove(key),
+			},
+			trigger: 'background',
+		});
+}
+
 @NgModule({
 	exports: [ApolloModule, HttpLinkModule],
 	providers: [
 		{
 			provide: APP_INITIALIZER,
-			useFactory: (opts: ApolloClientOptions<any>, storage: Storage) => {
-				return async () =>
-					persistCache({
-						cache: opts.cache,
-						key: 'rk-gql-cache',
-						storage: {
-							setItem: (key, data) => storage.set(key, data),
-							getItem: (key) => storage.get(key),
-							removeItem: (key) => storage.remove(key),
-						},
-						trigger: 'background',
-					});
-			},
+			useFactory: mountPersistentCache,
 			multi: true,
 			deps: [APOLLO_OPTIONS, Storage],
 		},
 		{
 			provide: APOLLO_OPTIONS,
 			useFactory: createApolloInitializer,
-			deps: [HttpLink, LogService, Storage],
+			deps: [HttpLink, LogService],
 		},
 	],
 })
