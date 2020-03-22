@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ArticlesService } from '../../services/articles.service';
-import { ArticlesGQLEntry } from '../../queries/Articles.query';
-import { HomeService } from '../../services/home.service';
-import { HomeSingletonGQLSlideItem } from '../../queries/Home.singleton';
 import { PossibleSubscription, unsubscribe } from '../../utils/subscription';
-import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
-import { EventsService } from '../../services/events.service';
 import { sortByDate } from '../../utils/sort';
+import { excerptWords } from '../../utils/string';
+import { isMobileDevice } from '../../utils/device';
+import { ArticlesGQLEntry } from '../../queries/Articles.query';
+import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
+import { ArticlesService } from '../../services/articles.service';
+import { HomeService } from '../../services/home.service';
+import { EventsService } from '../../services/events.service';
 import { StageSliderSlide } from '../../components/organisms/stage-slider/stage-slider.component';
 
 @Component({
@@ -32,6 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
+		const isMobile = isMobileDevice();
+
 		this.articlesSub$ = this.articlesService.getArticles().subscribe((articles) => {
 			// order all articles by ISO date
 			this.articles = sortByDate(articles, (article) => article.releaseDate);
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.homeSub$ = this.homeService.getSlides().subscribe((slides) => {
 			this.slides = slides.map((slide) => ({
 				title: slide.title,
-				text: slide.content,
+				text: isMobile ? excerptWords(slide.content, slide.ctaLink ? 180 : 210) : slide.content,
 				image: slide.image.path,
 				ctaLink: slide.ctaLink,
 				ctaText: slide.ctaText,
