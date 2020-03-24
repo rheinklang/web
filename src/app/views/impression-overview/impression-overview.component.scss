@@ -1,17 +1,47 @@
 @import "../../styles/colors.scss";
 @import "../../styles/responsive.scss";
+@import "../../styles/shadows.scss";
 
 .v-impressions-overview {
   padding-bottom: 30px;
 }
 
 .v-impressions-overview__entry {
+  @include teaser-box-shadow();
   margin-top: 30px;
   display: block;
   position: relative;
   border-radius: 3px;
   overflow: hidden;
   text-decoration: none;
+
+  // desktop image animation
+  @include respond-to-min("sm") {
+    img {
+      transform: scale(1.2);
+      filter: blur(2px) saturate(60%) brightness(80%);
+      transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1);
+        filter: blur(0) saturate(100%) brightness(100%);
+      }
+    }
+  }
+
+  @include respond-to-min("lg") {
+    img {
+      height: 350px;
+    }
+  }
+
+  @include respond-to-min("xxl") {
+    img {
+      height: 400px;
+    }
+  }
 
   &--black rk-heading {
     color: $color-black;
@@ -49,6 +79,20 @@
       @include respond-to-min("lg") {
         font-size: 50px;
         line-height: 52px;
+      }
+    }
+  }
+
+  // desktop text animation
+  @include respond-to-min("sm") {
+    rk-heading {
+      opacity: 1;
+      transition: all 0.4s ease-in-out;
+    }
+
+    &:hover {
+      rk-heading {
+        opacity: 0.5;
       }
     }
   }

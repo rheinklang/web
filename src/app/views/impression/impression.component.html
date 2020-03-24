@@ -2,8 +2,8 @@
 <rk-seo-manager context="impression" [data]="impression"></rk-seo-manager>
 
 <rk-content-block space="large" *ngIf="impression" color="sea-light" [heading]="impression.title" [centerHeading]="true">
-	<div class="row justify-content-center">
-		<div class="col-xs-12 col-sm-10 h-text-align--center" [innerHTML]="impression.description"></div>
+	<div class="row">
+		<div class="col-12 o-content-block__text" [innerHTML]="impression.description"></div>
 	</div>
 </rk-content-block>
 

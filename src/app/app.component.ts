@@ -7,6 +7,7 @@ import { trackGTMTimingEvent } from './utils/gtag';
 import { Subscription } from 'rxjs';
 import { unsubscribe } from './utils/subscription';
 import { injectGCPMapsScript } from './app.gcp';
+import { Apollo } from 'apollo-angular';
 
 declare var gtag;
 
@@ -51,5 +52,11 @@ export class AppComponent implements OnDestroy {
 
 	public ngOnDestroy() {
 		unsubscribe([this.navEndSub$]);
+	}
+
+	public onActivate() {
+		window.scroll(0, 0);
+		// or document.body.scrollTop = 0;
+		// sor document.querySelector('body').scrollTo(0,0)
 	}
 }

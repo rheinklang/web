@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleGQLEntry } from '../../queries/ArticleById.query';
 import { ArticlesService } from '../../services/articles.service';
@@ -9,6 +9,7 @@ import { unsubscribe } from '../../utils/subscription';
 	selector: 'rk-articles',
 	templateUrl: './articles.component.html',
 	styleUrls: ['./articles.component.scss'],
+	encapsulation: ViewEncapsulation.None,
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
 	public article: ArticleGQLEntry;

@@ -9,14 +9,14 @@
 	size="1"
 	[heading]="pageData.title || '&nbsp;'"
 >
-	<div class="row justify-content-center">
-			<div class="col-xs-12 col-sm-10 h-text-align--center" [innerHTML]="pageData.description || '&nbsp;'"></div>
+	<div class="row">
+			<div class="col-12 o-content-block__text" [innerHTML]="pageData.description || '&nbsp;'"></div>
 	</div>
 </rk-content-block>
 
-<div *ngFor="let impression of impressions" class="v-impressions-overview container">
-	<div class="row" [id]="impression.slug">
-		<div class="col-12 col-xl-6">
+<div class="v-impressions-overview container">
+	<div class="row">
+		<div *ngFor="let impression of impressions" class="col-12 col-lg-6" [id]="impression.slug">
 			<a [routerLink]="'/impressions/' + impression.slug" class="v-impressions-overview__entry v-impressions-overview__entry--{{getEntryModifier(impression)}}">
 				<rk-picture *ngIf="impression.showcaseImage" [src]="impression.showcaseImage.path"></rk-picture>
 				<rk-heading [size]="3" [text]="impression.title"></rk-heading>

@@ -1,19 +1,21 @@
 <ng-container *ngIf="article; else noArticle">
-	<div class="container v-articles__image">
-		<rk-picture [src]="article.previewImage.path" [alt]="article.title"></rk-picture>
+	<div class="v-article">
+		<div class="container v-article__image">
+			<rk-picture [src]="article.previewImage.path" [alt]="article.title"></rk-picture>
+		</div>
+		<rk-content-block space="large" *ngIf="article">
+				<rk-heading size="1" [text]="article.title"></rk-heading>
+				<h2 class="v-article__publish-info">Publiziert am {{article.releaseDate | date:'dd. MMMM yyyy'}} von {{article.author}}</h2>
+				<rk-richtext [text]="article.content"></rk-richtext>
+				<div class="v-article__tags">
+					<rk-tag-list [tags]="article.tags"></rk-tag-list>
+				</div>
+		</rk-content-block>
 	</div>
-	<rk-content-block space="large" *ngIf="article">
-			<rk-heading size="1" [text]="article.title"></rk-heading>
-			<h2>Publiziert am {{article.releaseDate | date:'dd. MMMM yyyy'}} von {{article.author}}</h2>
-			<rk-richtext [text]="article.content"></rk-richtext>
-			<div class="v-articles__tags">
-				<rk-tag-list [tags]="article.tags"></rk-tag-list>
-			</div>
-	</rk-content-block>
 </ng-container>
 
 <ng-template #noArticle>
-	<div class="container v-articles__loader">
+	<div class="container v-article__loader">
 		<div class="row justify-content-center align-content-center align-items-center" style="text-align: center">
 			<rk-spinner></rk-spinner>
 		</div>
