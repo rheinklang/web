@@ -1,7 +1,12 @@
+// Global UX stuff
+html {
+  scroll-behavior: smooth;
+}
+
+// All colors
 @import "./app/styles/colors.scss";
 
 // Style for sliders can't be extracted into components
-
 @import "~swiper/css/swiper.min.css";
 
 // Custom Theming for Angular Material

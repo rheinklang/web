@@ -1,11 +1,19 @@
-@import '../../../styles/colors.scss';
+@import "../../../styles/colors.scss";
+@import "../../../styles/responsive.scss";
 
 .o-content-block {
-	.a-heading--block-title {
-		margin: 0 0 20px 0;
-	}
+  .a-heading--block-title {
+    margin: 0 0 20px 0;
+  }
 }
 
-// .o-content-block--skew {
-// nothing atm.
-// }
+.o-content-block__text {
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+
+  @include respond-to-min("sm") {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}

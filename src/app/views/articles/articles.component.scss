@@ -1,11 +1,24 @@
-.v-articles__image {
+@import "../../styles/colors.scss";
+
+.v-article__image {
   margin-top: 40px;
 }
 
-.v-articles__tags {
+.v-article__tags {
   margin: 40px 0 20px 0;
 }
 
-.v-articles__loader {
+.v-article__loader {
   padding: 70px 0;
+}
+
+.v-article__publish-info {
+  font-size: 1.2rem;
+  color: $color-grey-100;
+  font-weight: 300;
+  margin: 0 0 25px 0;
+}
+
+.v-article .a-heading--1 {
+  margin-bottom: 10px;
 }

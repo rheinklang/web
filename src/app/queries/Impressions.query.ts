@@ -5,7 +5,9 @@ import { ImageSchema } from '../schema/ImageSchema';
 
 export interface ImpressionsGQLEntry {
 	title: string;
+	slug: string;
 	showcaseImage: ImageSchema;
+	showcaseTextColor?: 'auto' | 'white' | 'black';
 }
 
 export interface ImpressionsGQLResponse {
@@ -21,6 +23,7 @@ export class ImpressionsGQL extends Query<ImpressionsGQLResponse> {
 			impressionsCollection {
 				title
 				slug
+				showcaseTextColor
 				showcaseImage {
 					path
 					colors

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterContentInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterContentInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ImpressionsService } from '../../services/impressions.service';
@@ -9,6 +9,7 @@ import { ImpressionSchema } from '../../schema/ImpressionSchema';
 	selector: 'rk-impression',
 	templateUrl: './impression.component.html',
 	styleUrls: ['./impression.component.scss'],
+	encapsulation: ViewEncapsulation.None,
 })
 export class ImpressionComponent implements OnInit, OnDestroy, AfterContentInit {
 	public impressionSlug?: string;
