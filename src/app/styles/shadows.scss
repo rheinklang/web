@@ -1,0 +1,13 @@
+@import "./responsive.scss";
+
+@mixin teaser-box-shadow {
+  transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;
+  box-shadow: 0 0.5rem 2rem 0 rgba(44, 51, 73, 0.1);
+
+  @include respond-to-min("sm") {
+    &:hover {
+      transform: scale(1.035);
+      box-shadow: 0 4rem 7rem 0 rgba(44, 51, 73, 0.3);
+    }
+  }
+}

@@ -42,6 +42,11 @@ export class ImpressionOverviewComponent implements OnInit, OnDestroy {
 	}
 
 	public getEntryModifier(impression: ImpressionsGQLEntry) {
+		if (impression.showcaseTextColor && impression.showcaseTextColor !== 'auto') {
+			// return override from CMS if available
+			return impression.showcaseTextColor;
+		}
+
 		return getContrastModifierForImage(impression.showcaseImage);
 	}
 }

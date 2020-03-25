@@ -2,12 +2,13 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { onError } from 'apollo-link-error';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClientOptions } from 'apollo-client';
+import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
-import { Storage } from '@ionic/storage';
 import { environment } from '../environments/environment';
 import { LogService } from './services/log.service';
-import { ApolloClientOptions } from 'apollo-client';
+import { ICockpitGenericField } from './schema/CockpitField';
+import { cacheResolver } from './graphql.cacheRedirects';
 
 const uri = environment.graphQLHostURL;
 
@@ -32,7 +33,12 @@ export function createApolloInitializer(httpLink: HttpLink, log: LogService) {
 		}
 	});
 
-	const cache = new InMemoryCache();
+	const cache = new InMemoryCache({
+		cacheRedirects: cacheResolver,
+		dataIdFromObject: (value: ICockpitGenericField) => {
+			return value._id || defaultDataIdFromObject(value);
+		},
+	});
 
 	return {
 		link,
