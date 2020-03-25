@@ -16,6 +16,18 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
+
+  @include respond-to-min("md") {
+    rk-image img {
+      height: 200px;
+    }
+  }
+
+  @include respond-to-min("lg") {
+    rk-image img {
+      height: 250px;
+    }
+  }
 }
 
 .m-teaser-event__content-wrapper {

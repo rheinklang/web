@@ -81,6 +81,7 @@ import { LivestreamIndicatorComponent } from './components/atoms/livestream-indi
 import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
 import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
 import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
 	declarations: [
@@ -150,6 +151,12 @@ import { StageSlideItemComponent } from './components/molecules/stage-slide-item
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
+		// Storage adapters
+		IonicStorageModule.forRoot({
+			name: 'rk-storage',
+			driverOrder: ['indexeddb', 'sqlite', 'websql'],
+		}),
+		// GraphQL & Apollo
 		GraphQLModule,
 		// Forms Module,
 		ReactiveFormsModule,
