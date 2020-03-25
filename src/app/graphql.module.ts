@@ -1,10 +1,11 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { ApolloModule, APOLLO_OPTIONS, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloClientOptions } from 'apollo-client';
 import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
+import { Storage } from '@ionic/storage';
 import { environment } from '../environments/environment';
 import { LogService } from './services/log.service';
 import { ICockpitGenericField } from './schema/CockpitField';
@@ -52,8 +53,8 @@ export function createApolloInitializer(httpLink: HttpLink, log: LogService) {
  * Ensure that the cache was persistet before the application starts
  * by using the core initializer provider.
  */
-export function mountPersistentCache(opts: ApolloClientOptions<any>, storage: Storage) {
-	return async () =>
+export function mountPersistentCache(opts: ApolloClientOptions<any>, storage: Storage, apollo: Apollo) {
+	return async () => {
 		await persistCache({
 			cache: opts.cache,
 			key: 'rk-gql-cache',
@@ -64,6 +65,12 @@ export function mountPersistentCache(opts: ApolloClientOptions<any>, storage: St
 			},
 			trigger: 'background',
 		});
+
+		if (!environment.production) {
+			// flush cache if not in production for better development state
+			await apollo.getClient().resetStore();
+		}
+	};
 }
 
 @NgModule({
@@ -73,7 +80,7 @@ export function mountPersistentCache(opts: ApolloClientOptions<any>, storage: St
 			provide: APP_INITIALIZER,
 			useFactory: mountPersistentCache,
 			multi: true,
-			deps: [APOLLO_OPTIONS, Storage],
+			deps: [APOLLO_OPTIONS, Storage, Apollo],
 		},
 		{
 			provide: APOLLO_OPTIONS,
