@@ -1,0 +1,44 @@
+@import "../../styles/colors.scss";
+
+.v-hotlinks {
+  list-style: none;
+  margin: 20px auto;
+  padding: 0 10px;
+  text-align: center;
+  max-width: 800px;
+
+  .v-hotlinks__entry {
+    margin: 10px 0;
+
+    a {
+      font-size: 1.4rem;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      margin: 0;
+      padding: 10px 0;
+      transition: all 0.25s ease-in-out;
+      color: $color-primary-sea-green;
+      border: 3px solid $color-primary-sea-green;
+      border-radius: 2px;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .v-hotlinks__entry--social a {
+    border-color: $color-primary-retr-orange;
+  }
+
+  .v-hotlinks__entry--important a,
+  .v-hotlinks__entry--streams a {
+    border-color: $color-primary-fury-red;
+  }
+
+  .v-hotlinks__entry--forms a,
+  .v-hotlinks__entry--pages a {
+    border-color: $color-primary-grass-green;
+  }
+}

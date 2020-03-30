@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LiveStreamService } from '../../../services/livestream.service';
 import { LiveStreamSchema } from '../../../schema/LiveStreamSchema';
+import { generateUrchingTrackingURL } from '../../../utils/utm';
 
 const PARENT_STREAM_HOST = 'rheinklang-festival.ch';
 const TWITCH_PLAYER_HOST = 'https://player.twitch.tv';
@@ -30,10 +31,14 @@ export class LivestreamComponent implements OnInit {
 
 	constructor(private liveStreamService: LiveStreamService, private sanitizer: DomSanitizer) {}
 
-	ngOnInit() {
+	public ngOnInit() {
 		this.liveStreamService.getLiveStream().subscribe((data) => {
 			this.liveStreamInfo = data;
 		});
+	}
+
+	public extURL(href: string) {
+		return generateUrchingTrackingURL(href, 'livestream');
 	}
 
 	public get isStreamAvailable() {

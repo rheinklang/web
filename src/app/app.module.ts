@@ -82,6 +82,7 @@ import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/li
 import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
 import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
 import { IonicStorageModule } from '@ionic/storage';
+import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 
 @NgModule({
 	declarations: [
@@ -146,6 +147,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		LivestreamEmbeddPageComponent,
 		StageSliderComponent,
 		StageSlideItemComponent,
+		HotlinksComponent,
 	],
 	imports: [
 		BrowserModule,

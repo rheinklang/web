@@ -1,13 +1,12 @@
 import { filter } from 'rxjs/operators';
 import { Component, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { injectGTMScript } from './app.gtm';
 import { environment } from '../environments/environment';
 import { trackGTMTimingEvent } from './utils/gtag';
 import { Subscription } from 'rxjs';
 import { unsubscribe } from './utils/subscription';
 import { injectGCPMapsScript } from './app.gcp';
-import { Apollo } from 'apollo-angular';
 
 declare var gtag;
 
@@ -26,7 +25,7 @@ export class AppComponent implements OnDestroy {
 	private navEndSub$: Subscription;
 	private gMapCbAttached = false;
 
-	constructor(router: Router) {
+	constructor(router: Router, route: ActivatedRoute) {
 		if (!this.gMapCbAttached) {
 			this.gMapCbAttached = true;
 		}
@@ -41,6 +40,9 @@ export class AppComponent implements OnDestroy {
 
 		// get last navigation event for final route changes
 		const navEndEvents = router.events.pipe(filter((event) => event instanceof NavigationEnd));
+
+		// route.params.subscribe(d => console.log(d));
+		console.log(route.snapshot.data);
 
 		// page view tracking
 		this.navEndSub$ = navEndEvents.subscribe((event: NavigationEnd) => {
