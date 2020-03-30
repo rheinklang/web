@@ -17,23 +17,12 @@ export class LinkComponent {
 	@Input() public iconPosition: 'pre' | 'post' = 'pre';
 	@Input() public color?: string;
 	@Input() public queryParams?: Record<string, any> = {};
-
-	private $target = '_self';
-	public needsRelationSafety = false;
+	@Input() public target?: string;
 
 	constructor(private flyoutService: FlyoutService) {}
 
-	@Input()
-	public set target(value: string) {
-		if (value === '_blank') {
-			this.needsRelationSafety = true;
-		}
-
-		this.$target = value;
-	}
-
-	public get target() {
-		return this.$target;
+	public get needsRelationSafety() {
+		return this.target === '_blank' ? true : false;
 	}
 
 	public handleLinkClick() {
