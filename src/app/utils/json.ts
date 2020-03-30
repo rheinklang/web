@@ -1,6 +1,6 @@
 export const parseSerializedJSON = <T extends object>(queryString: string): T => {
 	if (!queryString || queryString.length === 0) {
-		return {};
+		return {} as T;
 	}
 
 	try {
