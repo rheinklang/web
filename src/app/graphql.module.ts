@@ -7,8 +7,9 @@ import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
 import { Storage } from '@ionic/storage';
 import { environment } from '../environments/environment';
-import { LogService } from './services/log.service';
 import { ICockpitGenericField } from './schema/CockpitField';
+import { LogService } from './services/log.service';
+import { ConfigService } from './services/config.service';
 import { cacheResolver } from './graphql.cacheRedirects';
 
 const uri = environment.graphQLHostURL;
@@ -16,7 +17,7 @@ const uri = environment.graphQLHostURL;
 /**
  * Initialize basic apollo configuration for the wrapper library provider
  */
-export function createApolloInitializer(httpLink: HttpLink, log: LogService) {
+export function createApolloInitializer(httpLink: HttpLink, log: LogService, configService: ConfigService) {
 	const link = httpLink.create({ uri });
 
 	onError(({ graphQLErrors, networkError }) => {
@@ -41,30 +42,60 @@ export function createApolloInitializer(httpLink: HttpLink, log: LogService) {
 		},
 	});
 
-	return {
+	const opts: ApolloClientOptions<any> = {
 		link,
 		cache,
 		connectToDevTools: true,
 		queryDeduplication: false,
 	};
+
+	return opts;
 }
 
 /**
  * Ensure that the cache was persistet before the application starts
  * by using the core initializer provider.
  */
-export function mountPersistentCache(opts: ApolloClientOptions<any>, storage: Storage, apollo: Apollo) {
+export function mountPersistentCache(
+	configService: ConfigService,
+	opts: ApolloClientOptions<Record<string, any>>,
+	storage: Storage,
+	apollo: Apollo
+) {
 	return async () => {
+		console.log('init', configService);
+		await configService.fetchCacheConfig().toPromise();
+		await configService.fetchApolloConfig().toPromise();
+
+		const { watchPolicy, fetchPolicy, errorPolicy } = configService.getApolloConfig();
+		const cacheConfig = configService.getCacheConfig();
+		const schemaBasedKey = (v: string) => `${cacheConfig.dataSchemaVersion}_${v}`;
+
 		await persistCache({
 			cache: opts.cache,
-			key: 'rk-gql-cache',
+			key: cacheConfig.databaseKey,
 			storage: {
-				setItem: (key, data) => storage.set(key, data),
-				getItem: (key) => storage.get(key),
-				removeItem: (key) => storage.remove(key),
+				setItem: (key, data) => storage.set(schemaBasedKey(key), data),
+				getItem: (key) => storage.get(schemaBasedKey(key)),
+				removeItem: (key) => storage.remove(schemaBasedKey(key)),
 			},
-			trigger: 'background',
+			trigger: cacheConfig.persistCacheTrigger,
 		});
+
+		opts.defaultOptions = {
+			query: {
+				errorPolicy,
+				fetchPolicy,
+			},
+			mutate: {
+				errorPolicy,
+				fetchPolicy,
+			},
+			watchQuery: {
+				errorPolicy,
+				fetchPolicy: watchPolicy,
+			},
+		};
 
 		if (!environment.production) {
 			// flush cache if not in production for better development state
@@ -80,12 +111,12 @@ export function mountPersistentCache(opts: ApolloClientOptions<any>, storage: St
 			provide: APP_INITIALIZER,
 			useFactory: mountPersistentCache,
 			multi: true,
-			deps: [APOLLO_OPTIONS, Storage, Apollo],
+			deps: [ConfigService, APOLLO_OPTIONS, Storage, Apollo],
 		},
 		{
 			provide: APOLLO_OPTIONS,
 			useFactory: createApolloInitializer,
-			deps: [HttpLink, LogService],
+			deps: [HttpLink, LogService, ConfigService],
 		},
 	],
 })

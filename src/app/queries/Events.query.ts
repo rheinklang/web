@@ -17,15 +17,17 @@ export interface EventsGQLResponse {
 @Injectable({
 	providedIn: 'root',
 })
-export class EventsGQL extends Query<EventsGQLResponse> {
+export class EventsGQL extends Query<EventsGQLResponse, { filter: Partial<EventsGQLEntry> }> {
 	public document = gql`
-		query GetEventsQuery {
-			eventsCollection(populate: 1) {
+		query GetEventsQuery($filter: JsonType!) {
+			eventsCollection(filter: $filter, populate: 1) {
 				title
 				description
 				date
 				link
 				facebookUrl
+				hiddenDate
+				hide
 				slug
 				secret
 				type
