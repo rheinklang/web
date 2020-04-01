@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { VERSION, HASH } from '../../../../environments/version';
+import { generateUrchingTrackingURL } from '../../../utils/utm';
 
 @Component({
 	selector: 'rk-footer',
@@ -39,5 +40,9 @@ export class FooterComponent {
 		}
 
 		return `mailto:${link}`;
+	}
+
+	public trackableURL(value: string) {
+		return generateUrchingTrackingURL(value, 'footer_links');
 	}
 }

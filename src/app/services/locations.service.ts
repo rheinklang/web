@@ -11,14 +11,9 @@ export class LocationsService {
 
 	public getLocationById(id: string) {
 		return this.locationByIdGQL
-			.watch(
-				{
-					filter: { _id: id },
-				},
-				{
-					fetchPolicy: CACHED_POLICY,
-				}
-			)
+			.watch({
+				filter: { _id: id },
+			})
 			.valueChanges.pipe(
 				map((res) => res.data.locationsCollection),
 				flatMap((entry) => entry),

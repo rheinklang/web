@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EventsGQL } from '../queries/Events.query';
 import { EventBySlugGQL } from '../queries/EventBySlug.query';
-import { map, flatMap, first } from 'rxjs/operators';
-import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY } from '../config/policies';
+import { map, flatMap, first, filter } from 'rxjs/operators';
 import { EventsSingletonGQL } from '../queries/Events.singleton';
 
 @Injectable({
@@ -19,30 +18,23 @@ export class EventsService {
 
 	public getEvents() {
 		return this.eventsGQL
-			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY,
+			.watch({
+				filter: {
+					hide: false,
+				},
 			})
 			.valueChanges.pipe(map((v) => v.data.eventsCollection));
 	}
 
 	public getEventsSingleton() {
-		return this.eventsSingletonGQL
-			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY,
-			})
-			.valueChanges.pipe(map((v) => v.data.eventsPageSingleton));
+		return this.eventsSingletonGQL.watch().valueChanges.pipe(map((v) => v.data.eventsPageSingleton));
 	}
 
 	public getEventBySlug(slug: string) {
 		return this.eventBySlugGQL
-			.watch(
-				{
-					filter: { slug },
-				},
-				{
-					fetchPolicy: CACHED_POLICY,
-				}
-			)
+			.watch({
+				filter: { slug },
+			})
 			.valueChanges.pipe(
 				map((res) => res.data.eventsCollection),
 				flatMap((entry) => entry),
@@ -57,14 +49,9 @@ export class EventsService {
 		this.preloadedEvents.push(slug);
 
 		return this.eventBySlugGQL
-			.watch(
-				{
-					filter: { slug },
-				},
-				{
-					fetchPolicy: CACHE_AND_UPDATE_POLICY,
-				}
-			)
+			.watch({
+				filter: { slug },
+			})
 			.valueChanges.subscribe();
 	}
 }

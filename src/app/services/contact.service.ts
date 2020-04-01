@@ -9,10 +9,6 @@ export class ContactService {
 	constructor(private contactSingletonGQL: ContactSingletonGQL) {}
 
 	public getSingleton() {
-		return this.contactSingletonGQL
-			.watch(undefined, {
-				// fetchPolicy: CACHE_AND_UPDATE_POLICY
-			})
-			.valueChanges.pipe(map((res) => res.data.contactsPageSingleton));
+		return this.contactSingletonGQL.watch().valueChanges.pipe(map((res) => res.data.contactsPageSingleton));
 	}
 }

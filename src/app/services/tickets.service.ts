@@ -11,14 +11,9 @@ export class TicketsService {
 
 	public getTicketInfoById(id: string) {
 		return this.ticketsByIdGQL
-			.watch(
-				{
-					filter: { _id: id },
-				},
-				{
-					fetchPolicy: CACHED_POLICY,
-				}
-			)
+			.watch({
+				filter: { _id: id },
+			})
 			.valueChanges.pipe(
 				map((res) => res.data.ticketshopsCollection),
 				flatMap((entry) => entry),
