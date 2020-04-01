@@ -10,10 +10,6 @@ export class DSGVOService {
 	constructor(private dsgvoSingletonGQL: DSGVOSingletonGQL) {}
 
 	public getSingleton() {
-		return this.dsgvoSingletonGQL
-			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY,
-			})
-			.valueChanges.pipe(map((res) => res.data.dsgvoSingleton));
+		return this.dsgvoSingletonGQL.watch().valueChanges.pipe(map((res) => res.data.dsgvoSingleton));
 	}
 }

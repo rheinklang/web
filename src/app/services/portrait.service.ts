@@ -10,10 +10,6 @@ export class PortraitService {
 	constructor(private portraitSingletonGQL: PortraitSingletonGQL) {}
 
 	public getPortrait() {
-		return this.portraitSingletonGQL
-			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY,
-			})
-			.valueChanges.pipe(map((res) => res.data.portraitPageSingleton));
+		return this.portraitSingletonGQL.watch().valueChanges.pipe(map((res) => res.data.portraitPageSingleton));
 	}
 }

@@ -10,10 +10,6 @@ export class TeamService {
 	constructor(private teamGQL: TeamGQL) {}
 
 	public getTeam() {
-		return this.teamGQL
-			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY,
-			})
-			.valueChanges.pipe(map((res) => res.data.teamCollection));
+		return this.teamGQL.watch().valueChanges.pipe(map((res) => res.data.teamCollection));
 	}
 }

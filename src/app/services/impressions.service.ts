@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, flatMap, first } from 'rxjs/operators';
 import { ImpressionsGQL } from '../queries/Impressions.query';
-import { ImpressionByIdGQL } from '../queries/ImpressionById.query';
 import { CACHED_POLICY, CACHE_AND_UPDATE_POLICY } from '../config/policies';
 import { ImpressionBySlugGQL } from '../queries/ImpressionBySlug.query';
 import { ImpressionsSingletonGQL } from '../queries/Impressions.singleton';
@@ -20,18 +19,12 @@ export class ImpressionsService {
 
 	public getImpressionsPageData() {
 		return this.impressionsSingletonGQL
-			.watch(undefined, {
-				fetchPolicy: CACHE_AND_UPDATE_POLICY,
-			})
+			.watch()
 			.valueChanges.pipe(map((v) => (v.data ? v.data.impressionsSingleton : null)));
 	}
 
 	public getImpressions() {
-		return this.impressionsGQL
-			.watch(undefined, {
-				fetchPolicy: CACHED_POLICY,
-			})
-			.valueChanges.pipe(map((v) => v.data.impressionsCollection));
+		return this.impressionsGQL.watch().valueChanges.pipe(map((v) => v.data.impressionsCollection));
 	}
 
 	public getImpressionBySlug(slug: string) {
