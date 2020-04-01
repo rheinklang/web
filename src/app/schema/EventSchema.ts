@@ -22,6 +22,8 @@ export interface EventSchema<
 	description: CockpitOptionalField<string>;
 	facebookUrl: CockpitOptionalField<string>;
 	link: CockpitOptionalField<string>;
+	hiddenDate: CockpitOptionalField<boolean>;
+	hide: CockpitOptionalField<boolean>;
 	linkType: CockpitOptionalField<'internal' | 'external'>;
 	secret: CockpitOptionalField<boolean>;
 	type: CockpitOptionalField<EventType>;

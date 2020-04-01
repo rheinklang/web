@@ -17,9 +17,10 @@
       </div>
       <div class="col-12 col-md-3">
 				<rk-link-list title="Social Media" headingSize="3" color="white">
-					<rk-link text="Facebook" href="https://facebook.com/rhnklng" target="_blank" iconPosition="pre" icon="facebook3"></rk-link>
-					<rk-link text="Instagram" href="https://instagram.com/rheinklang" target="_blank" iconPosition="pre" icon="instagram1"></rk-link>
+					<rk-link text="Facebook" [href]="trackableURL('https://facebook.com/rhnklng')" target="_blank" iconPosition="pre" icon="facebook3"></rk-link>
+					<rk-link text="Instagram" [href]="trackableURL('https://instagram.com/rheinklang')" target="_blank" iconPosition="pre" icon="instagram1"></rk-link>
 					<rk-link text="Kontakt" [href]="contactMailLink" target="_blank" iconPosition="pre" icon="mail"></rk-link>
+					<rk-link text="OpenSource" [href]="trackableURL('https://github.com/rheinklang')" target="_blank" iconPosition="pre" icon="github"></rk-link>
 				</rk-link-list>
 			</div>
 			<div class="col-12 col-md-3">

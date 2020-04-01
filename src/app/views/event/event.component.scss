@@ -2,88 +2,88 @@
 @import "../../styles/responsive.scss";
 
 .v-event__intro {
-  padding: 30px 0 10px 0;
+	padding: 30px 0 10px 0;
 
-  @include respond-to-min("md") {
-    padding: 30px 0;
-  }
+	@include respond-to-min("md") {
+		padding: 30px 0;
+	}
 }
 
 .v-event__back-link {
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 0.8rem;
-  margin-bottom: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	font-size: 0.8rem;
+	margin-bottom: 10px;
 
-  a {
-    color: $color-grey-100;
-    text-decoration: none;
-  }
+	a {
+		color: $color-grey-100;
+		text-decoration: none;
+	}
 }
 
 .v-event__intro-meta-info {
-  margin: 0 0 10px 0;
-  color: $color-grey-100;
-  font-weight: 300;
+	margin: 0 0 10px 0;
+	color: $color-grey-100;
+	font-weight: 300;
 }
 .v-event__description {
-  margin: 0 auto 15px auto;
+	margin: 0 auto 15px auto;
 }
 
 .v-event__actions {
-  .v-event__actions-row {
-    margin: 50px auto;
+	.v-event__actions-row {
+		margin: 50px auto;
 
-    > * {
-      margin: 10px;
-      // display: inline;
-    }
-  }
+		> * {
+			margin: 10px;
+			// display: inline;
+		}
+	}
 
-  // Mobile sticky layer
-  @include respond-to-max("sm") {
-    padding: 0;
+	// Mobile sticky layer
+	@include respond-to-max("sm") {
+		padding: 0;
 
-    .v-event__actions-row {
-      margin: 20px 0 0 0;
+		.v-event__actions-row {
+			margin: 20px 0 0 0;
 
-      rk-button-link {
-        margin: 0;
+			rk-button-link {
+				margin: 0;
 
-        svg {
-          vertical-align: baseline;
-        }
+				svg {
+					vertical-align: baseline;
+				}
 
-        a {
-          border-radius: 0;
-        }
-      }
-    }
-  }
+				a {
+					border-radius: 0;
+				}
+			}
+		}
+	}
 }
 
 .v-event__impression-images {
-  margin: 30px auto;
+	margin: 30px auto;
 }
 
 .v-event__impression-image {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .v-event__impression-link-wrapper {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
 .v-event__articles {
-  .v-event__article {
-    margin-bottom: 20px;
+	.v-event__article {
+		margin-bottom: 20px;
 
-    @include respond-to-min("sm") {
-      margin-bottom: 0;
-    }
-  }
+		@include respond-to-min("md") {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .m-map--dynamic.m-map--ready {
-  height: 600px;
+	height: 600px;
 }

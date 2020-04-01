@@ -2,18 +2,18 @@
 @import "../../organisms/header/header.component.scss";
 
 .a-logo {
-  display: block;
+	display: block;
 }
 
 .a-logo--location-header {
-  height: $header-height;
+	height: $header-height;
 }
 
 .a-logo--location-footer {
-  width: 50%;
-  margin: 0 auto;
+	width: 50%;
+	margin: 0 auto;
 
-  @include respond-to-min("sm") {
-    margin: 0 0 0 50%;
-  }
+	@include respond-to-min("md") {
+		margin: 0 0 0 50%;
+	}
 }

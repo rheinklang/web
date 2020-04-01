@@ -9,6 +9,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 	constructor(private log: LogService) {}
 
 	public handleError(error: any) {
+		(window as any).e = error;
 		this.log.traceError(
 			'GlobalErrorHandler',
 			error || {
