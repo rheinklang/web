@@ -12,11 +12,12 @@ import { ArticlesComponent } from './views/articles/articles.component';
 import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
 import { PrivacyComponent } from './views/privacy/privacy.component';
 import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
+import { environment } from '../environments/environment';
+import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 
 const routes: Routes = [
 	{
 		path: '',
-		data: { seoID: 'home' },
 		component: HomeComponent,
 	},
 	{
@@ -61,6 +62,10 @@ const routes: Routes = [
 		data: { disableLiveIndicator: true, modifier: 'no-space' },
 	},
 	{
+		path: 'hotlinks',
+		component: HotlinksComponent,
+	},
+	{
 		path: 'not-found',
 		component: NotFoundComponent,
 	},
@@ -75,7 +80,7 @@ const routes: Routes = [
 		RouterModule.forRoot(routes, {
 			scrollPositionRestoration: 'enabled',
 			anchorScrolling: 'enabled',
-			// enableTracing: environment.production !== true
+			enableTracing: environment.production === false,
 		}),
 	],
 	exports: [RouterModule],

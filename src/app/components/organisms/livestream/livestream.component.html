@@ -1,5 +1,5 @@
 <iframe
-	*ngIf="isStreamAvailable"
+	*ngIf="isStreamAvailable else noStreamAvailable"
 	[src]="embeddableStreamURL"
 	[height]="height"
 	[width]="width"
@@ -7,3 +7,15 @@
 	scrolling="no"
 	allowfullscreen="true">
 </iframe>
+<ng-template #noStreamAvailable>
+	<div class="o-livestream o-livestream--na">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<rk-heading center="true" text="Livestream aktuell nicht verfügbar." size="1"></rk-heading>
+					<p class="h-text-align--center">Besuche unsere <a class="a-link a-link--static-indicator" [href]="extURL('https://facebook.com/rhnklng')" target="_blank" rel="noopener noreferrer">Facebook Seite</a> für mehr Informationen zu unseren Live Streams.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>
