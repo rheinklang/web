@@ -105,7 +105,7 @@ jobs:
       # deploy to staging if we're on develop branch or
       # if we get a new production release to sync the systems
       - name: deploy development
-        if: contains(github.ref, 'develop') || contains(github.ref, 'production')
+        if: contains(github.ref, 'develop') || contains(github.ref, 'master')
         run: npm run deploy:development
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
@@ -115,7 +115,7 @@ jobs:
 
       # deploy to production host
       - name: deploy production
-        if: contains(github.ref, 'production')
+        if: contains(github.ref, 'master')
         run: npm run deploy:production
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
