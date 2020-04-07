@@ -41,6 +41,20 @@ jobs:
 
     # create environment based on the secrets
     - run: npm run create:env:prod
+      if: contains(github.ref, 'develop')
+      env:
+        ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
+        COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}
+        COCKPIT_API_KEY: ${{ secrets.COCKPIT_API_KEY }}
+        GRAPHQL_HOST_URL: ${{ secrets.GRAPHQL_HOST_URL }}
+        GTM_ID: ${{ secrets.BETA_GTM_ID }}
+        GCP_KEY: ${{ secrets.GCP_KEY }}
+        GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
+        SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
+
+    # create environment based on the secrets
+    - run: npm run create:env:prod
+      if: contains(github.ref, 'master')
       env:
         ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
         COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}
@@ -105,7 +119,7 @@ jobs:
       # deploy to staging if we're on develop branch or
       # if we get a new production release to sync the systems
       - name: deploy development
-        if: contains(github.ref, 'develop') || contains(github.ref, 'production')
+        if: contains(github.ref, 'develop') || contains(github.ref, 'master')
         run: npm run deploy:development
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
@@ -115,7 +129,7 @@ jobs:
 
       # deploy to production host
       - name: deploy production
-        if: contains(github.ref, 'production')
+        if: contains(github.ref, 'master')
         run: npm run deploy:production
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}

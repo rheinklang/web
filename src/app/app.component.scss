@@ -1,0 +1,83 @@
+@import './styles/responsive.scss';
+
+// Maintenance mode
+@keyframes MaintenanceGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+@keyframes MaintenanceFadeIn {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+.state-a-app--maintenance {
+	overflow: hidden;
+	text-align: center;
+	position: relative;
+	width: 100wh;
+  height: 100vh;
+  color: #fff;
+  background: linear-gradient(-45deg, #f6cea1, #d8687b, #0e3536, #6e8f42);
+  background-size: 1000% 400%;
+  animation: MaintenanceGradient 15s ease infinite;
+	position: relative;
+
+	.a-app__maintenance {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	h1 {
+		opacity: 0;
+		font-size: 2rem;
+		animation: MaintenanceFadeIn 1s forwards;
+		animation-delay: 0.5s;
+
+		@include respond-to-min("sm") {
+			font-size: 2.7rem;
+		}
+	}
+
+	img {
+		display: block;
+		max-width: 80%;
+		margin: 0 auto;
+		max-height: 500px;
+
+		@include respond-to-min("sm") {
+			max-width: 50%;
+		}
+	}
+
+	.a-richtext {
+		opacity: 0;
+		animation: MaintenanceFadeIn 1s forwards;
+		animation-delay: 1.5s;
+	}
+
+	.a-app__maintenance-body {
+		padding: 10px;
+
+		a {
+			color: #fff;
+			text-decoration: none;
+			border-bottom: 1px dotted #fff;
+
+			& :hover {
+				border-bottom: 1px solid #fff;
+			}
+		}
+	}
+}
+

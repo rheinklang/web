@@ -14,6 +14,23 @@
 	</div>
 </rk-content-block>
 
+<div *ngIf="!impressions || impressions.length === 0" class="v-impressions-overview container">
+	<div class="row">
+		<div class="col-12 col-lg-6">
+			<rk-content-loader-impression></rk-content-loader-impression>
+		</div>
+		<div class="col-12 col-lg-6">
+			<rk-content-loader-impression></rk-content-loader-impression>
+		</div>
+		<div class="col-12 col-lg-6">
+			<rk-content-loader-impression></rk-content-loader-impression>
+		</div>
+		<div class="col-12 col-lg-6">
+			<rk-content-loader-impression></rk-content-loader-impression>
+		</div>
+	</div>
+</div>
+
 <div class="v-impressions-overview container">
 	<div class="row">
 		<div *ngFor="let impression of impressions" class="col-12 col-lg-6" [id]="impression.slug">

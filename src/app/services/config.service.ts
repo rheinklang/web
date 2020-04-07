@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { CacheConfigSingletonGQL, CacheConfigSingletonGQLResponse } from '../queries/CacheConfig.singleton';
 import { ApolloConfigSingletonGQL, ApolloConfigSingletonGQLResponse } from '../queries/ApolloConfig.singleton';
+import {
+	MaintenanceConfigSingletonGQLResponse,
+	MaintenanceConfigSingletonGQL,
+} from '../queries/MaintenanceConfig.singleton';
 
 @Injectable({
 	providedIn: 'root',
@@ -9,8 +13,13 @@ import { ApolloConfigSingletonGQL, ApolloConfigSingletonGQLResponse } from '../q
 export class ConfigService {
 	private prefetchedApolloConfig?: ApolloConfigSingletonGQLResponse['apolloConfigSingleton'];
 	private prefetchedCacheConfig?: CacheConfigSingletonGQLResponse['cacheConfigSingleton'];
+	private prefetchedMaintenanceConfig?: MaintenanceConfigSingletonGQLResponse['maintenanceConfigSingleton'];
 
-	constructor(private cacheConfigGQL: CacheConfigSingletonGQL, private apolloConfigGQL: ApolloConfigSingletonGQL) {}
+	constructor(
+		private cacheConfigGQL: CacheConfigSingletonGQL,
+		private apolloConfigGQL: ApolloConfigSingletonGQL,
+		private maintenanceConfigGQL: MaintenanceConfigSingletonGQL
+	) {}
 
 	public getApolloConfig(): ApolloConfigSingletonGQLResponse['apolloConfigSingleton'] {
 		return (
@@ -32,11 +41,49 @@ export class ConfigService {
 		);
 	}
 
+	public getMaintenanceConfig(): MaintenanceConfigSingletonGQLResponse['maintenanceConfigSingleton'] {
+		return (
+			this.prefetchedMaintenanceConfig || {
+				enabled: false,
+				title: 'Wir sind bald wieder für Sie da.',
+				text: 'Wartungsarbeiten',
+			}
+		);
+	}
+
 	public fetchCacheConfig() {
-		return this.cacheConfigGQL.fetch().pipe(map((res) => res.data.cacheConfigSingleton));
+		return new Promise((resolve) =>
+			this.cacheConfigGQL
+				.fetch()
+				.pipe(map((res) => res.data.cacheConfigSingleton))
+				.subscribe((res) => {
+					this.prefetchedCacheConfig = res;
+					resolve();
+				})
+		);
 	}
 
 	public fetchApolloConfig() {
-		return this.apolloConfigGQL.fetch().pipe(map((res) => res.data.apolloConfigSingleton));
+		return new Promise((resolve) =>
+			this.apolloConfigGQL
+				.fetch()
+				.pipe(map((res) => res.data.apolloConfigSingleton))
+				.subscribe((res) => {
+					this.prefetchedApolloConfig = res;
+					resolve();
+				})
+		);
+	}
+
+	public fetchMaintenanceConfig() {
+		return new Promise((resolve) =>
+			this.maintenanceConfigGQL
+				.fetch()
+				.pipe(map((res) => res.data.maintenanceConfigSingleton))
+				.subscribe((res) => {
+					this.prefetchedMaintenanceConfig = res;
+					resolve();
+				})
+		);
 	}
 }

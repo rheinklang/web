@@ -1,7 +1,18 @@
-<rk-default-layout>
-	<rk-header></rk-header>
-	<router-outlet (activate)="onActivate()"></router-outlet>
-	<rk-footer></rk-footer>
-	<rk-privacy-banner></rk-privacy-banner>
-</rk-default-layout>
+<main class="a-app" [class.state-a-app--maintenance]="maintenanceConfig.enabled">
+	<rk-default-layout *ngIf="maintenanceConfig.enabled !== true; else maintenanceMode">
+		<rk-header></rk-header>
+		<router-outlet (activate)="onActivate()"></router-outlet>
+		<rk-footer></rk-footer>
+		<rk-privacy-banner></rk-privacy-banner>
+	</rk-default-layout>
 
+	<ng-template #maintenanceMode>
+		<div class="a-app__maintenance">
+			<rk-logo id="rheinklang"></rk-logo>
+			<div class="a-app__maintenance-body">
+				<rk-heading size="1" [text]="maintenanceConfig.title"></rk-heading>
+				<rk-richtext [text]="maintenanceConfig.text"></rk-richtext>
+			</div>
+		</div>
+	</ng-template>
+</main>

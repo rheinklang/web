@@ -1,5 +1,4 @@
-<!-- TODO: Add dataset to SEO manager component to access title -->
-<rk-seo-manager context="impression" [data]="impression"></rk-seo-manager>
+<rk-seo-manager *ngIf="impression" context="impression" [data]="seoData"></rk-seo-manager>
 
 <rk-content-block space="large" *ngIf="impression" color="sea-light" [heading]="impression.title" [centerHeading]="true">
 	<div class="row">

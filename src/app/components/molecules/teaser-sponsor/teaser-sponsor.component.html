@@ -1,5 +1,5 @@
 <div class="m-teaser-sponsor" *ngIf="url; else noLink">
-	<a [href]="sponsorCampaignUrl" target="_blank" rel="noopener noreferrer">
+	<a [href]="sponsorCampaignUrl" target="_blank" rel="noopener noreferrer" (click)="trackSponsorLeap()">
 		<div class="m-teaser-sponsor__logo">
 			<rk-picture *ngIf="logo && logo.path" [src]="logo.path" [lazy]="true"></rk-picture>
 		</div>

@@ -3,10 +3,11 @@
 
 .v-sponsors__wrapper {
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 20px 0;
   background-color: $color-grey-400;
 
   @include respond-to-min("sm") {
+		padding: 40px 0;
     background-color: transparent;
   }
 }

@@ -66,7 +66,7 @@
 	</div>
 	<!-- CTA Section -->
 	<div class="m-teaser-event__actions container">
-		<a *ngIf="facebookUrl" [href]="facebookUrl" class="m-teaser-event__facebook-link">
+		<a *ngIf="facebookUrl" [href]="facebookUrl" class="m-teaser-event__facebook-link" (click)="trackFacebookLeap()">
 			<rk-icon select="facebook3"></rk-icon>
 			Facebook Event
 		</a>

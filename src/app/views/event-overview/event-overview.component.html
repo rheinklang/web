@@ -1,4 +1,5 @@
 <rk-seo-manager context="events-overview"></rk-seo-manager>
+
 <rk-content-block
 	*ngIf="pageData"
 	color="sea-light"
@@ -12,6 +13,28 @@
 			<div class="col-12 o-content-block__text" [innerHTML]="pageData.description"></div>
 	</div>
 </rk-content-block>
+
+<div *ngIf="!events || events.length === 0" class="v-events-overview container">
+	<div class="row v-events-overview__year">
+		<div class="col-12">
+			<rk-content-loader-title></rk-content-loader-title>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<rk-content-loader-teaser-event></rk-content-loader-teaser-event>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<rk-content-loader-teaser-event></rk-content-loader-teaser-event>
+		</div>
+	</div>
+	<div class="row v-events-overview__year">
+		<div class="col-12">
+			<rk-content-loader-title></rk-content-loader-title>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<rk-content-loader-teaser-event></rk-content-loader-teaser-event>
+		</div>
+	</div>
+</div>
 
 <div *ngFor="let group of events" class="v-events-overview container">
 	<div class="row v-events-overview__year" [id]="group.year">

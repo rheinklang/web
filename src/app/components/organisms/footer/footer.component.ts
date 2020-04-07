@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { VERSION, HASH } from '../../../../environments/version';
 import { generateUrchingTrackingURL } from '../../../utils/utm';
+import { SCM_REPO } from '../../../utils/scm';
 
 @Component({
 	selector: 'rk-footer',
@@ -44,5 +45,9 @@ export class FooterComponent {
 
 	public trackableURL(value: string) {
 		return generateUrchingTrackingURL(value, 'footer_links');
+	}
+
+	public get issueURL() {
+		return `${SCM_REPO}/issues/new?&labels=bug&template=--bug-report.md&title=[${this.build}]%20Issue%20Title...`;
 	}
 }
