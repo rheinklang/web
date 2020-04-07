@@ -4,7 +4,7 @@ const TEMPLATE_EXPRESSION = /\{([0-9a-zA-Z_\$\^\!\?]+)\}/g;
 
 export type TemplateKey = string | number;
 
-export type TemplateValue = string | number | boolean | undefined | null;
+export type TemplateValue = string | number | boolean | undefined | null | { path: string };
 
 export function template(value: string = '', data: Record<TemplateKey, TemplateValue> | TemplateValue[] = {}): string {
 	let args: Record<TemplateKey, TemplateValue> | TemplateValue[] = {};

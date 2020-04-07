@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleGQLEntry } from '../../queries/ArticleById.query';
 import { ArticlesService } from '../../services/articles.service';
 import { unsubscribe } from '../../utils/subscription';
+import { rtfToPlain } from '../../utils/rtf';
 
 @Component({
 	selector: 'rk-articles',
@@ -15,6 +16,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 	public article: ArticleGQLEntry;
 	public loaded = false;
 	public articleId: string | null = null;
+	public plainBody: string;
 
 	private routeSub$: Subscription;
 	private articleSub$: Subscription;
@@ -37,10 +39,19 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 		unsubscribe([this.routeSub$, this.articleSub$]);
 	}
 
+	public get seoData() {
+		return {
+			content: this.plainBody,
+			title: this.article.title || '...',
+			og_image: this.article.previewImage || null,
+		};
+	}
+
 	private fetchCorrespondingArticle(slug: string) {
 		this.articleSub$ = this.articlesService.getArticleBySlug(slug).subscribe((article) => {
 			this.article = article;
 			this.loaded = true;
+			this.plainBody = rtfToPlain(article.content);
 		});
 	}
 }
