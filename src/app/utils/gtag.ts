@@ -58,7 +58,7 @@ export const trackGTMTimingEvent = () => {
 			name: 'load',
 			label: 'Cockpit CDN',
 			value: `${timeSincePageLoad}`,
-			category: 'JS Dependencies',
+			category: 'js_dependencies',
 		});
 	}
 };

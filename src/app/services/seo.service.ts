@@ -4,6 +4,9 @@ import { map, first, flatMap } from 'rxjs/operators';
 import { template, TemplateKey, TemplateValue } from '../utils/templating';
 import { SEOContextQueryGQL, SEOEntry } from '../queries/SeoContext.query';
 import { REFETCH_POLICY } from '../config/policies';
+import { Router, NavigationEnd } from '@angular/router';
+
+declare var ga;
 
 @Injectable({
 	providedIn: 'root',
@@ -19,6 +22,10 @@ export class SEOService {
 			seoDescription: data.description,
 		};
 
+		const customOgImage: { path: string } | any = additionalTemplateData.og_image;
+		const fallbackOgImage = data.og_image;
+		const ogImagePath = customOgImage ? customOgImage.path : fallbackOgImage.path || null;
+
 		// set new page title with opt. template data
 		this.title.setTitle(template(data.title, templateData));
 
@@ -28,7 +35,7 @@ export class SEOService {
 			// add opengraph title or use page title
 			{ name: 'og:title', content: template(data.og_title || data.title || '', templateData) },
 			// add opengraph image if defined
-			data.og_image.path ? { name: 'og:image', content: data.og_image.path } : undefined,
+			ogImagePath ? { name: 'og:image', content: ogImagePath } : undefined,
 		]);
 	}
 

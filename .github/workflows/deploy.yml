@@ -41,6 +41,20 @@ jobs:
 
     # create environment based on the secrets
     - run: npm run create:env:prod
+      if: contains(github.ref, 'develop')
+      env:
+        ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
+        COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}
+        COCKPIT_API_KEY: ${{ secrets.COCKPIT_API_KEY }}
+        GRAPHQL_HOST_URL: ${{ secrets.GRAPHQL_HOST_URL }}
+        GTM_ID: ${{ secrets.BETA_GTM_ID }}
+        GCP_KEY: ${{ secrets.GCP_KEY }}
+        GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
+        SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
+
+    # create environment based on the secrets
+    - run: npm run create:env:prod
+      if: contains(github.ref, 'master')
       env:
         ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
         COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}

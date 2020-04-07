@@ -1,6 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { EventType } from '../../../types/Event';
 import { EventSchema } from '../../../schema/EventSchema';
+import { trackGTMEvent } from 'app/utils/gtag';
 
 @Component({
 	selector: 'rk-teaser-event',
@@ -76,5 +77,13 @@ export class TeaserEventComponent {
 			select: this.hasTickets ? 'credit-card' : 'eye',
 			color: '#fff',
 		};
+	}
+
+	public trackFacebookLeap() {
+		trackGTMEvent('fb_event_leap', {
+			category: 'social_leap',
+			value: this.title,
+			label: `Event Teaser - ${this.title} - Facebook Leap`,
+		});
 	}
 }

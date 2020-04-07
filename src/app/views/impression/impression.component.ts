@@ -39,6 +39,17 @@ export class ImpressionComponent implements OnInit, OnDestroy, AfterContentInit 
 		unsubscribe([this.impressionSubscription$]);
 	}
 
+	public get seoData() {
+		if (!this.impression) {
+			return {};
+		}
+
+		return {
+			...this.impression,
+			og_image: this.impression.images[0].value,
+		};
+	}
+
 	public ngAfterContentInit() {
 		// import(/* webpackChunkName: "masnory-layout" */ 'masonry-layout').then(module => {
 		// 	console.log('init')
