@@ -2,10 +2,11 @@ name: Deploy
 
 on:
   # Trigger the workflow on push or pull request,
-  # but only for the master branch
+  # but only for the develop and master branch
   push:
     branches:
       - develop
+      - master
 
 jobs:
 
