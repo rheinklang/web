@@ -24,6 +24,14 @@ import { ContactComponent } from './views/contact/contact.component';
 import { ContentBlockComponent } from './components/organisms/content-block/content-block.component';
 // tslint:disable-next-line: max-line-length
 import { ContentLoaderTeaserArticleComponent } from './components/atoms/content-loader-teaser-article/content-loader-teaser-article.component';
+// tslint:disable-next-line: max-line-length
+import { ContentLoaderTeaserEventComponent } from './components/atoms/content-loader-teaser-event/content-loader-teaser-event.component';
+// tslint:disable-next-line: max-line-length
+import { ContentLoaderTitleComponent } from './components/atoms/content-loader-title/content-loader-title.component';
+// tslint:disable-next-line: max-line-length
+import { ContentLoaderImpressionComponent } from './components/atoms/content-loader-impression/content-loader-impression.component';
+// tslint:disable-next-line: max-line-length
+import { ContentLoaderTeaserSponsorComponent } from './components/atoms/content-loader-teaser-sponsor/content-loader-teaser-sponsor.component';
 import { DefaultLayoutComponent } from './components/layouts/default-layout/default-layout.component';
 import { EventComponent } from './views/event/event.component';
 import { EventOverviewComponent } from './views/event-overview/event-overview.component';
@@ -100,6 +108,10 @@ import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 		ContactComponent,
 		ContentBlockComponent,
 		ContentLoaderTeaserArticleComponent,
+		ContentLoaderTeaserEventComponent,
+		ContentLoaderTitleComponent,
+		ContentLoaderImpressionComponent,
+		ContentLoaderTeaserSponsorComponent,
 		EventComponent,
 		EventOverviewComponent,
 		FooterComponent,
