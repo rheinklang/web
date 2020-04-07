@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { EventType } from '../../../types/Event';
 import { EventSchema } from '../../../schema/EventSchema';
-import { trackGTMEvent } from 'app/utils/gtag';
+import { trackGTMEvent } from '../../../utils/gtag';
 
 @Component({
 	selector: 'rk-teaser-event',

@@ -3,7 +3,7 @@ import { ImagePathOnlySchema } from '../../../schema/ImageSchema';
 import { SponsorLevel, SponsorLevelType } from '../../../types/Sponsor';
 import { generateUrchingTrackingURL } from '../../../utils/utm';
 import { sponsorLevelToGerman } from '../../../utils/sponsor';
-import { trackGTMEvent } from 'app/utils/gtag';
+import { trackGTMEvent } from '../../../utils/gtag';
 
 @Component({
 	selector: 'rk-teaser-sponsor',

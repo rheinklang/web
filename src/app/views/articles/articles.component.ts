@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleGQLEntry } from '../../queries/ArticleById.query';
 import { ArticlesService } from '../../services/articles.service';
 import { unsubscribe } from '../../utils/subscription';
-import { rtfToPlain } from 'app/utils/rtf';
+import { rtfToPlain } from '../../utils/rtf';
 
 @Component({
 	selector: 'rk-articles',
