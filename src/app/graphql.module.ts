@@ -63,9 +63,9 @@ export function mountPersistentCache(
 	apollo: Apollo
 ) {
 	return async () => {
-		console.log('init', configService);
-		await configService.fetchCacheConfig().toPromise();
-		await configService.fetchApolloConfig().toPromise();
+		await configService.fetchCacheConfig();
+		await configService.fetchApolloConfig();
+		await configService.fetchMaintenanceConfig();
 
 		const { watchPolicy, fetchPolicy, errorPolicy } = configService.getApolloConfig();
 		const cacheConfig = configService.getCacheConfig();
