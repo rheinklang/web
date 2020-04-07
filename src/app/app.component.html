@@ -7,10 +7,12 @@
 	</rk-default-layout>
 
 	<ng-template #maintenanceMode>
-		<rk-logo id="rheinklang"></rk-logo>
-		<div class="a-app__maintenance-body">
-			<rk-heading size="1" [text]="maintenanceConfig.title"></rk-heading>
-			<rk-richtext [text]="maintenanceConfig.text"></rk-richtext>
+		<div class="a-app__maintenance">
+			<rk-logo id="rheinklang"></rk-logo>
+			<div class="a-app__maintenance-body">
+				<rk-heading size="1" [text]="maintenanceConfig.title"></rk-heading>
+				<rk-richtext [text]="maintenanceConfig.text"></rk-richtext>
+			</div>
 		</div>
 	</ng-template>
 </main>
