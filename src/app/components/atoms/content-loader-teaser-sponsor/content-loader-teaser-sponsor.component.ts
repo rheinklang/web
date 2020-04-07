@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { isMobileDevice } from '../../../../utils/device';
+import { isMobileDevice } from '../../../utils/device';
 
 @Component({
 	selector: 'rk-content-loader-teaser-sponsor',
