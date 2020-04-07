@@ -55,7 +55,8 @@ a {
 }
 
 .m-teaser-sponsor__logo {
-  margin-top: 10px;
+	margin-top: 10px;
+	min-height: 45px;
 
   @include respond-to-min("sm") {
     margin-top: 0;
