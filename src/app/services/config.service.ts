@@ -5,7 +5,7 @@ import { ApolloConfigSingletonGQL, ApolloConfigSingletonGQLResponse } from '../q
 import {
 	MaintenanceConfigSingletonGQLResponse,
 	MaintenanceConfigSingletonGQL,
-} from 'app/queries/MaintenanceConfig.singleton';
+} from '../queries/MaintenanceConfig.singleton';
 
 @Injectable({
 	providedIn: 'root',
