@@ -22,12 +22,14 @@ type GTMActionType =
 	| 'view_search_results'
 	| string;
 
+export type GTMCategory = 'sponsors' | 'generic' | 'navigation' | 'social' | 'contact' | 'service' | 'link' | 'privacy';
+
 export const saveGTMEventAction = (name: string) => name.replace(/\d/gi, '_').replace('-', '_');
 
 export const trackGTMEvent = (
 	action: GTMActionType,
 	metaInfo: {
-		category: string;
+		category: GTMCategory;
 		label: string;
 		value: string;
 		name?: string;
@@ -57,8 +59,8 @@ export const trackGTMTimingEvent = () => {
 		trackGTMEvent('timing_complete', {
 			name: 'load',
 			label: 'Cockpit CDN',
-			value: `${timeSincePageLoad}`,
-			category: 'js_dependencies',
+			value: (timeSincePageLoad as unknown) as string,
+			category: ('js_dependencies' as unknown) as GTMCategory,
 		});
 	}
 };

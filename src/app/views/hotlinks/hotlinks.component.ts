@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HotlinksService } from '../../services/hotlinks.service';
-import { HotlinkSchema, ParsedHotlinkSchema } from '../../schema/HotlinkSchema';
+import { ParsedHotlinkSchema } from '../../schema/HotlinkSchema';
 import { generateUrchingTrackingURL } from '../../utils/utm';
-import { LogService } from '../../services/log.service';
+import { trackGTMEvent } from '../../utils/gtag';
 
 @Component({
 	selector: 'rk-hotlinks',
@@ -13,7 +13,7 @@ import { LogService } from '../../services/log.service';
 export class HotlinksComponent implements OnInit {
 	public hotlinks: ParsedHotlinkSchema[] = [];
 
-	constructor(private hotlinksService: HotlinksService, private logService: LogService) {}
+	constructor(private hotlinksService: HotlinksService) {}
 
 	public ngOnInit() {
 		this.hotlinksService.getHotlinks().subscribe((hotlinks) => {
@@ -23,5 +23,21 @@ export class HotlinksComponent implements OnInit {
 
 	public generateTrackableURL(url: string, internal = false) {
 		return internal ? url : generateUrchingTrackingURL(url, 'hotlinks');
+	}
+
+	public trackInternalLink(hl: ParsedHotlinkSchema) {
+		trackGTMEvent('hotlink_click', {
+			category: 'service',
+			label: hl.label,
+			value: hl.url,
+		});
+	}
+
+	public trackExternalLink(hl: ParsedHotlinkSchema) {
+		trackGTMEvent('leap', {
+			category: 'link',
+			label: hl.label,
+			value: hl.url,
+		});
 	}
 }

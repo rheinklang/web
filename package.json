@@ -10,6 +10,7 @@
 		"create:env:prod": "node bin/create-env --environment=production",
 		"create:version": "node bin/create-version",
 		"create:sitemap": "npx sitemap-generator-cli https://rheinklang-festival.ch -f ./src/server/sitemap.xml",
+		"create:license": "npx license-checker --out ./src/server/3rdpartylicenses.txt --csv --relativeLicensePath --production",
 		"prebuild": "run-s create:*",
 		"build": "ng build",
 		"test": "echo 'No tests defined'",
