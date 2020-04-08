@@ -71,7 +71,7 @@ export class EventComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy() {
-		unsubscribe([this.routeSub$, this.eventSub$, this.articlesSub$]);
+		unsubscribe([this.routeSub$, this.eventSub$, this.articlesSub$, this.eventsPageSub$]);
 	}
 
 	public get trackableCheckoutLink() {

@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FlyoutService } from '../../../services/flyout.service';
+import { trackGTMEvent, GTMCategory } from '../../../utils/gtag';
 
 @Component({
 	selector: 'rk-link',
@@ -18,6 +19,7 @@ export class LinkComponent {
 	@Input() public color?: string;
 	@Input() public queryParams?: Record<string, any> = {};
 	@Input() public target?: string;
+	@Input() public gtmLeapCategory?: GTMCategory;
 
 	constructor(private flyoutService: FlyoutService) {}
 
@@ -27,5 +29,19 @@ export class LinkComponent {
 
 	public handleLinkClick() {
 		this.flyoutService.close();
+
+		if (this.target === '_blank') {
+			trackGTMEvent('leap', {
+				label: this.text,
+				value: this.href,
+				category: this.gtmLeapCategory || 'link',
+			});
+		} else {
+			trackGTMEvent('leap', {
+				label: this.text,
+				value: this.href,
+				category: this.gtmLeapCategory || 'navigation',
+			});
+		}
 	}
 }

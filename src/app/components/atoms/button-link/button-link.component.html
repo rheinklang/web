@@ -1,10 +1,11 @@
 <a
+	role="button"
 	[href]="url"
 	[target]="target"
 	[rel]="relationAttributeValue"
 	[class]="classList"
-	role="button"
 	[attr.aria-label]="label"
+	(click)="trackLeap()"
 >
 	<ng-content></ng-content>
 </a>

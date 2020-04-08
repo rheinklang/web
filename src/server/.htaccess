@@ -15,6 +15,15 @@ RewriteRule ^ - [L]
 # Rewrite to the main application index
 RewriteRule ^ /index.html
 
+# One year for image files
+<FilesMatch ".(jpg|jpeg|png|gif|ico)$">
+	Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+# One month for css and js
+<FilesMatch ".(css|js|json)$">
+	Header set Cache-Control "max-age=2628000, public"
+</FilesMatch>
+
 # #------------ BROWSER CACHING
 # disable browser caching in production.
 #<FilesMatch "\.(html|htm|js|json|css)$">

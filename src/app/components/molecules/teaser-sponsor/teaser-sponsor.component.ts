@@ -64,7 +64,7 @@ export class TeaserSponsorComponent {
 	}
 
 	public trackSponsorLeap() {
-		trackGTMEvent('sponsor_leap', {
+		trackGTMEvent('leap', {
 			category: 'sponsors',
 			label: `Sponsor Teaser - ${this.name} - ${this.url}`,
 			value: this.url,

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HotlinksGQL } from '../queries/Hotlinks.query';
-import { map, flatMap } from 'rxjs/operators';
-import { LogService } from './log.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { parseSerializedJSON } from '../utils/json';
+import { HotlinksGQL } from '../queries/Hotlinks.query';
+import { ParsedHotlinkSchema } from '../schema/HotlinkSchema';
+import { LogService } from './log.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -10,7 +12,7 @@ import { parseSerializedJSON } from '../utils/json';
 export class HotlinksService {
 	constructor(private hotlinksGQL: HotlinksGQL, private logService: LogService) {}
 
-	public getHotlinks() {
+	public getHotlinks(): Observable<ParsedHotlinkSchema[]> {
 		return this.hotlinksGQL.watch().valueChanges.pipe(
 			map((res) => res.data.hotlinksCollection),
 			map((entries) =>

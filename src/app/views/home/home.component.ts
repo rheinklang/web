@@ -9,6 +9,7 @@ import { ArticlesService } from '../../services/articles.service';
 import { HomeService } from '../../services/home.service';
 import { EventsService } from '../../services/events.service';
 import { StageSliderSlide } from '../../components/organisms/stage-slider/stage-slider.component';
+import { trackGTMEvent } from 'app/utils/gtag';
 
 @Component({
 	selector: 'rk-home',

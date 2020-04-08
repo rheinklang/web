@@ -17,6 +17,10 @@ const copies = [
 		from: 'src/server/robots.txt',
 		to: 'dist/robots.txt',
 	},
+	{
+		from: 'src/server/3rdpartylicenses.txt',
+		to: 'dist/3rdpartylicenses.txt',
+	},
 ];
 
 const fromRoot = (subpath) => resolve(__dirname, '..', subpath);

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { trackGTMEvent } from 'app/utils/gtag';
 
 @Component({
 	selector: 'rk-stage-slide-item',
@@ -12,4 +13,12 @@ export class StageSlideItemComponent {
 	@Input() public ctaLink?: string;
 	@Input() public ctaLinkParams: Record<string, any> = {};
 	@Input() public ctaText?: string;
+
+	public trackLinkClick() {
+		trackGTMEvent('leap', {
+			category: 'navigation',
+			label: `${this.title} - ${this.ctaText}`,
+			value: this.ctaLink,
+		});
+	}
 }
