@@ -15,7 +15,7 @@ export class ButtonLinkComponent {
 	@Input() public label = 'link';
 	@Input() public campaign: string;
 	@Input() public gtmLeapCategory: GTMCategory = 'generic';
-	@Input() public gtmLeapAction: string = 'action';
+	@Input() public gtmLeapAction = 'action';
 	@Input() public modifier: string;
 
 	public get relationAttributeValue() {
