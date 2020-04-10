@@ -80,7 +80,7 @@ const routes: Routes = [
 		RouterModule.forRoot(routes, {
 			scrollPositionRestoration: 'enabled',
 			anchorScrolling: 'enabled',
-			enableTracing: environment.production === false,
+			enableTracing: environment.debugNgRouter,
 		}),
 	],
 	exports: [RouterModule],

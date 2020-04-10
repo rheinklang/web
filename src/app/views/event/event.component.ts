@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventsService } from '../../services/events.service';
-import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
 import { unsubscribe, PossibleSubscription } from '../../utils/subscription';
+import { getRandomItemsFrom } from '../../utils/random';
+import { rtfToPlain } from '../../utils/rtf';
+import { EventBySlugGQLEntry } from '../../queries/EventBySlug.query';
+import { ArticlesGQLEntry } from '../../queries/Articles.query';
+import { EventsSingletonGQLResponse } from '../../queries/Events.singleton';
+import { EventsService } from '../../services/events.service';
 import { ArticlesService } from '../../services/articles.service';
 import { DeviceService } from '../../services/device.service';
-import { getRandomItemsFrom } from '../../utils/random';
-import { ArticlesGQLEntry } from '../../queries/Articles.query';
 import { ImpressionsService } from '../../services/impressions.service';
-import { generateUrchingTrackingURL } from '../../utils/utm';
-import { EventsSingletonGQLResponse } from '../../queries/Events.singleton';
 
 @Component({
 	selector: 'rk-event',
@@ -102,5 +102,13 @@ export class EventComponent implements OnInit, OnDestroy {
 		}
 
 		return event && event.location && event.location.googleMapsURL;
+	}
+
+	public get seoData() {
+		return {
+			...this.event,
+			og_image: this.event.previewImage,
+			description: rtfToPlain(this.event.description),
+		};
 	}
 }
