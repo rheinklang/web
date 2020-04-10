@@ -22,3 +22,4 @@ jobs:
         GCP_KEY: 'compressed-size'
         GCP_STATIC_MAPS_SECRET: 'compressed-size'
         SLACK_ERROR_HOOK_URL: 'compressed-size'
+        DEBUG_NG_ROUTER: false

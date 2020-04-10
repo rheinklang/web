@@ -5,6 +5,7 @@ import { template, TemplateKey, TemplateValue } from '../utils/templating';
 import { SEOContextQueryGQL, SEOEntry } from '../queries/SeoContext.query';
 import { REFETCH_POLICY } from '../config/policies';
 import { Router, NavigationEnd } from '@angular/router';
+import { GLOBAL_KEYWORDS } from '../config/meta';
 
 declare var ga;
 
@@ -24,6 +25,10 @@ export class SEOService {
 
 		const customOgImage: { path: string } | any = additionalTemplateData.og_image;
 		const fallbackOgImage = data.og_image;
+
+		const description = template(data.description || '', templateData);
+		const keywords = template([...GLOBAL_KEYWORDS, ...(data.keywords || [])].join(','), templateData);
+		const ogTitle = template(data.og_title || data.title || '', templateData);
 		const ogImagePath = customOgImage ? customOgImage.path : fallbackOgImage.path || null;
 
 		// set new page title with opt. template data
@@ -31,11 +36,15 @@ export class SEOService {
 
 		this.meta.addTags([
 			// add meta description
-			{ name: 'description', content: template(data.description || '', templateData) },
+			{ name: 'description', content: description },
+			// add meta keywords
+			{ name: 'keywords', content: keywords },
 			// add opengraph title or use page title
-			{ name: 'og:title', content: template(data.og_title || data.title || '', templateData) },
-			// add opengraph image if defined
-			ogImagePath ? { name: 'og:image', content: ogImagePath } : undefined,
+			{ property: 'og:title', content: ogTitle },
+			// add opengraph dsecription from base description, cut to FB limits
+			{ property: 'og:description', content: `${description.substr(0, 293)} ...` },
+			// add opengraph image if available
+			ogImagePath ? { property: 'og:image', content: ogImagePath } : undefined,
 		]);
 	}
 

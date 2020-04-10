@@ -43,4 +43,5 @@ jobs:
         GCP_KEY: 'ci'
         GCP_STATIC_MAPS_SECRET: 'ci'
         SLACK_ERROR_HOOK_URL: 'ci'
+        DEBUG_NG_ROUTER: false
     - run: npm run lint --if-present

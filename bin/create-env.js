@@ -18,6 +18,7 @@ checkEnvironment([
 	'GCP_KEY',
 	'GCP_STATIC_MAPS_SECRET',
 	'SLACK_ERROR_HOOK_URL',
+	'DEBUG_NG_ROUTER',
 ]);
 
 // Would be passed to script like this:
@@ -47,6 +48,7 @@ export const environment = {
 	gcpKey: '${process.env.GCP_KEY}',
 	gcpStaticMapsSecret: '${process.env.GCP_STATIC_MAPS_SECRET}',
 	slackErrorHookURL: '${process.env.SLACK_ERROR_HOOK_URL}',
+	debugNgRouter: ${process.env.DEBUG_NG_ROUTER || false}
 };
 ${!isProd ? `import 'zone.js/dist/zone-error';` : ''}
 `;
