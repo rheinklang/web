@@ -46,9 +46,14 @@ export class AppComponent implements OnDestroy {
 
 			// page view tracking
 			this.navEndSub$ = navEndEvents.subscribe((event: NavigationEnd) => {
-				gtag('config', environment.gtmId, {
-					page_path: event.urlAfterRedirects,
-				});
+				// wait for seo-context loaded and page ready
+				const tid = setTimeout(() => {
+					gtag('config', environment.gtmId, {
+						page_title: document.title,
+						page_path: event.urlAfterRedirects,
+					});
+					clearTimeout(tid);
+				}, 200);
 			});
 		}
 	}
