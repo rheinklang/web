@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { LiveStreamService } from '../../../services/livestream.service';
 import { LiveStreamSchema } from '../../../schema/LiveStreamSchema';
 import { generateUrchingTrackingURL } from '../../../utils/utm';
+import { trackGTMEvent } from '../../../utils/gtag';
 
 const PARENT_STREAM_HOST = 'rheinklang-festival.ch';
 const TWITCH_PLAYER_HOST = 'https://player.twitch.tv';
@@ -34,6 +35,7 @@ export class LivestreamComponent implements OnInit {
 	public ngOnInit() {
 		this.liveStreamService.getLiveStream().subscribe((data) => {
 			this.liveStreamInfo = data;
+			this.trackLiveStreamVisit(data);
 		});
 	}
 
@@ -61,5 +63,22 @@ export class LivestreamComponent implements OnInit {
 
 		// other types not supported yet
 		return '';
+	}
+
+	private trackLiveStreamVisit(data: LiveStreamSchema) {
+		if (data.enabled) {
+			trackGTMEvent('visit_live_stream', {
+				category: 'social',
+				label: `Livestream ${data.startDate} ${data.startTime}`,
+				value: `${data.channel}-${data.startDate}-${data.startTime}`,
+			});
+		} else {
+			const now = new Date().toLocaleDateString();
+			trackGTMEvent('visit_unavailable_stream', {
+				category: 'social',
+				label: `No stream at ${now}`,
+				value: now,
+			});
+		}
 	}
 }

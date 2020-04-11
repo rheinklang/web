@@ -16,7 +16,7 @@ export class FormsService {
 		};
 
 		trackGTMEvent(`submit_${name}`, {
-			category: 'submission',
+			category: 'contact',
 			label: `Submission for ${name}`,
 			value: JSON.stringify(data),
 		});

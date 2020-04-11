@@ -80,8 +80,8 @@ export class TeaserEventComponent {
 	}
 
 	public trackFacebookLeap() {
-		trackGTMEvent('fb_event_leap', {
-			category: 'social_leap',
+		trackGTMEvent('leap', {
+			category: 'social',
 			value: this.title,
 			label: `Event Teaser - ${this.title} - Facebook Leap`,
 		});

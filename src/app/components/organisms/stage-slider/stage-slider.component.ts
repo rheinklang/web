@@ -1,6 +1,7 @@
 import { Component, Input, AfterViewInit, OnDestroy, ViewEncapsulation, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import { isMobileDevice } from '../../../utils/device';
+import { trackGTMEvent } from '../../../utils/gtag';
 import {
 	SliderConfigService,
 	SliderConfig,
@@ -84,6 +85,11 @@ export class StageSliderComponent implements AfterViewInit, OnInit, OnDestroy {
 	public switchSlide(dir: 'prev' | 'next') {
 		if (this.swiperInstance) {
 			dir === 'prev' ? this.swiperInstance.slidePrev() : this.swiperInstance.slideNext();
+			trackGTMEvent('slider_navigation', {
+				category: 'navigation',
+				label: `Stage Slider ${this.id} - Slide ${this.swiperInstance.activeIndex}`,
+				value: `${this.swiperInstance.activeIndex} - ${dir}`,
+			});
 		}
 	}
 }

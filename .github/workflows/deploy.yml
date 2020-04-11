@@ -39,6 +39,7 @@ jobs:
         GCP_KEY: 'stub'
         GCP_STATIC_MAPS_SECRET: 'stub'
         SLACK_ERROR_HOOK_URL: 'stub'
+        DEBUG_NG_ROUTER: false
 
     # create environment based on the secrets
     - run: npm run create:env:prod
@@ -52,6 +53,7 @@ jobs:
         GCP_KEY: ${{ secrets.GCP_KEY }}
         GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
         SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
+        DEBUG_NG_ROUTER: true
 
     # create environment based on the secrets
     - run: npm run create:env:prod
@@ -65,6 +67,7 @@ jobs:
         GCP_KEY: ${{ secrets.GCP_KEY }}
         GCP_STATIC_MAPS_SECRET: ${{ secrets.GCP_STATIC_MAPS_SECRET }}
         SLACK_ERROR_HOOK_URL: ${{ secrets.SLACK_ERROR_HOOK_URL }}
+        DEBUG_NG_ROUTER: false
 
     - run: npm run production
 
@@ -154,11 +157,22 @@ jobs:
     needs: [publish]
     steps:
       - name: slack notification
+        if: contains(github.ref, 'development')
         uses: 8398a7/action-slack@v2
         with:
           author_name: Deployment Robot
           status: success
-          text: 'Deployment finished :rocket:!'
+          text: 'Deployment to https://beta.rheinklang-festival.ch done :rocket:!'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: slack notification
+        if: contains(github.ref, 'master')
+        uses: 8398a7/action-slack@v2
+        with:
+          author_name: Deployment Robot
+          status: success
+          text: 'Deployment to https://rheinklang-festival.ch done :rocket:!'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -2,10 +2,10 @@
 
 <ul class="v-hotlinks">
 	<li class="v-hotlinks__entry v-hotlinks__entry--{{entry.category}}" *ngFor="let entry of hotlinks">
-		<a *ngIf="entry.internal" [routerLink]="entry.url" [queryParams]="entry.queryParams">
+		<a *ngIf="entry.internal" (click)="trackInternalLink(entry)" [routerLink]="entry.url" [queryParams]="entry.queryParams">
 			{{entry.label}}
 		</a>
-		<a *ngIf="!entry.internal" [href]="generateTrackableURL(entry.url)" target="_blank" rel="noopener noreferrer">
+		<a *ngIf="!entry.internal" (click)="trackExternalLink(entry)" [href]="generateTrackableURL(entry.url)" target="_blank" rel="noopener noreferrer">
 			{{entry.label}}
 		</a>
 	</li>

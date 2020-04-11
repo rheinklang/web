@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { CockpitOptionalField, CockpitRequiredField } from '../schema/CockpitField';
 
 export interface SEOEntry {
-	title: string;
-	description: string;
-	og_title: string;
-	og_image: {
+	title: CockpitRequiredField<string>;
+	description: CockpitRequiredField<string>;
+	keywords: CockpitOptionalField<string[]>;
+	og_title: CockpitOptionalField<string>;
+	og_image: CockpitOptionalField<{
 		path: string;
-	};
+	}>;
 }
 
 export interface SEOContextGQLResponse {
@@ -31,6 +33,7 @@ export class SEOContextQueryGQL extends Query<
 			seoCollection(filter: $filter) {
 				title
 				description
+				keywords
 				og_title
 				og_image {
 					path

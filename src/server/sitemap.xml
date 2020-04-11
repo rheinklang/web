@@ -1,6 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://rheinklang-festival.ch/</loc>
-  </url>
+<url>
+<loc>https://beta.rheinklang-festival.ch/</loc>
+<priority>0.9</priority>
+<lastmod>2020-04-11</lastmod>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc>https://beta.rheinklang-festival.ch/events</loc>
+<priority>1</priority>
+<lastmod>2020-04-11</lastmod>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>https://beta.rheinklang-festival.ch/impressions</loc>
+<priority>0.6</priority>
+<lastmod>2020-04-11</lastmod>
+<changefreq>yearly</changefreq>
+</url>
+<url>
+<loc>https://beta.rheinklang-festival.ch/about</loc>
+<priority>0.4</priority>
+<lastmod>2020-02-01</lastmod>
+<changefreq>yearly</changefreq>
+</url>
+<url>
+<loc>https://beta.rheinklang-festival.ch/sponsors</loc>
+<priority>0.2</priority>
+<lastmod>2020-04-01</lastmod>
+<changefreq>yearly</changefreq>
+</url>
+<url>
+<loc>https://beta.rheinklang-festival.ch/contact</loc>
+<priority>0.5</priority>
+<lastmod>2020-02-01</lastmod>
+<changefreq>yearly</changefreq>
+</url>
 </urlset>
