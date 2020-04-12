@@ -44,7 +44,9 @@ export class SlackService {
 	constructor(private http: HttpClient) {}
 
 	public send(payload: SlackMessageBody) {
-		return this.http.post(environment.slackErrorHookURL, JSON.stringify(payload));
+		return this.http.post(environment.slackErrorHookURL, JSON.stringify(payload), {
+			responseType: 'text',
+		});
 	}
 
 	public sendErrorLog(err: SlackErrorPayload) {
