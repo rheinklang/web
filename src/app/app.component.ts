@@ -50,10 +50,11 @@ export class AppComponent implements OnDestroy {
 				const tid = setTimeout(() => {
 					gtag('config', environment.gtmId, {
 						page_title: document.title,
+						page_location: document.URL,
 						page_path: event.urlAfterRedirects,
 					});
 					clearTimeout(tid);
-				}, 200);
+				}, 160);
 			});
 		}
 	}

@@ -29,7 +29,7 @@ export const saveGTMEventAction = (name: string) => name.replace(/\d/gi, '_').re
 export const trackGTMEvent = (
 	action: GTMActionType,
 	metaInfo: {
-		category: GTMCategory;
+		category: GTMCategory | string;
 		label: string;
 		value: string;
 		name?: string;
@@ -50,17 +50,16 @@ export const trackGTMEvent = (
 
 export const trackGTMTimingEvent = () => {
 	// Feature detects Navigation Timing API support.
-	if (window.performance && gtag) {
+	if (window.performance) {
 		// Gets the number of milliseconds since page load
 		// (and rounds the result since the value must be an integer).
 		const timeSincePageLoad = Math.round(performance.now());
 
 		// Sends the timing event to Google Analytics.
-		trackGTMEvent('timing_complete', {
+		gtag('event', 'timing_complete', {
 			name: 'load',
-			label: 'Cockpit CDN',
-			value: (timeSincePageLoad as unknown) as string,
-			category: ('js_dependencies' as unknown) as GTMCategory,
+			value: timeSincePageLoad,
+			category: 'JS Dependencies',
 		});
 	}
 };

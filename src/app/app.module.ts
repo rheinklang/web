@@ -4,11 +4,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { IonicStorageModule } from '@ionic/storage';
 
 // set i18n language context
 registerLocaleData(localeDe);
 
-import { MatInputModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule } from '@angular/material';
+// tslint:disable-next-line: max-line-length
+import {
+	MatInputModule,
+	MatSelectModule,
+	MatCheckboxModule,
+	MatDatepickerModule,
+	MatSnackBarModule,
+} from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { AboutComponent } from './views/about/about.component';
@@ -89,7 +97,6 @@ import { LivestreamIndicatorComponent } from './components/atoms/livestream-indi
 import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
 import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
 import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
-import { IonicStorageModule } from '@ionic/storage';
 import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 
 @NgModule({
@@ -183,6 +190,7 @@ import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 		MatSelectModule,
 		MatCheckboxModule,
 		MatDatepickerModule,
+		MatSnackBarModule,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [

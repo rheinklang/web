@@ -36,12 +36,6 @@ export class LinkComponent {
 				value: this.href,
 				category: this.gtmLeapCategory || 'link',
 			});
-		} else {
-			trackGTMEvent('leap', {
-				label: this.text,
-				value: this.href,
-				category: this.gtmLeapCategory || 'navigation',
-			});
 		}
 	}
 }
