@@ -10,10 +10,12 @@ require('dotenv').config();
 
 const copies = [
 	{
+		enabled: true,
 		from: 'src/server/.htaccess',
 		to: 'dist/.htaccess',
 	},
 	{
+		enabled: true,
 		from: 'src/server/sitemap.xml',
 		to: 'dist/sitemap.xml',
 	},
@@ -28,6 +30,7 @@ const copies = [
 		to: 'dist/robots.txt',
 	},
 	{
+		enabled: true,
 		from: 'src/server/3rdpartylicenses.txt',
 		to: 'dist/3rdpartylicenses.txt',
 	},
