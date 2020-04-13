@@ -1,6 +1,7 @@
 import { combineLatest, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { PortraitService } from '../../services/portrait.service';
 import { TeamService } from '../../services/team.service';
@@ -25,7 +26,8 @@ export class AboutComponent implements OnInit, OnDestroy {
 	constructor(
 		private portraitService: PortraitService,
 		private teamService: TeamService,
-		private contactService: ContactService
+		private contactService: ContactService,
+		private sanitizer: DomSanitizer
 	) {}
 
 	public ngOnInit() {
@@ -50,6 +52,18 @@ export class AboutComponent implements OnInit, OnDestroy {
 				this.groupPortraitImagePath = values.groupPortraitImagePath;
 				this.teamMembers = values.teamMembers;
 			});
+	}
+
+	public getImageForMember(member: { image?: { path: string }; fullName: string }) {
+		if (member.image) {
+			return member.image.path;
+		}
+
+		return this.getPlaceholderFor(member.fullName);
+	}
+
+	public getPlaceholderFor(text: string) {
+		return this.sanitizer.bypassSecurityTrustResourceUrl(`https://via.placeholder.com/400x400?text=${text}`);
 	}
 
 	public ngOnDestroy() {
