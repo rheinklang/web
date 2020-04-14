@@ -1,4 +1,5 @@
-@import '../../styles/colors.scss';
+@import "../../styles/colors.scss";
+@import "../../styles/responsive.scss";
 
 .v-about rk-icon {
 	margin-left: 3px;
@@ -10,7 +11,7 @@
 	line-height: 20px;
 	// padding: 3px;
 
-	&[select='pen-tool'] {
+	&[select="pen-tool"] {
 		background-color: $color-primary-retr-orange;
 	}
 
@@ -20,8 +21,8 @@
 }
 
 .v-about__members .a-image {
-	width: 80%;
-	margin: 0 10%;
+	width: 100%;
+	// margin: 0 10%;
 }
 
 .v-about__members {
@@ -33,6 +34,10 @@
 	padding: 0 40px;
 	margin: 0 0 60px 0;
 	text-align: center;
+
+	@include respond-to-min("md") {
+		min-height: 250px;
+	}
 }
 
 .v-about__member-role-symbols {
@@ -45,4 +50,16 @@
 
 .v-about__member-image-container {
 	min-height: 100px;
+}
+
+.v-about__members-entry h3 {
+	@include respond-to-max("sm") {
+		font-size: 2.5rem;
+	}
+}
+
+.v-about__members-entry h4 {
+	@include respond-to-max("sm") {
+		font-size: 1.7rem;
+	}
 }
