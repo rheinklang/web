@@ -157,12 +157,13 @@ jobs:
     needs: [publish]
     steps:
       - name: slack notification
-        if: contains(github.ref, 'development')
+        if: contains(github.ref, 'develop')
         uses: 8398a7/action-slack@v2
         with:
           author_name: Deployment Robot
           status: success
-          text: 'Deployment to https://beta.rheinklang-festival.ch done :rocket:!'
+          fields: message,commit,action,ref,workflow
+          text: '[DEV] Preview sent to beta.rheinklang-festival.ch :rocket:!'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -172,7 +173,8 @@ jobs:
         with:
           author_name: Deployment Robot
           status: success
-          text: 'Deployment to https://rheinklang-festival.ch done :rocket:!'
+          fields: message,commit,action,ref,workflow
+          text: '[PROD] Deployment to rheinklang-festival.ch done :rocket:!'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
