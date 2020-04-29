@@ -98,6 +98,8 @@ import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/li
 import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
 import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
 import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { BackToTopComponent } from './components/atoms/back-to-top/back-to-top.component';
 
 @NgModule({
 	declarations: [
@@ -167,6 +169,7 @@ import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 		StageSliderComponent,
 		StageSlideItemComponent,
 		HotlinksComponent,
+		BackToTopComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -191,6 +194,7 @@ import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 		MatCheckboxModule,
 		MatDatepickerModule,
 		MatSnackBarModule,
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [
