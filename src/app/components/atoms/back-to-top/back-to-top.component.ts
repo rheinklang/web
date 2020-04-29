@@ -45,10 +45,6 @@ export class BackToTopComponent {
 		}
 	}
 
-	/**
-	 * Scrolls window to top
-	 * @param event
-	 */
 	scrollTop(event: any) {
 		if (!this.isBrowser()) {
 			return;
@@ -71,20 +67,18 @@ export class BackToTopComponent {
 		}
 
 		let initialSpeed = this.speed;
-		const that = this;
-		this.timerID = setInterval(function() {
+		this.timerID = setInterval(() => {
 			window.scrollBy(0, -initialSpeed);
-			initialSpeed = initialSpeed + that.acceleration;
-			if (that.getCurrentScrollTop() === 0) {
-				clearInterval(that.timerID);
-				that.timerID = null;
+			initialSpeed = initialSpeed + this.acceleration;
+			if (this.getCurrentScrollTop() === 0) {
+				clearInterval(this.timerID);
+				this.timerID = null;
 			}
 		}, 15);
 	}
 
 	/**
 	 * Get current Y scroll position
-	 * @returns {number}
 	 */
 	getCurrentScrollTop() {
 		if (typeof window.scrollY !== 'undefined' && window.scrollY >= 0) {
@@ -109,7 +103,6 @@ export class BackToTopComponent {
 	/**
 	 * This check will prevent 'window' logic to be executed
 	 * while executing the server rendering
-	 * @returns {boolean}
 	 */
 	isBrowser(): boolean {
 		return typeof window !== 'undefined';
