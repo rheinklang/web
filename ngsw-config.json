@@ -17,5 +17,18 @@
 				"files": ["/assets/**", "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"]
 			}
 		}
+	],
+	"dataGroups": [
+		{
+			"name": "cdn",
+			"urls": ["https://cockpit.rheinklang-festival.ch/**"],
+			"version": 1,
+			"cacheConfig": {
+				"maxSize": 2,
+				"maxAge": "7d",
+				"timeout": "5s",
+				"strategy": "freshness"
+			}
+		}
 	]
 }
