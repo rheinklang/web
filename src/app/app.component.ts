@@ -1,10 +1,10 @@
-import { filter } from 'rxjs/operators';
 import { Component, OnDestroy, ViewEncapsulation, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { injectGTMScript } from './app.gtm';
 import { environment } from '../environments/environment';
 import { trackGTMTimingEvent } from './utils/gtag';
-import { Subscription } from 'rxjs';
 import { unsubscribe } from './utils/subscription';
 import { injectGCPMapsScript } from './app.gcp';
 import { ConfigService } from './services/config.service';
@@ -61,6 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit() {
+		this.pwa.initializePWACore();
 		this.pwa.updatesAvailable().subscribe(() => {
 			// TODO: Ask the user to confirm the update
 			this.pwa.update();
