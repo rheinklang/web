@@ -12,7 +12,6 @@ import { DeviceService } from '../../services/device.service';
 import { ImpressionsService } from '../../services/impressions.service';
 
 @Component({
-	selector: 'rk-event',
 	templateUrl: './event.component.html',
 	styleUrls: ['./event.component.scss'],
 	encapsulation: ViewEncapsulation.None,

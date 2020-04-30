@@ -7,12 +7,11 @@ import { ImpressionsSingletonGQLResponse } from '../../queries/Impressions.singl
 import { unsubscribe } from '../../utils/subscription';
 
 @Component({
-	selector: 'rk-impression-overview',
-	templateUrl: './impression-overview.component.html',
-	styleUrls: ['./impression-overview.component.scss'],
+	templateUrl: './impressions-overview.component.html',
+	styleUrls: ['./impressions-overview.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 })
-export class ImpressionOverviewComponent implements OnInit, OnDestroy {
+export class ImpressionsOverviewComponent implements OnInit, OnDestroy {
 	public impressions: ImpressionsGQLEntry[] = [];
 	public pageData?: ImpressionsSingletonGQLResponse['impressionsSingleton'];
 
