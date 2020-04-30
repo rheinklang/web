@@ -7,7 +7,7 @@ import { flatMap } from 'rxjs/operators';
 export class CustomPreloadingStrategy implements PreloadingStrategy {
 	public static shouldPreload(): boolean {
 		// Get NetworkInformation object
-		const conn: { saveData: boolean; effectiveType?: string } = navigator['connection'] || {};
+		const conn: { saveData: boolean; effectiveType?: string } = (navigator as any).connection || {};
 		if (conn) {
 			// Save-Data mode
 			if (conn.saveData) {
