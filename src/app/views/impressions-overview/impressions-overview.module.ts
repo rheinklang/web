@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../../shared.module';
+// tslint:disable-next-line:max-line-length
 import { ContentLoaderImpressionComponent } from '../../components/atoms/content-loader-impression/content-loader-impression.component';
 import { ImpressionsRoutingModule } from './impressions-overview-routing.module';
 import { ImpressionsOverviewComponent } from './impressions-overview.component';

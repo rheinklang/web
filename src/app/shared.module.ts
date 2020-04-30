@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import {
 	MatInputModule,
@@ -30,10 +29,8 @@ import { ButtonFacebookComponent } from './components/atoms/button-facebook/butt
 import { ButtonLinkComponent } from './components/atoms/button-link/button-link.component';
 import { CheckboxComponent } from './components/atoms/checkbox/checkbox.component';
 import { ComingSoonPageComponent } from './components/atoms/coming-soon-page/coming-soon-page.component';
-import { ContentLoaderImpressionComponent } from './components/atoms/content-loader-impression/content-loader-impression.component';
+// tslint:disable-next-line:max-line-length
 import { ContentLoaderTeaserArticleComponent } from './components/atoms/content-loader-teaser-article/content-loader-teaser-article.component';
-import { ContentLoaderTeaserEventComponent } from './components/atoms/content-loader-teaser-event/content-loader-teaser-event.component';
-import { ContentLoaderTeaserSponsorComponent } from './components/atoms/content-loader-teaser-sponsor/content-loader-teaser-sponsor.component';
 import { ContentLoaderTitleComponent } from './components/atoms/content-loader-title/content-loader-title.component';
 import { InputComponent } from './components/atoms/input/input.component';
 import { LivestreamIndicatorComponent } from './components/atoms/livestream-indicator/livestream-indicator.component';
@@ -52,17 +49,11 @@ import { PrivacyBannerComponent } from './components/molecules/privacy-banner/pr
 import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
 import { TagListComponent } from './components/molecules/tag-list/tag-list.component';
 import { TeaserComponent } from './components/molecules/teaser/teaser.component';
-import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
-import { TeaserSponsorComponent } from './components/molecules/teaser-sponsor/teaser-sponsor.component';
 import { FooterComponent } from './components/organisms/footer/footer.component';
 import { FormComponent } from './components/organisms/form/form.component';
 import { HeaderComponent } from './components/organisms/header/header.component';
 import { LivestreamComponent } from './components/organisms/livestream/livestream.component';
 import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
-import { ArtistBookingFormComponent } from './forms/artist-booking-form/artist-booking-form.component';
-import { GuestAppearanceFormComponent } from './forms/guest-appearance-form/guest-appearance-form.component';
-import { SupplierFormComponent } from './forms/supplier-form/supplier-form.component';
-import { TeamFormComponent } from './forms/team-form/team-form.component';
 import { SafeHtml } from './pipes/safe-html';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
 
