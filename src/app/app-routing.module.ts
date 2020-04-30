@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { environment } from '../environments/environment';
+import { CustomPreloadingStrategy } from './config/preloading';
 
 const routes: Routes = [
 	{
@@ -17,7 +18,7 @@ const routes: Routes = [
 	{
 		path: 'contact',
 		// component: ContactComponent,
-		data: { preload: false },
+		data: { preload: true },
 		loadChildren: () =>
 			import(/* webpackChunkName: "contact" */ './views/contact/contact.module').then((mod) => mod.ContactModule),
 	},
@@ -39,7 +40,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'sponsors',
-		data: { preload: false },
+		data: { preload: true },
 		loadChildren: () =>
 			import(/* webpackChunkName: "sponsors" */ './views/sponsors-overview/sponsors-overview.module').then(
 				(mod) => mod.SponsorsOverviewModule
@@ -82,7 +83,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'hotlinks',
-		data: { preload: true },
+		data: { preload: false },
 		loadChildren: () =>
 			import(/* webpackChunkName: "hotlinks" */ './views/hotlinks/hotlinks.module').then(
 				(mod) => mod.HotlinksModule
@@ -90,6 +91,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'not-found',
+		data: { preload: true },
 		loadChildren: () =>
 			import(/* webpackChunkName: "not-found" */ './views/not-found/not-found.module').then(
 				(mod) => mod.NotFoundModule
@@ -97,6 +99,7 @@ const routes: Routes = [
 	},
 	{
 		path: '**',
+		data: { preload: true },
 		loadChildren: () =>
 			import(/* webpackChunkName: "not-found" */ './views/not-found/not-found.module').then(
 				(mod) => mod.NotFoundModule
@@ -110,6 +113,7 @@ const routes: Routes = [
 			scrollPositionRestoration: 'enabled',
 			anchorScrolling: 'enabled',
 			enableTracing: `${environment.debugNgRouter}` === 'true',
+			preloadingStrategy: CustomPreloadingStrategy,
 		}),
 	],
 	exports: [RouterModule],

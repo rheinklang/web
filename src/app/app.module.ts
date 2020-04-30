@@ -41,6 +41,7 @@ import { PrivacyComponent } from './views/privacy/privacy.component';
 import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
 import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 import { SharedModule } from './shared.module';
+import { CustomPreloadingStrategy } from './config/preloading';
 
 @NgModule({
 	declarations: [
@@ -138,6 +139,7 @@ import { SharedModule } from './shared.module';
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [
+		CustomPreloadingStrategy,
 		{
 			provide: LOCALE_ID,
 			useValue: 'de',
