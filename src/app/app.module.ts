@@ -20,7 +20,7 @@ import {
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { AppComponent } from './app.component';
-import { ArticlesComponent } from './views/articles/articles.component';
+// import { ArticlesComponent } from './views/article/article.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { EventComponent } from './views/event/event.component';
 import { EventOverviewComponent } from './views/event-overview/event-overview.component';
@@ -48,7 +48,7 @@ import { SharedModule } from './shared.module';
 		AppComponent,
 		// DefaultLayoutComponent,
 		// AboutComponent, -> Part of AboutModule and AboutRoutingModule
-		ArticlesComponent,
+		// ArticlesComponent, -> Part of ArticleModule and ArticleRoutingModule
 		// BurgerComponent,
 		// ButtonComponent,
 		// ButtonFacebookComponent,
@@ -62,7 +62,7 @@ import { SharedModule } from './shared.module';
 		// ContentLoaderTitleComponent,
 		// ContentLoaderImpressionComponent,
 		// ContentLoaderTeaserSponsorComponent,
-		EventComponent,
+		// EventComponent, --> Part of EventModule and EventRoutingModule
 		// EventOverviewComponent, --> Part of EventOverviewModule and EventOverviewRoutingModule
 		// FooterComponent,
 		// HeaderComponent,
@@ -77,7 +77,7 @@ import { SharedModule } from './shared.module';
 		// LinkListComponent,
 		// LogoComponent,
 		// NewsletterComponent,
-		NotFoundComponent,
+		// NotFoundComponent, --> Part of NotFoundModule and NotFoundRoutingModule
 		// PictureComponent,
 		// RichtextComponent,
 		// ScrollAnchorDirective,
@@ -106,7 +106,7 @@ import { SharedModule } from './shared.module';
 		// ArtistBookingFormComponent,
 		// LivestreamComponent,
 		// LivestreamIndicatorComponent,
-		LivestreamEmbeddPageComponent,
+		// LivestreamEmbeddPageComponent, --> Part of LivestreamEmbeddModule and LivestreamEmbeddRoutingModule
 		// StageSliderComponent,
 		// StageSlideItemComponent,
 		// HotlinksComponent, --> Part of HotlinksModule and HotlinksRoutingModule

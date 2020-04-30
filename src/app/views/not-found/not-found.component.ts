@@ -27,6 +27,6 @@ export class NotFoundComponent implements OnInit {
 	}
 
 	public get path() {
-		return this.route.snapshot.url.join('/');
+		return document.location.pathname;
 	}
 }

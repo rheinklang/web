@@ -1,18 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
-import { NotFoundComponent } from './views/not-found/not-found.component';
-import { EventComponent } from './views/event/event.component';
-import { EventOverviewComponent } from './views/event-overview/event-overview.component';
-import { ImpressionsOverviewComponent } from './views/impressions-overview/impressions-overview.component';
-import { ImpressionComponent } from './views/impression/impression.component';
-import { ContactComponent } from './views/contact/contact.component';
-import { ArticlesComponent } from './views/articles/articles.component';
-import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
-import { PrivacyComponent } from './views/privacy/privacy.component';
-import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
 import { environment } from '../environments/environment';
-import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
 
 const routes: Routes = [
 	{
@@ -66,11 +55,16 @@ const routes: Routes = [
 	},
 	{
 		path: 'articles/:articleId',
-		component: ArticlesComponent,
+		data: { preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "article" */ './views/article/article.module').then((mod) => mod.ArticleModule),
 	},
 	{
 		path: 'events/:eventSlug',
-		component: EventComponent,
+		// component: EventComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "event" */ './views/event/event.module').then((mod) => mod.EventModule),
 	},
 	{
 		path: 'privacy',
@@ -80,8 +74,11 @@ const routes: Routes = [
 	},
 	{
 		path: 'live',
-		component: LivestreamEmbeddPageComponent,
-		data: { disableLiveIndicator: true, modifier: 'no-space' },
+		data: { disableLiveIndicator: true, modifier: 'no-space', preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "live" */ './views/livestream-embedd-page/livestream-embedd.module').then(
+				(mod) => mod.LivestreamEmbeddModule
+			),
 	},
 	{
 		path: 'hotlinks',
@@ -93,11 +90,17 @@ const routes: Routes = [
 	},
 	{
 		path: 'not-found',
-		component: NotFoundComponent,
+		loadChildren: () =>
+			import(/* webpackChunkName: "not-found" */ './views/not-found/not-found.module').then(
+				(mod) => mod.NotFoundModule
+			),
 	},
 	{
 		path: '**',
-		component: NotFoundComponent,
+		loadChildren: () =>
+			import(/* webpackChunkName: "not-found" */ './views/not-found/not-found.module').then(
+				(mod) => mod.NotFoundModule
+			),
 	},
 ];
 

@@ -52,7 +52,6 @@ import { TeaserComponent } from './components/molecules/teaser/teaser.component'
 import { FooterComponent } from './components/organisms/footer/footer.component';
 import { FormComponent } from './components/organisms/form/form.component';
 import { HeaderComponent } from './components/organisms/header/header.component';
-import { LivestreamComponent } from './components/organisms/livestream/livestream.component';
 import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
 import { SafeHtml } from './pipes/safe-html';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
@@ -106,7 +105,7 @@ const COMPONENTS = [
 	FooterComponent,
 	FormComponent,
 	HeaderComponent,
-	LivestreamComponent, // TODO: Livestream Module
+	// LivestreamComponent, // TODO: Livestream Module
 	StageSliderComponent,
 	// directives
 	ScrollAnchorDirective,
