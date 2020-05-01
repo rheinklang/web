@@ -4,7 +4,6 @@ import { ContactSingletonGQLResponse, ContactSingletonGQL } from '../../queries/
 import { template } from '../../utils/templating';
 
 @Component({
-	selector: 'rk-contact',
 	templateUrl: './contact.component.html',
 	styleUrls: ['./contact.component.scss'],
 })

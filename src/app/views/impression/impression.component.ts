@@ -68,9 +68,11 @@ export class ImpressionComponent implements OnInit, OnDestroy, AfterContentInit 
 	}
 
 	private fetchCorrespondingImpression(slug: string) {
-		this.impressionSubscription$ = this.impressionsService.getImpressionBySlug(slug).subscribe((impression) => {
-			this.impression = impression;
-			this.loaded = true;
-		});
+		this.impressionSubscription$ = this.impressionsService
+			.getImpressionBySlug(slug)
+			.subscribe((impression) => {
+				this.impression = impression;
+				this.loaded = true;
+			});
 	}
 }

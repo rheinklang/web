@@ -1,77 +1,116 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './views/home/home.component';
-import { NotFoundComponent } from './views/not-found/not-found.component';
-import { AboutComponent } from './views/about/about.component';
-import { EventComponent } from './views/event/event.component';
-import { EventOverviewComponent } from './views/event-overview/event-overview.component';
-import { ImpressionOverviewComponent } from './views/impression-overview/impression-overview.component';
-import { ImpressionComponent } from './views/impression/impression.component';
-import { ContactComponent } from './views/contact/contact.component';
-import { ArticlesComponent } from './views/articles/articles.component';
-import { SponsorsOverviewComponent } from './views/sponsors-overview/sponsors-overview.component';
-import { PrivacyComponent } from './views/privacy/privacy.component';
-import { LivestreamEmbeddPageComponent } from './views/livestream-embedd-page/livestream-embedd-page.component';
 import { environment } from '../environments/environment';
-import { HotlinksComponent } from './views/hotlinks/hotlinks.component';
+import { CustomPreloadingStrategy } from './config/preloading';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: HomeComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "home" */ './views/home/home.module').then((mod) => mod.HomeModule),
 	},
 	{
 		path: 'about',
-		component: AboutComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "about" */ './views/about/about.module').then((mod) => mod.AboutModule),
 	},
 	{
 		path: 'contact',
-		component: ContactComponent,
+		// component: ContactComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "contact" */ './views/contact/contact.module').then(
+				(mod) => mod.ContactModule
+			),
 	},
 	{
 		path: 'impressions',
-		component: ImpressionOverviewComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(
+				/* webpackChunkName: "impressions" */ './views/impressions-overview/impressions-overview.module'
+			).then((mod) => mod.ImpressionsOverviewModule),
 	},
 	{
 		path: 'impressions/:impressionSlug',
-		component: ImpressionComponent,
+		data: { preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "impression" */ './views/impression/impression.module').then(
+				(mod) => mod.ImpressionModule
+			),
 	},
 	{
 		path: 'sponsors',
-		component: SponsorsOverviewComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "sponsors" */ './views/sponsors-overview/sponsors-overview.module').then(
+				(mod) => mod.SponsorsOverviewModule
+			),
 	},
 	{
 		path: 'events',
-		component: EventOverviewComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "events" */ './views/event-overview/event-overview.module').then(
+				(mod) => mod.EventOverviewModule
+			),
 	},
 	{
 		path: 'articles/:articleId',
-		component: ArticlesComponent,
+		data: { preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "article" */ './views/article/article.module').then(
+				(mod) => mod.ArticleModule
+			),
 	},
 	{
 		path: 'events/:eventSlug',
-		component: EventComponent,
+		// component: EventComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "event" */ './views/event/event.module').then((mod) => mod.EventModule),
 	},
 	{
 		path: 'privacy',
-		component: PrivacyComponent,
+		data: { preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "privacy" */ './views/privacy/privacy.module').then(
+				(mod) => mod.PrivacyModule
+			),
 	},
 	{
 		path: 'live',
-		component: LivestreamEmbeddPageComponent,
-		data: { disableLiveIndicator: true, modifier: 'no-space' },
+		data: { disableLiveIndicator: true, modifier: 'no-space', preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "live" */ './views/livestream-embedd-page/livestream-embedd.module').then(
+				(mod) => mod.LivestreamEmbeddModule
+			),
 	},
 	{
 		path: 'hotlinks',
-		component: HotlinksComponent,
+		data: { preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "hotlinks" */ './views/hotlinks/hotlinks.module').then(
+				(mod) => mod.HotlinksModule
+			),
 	},
 	{
 		path: 'not-found',
-		component: NotFoundComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "not-found" */ './views/not-found/not-found.module').then(
+				(mod) => mod.NotFoundModule
+			),
 	},
 	{
 		path: '**',
-		component: NotFoundComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "not-found" */ './views/not-found/not-found.module').then(
+				(mod) => mod.NotFoundModule
+			),
 	},
 ];
 
@@ -81,6 +120,7 @@ const routes: Routes = [
 			scrollPositionRestoration: 'enabled',
 			anchorScrolling: 'enabled',
 			enableTracing: `${environment.debugNgRouter}` === 'true',
+			preloadingStrategy: CustomPreloadingStrategy,
 		}),
 	],
 	exports: [RouterModule],

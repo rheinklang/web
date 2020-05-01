@@ -8,11 +8,11 @@ import { rtfToPlain } from '../../utils/rtf';
 
 @Component({
 	selector: 'rk-articles',
-	templateUrl: './articles.component.html',
-	styleUrls: ['./articles.component.scss'],
+	templateUrl: './article.component.html',
+	styleUrls: ['./article.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 })
-export class ArticlesComponent implements OnInit, OnDestroy {
+export class ArticleComponent implements OnInit, OnDestroy {
 	public article: ArticleGQLEntry;
 	public loaded = false;
 	public articleId: string | null = null;

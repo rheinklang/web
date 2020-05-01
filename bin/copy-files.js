@@ -42,9 +42,9 @@ const copyProcess = copies
 	.map(({ from, to, enabled }) =>
 		enabled
 			? {
-				filename: basename(to),
-				promise: fs.copyFile(fromRoot(from), fromRoot(to)),
-			}
+					filename: basename(to),
+					promise: fs.copyFile(fromRoot(from), fromRoot(to)),
+			  }
 			: null
 	)
 	.filter(Boolean);

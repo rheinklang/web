@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation, AfterViewInit, ElementRef } from '@angular/core';
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	ViewEncapsulation,
+	AfterViewInit,
+	ElementRef,
+} from '@angular/core';
 
 @Component({
 	selector: 'rk-accordion-panel',

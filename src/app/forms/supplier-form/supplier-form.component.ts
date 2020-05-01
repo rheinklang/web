@@ -11,7 +11,14 @@ import { FORMS_SUPPLIER } from '../../config/forms';
 	styleUrls: ['./supplier-form.component.scss'],
 })
 export class SupplierFormComponent {
-	public supplyType = ['Food', 'Infrastruktur', 'Personal', 'Sponsoring', 'Medien & Kommunikation', 'Andere ...'];
+	public supplyType = [
+		'Food',
+		'Infrastruktur',
+		'Personal',
+		'Sponsoring',
+		'Medien & Kommunikation',
+		'Andere ...',
+	];
 	public submitting = false;
 	public sent: boolean | null = null;
 
