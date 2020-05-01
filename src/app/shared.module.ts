@@ -54,6 +54,7 @@ import { HeaderComponent } from './components/organisms/header/header.component'
 import { SafeHtml } from './pipes/safe-html';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
 import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
+// tslint:disable-next-line:max-line-length
 import { ContentLoaderTeaserEventComponent } from './components/atoms/content-loader-teaser-event/content-loader-teaser-event.component';
 
 const COMPONENTS = [
