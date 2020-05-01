@@ -66,7 +66,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public get tags() {
 		return this.articles.reduce(
 			(allTags, article) => {
-				const newTags = article.tags.map((tag) => (allTags.indexOf(tag) === -1 ? tag : null)).filter(Boolean);
+				const newTags = article.tags
+					.map((tag) => (allTags.indexOf(tag) === -1 ? tag : null))
+					.filter(Boolean);
 				return [...allTags, ...newTags];
 			},
 			[] as string[]

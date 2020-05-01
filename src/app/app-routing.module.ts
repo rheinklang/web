@@ -21,7 +21,9 @@ const routes: Routes = [
 		// component: ContactComponent,
 		data: { preload: true },
 		loadChildren: () =>
-			import(/* webpackChunkName: "contact" */ './views/contact/contact.module').then((mod) => mod.ContactModule),
+			import(/* webpackChunkName: "contact" */ './views/contact/contact.module').then(
+				(mod) => mod.ContactModule
+			),
 	},
 	{
 		path: 'impressions',
@@ -59,7 +61,9 @@ const routes: Routes = [
 		path: 'articles/:articleId',
 		data: { preload: false },
 		loadChildren: () =>
-			import(/* webpackChunkName: "article" */ './views/article/article.module').then((mod) => mod.ArticleModule),
+			import(/* webpackChunkName: "article" */ './views/article/article.module').then(
+				(mod) => mod.ArticleModule
+			),
 	},
 	{
 		path: 'events/:eventSlug',
@@ -72,7 +76,9 @@ const routes: Routes = [
 		path: 'privacy',
 		data: { preload: false },
 		loadChildren: () =>
-			import(/* webpackChunkName: "privacy" */ './views/privacy/privacy.module').then((mod) => mod.PrivacyModule),
+			import(/* webpackChunkName: "privacy" */ './views/privacy/privacy.module').then(
+				(mod) => mod.PrivacyModule
+			),
 	},
 	{
 		path: 'live',

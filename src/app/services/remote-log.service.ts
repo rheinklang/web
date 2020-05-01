@@ -100,7 +100,9 @@ export class RemoteLogService {
 		const { browser, device, os, engine } = parser.getResult();
 
 		const deviceInfo =
-			device.type && device.vendor ? `${capitalize(device.type)}, ${device.vendor} ${device.model}` : 'Desktop';
+			device.type && device.vendor
+				? `${capitalize(device.type)}, ${device.vendor} ${device.model}`
+				: 'Desktop';
 
 		// tslint:disable-next-line: max-line-length
 		return [
