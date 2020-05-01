@@ -22,7 +22,15 @@ type GTMActionType =
 	| 'view_search_results'
 	| string;
 
-export type GTMCategory = 'sponsors' | 'generic' | 'navigation' | 'social' | 'contact' | 'service' | 'link' | 'privacy';
+export type GTMCategory =
+	| 'sponsors'
+	| 'generic'
+	| 'navigation'
+	| 'social'
+	| 'contact'
+	| 'service'
+	| 'link'
+	| 'privacy';
 
 export const saveGTMEventAction = (name: string) => name.replace(/\d/gi, '_').replace('-', '_');
 

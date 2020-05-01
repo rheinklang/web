@@ -12,12 +12,18 @@ export const resolveCDNImagePath = (imageField: { path: string }, fallback: any 
 export const resolveCDNAssetPath = (imageField: { path: string }, fallback: any = transparentBase64InlineImage) =>
 	imageField && imageField.path ? `${environment.assetCDNHost}/storage/uploads${imageField.path}` : fallback;
 
-export const resolveDynamicImagePath = (imageField: { path: string }, fallback: any = transparentBase64InlineImage) =>
+export const resolveDynamicImagePath = (
+	imageField: { path: string },
+	fallback: any = transparentBase64InlineImage
+) =>
 	imageField && imageField.path
 		? `${environment.assetCDNHost}/api/cockpit/image?token=${environment.cockpitAPIKey}&src=${imageField.path}&o=1`
 		: fallback;
 
-export const resolveDynamicAssetPath = (imageField: { path: string }, fallback: any = transparentBase64InlineImage) => {
+export const resolveDynamicAssetPath = (
+	imageField: { path: string },
+	fallback: any = transparentBase64InlineImage
+) => {
 	if (imageField && imageField.path) {
 		// weird cockpit behaviour sometimes automatically adds the storage uploads prefix
 		imageField.path = imageField.path.replace('/storage/uploads', '');
