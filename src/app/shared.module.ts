@@ -46,16 +46,15 @@ import { MapComponent } from './components/molecules/map/map.component';
 import { StaticMapComponent } from './components/molecules/map/static-map.component';
 import { NewsletterComponent } from './components/molecules/newsletter/newsletter.component';
 import { PrivacyBannerComponent } from './components/molecules/privacy-banner/privacy-banner.component';
-// import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
 import { TagListComponent } from './components/molecules/tag-list/tag-list.component';
 import { TeaserComponent } from './components/molecules/teaser/teaser.component';
 import { FooterComponent } from './components/organisms/footer/footer.component';
 import { FormComponent } from './components/organisms/form/form.component';
 import { HeaderComponent } from './components/organisms/header/header.component';
-// import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
 import { SafeHtml } from './pipes/safe-html';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
 import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
+import { ContentLoaderTeaserEventComponent } from './components/atoms/content-loader-teaser-event/content-loader-teaser-event.component';
 
 const COMPONENTS = [
 	// atoms
@@ -66,10 +65,8 @@ const COMPONENTS = [
 	ButtonLinkComponent,
 	CheckboxComponent,
 	ComingSoonPageComponent,
-	// ContentLoaderImpressionComponent, // TODO: Impression Module
 	ContentLoaderTeaserArticleComponent, // TODO: Article Module
-	// ContentLoaderTeaserEventComponent, // TODO: Events Module
-	// ContentLoaderTeaserSponsorComponent, // TODO: Sponsors Module
+	ContentLoaderTeaserEventComponent, // TODO: Events Module
 	ContentLoaderTitleComponent,
 	HeadingComponent,
 	IconComponent,
@@ -96,28 +93,19 @@ const COMPONENTS = [
 	StaticMapComponent,
 	NewsletterComponent,
 	PrivacyBannerComponent,
-	// StageSlideItemComponent, --> Part of HomeModule and HomeRoutingModule
 	TagListComponent,
 	TeaserComponent,
 	TeaserEventComponent,
-	// TeaserSponsorComponent, // TODO: Sponsors Module
 	// organisms
 	ContentBlockComponent,
 	FooterComponent,
 	FormComponent,
 	HeaderComponent,
-	// LivestreamComponent, // TODO: Livestream Module
-	// StageSliderComponent, --> Part of HomeModule and HomeRoutingModule
 	// directives
 	ScrollAnchorDirective,
 	TooltipDirective,
 	// pipes
 	SafeHtml,
-	// forms
-	// ArtistBookingFormComponent, --> Now in ContactModule via lazy feature loading
-	// GuestAppearanceFormComponent, --> Now in ContactModule via lazy feature loading
-	// SupplierFormComponent, --> Now in ContactModule via lazy feature loading
-	// TeamFormComponent --> Now in ContactModule via lazy feature loading
 ];
 
 @NgModule({
