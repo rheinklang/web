@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { LogService } from '../../services/log.service';
 
 class NotFoundError extends Error {
@@ -17,11 +16,12 @@ class NotFoundError extends Error {
 	selector: 'rk-not-found',
 	templateUrl: './not-found.component.html',
 	styleUrls: ['./not-found.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotFoundComponent implements OnInit {
-	constructor(private route: ActivatedRoute, private log: LogService) {}
+export class NotFoundComponent implements AfterViewInit {
+	constructor(private log: LogService) {}
 
-	public ngOnInit() {
+	public ngAfterViewInit() {
 		const message = `Invalid page request for ${this.path}, no page registered on this route`;
 		this.log.traceError('NotFoundComponent', new NotFoundError(message));
 	}

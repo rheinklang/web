@@ -46,15 +46,16 @@ import { MapComponent } from './components/molecules/map/map.component';
 import { StaticMapComponent } from './components/molecules/map/static-map.component';
 import { NewsletterComponent } from './components/molecules/newsletter/newsletter.component';
 import { PrivacyBannerComponent } from './components/molecules/privacy-banner/privacy-banner.component';
-import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
+// import { StageSlideItemComponent } from './components/molecules/stage-slide-item/stage-slide-item.component';
 import { TagListComponent } from './components/molecules/tag-list/tag-list.component';
 import { TeaserComponent } from './components/molecules/teaser/teaser.component';
 import { FooterComponent } from './components/organisms/footer/footer.component';
 import { FormComponent } from './components/organisms/form/form.component';
 import { HeaderComponent } from './components/organisms/header/header.component';
-import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
+// import { StageSliderComponent } from './components/organisms/stage-slider/stage-slider.component';
 import { SafeHtml } from './pipes/safe-html';
 import { BurgerComponent } from './components/atoms/burger/burger.component';
+import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
 
 const COMPONENTS = [
 	// atoms
@@ -95,10 +96,10 @@ const COMPONENTS = [
 	StaticMapComponent,
 	NewsletterComponent,
 	PrivacyBannerComponent,
-	StageSlideItemComponent,
+	// StageSlideItemComponent, --> Part of HomeModule and HomeRoutingModule
 	TagListComponent,
 	TeaserComponent,
-	// TeaserEventComponent, // TODO: Events Module
+	TeaserEventComponent,
 	// TeaserSponsorComponent, // TODO: Sponsors Module
 	// organisms
 	ContentBlockComponent,
@@ -106,7 +107,7 @@ const COMPONENTS = [
 	FormComponent,
 	HeaderComponent,
 	// LivestreamComponent, // TODO: Livestream Module
-	StageSliderComponent,
+	// StageSliderComponent, --> Part of HomeModule and HomeRoutingModule
 	// directives
 	ScrollAnchorDirective,
 	TooltipDirective,

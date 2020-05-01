@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './views/home/home.component';
 import { environment } from '../environments/environment';
 import { CustomPreloadingStrategy } from './config/preloading';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: HomeComponent,
+		data: { preload: true },
+		loadChildren: () =>
+			import(/* webpackChunkName: "home" */ './views/home/home.module').then((mod) => mod.HomeModule),
 	},
 	{
 		path: 'about',
