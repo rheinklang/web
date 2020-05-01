@@ -1,5 +1,12 @@
+import {
+	Component,
+	OnInit,
+	ViewEncapsulation,
+	OnDestroy,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { ImpressionsService } from '../../services/impressions.service';
 import { ImpressionsGQLEntry } from '../../queries/Impressions.query';
 import { getContrastModifierForImage } from '../../utils/colors';
@@ -10,6 +17,7 @@ import { unsubscribe } from '../../utils/subscription';
 	templateUrl: './impressions-overview.component.html',
 	styleUrls: ['./impressions-overview.component.scss'],
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImpressionsOverviewComponent implements OnInit, OnDestroy {
 	public impressions: ImpressionsGQLEntry[] = [];
@@ -18,16 +26,18 @@ export class ImpressionsOverviewComponent implements OnInit, OnDestroy {
 	private impressionsSubscription$?: Subscription;
 	private pageDataSubscription$?: Subscription;
 
-	constructor(private impressionsService: ImpressionsService) {}
+	constructor(private impressionsService: ImpressionsService, private cd: ChangeDetectorRef) {}
 
 	public ngOnInit() {
 		this.impressionsSubscription$ = this.impressionsService.getImpressions().subscribe((impressions) => {
 			this.impressions = impressions;
+			this.cd.detectChanges();
 		});
 
 		this.pageDataSubscription$ = this.impressionsService.getImpressionsPageData().subscribe((pageData) => {
 			if (pageData && 'title' in pageData) {
 				this.pageData = pageData;
+				this.cd.detectChanges();
 			}
 		});
 	}
