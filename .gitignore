@@ -54,4 +54,9 @@ Thumbs.db
 .env
 /src/environments
 
+# Code
 .vscode
+
+# GCM
+./src/manifest.webmanifest
+./src/firebase-messaging-sw.js
