@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, LOCALE_ID } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
@@ -37,6 +37,7 @@ import { CustomPreloadingStrategy } from './config/preloading';
 		ContentLoaderModule,
 		BrowserAnimationsModule,
 		MatSnackBarModule,
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 		SharedModule,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,13 +1,14 @@
+import { Component, OnDestroy, ViewEncapsulation, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { injectGTMScript } from './app.gtm';
 import { environment } from '../environments/environment';
 import { trackGTMTimingEvent } from './utils/gtag';
-import { Subscription } from 'rxjs';
 import { unsubscribe } from './utils/subscription';
 import { injectGCPMapsScript } from './app.gcp';
 import { ConfigService } from './services/config.service';
+import { PWAService } from './services/pwa.service';
 
 declare var gtag;
 
@@ -23,12 +24,12 @@ injectGCPMapsScript();
 	styleUrls: ['./app.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
 	public maintenanceConfig: ReturnType<ConfigService['getMaintenanceConfig']>;
 	private navEndSub$: Subscription;
 	private gMapCbAttached = false;
 
-	constructor(router: Router, route: ActivatedRoute, configService: ConfigService) {
+	constructor(router: Router, configService: ConfigService, private pwa: PWAService) {
 		if (!this.gMapCbAttached) {
 			this.gMapCbAttached = true;
 		}
@@ -57,6 +58,14 @@ export class AppComponent implements OnDestroy {
 				}, 160);
 			});
 		}
+	}
+
+	public ngOnInit() {
+		this.pwa.initializePWACore();
+		this.pwa.updatesAvailable().subscribe(() => {
+			// TODO: Ask the user to confirm the update
+			this.pwa.update();
+		});
 	}
 
 	public ngOnDestroy() {

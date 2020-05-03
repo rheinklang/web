@@ -11,6 +11,7 @@ import {
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
+import { BackToTopComponent } from './components/atoms/back-to-top/back-to-top.component';
 import { SeoManagerComponent } from './components/helper/seo-manager/seo-manager.component';
 import { PictureComponent } from './components/atoms/picture/picture.component';
 import { ImageComponent } from './components/atoms/image/image.component';
@@ -60,14 +61,15 @@ import { ContentLoaderTeaserEventComponent } from './components/atoms/content-lo
 const COMPONENTS = [
 	// atoms
 	AccordionPanelComponent,
+	BackToTopComponent,
 	BurgerComponent,
 	ButtonComponent,
 	ButtonFacebookComponent,
 	ButtonLinkComponent,
 	CheckboxComponent,
 	ComingSoonPageComponent,
-	ContentLoaderTeaserArticleComponent, // TODO: Article Module
-	ContentLoaderTeaserEventComponent, // TODO: Events Module
+	ContentLoaderTeaserArticleComponent,
+	ContentLoaderTeaserEventComponent,
 	ContentLoaderTitleComponent,
 	HeadingComponent,
 	IconComponent,
