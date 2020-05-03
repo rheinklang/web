@@ -3,6 +3,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, LOCALE_ID } from '@angu
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { registerLocaleData } from '@angular/common';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
 import localeDe from '@angular/common/locales/de';
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -26,18 +30,28 @@ import { CustomPreloadingStrategy } from './config/preloading';
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
+		// core
 		BrowserModule,
 		HttpClientModule,
 		AppRoutingModule,
+		// firebase
+		AngularFireDatabaseModule,
+		AngularFireAuthModule,
+		AngularFireMessagingModule,
+		AngularFireModule.initializeApp(environment.firebase),
+		// angular pwa
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+		// websql
 		IonicStorageModule.forRoot({
 			name: 'rk-storage',
 			driverOrder: ['indexeddb', 'sqlite', 'websql'],
 		}),
+		// content
 		GraphQLModule,
 		ContentLoaderModule,
+		// experience
 		BrowserAnimationsModule,
 		MatSnackBarModule,
-		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 		SharedModule,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],

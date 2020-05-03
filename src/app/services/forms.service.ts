@@ -8,7 +8,7 @@ import { CockpitService } from './cockpit.service';
 export class FormsService {
 	constructor(private cockpit: CockpitService) {}
 
-	public submit<T extends object>(name: string, data: T = {} as T) {
+	public submit<T extends object>(name: string, data: T = {} as T, category = 'contact') {
 		const payload: T = {
 			...data,
 			location: window.location.href,
@@ -16,7 +16,7 @@ export class FormsService {
 		};
 
 		trackGTMEvent(`submit_${name}`, {
-			category: 'contact',
+			category,
 			label: `Submission for ${name}`,
 			value: JSON.stringify(data),
 		});

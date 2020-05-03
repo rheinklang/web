@@ -9,6 +9,7 @@ import { unsubscribe } from './utils/subscription';
 import { injectGCPMapsScript } from './app.gcp';
 import { ConfigService } from './services/config.service';
 import { PWAService } from './services/pwa.service';
+import { MessagingService } from './services/messaging.service';
 
 declare var gtag;
 
@@ -29,7 +30,12 @@ export class AppComponent implements OnInit, OnDestroy {
 	private navEndSub$: Subscription;
 	private gMapCbAttached = false;
 
-	constructor(router: Router, configService: ConfigService, private pwa: PWAService) {
+	constructor(
+		router: Router,
+		configService: ConfigService,
+		private pwa: PWAService,
+		private messagingService: MessagingService
+	) {
 		if (!this.gMapCbAttached) {
 			this.gMapCbAttached = true;
 		}
@@ -65,6 +71,13 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.pwa.updatesAvailable().subscribe(() => {
 			// TODO: Ask the user to confirm the update
 			this.pwa.update();
+		});
+
+		this.messagingService.requestPermission();
+		this.messagingService.getToken().subscribe((token) => {
+			if (token) {
+				this.messagingService.receiveMessage();
+			}
 		});
 	}
 

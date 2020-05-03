@@ -22,9 +22,11 @@ const checkEnvironment = (keys) => {
 	console.log('');
 
 	const allValid = map.every((entry) => entry.valid === true);
+	const invalidKeys = map.filter((entry) => entry.valid !== true).map((entry) => entry.key);
 
 	if (!allValid) {
 		console.log('Not all required environment variables are set, exiting process.');
+		console.log(` -> Invalid keys: ${invalidKeys.join(', ')}`);
 		process.exit(0);
 	}
 
