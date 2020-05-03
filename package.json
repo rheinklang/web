@@ -10,6 +10,7 @@
 		"create:env:dev": "node bin/create-env",
 		"create:env:prod": "node bin/create-env --environment=production",
 		"create:version": "node bin/create-version",
+		"create:gcm": "node bin/prepare-gcm",
 		"create:license": "npx license-checker --out ./src/server/3rdpartylicenses.txt --csv --relativeLicensePath --production",
 		"prebuild": "run-s create:*",
 		"build": "ng build",

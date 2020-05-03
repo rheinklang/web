@@ -19,6 +19,7 @@ checkEnvironment([
 	'GCP_STATIC_MAPS_SECRET',
 	'SLACK_ERROR_HOOK_URL',
 	'DEBUG_NG_ROUTER',
+	'GCM_SENDER_ID',
 ]);
 
 // Would be passed to script like this:
