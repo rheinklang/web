@@ -1,13 +1,14 @@
 const pwaAssetGenerator = require('pwa-asset-generator');
 
 (async () => {
-	await pwaAssetGenerator.generateImages('./src/assets/img/app/pwa-logo.jpg', './src/assets/img/app/', {
+	await pwaAssetGenerator.generateImages('./src/assets/img/pwa-logo.jpg', './src/assets/img/pwa/splash', {
 		scrape: false,
 		background: 'rgba(255,255,255,1)',
 		portraitOnly: true,
 		log: false,
-		pathOverride: 'assets/img/app',
-		path: 'assets/img/app',
+		splashOnly: true,
+		pathOverride: 'assets/img/pwa/splash',
+		path: 'assets/img/pwa/splash',
 		manifest: './src/manifest.webmanifest',
 		index: './src/index.html',
 		maskable: false,
