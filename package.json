@@ -32,7 +32,9 @@
 		"bin:copy-files": "node bin/copy-files",
 		"bin:generate-sitemap": "node bin/sitemap-generator",
 		"pwa-assets": "node bin/pwa-asset-generator.js",
-		"changelog-generator": "npx generate-changelog"
+		"changelog": "run-s changelog:*",
+		"changelog:clean": "rimraf CHANGELOG.md",
+		"changelog:generate": "npx generate-changelog"
 	},
 	"private": true,
 	"dependencies": {
