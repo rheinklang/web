@@ -1,6 +1,6 @@
 {
 	"name": "rheinklang-kollektiv",
-	"version": "0.9.182-rc.1",
+	"version": "2.1.37",
 	"scripts": {
 		"postinstall": "node bin/clean-locales.js",
 		"ng": "ng",
@@ -31,7 +31,8 @@
 		"deploy:local:production": "node -r dotenv/config deploy.js --tag=production",
 		"bin:copy-files": "node bin/copy-files",
 		"bin:generate-sitemap": "node bin/sitemap-generator",
-		"pwa-assets": "node bin/pwa-asset-generator.js"
+		"pwa-assets": "node bin/pwa-asset-generator.js",
+		"changelog-generator": "npx generate-changelog"
 	},
 	"private": true,
 	"dependencies": {
