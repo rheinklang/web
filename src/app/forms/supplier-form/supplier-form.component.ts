@@ -30,7 +30,7 @@ export class SupplierFormComponent {
 
 	public supplierForm = new FormGroup({
 		year: new FormControl({
-			value: `${new Date().getFullYear()}`,
+			value: '2021',
 			disabled: true,
 		}),
 		company: new FormControl('', Validators.required),

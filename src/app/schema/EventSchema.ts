@@ -26,6 +26,7 @@ export interface EventSchema<
 	link: CockpitOptionalField<string>;
 	hiddenDate: CockpitOptionalField<boolean>;
 	hide: CockpitOptionalField<boolean>;
+	canceled: CockpitRequiredField<boolean>;
 	linkType: CockpitOptionalField<'internal' | 'external'>;
 	secret: CockpitOptionalField<boolean>;
 	type: CockpitOptionalField<EventType>;

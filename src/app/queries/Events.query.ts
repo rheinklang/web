@@ -31,6 +31,7 @@ export class EventsGQL extends Query<EventsGQLResponse, { filter: Partial<Events
 				slug
 				secret
 				type
+				canceled
 				previewImage {
 					path
 				}
