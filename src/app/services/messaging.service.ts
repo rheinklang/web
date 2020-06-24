@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { BehaviorSubject, from } from 'rxjs';
+import { BehaviorSubject, from, of } from 'rxjs';
 import { FormsService } from './forms.service';
 import { IPService } from './ip.service';
 import { Storage } from '@ionic/storage';
 import { FORMS_PUSH_TOKENS } from '../config/forms';
 import { LogService } from './log.service';
+import { SlackService } from './slack.service';
+import { SettingsService } from './settings.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -16,8 +18,9 @@ export class MessagingService {
 	constructor(
 		private angularFireMessaging: AngularFireMessaging,
 		private forms: FormsService,
-		private storage: Storage,
-		private log: LogService
+		private log: LogService,
+		private settings: SettingsService,
+		private slack: SlackService
 	) {
 		this.angularFireMessaging.messaging.subscribe((messaging) => {
 			messaging.onMessage = messaging.onMessage.bind(messaging);
@@ -33,21 +36,9 @@ export class MessagingService {
 		this.angularFireMessaging.requestToken.subscribe(
 			(token) => {
 				console.log('Token:', token);
-				from(this.storage.get('rk-firebase-push-token')).subscribe((existingToken?: string) => {
-					if (!existingToken) {
-						// only register new token if not already registered
-						this.forms
-							.submit(
-								FORMS_PUSH_TOKENS,
-								{
-									token,
-								},
-								'notification-subscription'
-							)
-							.subscribe(() => {
-								// save token also in local websql blob for faster checks
-								this.storage.set('rk-firebase-push-token', token);
-							});
+				this.settings.getUserSettings().subscribe((settings) => {
+					if (!settings || !settings.pushToken) {
+						return this.settings.subscribeToPushNotifications(token);
 					}
 				});
 			},
@@ -55,6 +46,15 @@ export class MessagingService {
 				this.log.traceError(err);
 			}
 		);
+	}
+
+	public unsubscribe() {
+		this.getToken().subscribe((token) => {
+			if (token) {
+				this.angularFireMessaging.deleteToken(token);
+				this.settings.unsubscribeToPushNotifications(token);
+			}
+		});
 	}
 
 	public receiveMessage() {

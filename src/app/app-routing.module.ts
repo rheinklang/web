@@ -97,6 +97,14 @@ const routes: Routes = [
 			),
 	},
 	{
+		path: 'settings',
+		data: { preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "settings" */ './views/settings/settings.module').then(
+				(mod) => mod.SettingsModule
+			),
+	},
+	{
 		path: 'not-found',
 		data: { preload: true },
 		loadChildren: () =>

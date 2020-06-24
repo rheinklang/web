@@ -3,13 +3,14 @@
 		class="a-link a-link--{{color || 'default'}}"
 		[href]="href"
 		[target]="target"
-		[attr.rel]="needsRelationSafety ? 'noopener noreferrer' : null + (prefetch ? ' prefetch' : '')"
+		[attr.rel]="needsRelationSafety ? 'noopener noreferrer' : '' + (prefetch ? ' prefetch' : '')"
 		[class.a-link--has-icon]="icon"
 		[class.a-link--static-indicator]="showIndicator"
 		(click)="handleLinkClick()"
 	>
 		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon"></rk-icon>
 		{{text}}
+		<ng-content></ng-content>
 		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon"></rk-icon>
 	</a>
 </ng-container>
@@ -28,6 +29,7 @@
 	>
 		<rk-icon *ngIf="icon && iconPosition === 'pre'" [select]="icon" [color]="iconColor"></rk-icon>
 		{{text}}
+		<ng-content></ng-content>
 		<rk-icon *ngIf="icon && iconPosition === 'post'" [select]="icon" [color]="iconColor"></rk-icon>
 	</a>
 </ng-container>

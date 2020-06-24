@@ -1,0 +1,34 @@
+@import "../../styles/colors.scss";
+@import "../../styles/responsive.scss";
+
+.v-settings {
+	display: block;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.v-settings__group {
+	margin-bottom: 30px;
+}
+
+.v-settings__notes {
+	font-size: 0.85rem;
+	line-height: 0.95rem;
+	color: $color-grey-100;
+	margin-bottom: 0;
+
+	@include respond-to-min("md") {
+		max-width: 70%;
+	}
+}
+
+.v-settings__group-form {
+	margin-top: 10px;
+}
+
+.v-settings__input {
+	padding: 8px;
+	border: 1px solid $color-grey-300;
+	border-radius: 3px;
+	margin-right: 10px;
+}

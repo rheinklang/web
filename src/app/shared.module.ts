@@ -57,6 +57,8 @@ import { BurgerComponent } from './components/atoms/burger/burger.component';
 import { TeaserEventComponent } from './components/molecules/teaser-event/teaser-event.component';
 // tslint:disable-next-line:max-line-length
 import { ContentLoaderTeaserEventComponent } from './components/atoms/content-loader-teaser-event/content-loader-teaser-event.component';
+// tslint:disable-next-line:max-line-length
+import { NotificationsComponent } from './components/molecules/notifications/notifications.component';
 
 const COMPONENTS = [
 	// atoms
@@ -93,6 +95,7 @@ const COMPONENTS = [
 	FormGroupComponent,
 	LinkListComponent,
 	MapComponent,
+	NotificationsComponent,
 	StaticMapComponent,
 	NewsletterComponent,
 	PrivacyBannerComponent,

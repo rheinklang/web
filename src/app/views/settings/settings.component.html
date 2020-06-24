@@ -1,0 +1,30 @@
+<rk-seo-manager context="impressions-overview"></rk-seo-manager>
+
+<rk-content-block
+	*ngIf="pageData"
+	color="sea-light"
+	space="xlarge"
+	centerHeading="true"
+	skew="true"
+	size="1"
+	[heading]="pageData.title || '&nbsp;'"
+>
+	<div class="row">
+			<div class="col-12 o-content-block__text" [innerHTML]="pageData.description || '&nbsp;'"></div>
+	</div>
+</rk-content-block>
+
+<div class="v-settings container">
+	<div class="v-settings__group">
+		<mat-slide-toggle [checked]="!!userSettings.pushToken" (change)="setNotificationStatus($event)">{{pageData.settingsPushLabel}}</mat-slide-toggle>
+		<p class="v-settings__notes">{{pageData.settingsPushHint}}</p>
+	</div>
+	<div class="v-settings__group">
+		<mat-slide-toggle [checked]="!!userSettings.newsletterAddress" (change)="setNewsletterStatus($event)">{{pageData.settingsNewsletterLabel}}</mat-slide-toggle>
+		<p class="v-settings__notes">{{pageData.settingsNewsletterHint}}</p>
+		<div class="v-settings__group-form">
+			<input class="v-settings__input" [formControl]="email" placeholder="E-Mail Adresse" />
+			<rk-button (handleClick)="confirmNewsletterSubscription()">Bestätigen</rk-button>
+		</div>
+	</div>
+</div>

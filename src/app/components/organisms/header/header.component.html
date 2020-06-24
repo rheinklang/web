@@ -10,6 +10,9 @@
         <rk-link-list layout="horizontal" type="main-navigation" color="white">
 					<rk-link *ngFor="let navItem of navigationItems" [href]="navItem.url" [text]="navItem.title"></rk-link>
 				</rk-link-list>
+				<a class="o-header__navigation-action" routerLink="/settings" title="Einstellungen" aria-label="Einstellungen">
+					<rk-icon select="settings" width="21" height="21" color="#0e3536"></rk-icon>
+				</a>
 			</nav>
 			<div class="o-header__trigger-container col-8 align-self-end">
 					<rk-burger [active]="flyoutNavigationOpen" (handleClick)="setFlyoutState(!flyoutNavigationOpen)"></rk-burger>
@@ -27,6 +30,9 @@
 				[routerLinkActiveOptions]="{exact:true}"
 			>
 				<a class="a-link" [routerLink]="flyoutItem.url">{{flyoutItem.title}}</a>
+			</li>
+			<li (click)="hideFlyoutNavigation()" class="o-header__flyout-list-link" routerLinkActive="o-header__flyout-list-link--active" [routerLinkActiveOptions]="{exact:true}">
+				<a class="a-link" routerLink="/settings">Einstellungen</a>
 			</li>
 		</ul>
 		<p class="o-header__flyout-close" (click)="setFlyoutState(false)">
