@@ -1,5 +1,6 @@
-<div class="m-teaser-event">
+<div class="m-teaser-event" [class.state-m-teaser-event--canceled]="canceled">
 	<rk-picture *ngIf="previewImage.path" [src]="previewImage.path"></rk-picture>
+	<p *ngIf="canceled" class="m-teaser-event__canceled-banner">Abgesagt</p>
 	<div class="m-teaser-event__details-desktop container">
 		<div class="row">
 				<div class="m-teaser-event__tile m-teaser-event__tile--type col-sm-4">
@@ -38,7 +39,7 @@
 	<!-- Content Main Section -->
 	<div class="m-teaser-event__content-wrapper">
 		<rk-heading size="3" [text]="title"></rk-heading>
-		<p *ngIf="tickets && tickets.title" class="m-teaser-event__type">Tickets</p>
+		<p *ngIf="!canceled && tickets && tickets.title" class="m-teaser-event__type">Tickets</p>
 		<div class="m-teaser-event__details-mobile">
 			<p class="m-teaser-event__details-type" *ngIf="type">
 				<span class="m-teaser-event__details-icon">
@@ -66,7 +67,7 @@
 	</div>
 	<!-- CTA Section -->
 	<div class="m-teaser-event__actions container">
-		<a *ngIf="facebookUrl" [href]="facebookUrl" target="_blank" class="m-teaser-event__facebook-link" (click)="trackFacebookLeap()">
+		<a *ngIf="facebookUrl && !canceled" [href]="facebookUrl" target="_blank" class="m-teaser-event__facebook-link" (click)="trackFacebookLeap()">
 			<rk-icon select="facebook3"></rk-icon>
 			Facebook Event
 		</a>
