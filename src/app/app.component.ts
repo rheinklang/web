@@ -2,21 +2,26 @@ import { Component, OnDestroy, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { injectGTMScript } from './app.gtm';
 import { environment } from '../environments/environment';
+import { injectGTMScript } from './app.gtm';
+import { injectGCPMapsScript } from './app.gcp';
+import { injectFacebookPixelScript } from './app.fbq';
 import { trackGTMTimingEvent } from './utils/gtag';
 import { unsubscribe } from './utils/subscription';
-import { injectGCPMapsScript } from './app.gcp';
 import { ConfigService } from './services/config.service';
 import { PWAService } from './services/pwa.service';
 
 declare var gtag;
+declare var fbq;
 
 // load environment specific tracking initialization
 injectGTMScript();
 
 // load environment specific gcp scripts
 injectGCPMapsScript();
+
+// load environment specific fbq scripts
+injectFacebookPixelScript();
 
 @Component({
 	selector: 'rk-root',
@@ -54,6 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
 						page_location: document.URL,
 						page_path: event.urlAfterRedirects,
 					});
+					fbq('track', 'PageView');
 					clearTimeout(tid);
 				}, 160);
 			});

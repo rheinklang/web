@@ -46,6 +46,7 @@ export const environment = {
 	graphQLHostURL: '${process.env.GRAPHQL_HOST_URL}',
 	gtmId: '${process.env.GTM_ID}',
 	gcpKey: '${process.env.GCP_KEY}',
+	fbqId: '${process.env.FBQ_ID}',
 	gcpStaticMapsSecret: '${process.env.GCP_STATIC_MAPS_SECRET}',
 	slackErrorHookURL: '${process.env.SLACK_ERROR_HOOK_URL}',
 	debugNgRouter: ${process.env.DEBUG_NG_ROUTER || false}
