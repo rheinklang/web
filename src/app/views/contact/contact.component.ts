@@ -11,7 +11,7 @@ export class ContactComponent implements OnInit {
 	public pageData: Partial<ContactSingletonGQLResponse['contactsPageSingleton']> = {};
 
 	private titleTemplateData = {
-		year: new Date().getFullYear(),
+		year: 2021,
 	};
 
 	constructor(private contactService: ContactService) {}

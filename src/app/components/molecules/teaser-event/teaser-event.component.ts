@@ -22,6 +22,7 @@ export class TeaserEventComponent {
 	@Input() public secret: EventSchema['secret'];
 	@Input() public tickets: EventSchema['tickets'];
 	@Input() public location: EventSchema['location'];
+	@Input() public canceled: EventSchema['canceled'] = false;
 
 	public get hasLocation() {
 		return this.location && this.location.name && this.location.city && this.location.country;
@@ -65,7 +66,7 @@ export class TeaserEventComponent {
 	}
 
 	public get eventDetailText() {
-		if (this.hasTickets) {
+		if (this.hasTickets && !this.canceled) {
 			return `Details & Tickets`;
 		}
 
@@ -74,7 +75,7 @@ export class TeaserEventComponent {
 
 	public get eventDetailIcon() {
 		return {
-			select: this.hasTickets ? 'credit-card' : 'eye',
+			select: this.hasTickets && !this.canceled ? 'credit-card' : 'eye',
 			color: '#fff',
 		};
 	}
