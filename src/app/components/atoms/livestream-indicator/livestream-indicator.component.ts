@@ -18,7 +18,11 @@ export class LivestreamIndicatorComponent implements OnInit, OnDestroy {
 	private routeSubscription$?: Subscription;
 	private streamSubscription$?: Subscription;
 
-	constructor(private route: ActivatedRoute, private router: Router, private liveStreamService: LiveStreamService) {}
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private liveStreamService: LiveStreamService
+	) {}
 
 	ngOnInit() {
 		this.streamSubscription$ = this.liveStreamService.getLiveStream().subscribe((data) => {

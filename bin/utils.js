@@ -17,7 +17,7 @@ const checkEnvironment = (keys) => {
 
 	console.log('');
 	map.forEach((entry) => {
-		console.log(`[env] ${entry.key} = ${new Array(entry.value.length).fill('*').join('')}`);
+		console.log(`[check-env] ${entry.key} = ${new Array(entry.value.length).fill('*').join('')}`);
 	});
 	console.log('');
 

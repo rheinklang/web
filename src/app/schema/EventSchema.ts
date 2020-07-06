@@ -13,7 +13,9 @@ export enum EventType {
 }
 
 export interface EventSchema<
-	TLocation extends CockpitPopulatedField<Partial<LocationSchema>> = CockpitPopulatedField<Partial<LocationSchema>>,
+	TLocation extends CockpitPopulatedField<Partial<LocationSchema>> = CockpitPopulatedField<
+		Partial<LocationSchema>
+	>,
 	TTickets extends CockpitPopulatedField<Partial<TicketsSchema>> = CockpitPopulatedField<Partial<TicketsSchema>>
 > {
 	slug: CockpitRequiredField<string>;
@@ -24,6 +26,7 @@ export interface EventSchema<
 	link: CockpitOptionalField<string>;
 	hiddenDate: CockpitOptionalField<boolean>;
 	hide: CockpitOptionalField<boolean>;
+	canceled: CockpitRequiredField<boolean>;
 	linkType: CockpitOptionalField<'internal' | 'external'>;
 	secret: CockpitOptionalField<boolean>;
 	type: CockpitOptionalField<EventType>;

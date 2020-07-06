@@ -4,7 +4,6 @@ import { ContactSingletonGQLResponse, ContactSingletonGQL } from '../../queries/
 import { template } from '../../utils/templating';
 
 @Component({
-	selector: 'rk-contact',
 	templateUrl: './contact.component.html',
 	styleUrls: ['./contact.component.scss'],
 })
@@ -12,7 +11,7 @@ export class ContactComponent implements OnInit {
 	public pageData: Partial<ContactSingletonGQLResponse['contactsPageSingleton']> = {};
 
 	private titleTemplateData = {
-		year: new Date().getFullYear(),
+		year: 2021,
 	};
 
 	constructor(private contactService: ContactService) {}

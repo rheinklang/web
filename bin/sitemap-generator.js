@@ -9,7 +9,9 @@ require('dotenv').config();
 const API_KEY = process.env.COCKPIT_API_KEY;
 const API_URL = process.env.COCKPIT_API_URL;
 const LOC_HOST =
-	process.env.NODE_ENV === 'production' ? 'https://rheinklang-festival.ch' : 'https://beta.rheinklang-festival.ch';
+	process.env.NODE_ENV === 'production'
+		? 'https://rheinklang-festival.ch'
+		: 'https://beta.rheinklang-festival.ch';
 
 const HEADERS = {
 	Authorization: `Bearer ${API_KEY}`,

@@ -33,7 +33,7 @@ export class GuestAppearanceFormComponent {
 
 	public guestAppearanceForm = new FormGroup({
 		year: new FormControl({
-			value: `${new Date().getFullYear()}`,
+			value: '2021',
 			disabled: true,
 		}),
 		location: new FormControl('', Validators.required),

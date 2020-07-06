@@ -1,0 +1,18 @@
+@import '../../../styles/colors.scss';
+
+$back-to-top-size: 40px;
+
+.a-back-to-top {
+  position: fixed;
+  right: 20px;
+	bottom: 20px;
+	width: $back-to-top-size;
+	height: $back-to-top-size;
+	line-height: 29px;
+	border-radius: #{$back-to-top-size / 2};
+  border: 0;
+  outline: none;
+  background-color: $color-primary-fury-red;
+  text-decoration: none;
+  cursor: pointer;
+}

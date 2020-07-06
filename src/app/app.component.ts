@@ -1,15 +1,18 @@
-import { filter } from 'rxjs/operators';
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { injectGTMScript } from './app.gtm';
-import { environment } from '../environments/environment';
-import { trackGTMTimingEvent } from './utils/gtag';
+import { Component, OnDestroy, ViewEncapsulation, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { unsubscribe } from './utils/subscription';
+import { filter } from 'rxjs/operators';
+import { environment } from '../environments/environment';
+import { injectGTMScript } from './app.gtm';
 import { injectGCPMapsScript } from './app.gcp';
+import { injectFacebookPixelScript } from './app.fbq';
+import { trackGTMTimingEvent } from './utils/gtag';
+import { unsubscribe } from './utils/subscription';
 import { ConfigService } from './services/config.service';
+import { PWAService } from './services/pwa.service';
 
 declare var gtag;
+declare var fbq;
 
 // load environment specific tracking initialization
 injectGTMScript();
@@ -17,18 +20,21 @@ injectGTMScript();
 // load environment specific gcp scripts
 injectGCPMapsScript();
 
+// load environment specific fbq scripts
+injectFacebookPixelScript();
+
 @Component({
 	selector: 'rk-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 	encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
 	public maintenanceConfig: ReturnType<ConfigService['getMaintenanceConfig']>;
 	private navEndSub$: Subscription;
 	private gMapCbAttached = false;
 
-	constructor(router: Router, route: ActivatedRoute, configService: ConfigService) {
+	constructor(router: Router, configService: ConfigService, private pwa: PWAService) {
 		if (!this.gMapCbAttached) {
 			this.gMapCbAttached = true;
 		}
@@ -53,10 +59,19 @@ export class AppComponent implements OnDestroy {
 						page_location: document.URL,
 						page_path: event.urlAfterRedirects,
 					});
+					fbq('track', 'PageView');
 					clearTimeout(tid);
 				}, 160);
 			});
 		}
+	}
+
+	public ngOnInit() {
+		this.pwa.initializePWACore();
+		this.pwa.updatesAvailable().subscribe(() => {
+			// TODO: Ask the user to confirm the update
+			this.pwa.update();
+		});
 	}
 
 	public ngOnDestroy() {
