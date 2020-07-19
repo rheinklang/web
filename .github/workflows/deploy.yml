@@ -37,6 +37,7 @@ jobs:
         GRAPHQL_HOST_URL: 'stub'
         GTM_ID: 'stub'
         GCP_KEY: 'stub'
+        FBQ_ID: 'stub'
         GCP_STATIC_MAPS_SECRET: 'stub'
         SLACK_ERROR_HOOK_URL: 'stub'
         DEBUG_NG_ROUTER: false
@@ -48,6 +49,7 @@ jobs:
         ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
         COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}
         COCKPIT_API_KEY: ${{ secrets.COCKPIT_API_KEY }}
+        FBQ_ID: ${{ secrets.FBQ_ID }}
         GRAPHQL_HOST_URL: ${{ secrets.GRAPHQL_HOST_URL }}
         GTM_ID: ${{ secrets.BETA_GTM_ID }}
         GCP_KEY: ${{ secrets.GCP_KEY }}
@@ -62,6 +64,7 @@ jobs:
         ASSET_CDN_HOST: ${{ secrets.ASSET_CDN_HOST }}
         COCKPIT_API_URL: ${{ secrets.COCKPIT_API_URL }}
         COCKPIT_API_KEY: ${{ secrets.COCKPIT_API_KEY }}
+        FBQ_ID: ${{ secrets.FBQ_ID }}
         GRAPHQL_HOST_URL: ${{ secrets.GRAPHQL_HOST_URL }}
         GTM_ID: ${{ secrets.GTM_ID }}
         GCP_KEY: ${{ secrets.GCP_KEY }}
