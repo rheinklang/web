@@ -1,4 +1,4 @@
-![CI](https://github.com/rheinklang/web/workflows/CI/badge.svg?branch=master) ![Compressed Size](https://github.com/rheinklang/web/workflows/Compressed%20Size/badge.svg) ![Deploy](https://github.com/rheinklang/web/workflows/Deploy/badge.svg?branch=master) [![DeepScan grade](https://deepscan.io/api/teams/7556/projects/9651/branches/128190/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7556&pid=9651&bid=128190) ![Snyk](https://img.shields.io/snyk/vulnerabilities/github/rheinklang/web)
+![CI](https://github.com/rheinklang/web/workflows/CI/badge.svg?branch=master) ![Compressed Size] ![Deploy](https://github.com/rheinklang/website/workflows/Deploy/badge.svg?branch=master) [![DeepScan grade](https://deepscan.io/api/teams/7556/projects/9651/branches/128190/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7556&pid=9651&bid=128190) ![Snyk](https://img.shields.io/snyk/vulnerabilities/github/rheinklang/web)
 
 # Rheinklang
 
