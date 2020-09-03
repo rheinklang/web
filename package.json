@@ -62,7 +62,7 @@
 		"apollo-link-error": "1.1.12",
 		"graphql": "^14.0.0",
 		"graphql-tag": "2.10.1",
-		"lazysizes": "5.2.0",
+		"lazysizes": "5.2.1",
 		"masonry-layout": "4.2.2",
 		"microtip": "0.2.2",
 		"moment": "2.24.0",
