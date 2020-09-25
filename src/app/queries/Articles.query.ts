@@ -9,7 +9,7 @@ export interface ArticlesGQLEntry {
 	author: string;
 	slug: string;
 	excerpt: string;
-	tags: string[];
+	tags: string[] | null;
 	releaseDate?: string;
 	previewImage?: PreviewImagePathOnly;
 }

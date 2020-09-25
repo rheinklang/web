@@ -111,12 +111,13 @@
 			<div *ngFor="let article of articles" class="v-event__article col-xs-12 col-md-6 col-lg-4">
 				<rk-teaser
 					*ngIf="article && article._id"
+					subtitle="Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}"
 					[disableAnimation]="true"
 					[id]="article._id"
 					[title]="article.title"
-					subtitle="Publiziert am {{article.releaseDate | date:'dd.MM.yy'}} von {{article.author}}"
 					[excerpt]="article.excerpt"
 					[tags]="article.tags"
+					link="/articles/{{article.slug}}"
 					[previewImage]="article.previewImage"
 					(hovered)="preloadArticle(article._id)"
 				></rk-teaser>
