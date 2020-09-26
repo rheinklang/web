@@ -1,6 +1,16 @@
 @import "../../styles/colors.scss";
 @import "../../styles/responsive.scss";
 
+.v-popup__wrapper {
+	background-color: $color-black;
+	color: $color-white;
+}
+
+.v-popup {
+	min-height: 300px;
+	padding: 30px 15px;
+}
+
 // .v-sponsors__wrapper {
 //   margin: 0 auto;
 //   padding: 20px 0;

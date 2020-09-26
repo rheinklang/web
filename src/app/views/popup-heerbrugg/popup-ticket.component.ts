@@ -6,10 +6,6 @@ import { PopupService } from '../../services/popup.service';
 import { ActivatedRoute } from '@angular/router';
 import { IPopupEntrySchema } from '../../schema/PopupEntrySchema';
 
-// interface SponsorsYearMap {
-// 	[year: string]: SponsorsServiceEntry[];
-// }
-
 @Component({
 	selector: 'rk-popup',
 	templateUrl: './popup-ticket.component.html',
