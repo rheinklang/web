@@ -96,6 +96,15 @@ const routes: Routes = [
 				(mod) => mod.HotlinksModule
 			),
 	},
+	// TEMPORARY FOR POPUP EVENTS
+	{
+		path: 'popup',
+		data: { preload: false },
+		loadChildren: () =>
+			import(/* webpackChunkName: "popup" */ './views/popup-heerbrugg/popup.module').then(
+				(mod) => mod.PopupHeerbruggModule
+			),
+	},
 	{
 		path: 'not-found',
 		data: { preload: true },

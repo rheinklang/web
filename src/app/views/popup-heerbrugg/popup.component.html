@@ -1,0 +1,47 @@
+PopUpHeerbrugg
+
+<!-- <rk-seo-manager context="sponsors"></rk-seo-manager> -->
+<!-- <rk-content-block
+	*ngIf="pageData"
+	color="sea-light"
+	space="xlarge"
+	centerHeading="true"
+	skew="true"
+	size="1"
+	[heading]="pageData.title"
+>
+	<div class="row">
+			<div class="col-12 o-content-block__text" [innerHTML]="pageData.description"></div>
+	</div>
+</rk-content-block>
+
+<div class="v-sponsors__wrapper">
+	<div class="v-sponsors-overview container">
+
+		<div *ngIf="sponsors && sponsors.length > 0; else loading" class="row middle-xs align-items-center">
+			<ng-container *ngFor="let year of sponsors">
+				<div *ngFor="let sponsor of year[1]" class="v-sponsors-overview__entry col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center">
+					<rk-teaser-sponsor
+						[slug]="sponsor.slug"
+						[name]="sponsor.name"
+						[url]="sponsor.url"
+						[logo]="sponsor.logo"
+						[description]="sponsor.description"
+						[level]="sponsor.level"
+						[joinedYear]="sponsor.joinedYear"
+						[lastActiveYear]="sponsor.lastActiveYear"
+						[attr.aria-label]="sponsor.ariaLabel"
+					></rk-teaser-sponsor>
+				</div>
+			</ng-container>
+		</div>
+
+		<ng-template #loading>
+			<div class="row middle-xs align-items-center">
+				<div *ngFor="let i of [1,2,3,4,5,6,7,8]" class="v-sponsors-overview__entry col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center">
+					<rk-content-loader-teaser-sponsor></rk-content-loader-teaser-sponsor>
+				</div>
+			</div>
+		</ng-template>
+	</div>
+</div> -->
