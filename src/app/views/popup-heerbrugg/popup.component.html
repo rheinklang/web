@@ -1,0 +1,60 @@
+<rk-content-block
+	color="sea-light"
+	space="xlarge"
+	centerHeading="true"
+	skew="true"
+	size="1"
+	heading="Pop-Up Events"
+>
+	<div class="row">
+			<div class="col-12 o-content-block__text">
+				Oktober bis November 2020 in Heerbrugg
+			</div>
+	</div>
+</rk-content-block>
+
+<div class="v-popup__wrapper">
+	<div class="v-popup container">
+		<div class="row middle-xs align-items-center">
+			<div class="v-popup__entry col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center">
+				<rk-link-list title="Allgemeine Informationen" headingSize="3" color="#ffffff">
+					<rk-link iconPosition="post" icon="download" href="https://drive.google.com/file/d/1cge_AAOTZ-EBBXST-KBsuZBbze9-ZQki/view" text="Gäste- und Schutzkonzept" target="_blank"></rk-link>
+				</rk-link-list>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <rk-seo-manager context="sponsors"></rk-seo-manager> -->
+<!--
+
+<div class="v-sponsors__wrapper">
+	<div class="v-sponsors-overview container">
+
+		<div *ngIf="sponsors && sponsors.length > 0; else loading" class="row middle-xs align-items-center">
+			<ng-container *ngFor="let year of sponsors">
+				<div *ngFor="let sponsor of year[1]" class="v-sponsors-overview__entry col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center">
+					<rk-teaser-sponsor
+						[slug]="sponsor.slug"
+						[name]="sponsor.name"
+						[url]="sponsor.url"
+						[logo]="sponsor.logo"
+						[description]="sponsor.description"
+						[level]="sponsor.level"
+						[joinedYear]="sponsor.joinedYear"
+						[lastActiveYear]="sponsor.lastActiveYear"
+						[attr.aria-label]="sponsor.ariaLabel"
+					></rk-teaser-sponsor>
+				</div>
+			</ng-container>
+		</div>
+
+		<ng-template #loading>
+			<div class="row middle-xs align-items-center">
+				<div *ngFor="let i of [1,2,3,4,5,6,7,8]" class="v-sponsors-overview__entry col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center">
+					<rk-content-loader-teaser-sponsor></rk-content-loader-teaser-sponsor>
+				</div>
+			</div>
+		</ng-template>
+	</div>
+</div> -->

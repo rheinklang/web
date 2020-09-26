@@ -1,0 +1,10 @@
+<div class="v-popup-ticket">
+	<div *ngIf="isLoaded && isAllowed">
+		<p class="v-popup-ticket__intro-text">Wilkommen bei {{eventId}}:</p>
+		<rk-heading size="1" [text]="name" [center]="true"></rk-heading>
+		<p class="v-popup-ticket__outro-text">Du gehörst zu den auserlesenen Personen welche an dem Event teilnehmen dürfen, wir freuen uns auf dich!</p>
+		<p class="v-popup-ticket__guid-text">Hier ist dein persönlicher Ticket Code:</p>
+		<p class="v-popup-ticket__guid"><code>{{guid}}</code></p>
+		<img class="v-popup-ticket__qr" *ngIf="qrCodeURL" [src]="qrCodeURL" />
+	</div>
+</div>

@@ -1,0 +1,40 @@
+@import "../../styles/colors.scss";
+@import "../../styles/responsive.scss";
+
+.v-popup-ticket {
+	padding: 30px 10px 50px 10px;
+	background-color: $color-black;
+
+	.a-heading {
+		color: $color-white;
+	}
+}
+
+.v-popup-ticket__intro-text,
+.v-popup-ticket__outro-text,
+.v-popup-ticket__guid-text {
+	text-align: center;
+	color: $color-white;
+}
+
+.v-popup-ticket__guid-text {
+	margin: 30px 0 10px 0;
+	font-size: 0.8rem;
+	color: $color-grey-500;
+}
+
+.v-popup-ticket__guid {
+	font-size: 0.9rem;
+	color: $color-black;
+	background-color: $color-white;
+	color: $color-black;
+	display: block;
+	margin: 0 auto 20px auto;
+	padding: 8px 12px;
+	width: 336px;
+	border-radius: 3px;
+}
+
+.v-popup-ticket__qr {
+	margin: 0 auto;
+}

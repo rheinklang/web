@@ -48,6 +48,12 @@
 			function gtag() { dataLayer.push(arguments); }
 			gtag('js', new Date());
 		</script>
+		<script>
+			// Workaround for QRCode gen
+			if (global === undefined) {
+				var global = window;
+			}
+		</script>
 	</head>
 	<body>
 		<!--[if IE ]>
