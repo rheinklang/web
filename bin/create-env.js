@@ -47,6 +47,7 @@ export const environment = {
 	gtmId: '${process.env.GTM_ID}',
 	gcpKey: '${process.env.GCP_KEY}',
 	fbqId: '${process.env.FBQ_ID}',
+	facebookPageId: '${process.env.FB_PAGE_ID}',
 	gcpStaticMapsSecret: '${process.env.GCP_STATIC_MAPS_SECRET}',
 	slackErrorHookURL: '${process.env.SLACK_ERROR_HOOK_URL}',
 	debugNgRouter: ${process.env.DEBUG_NG_ROUTER || false}

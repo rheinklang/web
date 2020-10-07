@@ -31,7 +31,7 @@ import { CustomPreloadingStrategy } from './config/preloading';
 		AppRoutingModule,
 		IonicStorageModule.forRoot({
 			name: 'rk-storage',
-			driverOrder: ['indexeddb', 'sqlite', 'websql'],
+			driverOrder: ['indexeddb', 'sqlite', 'websql', 'localstorage'],
 		}),
 		GraphQLModule,
 		ContentLoaderModule,
