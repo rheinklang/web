@@ -35,4 +35,9 @@ export class FacebookMessengerIntegrationComponent implements OnInit {
 	public get facebookPageId() {
 		return environment.facebookPageId;
 	}
+
+	public get messengerRefId() {
+		// TODO: maybe introduce active route ID
+		return 'website';
+	}
 }
