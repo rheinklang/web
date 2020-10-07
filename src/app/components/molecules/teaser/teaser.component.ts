@@ -29,7 +29,7 @@ export class TeaserComponent implements AfterViewInit {
 	@Output() public hovered = new EventEmitter<void>();
 	@Output() public tagClicked = new EventEmitter<string>();
 
-	@ViewChild('tagList', { static: false })
+	@ViewChild('tagList')
 	private tagList: TagListComponent;
 
 	public ngAfterViewInit() {
