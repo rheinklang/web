@@ -25,7 +25,7 @@ export const sortByYear = (ai: string | 0, bi: string | 0) => {
 	return a === b ? 0 : a > b ? 1 : -1;
 };
 
-export const sortByDate = <T extends any>(arr: T[], dateFieldExtractor: (entry: T) => string | undefined) => {
+export const sortByDate = <T extends object>(arr: T[], dateFieldExtractor: (entry: T) => string | undefined) => {
 	return arr
 		.map((article) => {
 			const dateField = dateFieldExtractor(article);
