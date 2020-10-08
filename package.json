@@ -2,7 +2,9 @@
 	"name": "rheinklang-kollektiv",
 	"version": "2.1.37",
 	"scripts": {
-		"postinstall": "node bin/clean-locales.js",
+		"postinstall": "npx npm-run-all postinstall:*",
+		"postinstall:ngcc": "ngcc",
+		"postinstall:clean-locales": "node bin/clean-locales.js",
 		"ng": "ng",
 		"prestart": "run-s create:*",
 		"start": "ng serve --host 127.0.0.1 --disable-host-check",
@@ -50,6 +52,7 @@
 		"@angular/platform-browser-dynamic": "~9.1.12",
 		"@angular/router": "~9.1.12",
 		"@angular/service-worker": "~9.1.12",
+		"@apollo/client": "3.2.2",
 		"@ionic/storage": "2.3.1",
 		"@ngneat/content-loader": "5.0.0",
 		"apollo-angular": "2.0.4",
