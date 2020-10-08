@@ -1,5 +1,5 @@
 import lazySizes from 'lazysizes';
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
 import { resolveDynamicAssetPath } from '../../../utils/image';
 
 lazySizes.cfg.lazyClass = 'a-image--lazy';
@@ -16,6 +16,7 @@ const IMAGE_OPT_FACTOR = 1.2;
 	templateUrl: './picture.component.html',
 	styleUrls: ['./picture.component.scss'],
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PictureComponent {
 	@Input() public src: string;

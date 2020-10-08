@@ -39,7 +39,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	@Output() public loaded = new EventEmitter<MapComponent>();
 
-	@ViewChild('rootInjector', { static: false })
+	@ViewChild('rootInjector')
 	private node: ElementRef;
 
 	public ready = false;

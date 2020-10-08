@@ -1,5 +1,5 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { ApolloModule, APOLLO_OPTIONS, Apollo } from 'apollo-angular';
+import { APOLLO_OPTIONS, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloClientOptions } from 'apollo-client';
@@ -113,13 +113,13 @@ export function mountPersistentCache(
 
 		if (!environment.production) {
 			// flush cache if not in production for better development state
-			await apollo.getClient().resetStore();
+			await apollo.client.resetStore();
 		}
 	};
 }
 
 @NgModule({
-	exports: [ApolloModule, HttpLinkModule],
+	exports: [HttpLinkModule],
 	providers: [
 		{
 			provide: APP_INITIALIZER,

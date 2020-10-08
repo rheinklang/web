@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import(/* webpackChunkName: "lazysizes" */ 'lazysizes');
 
@@ -17,6 +17,7 @@ export const breakpoints = [320, 550, 786, 992, 1200];
 	templateUrl: './image.component.html',
 	styleUrls: ['./image.component.scss'],
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageComponent {
 	@Input() public src: string;

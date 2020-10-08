@@ -1,5 +1,3 @@
-import { isNumber } from 'util';
-
 const TEMPLATE_EXPRESSION = /\{([0-9a-zA-Z_\$\^\!\?]+)\}/g;
 
 export type TemplateKey = string | number;
@@ -39,7 +37,7 @@ export function template(
 }
 
 export const pluralize = (num: number, singular: string, plural: string, fallback: string = '') => {
-	if (!isNumber(num) || num === 0) {
+	if (!(typeof num === 'number') || num === 0) {
 		return fallback;
 	}
 
