@@ -10,10 +10,10 @@
 				</div>
 		</div>
 	</rk-content-block>
-	<rk-content-block title="Organisationskomitee" space="large" color="grey-lighter">
-		<ng-container *ngIf="teamMembers.length > 0">
+	<rk-content-block heading="Organisationskomitee" space="large" color="grey-lighter" [centerHeading]="true">
+		<ng-container *ngIf="activeMemebers.length > 0">
 			<div class="row v-about__members justify-content-md-center justify-content-lg-center">
-				<div class="v-about__members-entry col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let member of teamMembers">
+				<div class="v-about__members-entry col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let member of activeMemebers">
 					<rk-card>
 						<div class="v-about__member-image-container">
 							<rk-picture *ngIf="member.image && member.image.path else noImage" rounded="full" [src]="getImageForMember(member)" alt="Portrait von {{member.fullName}}"></rk-picture>
@@ -25,6 +25,28 @@
 							<rk-heading size="3" [text]="member.fullName" noSpace="true"></rk-heading>
 							<rk-heading *ngIf="member.mainRole" size="4" noSpace="true" [text]="member.mainRole"></rk-heading>
 							<rk-heading *ngIf="member.sideRole" size="5" noSpace="true" [text]="member.sideRole"></rk-heading>
+						</div>
+					</rk-card>
+				</div>
+			</div>
+		</ng-container>
+	</rk-content-block>
+	<rk-content-block heading="Ehemalige" space="large" color="grey-light" [centerHeading]="true">
+		<p class="h-text-align--center">Ein grosses Dankeschön an unsere ehemaligen Mitglieder und deren vergangene Arbeit!</p>
+		<ng-container *ngIf="staleMembers.length > 0">
+			<div class="row v-about__members justify-content-md-center justify-content-lg-center">
+				<div class="v-about__members-entry col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let member of staleMembers">
+					<rk-card>
+						<div class="v-about__member-image-container">
+							<rk-picture *ngIf="member.image && member.image.path else noImage" rounded="full" [src]="getImageForMember(member)" [inactive]="true" alt="Portrait von {{member.fullName}}"></rk-picture>
+							<ng-template #noImage>
+								<img class="a-image a-image--inactive a-image--rounded-full" [src]="getPlaceholderFor(member.fullName)" alt="Portrait von {{member.fullName}}" />
+							</ng-template>
+						</div>
+						<div class="v-about__member-intro">
+							<rk-heading size="3" [text]="member.fullName" noSpace="true"></rk-heading>
+							<rk-heading *ngIf="member.mainRole" size="6" noSpace="true" [text]="member.mainRole"></rk-heading>
+							<rk-heading *ngIf="member.mainRole" size="6" noSpace="true" text="Bis {{member.formerSince}}"></rk-heading>
 						</div>
 					</rk-card>
 				</div>

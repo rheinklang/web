@@ -24,6 +24,7 @@ export class TeamGQL extends Query<TeamGQLResponse> {
 				founder
 				mainRole
 				sideRole
+				formerSince
 			}
 		}
 	`;

@@ -10,4 +10,5 @@ export interface TeamSchema {
 	description: CockpitOptionalField<string>;
 	mainRole: CockpitOptionalField<string>;
 	sideRole: CockpitOptionalField<string>;
+	formerSince: CockpitOptionalField<number>;
 }

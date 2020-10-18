@@ -1,9 +1,11 @@
-@import './responsive.scss';
+@import "./responsive.scss";
+@import "./colors.scss";
 
 body {
-	font-family: Lato, 'Helvetica Neue', sans-serif;
+	font-family: Lato, "Helvetica Neue", sans-serif;
+	background-color: $color-primary-sea-green;
 
-	@include respond-to-max('sm') {
+	@include respond-to-max("sm") {
 		overflow-x: hidden;
 	}
 }
@@ -21,7 +23,7 @@ body {
 
 div,
 p {
-	@include respond-to-max('sm') {
+	@include respond-to-max("sm") {
 		line-height: 1.2;
 	}
 }

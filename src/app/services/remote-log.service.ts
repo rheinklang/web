@@ -79,6 +79,11 @@ export class RemoteLogService {
 				return;
 			}
 
+			if (['google', 'facebook'].indexOf(ipInfo.org.toLowerCase()) > -1) {
+				// we do not want to receive that many logs from Facebook & Google
+				return;
+			}
+
 			this.lastIPTrace = ipInfo.ip;
 			// send message to slack
 			this.slack.sendErrorLog({
