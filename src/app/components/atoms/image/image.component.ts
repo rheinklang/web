@@ -27,6 +27,7 @@ export class ImageComponent {
 	@Input() public alt = 'Image';
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
+	@Input() public inactive = false;
 
 	public INITIAL_SOURCE_SET = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 

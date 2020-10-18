@@ -54,6 +54,14 @@ export class AboutComponent implements OnInit, OnDestroy {
 			});
 	}
 
+	public get activeMemebers() {
+		return this.teamMembers.filter((member) => !member.formerSince);
+	}
+
+	public get staleMembers() {
+		return this.teamMembers.filter((member) => member.formerSince);
+	}
+
 	public getImageForMember(member: { image?: { path: string }; fullName: string }) {
 		if (member.image) {
 			return member.image.path;

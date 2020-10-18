@@ -1,6 +1,6 @@
 %clearfix {
 	&:after {
-		content: '';
+		content: "";
 		display: table;
 		clear: both;
 	}
@@ -8,4 +8,9 @@
 
 .h-text-align--center {
 	text-align: center;
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+	background: $color; /* The Fallback */
+	background: rgba($color, $opacity);
 }

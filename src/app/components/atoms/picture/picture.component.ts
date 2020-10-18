@@ -27,6 +27,7 @@ export class PictureComponent {
 	@Input() public placeholderSize?: [number, number] = [0, 0];
 	@Input() public description?: string;
 	@Input() public downscale = 0;
+	@Input() public inactive = false;
 
 	public get source() {
 		return resolveDynamicAssetPath({

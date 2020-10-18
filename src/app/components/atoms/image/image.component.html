@@ -2,6 +2,7 @@
 	*ngIf="src"
 	class="a-image"
 	[class.a-image--lazy]="lazy"
+	[class.a-image--inactive]="inactive"
 	[ngClass]="rounded === 'none' ? '' : 'a-image--rounded-' + rounded"
 	[style.minWidth]="placeholderSize[0]"
 	[style.minHeight]="placeholderSize[1]"

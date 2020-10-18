@@ -2,7 +2,7 @@
 	<!--[if IE 9]><video style="display: none"><![endif]-->
 	<source *ngFor="let source of sources" [attr.data-srcset]="source.url" [attr.media]="source.breakpoint" />
 	<!--[if IE 9]></video><![endif]-->
-	<rk-image [rounded]="rounded" [alt]="alt" [src]="source"></rk-image>
+	<rk-image [inactive]="inactive" [rounded]="rounded" [alt]="alt" [src]="source"></rk-image>
 </picture>
 
 <p *ngIf="description" class="a-image__description">{{description}}</p>
